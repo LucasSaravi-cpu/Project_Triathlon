@@ -1,4 +1,4 @@
-package Project_Triathlon.src.model;
+package model;
 
 public class PhysicalConditions {
     private double swimmingAptitude;

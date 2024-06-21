@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module Project_Triathlon {
-}
