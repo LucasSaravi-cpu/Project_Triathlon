@@ -1,4 +1,4 @@
-package model;
+package Project_Triathlon.src.model;
 
 import java.util.Date;
 
