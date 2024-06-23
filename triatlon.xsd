@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="campeonato-triatlon" type="campeonato-triatlonType"/>
+  <xs:complexType name="condicionesFisicasType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="aptitudNatacion"/>
+      <xs:element type="xs:string" name="aptitudCiclismo"/>
+      <xs:element type="xs:string" name="aptitudPedestrismo"/>
+      <xs:element type="xs:string" name="resistencia"/>
+      <xs:element name="fortalezaPsicologica">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="6.0"/>
+            <xs:enumeration value="5.0"/>
+            <xs:enumeration value="9.0"/>
+            <xs:enumeration value="8.0"/>
+            <xs:enumeration value="7.0"/>
+            <xs:enumeration value="8.5"/>
+            <xs:enumeration value="7.5"/>
+            <xs:enumeration value="4.0"/>
+            <xs:enumeration value="5.5"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="atletaType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="apellido"/>
+      <xs:element type="xs:string" name="nombre"/>
+      <xs:element type="xs:string" name="dni"/>
+      <xs:element type="xs:string" name="nacionalidad"/>
+      <xs:element type="xs:string" name="fechaNacimiento"/>
+      <xs:element name="genero">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Masculino"/>
+            <xs:enumeration value="Femenino"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="categoria">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Competición"/>
+            <xs:enumeration value="Amateur"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:string" name="peso"/>
+      <xs:element type="xs:string" name="altura"/>
+      <xs:element type="condicionesFisicasType" name="condicionesFisicas"/>
+      <xs:element type="xs:string" name="porcentajeCarrerasTerminadas"/>
+      <xs:element type="xs:string" name="presupuestoEconomico"/>
+      <xs:element type="xs:string" name="ranking"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="numero" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="atletasType">
+    <xs:sequence>
+      <xs:element type="atletaType" name="atleta" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="puestoType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="distancia"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="tipo" use="optional"/>
+    <xs:attribute type="xs:string" name="numero" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="puestos_aprovisionamientoType">
+    <xs:sequence>
+      <xs:element type="puestoType" name="puesto" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="carreraType">
+    <xs:sequence>
+      <xs:element name="ciudad">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Mar del Plata"/>
+            <xs:enumeration value="Madrid"/>
+            <xs:enumeration value="New York"/>
+            <xs:enumeration value="Tokyo"/>
+            <xs:enumeration value="Londres"/>
+            <xs:enumeration value="Berlin"/>
+            <xs:enumeration value="Sydney"/>
+            <xs:enumeration value="Rio de Janeiro"/>
+            <xs:enumeration value="Ciudad del Cabo"/>
+            <xs:enumeration value="Vancouver"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="pais">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Argentina"/>
+            <xs:enumeration value="España"/>
+            <xs:enumeration value="Estados Unidos"/>
+            <xs:enumeration value="Japón"/>
+            <xs:enumeration value="Reino Unido"/>
+            <xs:enumeration value="Alemania"/>
+            <xs:enumeration value="Australia"/>
+            <xs:enumeration value="Brasil"/>
+            <xs:enumeration value="Sudáfrica"/>
+            <xs:enumeration value="Canadá"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="fecha">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2024-07-01"/>
+            <xs:enumeration value="2024-07-15"/>
+            <xs:enumeration value="2024-08-01"/>
+            <xs:enumeration value="2024-08-15"/>
+            <xs:enumeration value="2024-09-01"/>
+            <xs:enumeration value="2024-09-15"/>
+            <xs:enumeration value="2024-10-01"/>
+            <xs:enumeration value="2024-10-15"/>
+            <xs:enumeration value="2024-11-01"/>
+            <xs:enumeration value="2024-11-15"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="modalidad">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Sprint"/>
+            <xs:enumeration value="Larga distancia"/>
+            <xs:enumeration value="Distancia olímpico"/>
+            <xs:enumeration value="Media distancia"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="natacion">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="0.75"/>
+            <xs:enumeration value="3.8"/>
+            <xs:enumeration value="1.5"/>
+            <xs:enumeration value="1.9"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ciclismo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="20"/>
+            <xs:enumeration value="180"/>
+            <xs:enumeration value="40"/>
+            <xs:enumeration value="90"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="pedestrismo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="5"/>
+            <xs:enumeration value="42.2"/>
+            <xs:enumeration value="10"/>
+            <xs:enumeration value="21.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="puestos_aprovisionamientoType" name="puestos_aprovisionamiento"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="carrerasType">
+    <xs:sequence>
+      <xs:element type="carreraType" name="carrera" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="campeonato-triatlonType">
+    <xs:sequence>
+      <xs:element type="atletasType" name="atletas"/>
+      <xs:element type="carrerasType" name="carreras"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,35 @@
+<!ELEMENT campeonato-triatlon (atletas, carreras)>
+<!ELEMENT atletas (atleta+)>
+<!ELEMENT atleta (apellido, nombre, dni, nacionalidad, fechaNacimiento, genero, categoria, peso, altura, condicionesFisicas, porcentajeCarrerasTerminadas, presupuestoEconomico, ranking)>
+<!ATTLIST atleta numero CDATA #REQUIRED>
+<!ELEMENT apellido (#PCDATA)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT dni (#PCDATA)>
+<!ELEMENT nacionalidad (#PCDATA)>
+<!ELEMENT fechaNacimiento (#PCDATA)>
+<!ELEMENT genero (#PCDATA)>
+<!ELEMENT categoria (#PCDATA)>
+<!ELEMENT peso (#PCDATA)>
+<!ELEMENT altura (#PCDATA)>
+<!ELEMENT condicionesFisicas (aptitudNatacion, aptitudCiclismo, aptitudPedestrismo, resistencia, fortalezaPsicologica)>
+<!ELEMENT aptitudNatacion (#PCDATA)>
+<!ELEMENT aptitudCiclismo (#PCDATA)>
+<!ELEMENT aptitudPedestrismo (#PCDATA)>
+<!ELEMENT resistencia (#PCDATA)>
+<!ELEMENT fortalezaPsicologica (#PCDATA)>
+<!ELEMENT porcentajeCarrerasTerminadas (#PCDATA)>
+<!ELEMENT presupuestoEconomico (#PCDATA)>
+<!ELEMENT ranking (#PCDATA)>
+<!ELEMENT carreras (carrera+)>
+<!ELEMENT carrera (ciudad, pais, fecha, modalidad, natacion, ciclismo, pedestrismo, puestos_aprovisionamiento)>
+<!ELEMENT ciudad (#PCDATA)>
+<!ELEMENT pais (#PCDATA)>
+<!ELEMENT modalidad (#PCDATA)>
+<!ELEMENT natacion (#PCDATA)>
+<!ELEMENT ciclismo (#PCDATA)>
+<!ELEMENT pedestrismo (#PCDATA)>
+<!ELEMENT puestos_aprovisionamiento (puesto*)>
+<!ELEMENT puesto (distancia)>
+<!ATTLIST puesto tipo (ciclismo|pedestrismo) #REQUIRED>
+<!ATTLIST puesto numero CDATA #REQUIRED>
+<!ELEMENT distancia (#PCDATA)>

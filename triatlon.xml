@@ -1,0 +1,1230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<campeonato-triatlon>
+	<atletas>
+		<atleta numero="0231">
+			<apellido>Massimo</apellido>
+			<nombre>Lentini</nombre>
+			<dni>80807979</dni>
+			<nacionalidad>Italia</nacionalidad>
+			<fechaNacimiento>1985-04-15</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>78</peso>
+			<altura>1.77</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>6.0</aptitudNatacion>
+				<aptitudCiclismo>9.5</aptitudCiclismo>
+				<aptitudPedestrismo>7.0</aptitudPedestrismo>
+				<resistencia>9.5</resistencia>
+				<fortalezaPsicologica>6.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>65</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>60000</presupuestoEconomico>
+			<ranking>101</ranking>
+		</atleta>    
+		<atleta numero="0847">
+			<apellido>Debilucha</apellido>
+			<nombre>Luce</nombre>
+			<dni>39658244</dni>
+			<nacionalidad>Italia</nacionalidad>
+			<fechaNacimiento>1992-04-15</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Amateur</categoria>
+			<peso>50</peso>
+			<altura>1.65</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>6.0</aptitudNatacion>
+				<aptitudCiclismo>5.5</aptitudCiclismo>
+				<aptitudPedestrismo>5.5</aptitudPedestrismo>
+				<resistencia>5.0</resistencia>
+				<fortalezaPsicologica>5.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>10</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>10000</presupuestoEconomico>
+			<ranking>601</ranking>
+		</atleta>  	
+		<atleta numero="0545">
+			<apellido>Setumba</apellido>
+			<nombre>Embizy</nombre>
+			<dni>68559747</dni>
+			<nacionalidad>Nigeria</nacionalidad>
+			<fechaNacimiento>1996-04-15</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Amateur</categoria>
+			<peso>65</peso>
+			<altura>1.65</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>8.0</aptitudNatacion>
+				<aptitudCiclismo>4.5</aptitudCiclismo>
+				<aptitudPedestrismo>9.0</aptitudPedestrismo>
+				<resistencia>8.5</resistencia>
+				<fortalezaPsicologica>9.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>88</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>10000</presupuestoEconomico>
+			<ranking>89</ranking>
+		</atleta>  		
+		<atleta numero="0405">
+			<apellido>Porrazo</apellido>
+			<nombre>Lourdes</nombre>
+			<dni>47475051</dni>
+			<nacionalidad>Argentina</nacionalidad>
+			<fechaNacimiento>1995-04-15</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Amateur</categoria>
+			<peso>62</peso>
+			<altura>1.65</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>8.0</aptitudNatacion>
+				<aptitudCiclismo>8.5</aptitudCiclismo>
+				<aptitudPedestrismo>8.0</aptitudPedestrismo>
+				<resistencia>8.5</resistencia>
+				<fortalezaPsicologica>8.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>100</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>30000</presupuestoEconomico>
+			<ranking>33</ranking>
+		</atleta>    
+		<atleta numero="0171">
+			<apellido>Tramposso</apellido>
+			<nombre>Luca</nombre>
+			<dni>80564122</dni>
+			<nacionalidad>Italia</nacionalidad>
+			<fechaNacimiento>2009-04-15</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>70</peso>
+			<altura>1.60</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>5.0</aptitudNatacion>
+				<aptitudCiclismo>4.0</aptitudCiclismo>
+				<aptitudPedestrismo>6.5</aptitudPedestrismo>
+				<resistencia>6.0</resistencia>
+				<fortalezaPsicologica>8.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>25</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>15000</presupuestoEconomico>
+			<ranking>408</ranking>
+		</atleta> 		
+		<atleta numero="0056">
+			<apellido>Desorientada</apellido>
+			<nombre>Lucía</nombre>
+			<dni>36365454</dni>
+			<nacionalidad>Uruguay</nacionalidad>
+			<fechaNacimiento>1996-04-15</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Amateur</categoria>
+			<peso>56</peso>
+			<altura>1.60</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>7.0</aptitudNatacion>
+				<aptitudCiclismo>7.5</aptitudCiclismo>
+				<aptitudPedestrismo>9.0</aptitudPedestrismo>
+				<resistencia>6.5</resistencia>
+				<fortalezaPsicologica>5.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>65</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>60000</presupuestoEconomico>
+			<ranking>67</ranking>
+		</atleta>  	
+		<atleta numero="0505">
+			<apellido>Llega</apellido>
+			<nombre>Agatha</nombre>
+			<dni>65274153</dni>
+			<nacionalidad>Croacia</nacionalidad>
+			<fechaNacimiento>2007-12-15</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>84</peso>
+			<altura>1.70</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>7.0</aptitudNatacion>
+				<aptitudCiclismo>6.0</aptitudCiclismo>
+				<aptitudPedestrismo>5.5</aptitudPedestrismo>
+				<resistencia>6.0</resistencia>
+				<fortalezaPsicologica>6.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>15</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>35000</presupuestoEconomico>
+			<ranking>413</ranking>
+		</atleta> 		
+		<atleta numero="0890">
+			<apellido>Makina</apellido>
+			<nombre>Eshuna</nombre>
+			<dni>75983541</dni>
+			<nacionalidad>Kenia</nacionalidad>
+			<fechaNacimiento>1993-04-15</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Amateur</categoria>
+			<peso>68</peso>
+			<altura>1.70</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.0</aptitudNatacion>
+				<aptitudCiclismo>9.5</aptitudCiclismo>
+				<aptitudPedestrismo>9.5</aptitudPedestrismo>
+				<resistencia>9.0</resistencia>
+				<fortalezaPsicologica>9.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>100</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>10000</presupuestoEconomico>
+			<ranking>2</ranking>
+		</atleta> 	
+		<atleta numero="1505">
+			<apellido>Cansado</apellido>
+			<nombre>Lucio</nombre>
+			<dni>65274153</dni>
+			<nacionalidad>Ecuador</nacionalidad>
+			<fechaNacimiento>1992-04-15</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>79</peso>
+			<altura>1.71</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>7.5</aptitudNatacion>
+				<aptitudCiclismo>6.0</aptitudCiclismo>
+				<aptitudPedestrismo>5.5</aptitudPedestrismo>
+				<resistencia>6.0</resistencia>
+				<fortalezaPsicologica>7.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>20</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>65000</presupuestoEconomico>
+			<ranking>99</ranking>
+		</atleta> 		
+		<atleta numero="0201">
+			<apellido>Sinrumbo</apellido>
+			<nombre>Juan</nombre>
+			<dni>12345678</dni>
+			<nacionalidad>Argentina</nacionalidad>
+			<fechaNacimiento>1990-04-15</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>75</peso>
+			<altura>1.80</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.0</aptitudNatacion>
+				<aptitudCiclismo>8.0</aptitudCiclismo>
+				<aptitudPedestrismo>8.0</aptitudPedestrismo>
+				<resistencia>9.5</resistencia>
+				<fortalezaPsicologica>8.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>95</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>50000</presupuestoEconomico>
+			<ranking>150</ranking>
+		</atleta>	
+		<atleta numero="0201">
+			<apellido>Searrastra</apellido>
+			<nombre>Pedro</nombre>
+			<dni>68552244</dni>
+			<nacionalidad>Venezuela</nacionalidad>
+			<fechaNacimiento>1990-05-15</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>75</peso>
+			<altura>1.80</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.0</aptitudNatacion>
+				<aptitudCiclismo>8.0</aptitudCiclismo>
+				<aptitudPedestrismo>5.0</aptitudPedestrismo>
+				<resistencia>7.5</resistencia>
+				<fortalezaPsicologica>7.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>68</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>5000</presupuestoEconomico>
+			<ranking>187</ranking>
+		</atleta>
+		<atleta numero="0309">
+			<apellido>del Camino</apellido>
+			<nombre>Soledad</nombre>
+			<dni>75642044</dni>
+			<nacionalidad>Bolivia</nacionalidad>
+			<fechaNacimiento>1997-04-15</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Amateur</categoria>
+			<peso>62</peso>
+			<altura>1.61</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>4.0</aptitudNatacion>
+				<aptitudCiclismo>8.5</aptitudCiclismo>
+				<aptitudPedestrismo>9.0</aptitudPedestrismo>
+				<resistencia>8.5</resistencia>
+				<fortalezaPsicologica>9.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>100</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>29000</presupuestoEconomico>
+			<ranking>38</ranking>
+		</atleta>  	
+		<atleta numero="0171">
+			<apellido>Trancolargo</apellido>
+			<nombre>Mario</nombre>
+			<dni>47741552</dni>
+			<nacionalidad>Argentina</nacionalidad>
+			<fechaNacimiento>2008-04-15</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Amateur</categoria>
+			<peso>78</peso>
+			<altura>1.85</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>7.0</aptitudNatacion>
+				<aptitudCiclismo>8.0</aptitudCiclismo>
+				<aptitudPedestrismo>9.5</aptitudPedestrismo>
+				<resistencia>9.0</resistencia>
+				<fortalezaPsicologica>8.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>89</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>15000</presupuestoEconomico>
+			<ranking>8</ranking>
+		</atleta> 	
+		<atleta numero="0073">
+			<apellido>Nocorrevuela</apellido>
+			<nombre>Zulema</nombre>
+			<dni>26359871</dni>
+			<nacionalidad>Paraguay</nacionalidad>
+			<fechaNacimiento>1995-04-15</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Amateur</categoria>
+			<peso>58</peso>
+			<altura>1.59</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.5</aptitudNatacion>
+				<aptitudCiclismo>9.5</aptitudCiclismo>
+				<aptitudPedestrismo>9.5</aptitudPedestrismo>
+				<resistencia>9.0</resistencia>
+				<fortalezaPsicologica>9.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>100</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>65000</presupuestoEconomico>
+			<ranking>1</ranking>
+		</atleta>  	
+		<atleta numero="0073">
+			<apellido>Não Chega</apellido>
+			<nombre>Inacia</nombre>
+			<dni>26359871</dni>
+			<nacionalidad>Brasil</nacionalidad>
+			<fechaNacimiento>1990-04-15</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Amateur</categoria>
+			<peso>68</peso>
+			<altura>1.72</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.0</aptitudNatacion>
+				<aptitudCiclismo>4.5</aptitudCiclismo>
+				<aptitudPedestrismo>5.5</aptitudPedestrismo>
+				<resistencia>7.0</resistencia>
+				<fortalezaPsicologica>6.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>0</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>65000</presupuestoEconomico>
+			<ranking>401</ranking>
+		</atleta>  		
+		<atleta numero="0171">
+			<apellido>Lentovsky</apellido>
+			<nombre>Vladimir</nombre>
+			<dni>95224415</dni>
+			<nacionalidad>Rusia</nacionalidad>
+			<fechaNacimiento>2007-04-15</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>78</peso>
+			<altura>1.80</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>7.0</aptitudNatacion>
+				<aptitudCiclismo>8.0</aptitudCiclismo>
+				<aptitudPedestrismo>7.5</aptitudPedestrismo>
+				<resistencia>9.0</resistencia>
+				<fortalezaPsicologica>9.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>95</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>35000</presupuestoEconomico>
+			<ranking>19</ranking>
+		</atleta> 		
+		<atleta numero="0970">
+			<apellido>Kamina</apellido>
+			<nombre>Nokorreh</nombre>
+			<dni>86543512</dni>
+			<nacionalidad>Sudáfrica</nacionalidad>
+			<fechaNacimiento>1996-04-15</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>80</peso>
+			<altura>1.70</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.0</aptitudNatacion>
+				<aptitudCiclismo>7.0</aptitudCiclismo>
+				<aptitudPedestrismo>4.5</aptitudPedestrismo>
+				<resistencia>7.0</resistencia>
+				<fortalezaPsicologica>6.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>70</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>19000</presupuestoEconomico>
+			<ranking>37</ranking>
+		</atleta> 	
+		<atleta numero="0504">
+			<apellido>Veloce</apellido>
+			<nombre>Giorgia</nombre>
+			<dni>82657814</dni>
+			<nacionalidad>Italia</nacionalidad>
+			<fechaNacimiento>2006-12-15</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>72</peso>
+			<altura>1.79</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>7.0</aptitudNatacion>
+				<aptitudCiclismo>9.0</aptitudCiclismo>
+				<aptitudPedestrismo>9.5</aptitudPedestrismo>
+				<resistencia>8.0</resistencia>
+				<fortalezaPsicologica>8.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>100</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>35000</presupuestoEconomico>
+			<ranking>13</ranking>
+		</atleta> 	
+		<atleta numero="0171">
+			<apellido>Sehunde</apellido>
+			<nombre>Musa</nombre>
+			<dni>72651897</dni>
+			<nacionalidad>Nigeria</nacionalidad>
+			<fechaNacimiento>2002-12-15</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>70</peso>
+			<altura>1.80</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>4.0</aptitudNatacion>
+				<aptitudCiclismo>9.0</aptitudCiclismo>
+				<aptitudPedestrismo>9.5</aptitudPedestrismo>
+				<resistencia>9.0</resistencia>
+				<fortalezaPsicologica>9.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>75</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>10000</presupuestoEconomico>
+			<ranking>21</ranking>
+		</atleta> 		
+		<atleta numero="1302">
+			<apellido>Tupuedes</apellido>
+			<nombre>María</nombre>
+			<dni>23456789</dni>
+			<nacionalidad>España</nacionalidad>
+			<fechaNacimiento>2007-06-20</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>60</peso>
+			<altura>1.65</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>8.0</aptitudNatacion>
+				<aptitudCiclismo>9.0</aptitudCiclismo>
+				<aptitudPedestrismo>7.0</aptitudPedestrismo>
+				<resistencia>7.5</resistencia>
+				<fortalezaPsicologica>7.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>85</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>20000</presupuestoEconomico>
+			<ranking>25</ranking>
+		</atleta>
+		<atleta numero="1803">
+			<apellido>Speedy</apellido>
+			<nombre>John</nombre>
+			<dni>34567890</dni>
+			<nacionalidad>Estados Unidos</nacionalidad>
+			<fechaNacimiento>1985-12-05</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Amateur</categoria>
+			<peso>80</peso>
+			<altura>1.85</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>7.0</aptitudNatacion>
+				<aptitudCiclismo>8.0</aptitudCiclismo>
+				<aptitudPedestrismo>9.0</aptitudPedestrismo>
+				<resistencia>8.0</resistencia>
+				<fortalezaPsicologica>8.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>90</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>10000</presupuestoEconomico>
+			<ranking>50</ranking>
+		</atleta>
+		<atleta numero="0494">
+			<apellido>Chinchubichi</apellido>
+			<nombre>Lee</nombre>
+			<dni>45678901</dni>
+			<nacionalidad>China</nacionalidad>
+			<fechaNacimiento>1975-11-30</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Amateur</categoria>
+			<peso>55</peso>
+			<altura>1.60</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>6.0</aptitudNatacion>
+				<aptitudCiclismo>3.0</aptitudCiclismo>
+				<aptitudPedestrismo>7.0</aptitudPedestrismo>
+				<resistencia>7.5</resistencia>
+				<fortalezaPsicologica>7.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>80</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>8000</presupuestoEconomico>
+			<ranking>100</ranking>
+		</atleta>
+		<atleta numero="1015">
+			<apellido>Rayoh</apellido>
+			<nombre>Jisoo</nombre>
+			<dni>56789012</dni>
+			<nacionalidad>Corea del Sur</nacionalidad>
+			<fechaNacimiento>2008-02-14</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>58</peso>
+			<altura>1.70</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.0</aptitudNatacion>
+				<aptitudCiclismo>9.0</aptitudCiclismo>
+				<aptitudPedestrismo>8.0</aptitudPedestrismo>
+				<resistencia>8.5</resistencia>
+				<fortalezaPsicologica>8.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>95</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>30000</presupuestoEconomico>
+			<ranking>20</ranking>
+		</atleta>
+		<atleta numero="0876">
+			<apellido>Piñón Fijo</apellido>
+			<nombre>Lara</nombre>
+			<dni>67890123</dni>
+			<nacionalidad>Uruguay</nacionalidad>
+			<fechaNacimiento>2002-09-10</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>62</peso>
+			<altura>1.68</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>8.5</aptitudNatacion>
+				<aptitudCiclismo>9.5</aptitudCiclismo>
+				<aptitudPedestrismo>7.5</aptitudPedestrismo>
+				<resistencia>8.0</resistencia>
+				<fortalezaPsicologica>8.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>90</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>25000</presupuestoEconomico>
+			<ranking>30</ranking>
+		</atleta>
+		<atleta numero="0447">
+			<apellido>Cansino</apellido>
+			<nombre>Diego</nombre>
+			<dni>78901234</dni>
+			<nacionalidad>México</nacionalidad>
+			<fechaNacimiento>1993-01-25</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Amateur</categoria>
+			<peso>85</peso>
+			<altura>1.78</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>7.5</aptitudNatacion>
+				<aptitudCiclismo>7.0</aptitudCiclismo>
+				<aptitudPedestrismo>6.5</aptitudPedestrismo>
+				<resistencia>7.5</resistencia>
+				<fortalezaPsicologica>7.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>85</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>15000</presupuestoEconomico>
+			<ranking>45</ranking>
+		</atleta>
+		<atleta numero="2048">
+			<apellido>Corretutti</apellido>
+			<nombre>Andrea</nombre>
+			<dni>89012345</dni>
+			<nacionalidad>Italia</nacionalidad>
+			<fechaNacimiento>1993-07-30</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>59</peso>
+			<altura>1.72</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.0</aptitudNatacion>
+				<aptitudCiclismo>8.5</aptitudCiclismo>
+				<aptitudPedestrismo>9.5</aptitudPedestrismo>
+				<resistencia>9.0</resistencia>
+				<fortalezaPsicologica>8.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>95</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>40000</presupuestoEconomico>
+			<ranking>10</ranking>
+		</atleta>
+		<atleta numero="0319">
+			<apellido>Furioso</apellido>
+			<nombre>Alan</nombre>
+			<dni>90123456</dni>
+			<nacionalidad>Chile</nacionalidad>
+			<fechaNacimiento>1982-03-14</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Amateur</categoria>
+			<peso>78</peso>
+			<altura>1.75</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>7.0</aptitudNatacion>
+				<aptitudCiclismo>9.5</aptitudCiclismo>
+				<aptitudPedestrismo>6.5</aptitudPedestrismo>
+				<resistencia>8.0</resistencia>
+				<fortalezaPsicologica>7.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>80</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>12000</presupuestoEconomico>
+			<ranking>60</ranking>
+		</atleta>
+		<atleta numero="0010">
+			<apellido>Lentah</apellido>
+			<nombre>Thanh</nombre>
+			<dni>12345678</dni>
+			<nacionalidad>Vietnam</nacionalidad>
+			<fechaNacimiento>1991-12-12</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>57</peso>
+			<altura>1.63</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>8.0</aptitudNatacion>
+				<aptitudCiclismo>8.5</aptitudCiclismo>
+				<aptitudPedestrismo>7.5</aptitudPedestrismo>
+				<resistencia>8.5</resistencia>
+				<fortalezaPsicologica>8.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>90</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>22000</presupuestoEconomico>
+			<ranking>35</ranking>
+		</atleta>
+		<atleta numero="4011">
+			<apellido>Slowest</apellido>
+			<nombre>Michael</nombre>
+			<dni>23456789</dni>
+			<nacionalidad>Canadá</nacionalidad>
+			<fechaNacimiento>1987-05-21</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Amateur</categoria>
+			<peso>82</peso>
+			<altura>1.80</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>7.5</aptitudNatacion>
+				<aptitudCiclismo>6.0</aptitudCiclismo>
+				<aptitudPedestrismo>5.0</aptitudPedestrismo>
+				<resistencia>8.0</resistencia>
+				<fortalezaPsicologica>7.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>85</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>18000</presupuestoEconomico>
+			<ranking>55</ranking>
+		</atleta>
+		<atleta numero="0082">
+			<apellido>Makkinen</apellido>
+			<nombre>Hans</nombre>
+			<dni>34567890</dni>
+			<nacionalidad>Alemania</nacionalidad>
+			<fechaNacimiento>2003-11-11</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>77</peso>
+			<altura>1.83</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>8.5</aptitudNatacion>
+				<aptitudCiclismo>8.5</aptitudCiclismo>
+				<aptitudPedestrismo>7.5</aptitudPedestrismo>
+				<resistencia>9.0</resistencia>
+				<fortalezaPsicologica>8.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>95</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>35000</presupuestoEconomico>
+			<ranking>18</ranking>
+		</atleta>
+		<atleta numero="0916">
+			<apellido>Ameta</apellido>
+			<nombre>Noyega</nombre>
+			<dni>78901234</dni>
+			<nacionalidad>Japón</nacionalidad>
+			<fechaNacimiento>2002-03-08</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>72</peso>
+			<altura>1.76</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.0</aptitudNatacion>
+				<aptitudCiclismo>8.5</aptitudCiclismo>
+				<aptitudPedestrismo>4.5</aptitudPedestrismo>
+				<resistencia>6.5</resistencia>
+				<fortalezaPsicologica>6.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>30</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>28000</presupuestoEconomico>
+			<ranking>128</ranking>
+		</atleta>	
+		<atleta numero="0173">
+			<apellido>Dell'acqua</apellido>
+			<nombre>Elsa</nombre>
+			<dni>45678901</dni>
+			<nacionalidad>Italia</nacionalidad>
+			<fechaNacimiento>1996-08-14</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>61</peso>
+			<altura>1.67</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>10.0</aptitudNatacion>
+				<aptitudCiclismo>6.0</aptitudCiclismo>
+				<aptitudPedestrismo>7.0</aptitudPedestrismo>
+				<resistencia>9.0</resistencia>
+				<fortalezaPsicologica>8.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>95</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>45000</presupuestoEconomico>
+			<ranking>12</ranking>
+		</atleta>
+		<atleta numero="1314">
+			<apellido>Sforza</apellido>
+			<nombre>Mauro</nombre>
+			<dni>56789012</dni>
+			<nacionalidad>Italia</nacionalidad>
+			<fechaNacimiento>1992-02-05</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Amateur</categoria>
+			<peso>79</peso>
+			<altura>1.84</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>7.0</aptitudNatacion>
+				<aptitudCiclismo>7.5</aptitudCiclismo>
+				<aptitudPedestrismo>7.0</aptitudPedestrismo>
+				<resistencia>8.0</resistencia>
+				<fortalezaPsicologica>7.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>85</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>14000</presupuestoEconomico>
+			<ranking>65</ranking>
+		</atleta>
+		<atleta numero="1315">
+			<apellido>Novanova</apellido>
+			<nombre>Artur</nombre>
+			<dni>67890123</dni>
+			<nacionalidad>Rumania</nacionalidad>
+			<fechaNacimiento>1985-06-25</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Amateur</categoria>
+			<peso>88</peso>
+			<altura>1.90</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>5.5</aptitudNatacion>
+				<aptitudCiclismo>5.0</aptitudCiclismo>
+				<aptitudPedestrismo>6.0</aptitudPedestrismo>
+				<resistencia>6.0</resistencia>
+				<fortalezaPsicologica>5.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>25</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>17000</presupuestoEconomico>
+			<ranking>170</ranking>
+		</atleta>
+		<atleta numero="0117">
+			<apellido>Yega</apellido>
+			<nombre>Akinoh</nombre>
+			<dni>89012345</dni>
+			<nacionalidad>Corea del Sur</nacionalidad>
+			<fechaNacimiento>2001-11-11</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>70</peso>
+			<altura>1.75</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>8.5</aptitudNatacion>
+				<aptitudCiclismo>8.5</aptitudCiclismo>
+				<aptitudPedestrismo>8.0</aptitudPedestrismo>
+				<resistencia>3.5</resistencia>
+				<fortalezaPsicologica>4.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>10</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>32000</presupuestoEconomico>
+			<ranking>352</ranking>
+		</atleta>
+		<atleta numero="0518">
+			<apellido>Dapenna</apellido>
+			<nombre>Carlo</nombre>
+			<dni>90123456</dni>
+			<nacionalidad>Italia</nacionalidad>
+			<fechaNacimiento>1991-04-23</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Amateur</categoria>
+			<peso>83</peso>
+			<altura>1.80</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>5.0</aptitudNatacion>
+				<aptitudCiclismo>5.5</aptitudCiclismo>
+				<aptitudPedestrismo>5.0</aptitudPedestrismo>
+				<resistencia>86.0</resistencia>
+				<fortalezaPsicologica>5.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>15</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>16000</presupuestoEconomico>
+			<ranking>158</ranking>
+		</atleta>
+		<atleta numero="0319">
+			<apellido>Success</apellido>
+			<nombre>Emily</nombre>
+			<dni>12345678</dni>
+			<nacionalidad>Estados Unidos</nacionalidad>
+			<fechaNacimiento>1995-12-01</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>60</peso>
+			<altura>1.70</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.0</aptitudNatacion>
+				<aptitudCiclismo>9.0</aptitudCiclismo>
+				<aptitudPedestrismo>8.5</aptitudPedestrismo>
+				<resistencia>9.0</resistencia>
+				<fortalezaPsicologica>9.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>95</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>50000</presupuestoEconomico>
+			<ranking>8</ranking>
+		</atleta>
+		<atleta numero="1920">
+			<apellido>Lalucha</apellido>
+			<nombre>Dora</nombre>
+			<dni>23456789</dni>
+			<nacionalidad>Argentina</nacionalidad>
+			<fechaNacimiento>2008-09-15</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>58</peso>
+			<altura>1.68</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>6.5</aptitudNatacion>
+				<aptitudCiclismo>7.0</aptitudCiclismo>
+				<aptitudPedestrismo>7.5</aptitudPedestrismo>
+				<resistencia>8.0</resistencia>
+				<fortalezaPsicologica>8.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>90</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>23000</presupuestoEconomico>
+			<ranking>56</ranking>
+		</atleta>
+		<atleta numero="0821">
+			<apellido>SempreFalha</apellido>
+			<nombre>Bruno</nombre>
+			<dni>34567890</dni>
+			<nacionalidad>Portugal</nacionalidad>
+			<fechaNacimiento>1985-03-12</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Amateur</categoria>
+			<peso>90</peso>
+			<altura>1.78</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.0</aptitudNatacion>
+				<aptitudCiclismo>6.0</aptitudCiclismo>
+				<aptitudPedestrismo>4.0</aptitudPedestrismo>
+				<resistencia>5.0</resistencia>
+				<fortalezaPsicologica>5.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>10</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>14000</presupuestoEconomico>
+			<ranking>605</ranking>	
+		</atleta>
+		<atleta numero="1122">
+			<apellido>Tortugovsky</apellido>
+			<nombre>Dimitry</nombre>
+			<dni>45678901</dni>
+			<nacionalidad>Rusia</nacionalidad>
+			<fechaNacimiento>1990-07-20</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Amateur</categoria>
+			<peso>84</peso>
+			<altura>1.85</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>4.0</aptitudNatacion>
+				<aptitudCiclismo>5.5</aptitudCiclismo>
+				<aptitudPedestrismo>5.0</aptitudPedestrismo>
+				<resistencia>8.0</resistencia>
+				<fortalezaPsicologica>7.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>0</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>13000</presupuestoEconomico>
+			<ranking>168</ranking>
+		</atleta>
+		<atleta numero="0323">
+			<apellido>Winner</apellido>
+			<nombre>Laura</nombre>
+			<dni>56789012</dni>
+			<nacionalidad>Estados Unidos</nacionalidad>
+			<fechaNacimiento>1998-11-30</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>55</peso>
+			<altura>1.62</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>8.5</aptitudNatacion>
+				<aptitudCiclismo>9.0</aptitudCiclismo>
+				<aptitudPedestrismo>8.0</aptitudPedestrismo>
+				<resistencia>8.5</resistencia>
+				<fortalezaPsicologica>8.0</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>95</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>31000</presupuestoEconomico>
+			<ranking>24</ranking>
+		</atleta>
+		<atleta numero="1424">
+			<apellido>Shark</apellido>
+			<nombre>Luke</nombre>
+			<dni>67890123</dni>
+			<nacionalidad>Australia</nacionalidad>
+			<fechaNacimiento>1992-08-25</fechaNacimiento>
+			<genero>Masculino</genero>
+			<categoria>Competición</categoria>
+			<peso>78</peso>
+			<altura>1.82</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.5</aptitudNatacion>
+				<aptitudCiclismo>5.5</aptitudCiclismo>
+				<aptitudPedestrismo>4.0</aptitudPedestrismo>
+				<resistencia>8.5</resistencia>
+				<fortalezaPsicologica>8.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>95</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>37000</presupuestoEconomico>
+			<ranking>116</ranking>
+		</atleta>
+		<atleta numero="0925">
+			<apellido>Flecha</apellido>
+			<nombre>Andrea</nombre>
+			<dni>78901234</dni>
+			<nacionalidad>Colombia</nacionalidad>
+			<fechaNacimiento>1993-10-10</fechaNacimiento>
+			<genero>Femenino</genero>
+			<categoria>Competición</categoria>
+			<peso>59</peso>
+			<altura>1.70</altura>
+			<condicionesFisicas>
+				<aptitudNatacion>9.0</aptitudNatacion>
+				<aptitudCiclismo>8.5</aptitudCiclismo>
+				<aptitudPedestrismo>8.0</aptitudPedestrismo>
+				<resistencia>8.5</resistencia>
+				<fortalezaPsicologica>8.5</fortalezaPsicologica>
+			</condicionesFisicas>
+			<porcentajeCarrerasTerminadas>90</porcentajeCarrerasTerminadas>
+			<presupuestoEconomico>40000</presupuestoEconomico>
+			<ranking>14</ranking>		
+		</atleta>
+	</atletas>
+	<carreras>
+		<carrera>
+			<ciudad>Mar del Plata</ciudad>
+			<pais>Argentina</pais>
+			<fecha>2024-07-01</fecha>
+			<modalidad>Sprint</modalidad>
+			<natacion>0.75</natacion>
+			<ciclismo>20</ciclismo>
+			<pedestrismo>5</pedestrismo>
+			<puestos_aprovisionamiento>
+				<puesto tipo="ciclismo" numero="1">
+					<distancia>4.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="2">
+					<distancia>8.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="3">
+					<distancia>12.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="4">
+					<distancia>16.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="1">
+					<distancia>1.25</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="2">
+					<distancia>2.5</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="3">
+					<distancia>3.75</distancia>
+				</puesto>
+			</puestos_aprovisionamiento>
+		</carrera>
+		<carrera>
+			<ciudad>Madrid</ciudad>
+			<pais>España</pais>        
+			<fecha>2024-07-15</fecha>
+			<modalidad>Larga distancia</modalidad>
+			<natacion>3.8</natacion>
+			<ciclismo>180</ciclismo>
+			<pedestrismo>42.2</pedestrismo>
+			<puestos_aprovisionamiento>
+				<puesto tipo="ciclismo" numero="1">
+					<distancia>10.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="2">
+					<distancia>30.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="3">
+					<distancia>50.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="4">
+					<distancia>70.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="5">
+					<distancia>90.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="6">
+					<distancia>110.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="7">
+					<distancia>130.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="8">
+					<distancia>155.0</distancia>
+				</puesto>            
+				<puesto tipo="pedestrismo" numero="1">
+					<distancia>6.5</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="2">
+					<distancia>14.1</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="3">
+					<distancia>21.65</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="4">
+					<distancia>26.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="5">
+					<distancia>31.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="6">
+					<distancia>37.5</distancia>
+				</puesto>
+			</puestos_aprovisionamiento>
+		</carrera>
+		<carrera>
+			<ciudad>New York</ciudad>
+			<pais>Estados Unidos</pais>
+			<fecha>2024-08-01</fecha>
+			<modalidad>Sprint</modalidad>
+			<natacion>0.75</natacion>
+			<ciclismo>20</ciclismo>
+			<pedestrismo>5</pedestrismo>
+			<puestos_aprovisionamiento>
+				<puesto tipo="ciclismo" numero="1">
+					<distancia>4.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="2">
+					<distancia>8.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="3">
+					<distancia>12.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="4">
+					<distancia>16.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="1">
+					<distancia>1.25</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="2">
+					<distancia>2.5</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="3">
+					<distancia>3.75</distancia>
+				</puesto>
+			</puestos_aprovisionamiento>
+		</carrera>
+		<carrera>
+			<ciudad>Tokyo</ciudad>
+			<pais>Japón</pais>
+			<fecha>2024-08-15</fecha>
+			<modalidad>Sprint</modalidad>
+			<natacion>0.75</natacion>
+			<ciclismo>20</ciclismo>
+			<pedestrismo>5</pedestrismo>
+			<puestos_aprovisionamiento>
+				<puesto tipo="ciclismo" numero="1">
+					<distancia>4.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="2">
+					<distancia>8.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="3">
+					<distancia>12.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="4">
+					<distancia>16.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="1">
+					<distancia>1.25</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="2">
+					<distancia>2.5</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="3">
+					<distancia>3.75</distancia>
+				</puesto>
+			</puestos_aprovisionamiento>
+		</carrera>
+		<carrera>
+			<ciudad>Londres</ciudad>
+			<pais>Reino Unido</pais>
+			<fecha>2024-09-01</fecha>
+			<modalidad>Distancia olímpico</modalidad>
+			<natacion>1.5</natacion>
+			<ciclismo>40</ciclismo>
+			<pedestrismo>10</pedestrismo>
+			<puestos_aprovisionamiento>
+				<puesto tipo="ciclismo" numero="1">
+					<distancia>6.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="2">
+					<distancia>19.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="3">
+					<distancia>30.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="1">
+					<distancia>2.5</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="2">
+					<distancia>7.0</distancia>
+				</puesto>
+			</puestos_aprovisionamiento>
+		</carrera>
+		<carrera>
+			<ciudad>Berlin</ciudad>
+			<pais>Alemania</pais>
+			<fecha>2024-09-15</fecha>
+			<modalidad>Distancia olímpico</modalidad>
+			<natacion>1.5</natacion>
+			<ciclismo>40</ciclismo>
+			<pedestrismo>10</pedestrismo>
+			<puestos_aprovisionamiento>
+				<puesto tipo="ciclismo" numero="1">
+					<distancia>10.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="2">
+					<distancia>20.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="3">
+					<distancia>30.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="1">
+					<distancia>2.5</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="2">
+					<distancia>5.0</distancia>
+				</puesto>
+			</puestos_aprovisionamiento>
+		</carrera>
+		<carrera>
+			<ciudad>Sydney</ciudad>
+			<pais>Australia</pais>
+			<fecha>2024-10-01</fecha>
+			<modalidad>Sprint</modalidad>
+			<natacion>0.75</natacion>
+			<ciclismo>20</ciclismo>
+			<pedestrismo>5</pedestrismo>
+			<puestos_aprovisionamiento>
+				<puesto tipo="ciclismo" numero="1">
+					<distancia>4.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="2">
+					<distancia>9.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="3">
+					<distancia>13.75</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="4">
+					<distancia>16.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="1">
+					<distancia>1.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="2">
+					<distancia>3.0</distancia>
+				</puesto>
+			</puestos_aprovisionamiento>
+		</carrera>
+		<carrera>
+			<ciudad>Rio de Janeiro</ciudad>
+			<pais>Brasil</pais>
+			<fecha>2024-10-15</fecha>
+			<modalidad>Media distancia</modalidad>
+			<natacion>1.9</natacion>
+			<ciclismo>90</ciclismo>
+			<pedestrismo>21.1</pedestrismo>		
+			<puestos_aprovisionamiento>
+				<puesto tipo="ciclismo" numero="1">
+					<distancia>12.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="2">
+					<distancia>40.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="3">
+					<distancia>60.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="4">
+					<distancia>80.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="1">
+					<distancia>5.25</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="2">
+					<distancia>10.5</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="3">
+					<distancia>16.75</distancia>
+				</puesto>
+			</puestos_aprovisionamiento>		
+		</carrera>
+		<carrera>
+			<ciudad>Ciudad del Cabo</ciudad>
+			<pais>Sudáfrica</pais>
+			<fecha>2024-11-01</fecha>
+			<modalidad>Media distancia</modalidad>
+			<natacion>1.9</natacion>
+			<ciclismo>90</ciclismo>
+			<pedestrismo>21.1</pedestrismo>		
+			<puestos_aprovisionamiento>
+				<puesto tipo="ciclismo" numero="1">
+					<distancia>9.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="2">
+					<distancia>36.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="3">
+					<distancia>55.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="4">
+					<distancia>72.5</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="1">
+					<distancia>4.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="2">
+					<distancia>9.5</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="3">
+					<distancia>15.5</distancia>
+				</puesto>
+			</puestos_aprovisionamiento>
+		</carrera>
+		<carrera>
+			<ciudad>Vancouver</ciudad>
+			<pais>Canadá</pais>
+			<fecha>2024-11-15</fecha>
+			<modalidad>Sprint</modalidad>
+			<natacion>0.75</natacion>
+			<ciclismo>20</ciclismo>
+			<pedestrismo>5</pedestrismo>
+			<puestos_aprovisionamiento>
+				<puesto tipo="ciclismo" numero="1">
+					<distancia>4.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="2">
+					<distancia>9.0</distancia>
+				</puesto>
+				<puesto tipo="ciclismo" numero="3">
+					<distancia>14.0</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="1">
+					<distancia>1.25</distancia>
+				</puesto>
+				<puesto tipo="pedestrismo" numero="2">
+					<distancia>3.25</distancia>
+				</puesto>
+			</puestos_aprovisionamiento>
+		</carrera>
+	</carreras>
+</campeonato-triatlon>
