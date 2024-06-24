@@ -4,7 +4,9 @@ import java.util.Date;
 
 public class Athlete {
     private int num;
+    private String surname;
     private String name;
+  
     private String id;
     private String nationality;
     private Date birthDate;
@@ -19,6 +21,35 @@ public class Athlete {
     
     
     
+	public Athlete(int num, String name,String surname, String id, String nationality, Date birthDate, String gender, double weight,
+			double height, double percEndedRaces, double economicBudget, int ranking, PhysicalConditions stats) {
+		super();
+		this.num = num;
+		this.name = name;
+		this.surname = surname;
+		this.id = id;
+		this.nationality = nationality;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.weight = weight;
+		this.height = height;
+		this.percEndedRaces = percEndedRaces;
+		this.economicBudget = economicBudget;
+		this.ranking = ranking;
+		this.stats = stats;
+	}
+	
+	
+	public String getSurname() {
+		return surname;
+	}
+
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+
 	public int getNum() {
 		return num;
 	}
