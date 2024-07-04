@@ -124,6 +124,15 @@ public class Athlete {
 	}
 
 
+	@Override
+	public String toString() {
+		return "Athlete [num=" + num + ", surname=" + surname + ", name=" + name + ", id=" + id + ", nationality="
+				+ nationality + ", birthDate=" + birthDate + ", gender=" + gender + ", weight=" + weight + ", height="
+				+ height + ", percEndedRaces=" + percEndedRaces + ", economicBudget=" + economicBudget + ", ranking="
+				+ ranking + ", stats=" + stats + "]";
+	}
+
+
     
     
     

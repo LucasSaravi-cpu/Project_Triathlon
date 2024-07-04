@@ -18,8 +18,15 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import model.Amateur;
 import model.Athlete;
+import model.Career;
+import model.City;
+import model.Competitor;
+import model.Country;
+import model.Modality;
 import model.PhysicalConditions;
+import model.Stations;
 
 
 
@@ -27,22 +34,31 @@ public class RunSimulation {
 
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		
-		
-   loadXML();
-
+	//Crear lista de condiciones climaticas 	
+  
+   List<Career> careers =  loadXML();
+   
+   for (Career career: careers) {
+	   
+	
+	
+   }
+   
+   
+  
 	}
 	
+	  
 	
 	
-	
-	public static void loadXML() throws ParserConfigurationException, SAXException, IOException {
+	public static List<Career> loadXML() throws ParserConfigurationException, SAXException, IOException {
 		
 		// Cargar el archivo XML
         File xmlFile = new File("triatlon.xml");
 
         // Crear un DocumentBuilderFactory y un DocumentBuilder
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-       DocumentBuilder builder = factory.newDocumentBuilder();
+        DocumentBuilder builder = factory.newDocumentBuilder();
 
         // Parsear el archivo XML y obtener el Document
         org.w3c.dom.Document document = builder.parse(xmlFile);
@@ -58,8 +74,8 @@ public class RunSimulation {
         NodeList AthleteList = document.getElementsByTagName("atleta");
         System.out.println("Number of athletes: " + AthleteList.getLength());
         
-        NodeList CarrerList = document.getElementsByTagName("carrera");
-        System.out.println("Number of Races:" + CarrerList.getLength());
+        NodeList CareerList = document.getElementsByTagName("carrera");
+        System.out.println("Number of Races:" + CareerList.getLength());
         
 
         // Lista para almacenar los objetos Atleta
@@ -119,13 +135,110 @@ public class RunSimulation {
                 
                 PhysicalConditions physicalconditions  = new PhysicalConditions(swimmingAptitude,cyclismAptitude,pedestrianismAptitude,stamina, mentalStrength);
                 
-                //Ver si depende de la categoria crear clases de amateur o competicion o hacer un atributo de categoria 
-                Athlete athlete = new Athlete(num, surname,name, id, nationality, birthDate, gender,weight,height, percEndedRaces, economicBudget, ranking,physicalconditions);
-                
-                //Esta lista es para agregar dentro de carrera que tiene una lista de atletas
+                if (categoria.equalsIgnoreCase("Amateur")) {
+                Amateur athlete = new Amateur(num, surname,name, id, nationality, birthDate, gender,weight,height, percEndedRaces, economicBudget, ranking,physicalconditions);
                 athletes.add(athlete);
+                }
+                else {
+          
+                	Competitor athlete = new Competitor(num, surname,name, id, nationality, birthDate, gender,weight,height, percEndedRaces, economicBudget, ranking,physicalconditions);
+                	athletes.add(athlete);	
+                }
+                
+                
             }
+            
+        }
+        
+        
+            // Lista para almacenar los objetos Atleta
+            List<Career> careers = new ArrayList<>();
+            
+            
+            for (int j = 0; j <  CareerList.getLength(); j++) {
+            	Node careerNode = CareerList.item(j);
+               
+                if (careerNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element careerElement =  (Element) careerNode;
+            	
+            
+                    
+                
+                    String ciudad = getChildElementValue(careerElement, "ciudad");
+                    String pais = getChildElementValue( careerElement,"pais");
+                    Date fecha = parseFecha(getChildElementValue( careerElement,"fecha"));
+                    String modalidad = getChildElementValue(careerElement,"modalidad");
+                    double natacion = Double.parseDouble(getChildElementValue(careerElement, "natacion"));
+                    double ciclismo = Double.parseDouble(getChildElementValue(careerElement, "ciclismo"));
+                    double pedestrismo = Double.parseDouble(getChildElementValue(careerElement, "pedestrismo"));
+                    
+                    
+                    
+                    System.out.println("Detalles de la carrera:");
+                    System.out.println("   Ciudad: " + ciudad);
+                    System.out.println("   País: " + pais);
+                    System.out.println("   Fecha: " + fecha);
+                    System.out.println("   Modalidad: " + modalidad);
+                    System.out.println("   Distancia Natación: " + natacion);
+                    System.out.println("   Distancia Ciclismo: " + ciclismo);
+                    System.out.println("   Distancia Pedestrismo: " + pedestrismo);
+                    
+                    
+                    Country cuountry = new Country(pais);
+                    City city = new City(ciudad , cuountry);
+                    Modality modality = new Modality(modalidad);
+                    
+                    
+                    
+               	 List<Stations> stati = new ArrayList<>();
+               	 
+                    
+                    NodeList puestosList = document.getElementsByTagName("puestos");  
+                    for (int p = 0; p < puestosList.getLength(); p++) {
+                        Node puestoNode = puestosList.item(p);
+                   
+                        if (puestoNode.getNodeType() == Node.ELEMENT_NODE) {
+                        	
+                        	  Element puestoElement = (Element) puestoNode;
+                         	
+                        	//Se crea una lista de puestos para agregarlas a carrera 
+                             
+                 	
+                             
+                            String tipo = getChildElementValue( puestoElement,"tipo");
+                            int numero = Integer.parseInt(getChildElementValue(puestoElement,"numero"));
+                           double dis = Double.parseDouble(getChildElementValue(puestoElement, "distancia"));
+                            
+                       Stations station = new Stations(tipo,numero,dis);
+                       
+                       stati.add(station);
+                       
+                        }
+                        
+                    }
+                    
+                    Career carrer = new Career(city,fecha,athletes,modality, natacion, ciclismo,pedestrismo,stati);
+                    
+                    
+                    careers.add(carrer);
+                }
+                    
+          
+                    
+                    
+            
+            
+            
             }
+            
+            
+			return careers;
+        
+        
+        
+        
+        
+        
         }
       
 	

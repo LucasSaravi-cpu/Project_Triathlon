@@ -11,7 +11,8 @@ public class Amateur extends Athlete {
 				stats);
 		// TODO Auto-generated constructor stub
 	}
-	
+
+
 
 
 }
