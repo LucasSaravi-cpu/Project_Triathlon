@@ -202,7 +202,7 @@ public class Race {
                 Element athleteElement =  (Element) athleteNode;
                 
                
-         
+          
                 
 
                 int num = Integer.parseInt(athleteElement.getAttribute("numero"));
@@ -224,15 +224,15 @@ public class Race {
                 double economicBudget = Double.parseDouble(getChildElementValue(athleteElement, "presupuestoEconomico"));
                 int ranking = Integer.parseInt(getChildElementValue(athleteElement, "ranking"));
                 
-                PhysicalConditions physicalconditions  = new PhysicalConditions(swimmingAptitude,cyclismAptitude,pedestrianismAptitude,stamina, mentalStrength);
+                PhysicalConditions physicalconditions  = new PhysicalConditions(swimmingAptitude, cyclismAptitude, pedestrianismAptitude, stamina, mentalStrength);
                 
                 if (category.equalsIgnoreCase("Amateur")) {
-	                Athlete athlete = new Amateur(num, surname,name, id, nationality, birthDate, gender,weight,height, percEndedRaces, economicBudget, ranking,physicalconditions);
+	                Athlete athlete = new Amateur(num, surname, name, id, nationality, birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions);
 	                athletes.add(athlete);
                 }
                 else {
           
-                	Athlete athlete = new Competitor(num, surname,name, id, nationality, birthDate, gender,weight,height, percEndedRaces, economicBudget, ranking,physicalconditions);
+                	Athlete athlete = new Competitor(num, surname, name, id, nationality, birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions);
                 	athletes.add(athlete);	
                 }
                 

@@ -34,16 +34,16 @@ public class RunSimulation {
 
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		
-		//Crear lista de condiciones climaticas 	
+		//Create weather conditions list
 	  
-	   List<Race> careers =  Race.loadXML();
+	   List<Race> races =  Race.loadXML();
 	   
-	   //Crear las competiciones 
+	   //Create competitions
 	   
 	   
-	   for (Race career: careers) {
+	   for (Race race: races) {
 		   
-		    System.out.println(career.toString());
+		    System.out.println(race.toString());
 		
 	   }
    
