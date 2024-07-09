@@ -18,7 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import controller.Career;
+import controller.Race;
 import model.Amateur;
 import model.Athlete;
 import model.City;
@@ -34,18 +34,18 @@ public class RunSimulation {
 
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		
-	//Crear lista de condiciones climaticas 	
-  
-   List<Career> careers =  Career.loadXML();
-   
-   //Crear las competiciones 
-   
-   
-   for (Career career: careers) {
+		//Crear lista de condiciones climaticas 	
+	  
+	   List<Race> careers =  Race.loadXML();
 	   
-	
-	
-   }
+	   //Crear las competiciones 
+	   
+	   
+	   for (Race career: careers) {
+		   
+		    System.out.println(career.toString());
+		
+	   }
    
    
   

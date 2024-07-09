@@ -53,6 +53,14 @@ public class PhysicalConditions {
 		this.mentalStrength = mentalStrength;
 	}
 
+
+	@Override
+	public String toString() {
+		return " \n\t Swimming Aptitude: " + swimmingAptitude + "\n\t Cyclism Aptitude: " + cyclismAptitude
+				+ "\n\t PedestrianismAptitude: " + pedestrianismAptitude + "\n\t Stamina: " + stamina + "\n\t Mental Strength: "
+				+ mentalStrength;
+	}
+	
     
     
 

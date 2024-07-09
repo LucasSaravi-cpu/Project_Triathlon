@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class Athlete {
+public abstract class Athlete {
     private int num;
     private String surname;
     private String name;
@@ -126,10 +126,10 @@ public class Athlete {
 
 	@Override
 	public String toString() {
-		return "Athlete [num=" + num + ", surname=" + surname + ", name=" + name + ", id=" + id + ", nationality="
-				+ nationality + ", birthDate=" + birthDate + ", gender=" + gender + ", weight=" + weight + ", height="
-				+ height + ", percEndedRaces=" + percEndedRaces + ", economicBudget=" + economicBudget + ", ranking="
-				+ ranking + ", stats=" + stats + "]";
+		return "Athlete:" + num + "\n Surname: " + surname + "\n Name: " + name + "\n ID: " + id + "\n Nationality: "
+				+ nationality + " \n Birth Date: " + birthDate + "\n Gender: " + gender + "\n Weight: " + weight + "\n Height: "
+				+ height + "\n Percentage of Ended Races: " + percEndedRaces + "\n Economic Budget: " + economicBudget + "\n Ranking: "
+				+ ranking + "\n Stats: " + stats + "\n";
 	}
 
 

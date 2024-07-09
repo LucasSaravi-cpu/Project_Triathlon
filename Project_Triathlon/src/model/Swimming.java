@@ -19,10 +19,5 @@ public class Swimming extends Discipline {
 		}
 		
 		return km;
-
-
-}
-	
-	
-
+    }
 }

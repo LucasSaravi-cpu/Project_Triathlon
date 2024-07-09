@@ -5,7 +5,7 @@ import java.util.List;
 public class Modality {
 	
 	private String name;
-	private List<DisciplineDistance> disciplinedistance; // Solo tendre 3 disciplinas segun su modalidad para saber sus kg totales
+	private List<DisciplineDistance> disciplinedistance; // We'll only have 3 disciplines according its modality to know its total kilogrames 
 
 	
 	public Modality(String name) {
@@ -16,7 +16,7 @@ public class Modality {
 
 	@Override
 	public String toString() {
-		return "Modality"  + name;
+		return " " + name;
 	}
 	
 	

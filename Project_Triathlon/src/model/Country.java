@@ -11,6 +11,12 @@ public class Country {
 		this.namecountry = namecountry;
 	}
 
+	@Override
+	public String toString() {
+		return namecountry;
+	}
+	
+
 
 	
 	
