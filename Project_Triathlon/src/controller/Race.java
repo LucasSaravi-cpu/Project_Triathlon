@@ -224,6 +224,12 @@ public class Race {
                 double economicBudget = Double.parseDouble(getChildElementValue(athleteElement, "presupuestoEconomico"));
                 int ranking = Integer.parseInt(getChildElementValue(athleteElement, "ranking"));
                 
+                
+                switch (gender) {
+                	case "Masculino": gender = "Male";
+                	default: gender = "Female";
+                }
+                
                 PhysicalConditions physicalconditions  = new PhysicalConditions(swimmingAptitude, cyclismAptitude, pedestrianismAptitude, stamina, mentalStrength);
                 
                 if (category.equalsIgnoreCase("Amateur")) {
@@ -262,7 +268,15 @@ public class Race {
                 double swimming = Double.parseDouble(getChildElementValue(careerElement, "natacion"));
                 double cyclism = Double.parseDouble(getChildElementValue(careerElement, "ciclismo"));
                 double pedestrianism = Double.parseDouble(getChildElementValue(careerElement, "pedestrismo"));
-                    
+                // Change names to English
+                switch (modalityname) {
+                	case "Larga distancia": modalityname="LongDistance";
+                	                        break;
+                	case "Media distancia": modalityname="MediumDistance";
+                	                        break;
+                	case "Distancia olímpico": modalityname="OlympicDistance";
+                	                        break;                        
+                }
                     
                 Country country = new Country(countryname);
                 City city = new City(cityname , country);
@@ -280,6 +294,12 @@ public class Race {
                         String tipo = puestoElement.getAttribute("tipo");
                         int numero = Integer.parseInt(puestoElement.getAttribute("numero"));
                         double distancia = Double.parseDouble(getChildElementValue(puestoElement, "distancia"));
+                        
+                        switch (tipo) {
+                        	case "ciclismo": tipo = "Cyclism";
+                        	case "pedestrismo": tipo = "Pedestrianism";
+                        	default: tipo = "Swimming";
+                        }
 
                         Stations station = new Stations(tipo, numero, distancia);
                         stati.add(station);
@@ -331,10 +351,20 @@ public class Race {
 
 	@Override
 	public String toString() {
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("Race: \n City: ").append(city).append("\n Date: ").append(date).append("\n Condition: ")
+	      .append(condition).append("\n");
+	    for (Athlete a: athlete) {
+	    	sb.append(a);
+	    }
+	    sb.append("\n Modality: ").append(modality).append("\n Km Swimming: ").append(kmswimming).append("\n Km Cyclism: ")
+	      .append(kmcyclism).append("\n Km Pedestrianism: ").append(kmpedestrianism).append("\n Stations: ");
+	    for (Stations s: stations) {
+	    	sb.append(s);
+	    }
+	    sb.append("\n");
 	    
-		return "Race: \n City: " + city + "\n Date: " + date + "\n Condition: " + condition + "\n Athlete: " + athlete
-				+ "\n Modality:" + modality + "\n Km Swimming: " + kmswimming + "\n Km Cyclism: " + kmcyclism
-				+ "\n Km Pedestrianism: " + kmpedestrianism + "\n Stations: " + stations + "\n";
+		return sb.toString();
 	}
 	
 	

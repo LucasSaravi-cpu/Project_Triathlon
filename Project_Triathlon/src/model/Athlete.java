@@ -126,15 +126,14 @@ public abstract class Athlete {
 
 	@Override
 	public String toString() {
-		return "Athlete:" + num + "\n Surname: " + surname + "\n Name: " + name + "\n ID: " + id + "\n Nationality: "
-				+ nationality + " \n Birth Date: " + birthDate + "\n Gender: " + gender + "\n Weight: " + weight + "\n Height: "
-				+ height + "\n Percentage of Ended Races: " + percEndedRaces + "\n Economic Budget: " + economicBudget + "\n Ranking: "
-				+ ranking + "\n Stats: " + stats + "\n";
+		StringBuilder sb = new StringBuilder();
+		sb.append("Athlete: ").append(num).append("\n Surname: ").append(surname).append("\n Name: ").append(name)
+		  .append("\n ID: ").append(id).append("\n Nationality: ").append(nationality).append(" \n Birth Date: ")
+		  .append(birthDate).append("\n Gender: ").append(gender).append("\n Weight: ").append(weight).append("\n Height: ")
+		  .append(height).append("\n Percentage of Ended Races: ").append(percEndedRaces).append("\n Economic Budget: ")
+		  .append(economicBudget).append("\n Ranking: ").append(ranking).append("\n Stats: ").append(stats).append("\n");
+		
+		return sb.toString();
 	}
-
-
-    
-    
-    
 
 }

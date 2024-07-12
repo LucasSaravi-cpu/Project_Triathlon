@@ -39,7 +39,9 @@ public class Stations {
 
 	@Override
 	public String toString() {
-		return "\n Type: " + type + "\n ID: " + id + "\n Distancing: " + distancing + "\n";
+		StringBuilder sb = new StringBuilder();
+		sb.append("\n\tType: ").append(type).append("\n\tID: ").append(id).append("\n\tDistancing: ").append(distancing).append("\n");
+		return sb.toString();
 	}
 	
 	

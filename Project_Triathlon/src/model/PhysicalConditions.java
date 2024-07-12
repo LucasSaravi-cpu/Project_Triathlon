@@ -56,9 +56,11 @@ public class PhysicalConditions {
 
 	@Override
 	public String toString() {
-		return " \n\t Swimming Aptitude: " + swimmingAptitude + "\n\t Cyclism Aptitude: " + cyclismAptitude
-				+ "\n\t PedestrianismAptitude: " + pedestrianismAptitude + "\n\t Stamina: " + stamina + "\n\t Mental Strength: "
-				+ mentalStrength;
+		StringBuilder sb = new StringBuilder();
+		sb.append(" \n\t Swimming Aptitude: ").append(swimmingAptitude).append("\n\t Cyclism Aptitude: ").append(cyclismAptitude)
+		  .append("\n\t Pedestrianism Aptitude: ").append(pedestrianismAptitude).append("\n\t Stamina: ").append(stamina)
+		  .append("\n\t Mental Strength: ").append(mentalStrength);
+		return sb.toString();
 	}
 	
     

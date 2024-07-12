@@ -4,7 +4,7 @@ public class Country {
 	
 	
 
-	private String namecountry ;
+	private String namecountry;
 
 	public Country(String namecountry) {
 		super();
