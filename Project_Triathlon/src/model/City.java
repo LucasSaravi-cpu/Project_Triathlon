@@ -32,7 +32,7 @@ public class City {
 
 	@Override
 	public String toString() {
-		return "City " + namecity + " country " + country ;
+		return namecity + ", " + country;
 	}
 
 

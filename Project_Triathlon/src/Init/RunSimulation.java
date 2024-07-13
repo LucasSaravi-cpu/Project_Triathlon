@@ -18,7 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import controller.Race;
+import controller.Championship;
 import model.Amateur;
 import model.Athlete;
 import model.City;
@@ -26,6 +26,7 @@ import model.Competitor;
 import model.Country;
 import model.Modality;
 import model.PhysicalConditions;
+import model.Race;
 import model.Stations;
 
 
@@ -36,7 +37,7 @@ public class RunSimulation {
 		
 		//Create weather conditions list
 	  
-	   List<Race> races =  Race.loadXML();
+	   List<Race> races =  Championship.loadXML();
 	   
 	   //Create competitions
 	   

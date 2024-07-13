@@ -1,5 +1,8 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 public abstract class Athlete {
@@ -8,7 +11,7 @@ public abstract class Athlete {
     private String name;
   
     private String id;
-    private String nationality;
+    private Country nationality;
     private Date birthDate;
     private String gender;
     private double weight;
@@ -21,7 +24,7 @@ public abstract class Athlete {
     
     
     
-	public Athlete(int num, String name,String surname, String id, String nationality, Date birthDate, String gender, double weight,
+	public Athlete(int num, String name,String surname, String id, Country nationality, Date birthDate, String gender, double weight,
 			double height, double percEndedRaces, double economicBudget, int ranking, PhysicalConditions stats) {
 		super();
 		this.num = num;
@@ -68,10 +71,10 @@ public abstract class Athlete {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getNationality() {
+	public Country getNationality() {
 		return nationality;
 	}
-	public void setNationality(String nationality) {
+	public void setNationality(Country nationality) {
 		this.nationality = nationality;
 	}
 	public Date getBirthDate() {
@@ -122,8 +125,12 @@ public abstract class Athlete {
 	public void setStats(PhysicalConditions stats) {
 		this.stats = stats;
 	}
-
-
+	public int getAge() {
+        LocalDate birthDateLocal = birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate currentDate = LocalDate.now();
+        return Period.between(birthDateLocal, currentDate).getYears();
+    }
+    public abstract String getCathegory();
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
