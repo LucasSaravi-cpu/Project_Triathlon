@@ -27,7 +27,9 @@ import model.Country;
 import model.Modality;
 import model.PhysicalConditions;
 import model.Race;
+import model.RaceThread;
 import model.Stations;
+import view.WindowRace;
 
 
 
@@ -42,12 +44,19 @@ public class RunSimulation {
 	   //Create competitions
 	   
 	   
-	   for (Race race: races) {
+	 /*  for (Race race: races) {
 		   
 		    System.out.println(race.toString());
 		
-	   }
+	   }*/
    
+	  WindowRace windowrace = new WindowRace();
+	  windowrace.setVisible(true);
+	  RaceThread thread = new RaceThread(windowrace.getLblNewLabel_1(),windowrace.getLocation().x); 
+	  
+	  //Crear los demas 
+	  
+	    thread.start();
    
   
 	}

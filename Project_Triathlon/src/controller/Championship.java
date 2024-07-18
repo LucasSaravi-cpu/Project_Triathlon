@@ -29,7 +29,12 @@ import model.Race;
 import model.Stations;
 
 public class Championship {
-     private static List <Race> races;
+     
+	private static List <Race> races;
+     
+     
+     
+     
      public Iterator<Race> getRaces(){
     	 return races.iterator();
      }
@@ -49,15 +54,15 @@ public class Championship {
 
         //  Print the root element
         document.getDocumentElement().normalize();
-        System.out.println("Root Element: " + document.getDocumentElement().getNodeName());
+       // System.out.println("Root Element: " + document.getDocumentElement().getNodeName());
         
     
         // Get objects <athlete>
         NodeList AthleteList = document.getElementsByTagName("atleta");
-        System.out.println("Number of athletes: " + AthleteList.getLength());
+      //  System.out.println("Number of athletes: " + AthleteList.getLength());
         
         NodeList CareerList = document.getElementsByTagName("carrera");
-        System.out.println("Number of Races:" + CareerList.getLength());
+     //   System.out.println("Number of Races:" + CareerList.getLength());
         
 
         // List for elements <athlete>
