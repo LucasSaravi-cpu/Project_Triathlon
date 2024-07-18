@@ -25,4 +25,57 @@ public class Competitor extends Athlete {
 		else
 			return "Elite";
 	}
+	
+	
+	@Override
+	  // Method to check neoprene usage based on water temperature and distance
+    public String checkNeopreneUsage(int distance, double waterTemperature) {
+
+		String neoprene="";
+	  
+		
+		double distanceInMeters = distance * 1000.0;
+
+	    if (distanceInMeters <= 750) {
+	        if (waterTemperature > 20) {
+	            neoprene = "Prohibited";
+	        } else if (waterTemperature >= 15 && waterTemperature <= 20) {
+	            neoprene = "Usable";
+	        } else if (waterTemperature < 15) {
+	            neoprene = "Obligatory";
+	        }
+	    } else if (distanceInMeters > 750 && distanceInMeters <= 1500) {
+	        if (waterTemperature > 20) {
+	            neoprene = "Prohibited";
+	        } else if (waterTemperature >= 15 && waterTemperature <= 20) {
+	            neoprene = "Usable";
+	        } else if (waterTemperature < 15) {
+	            neoprene = "Obligatory";
+	        }
+	    } else if (distanceInMeters >= 1501 && distanceInMeters <= 3000) {
+	        if (waterTemperature > 22) {
+	            neoprene = "Prohibited";
+	        } else if (waterTemperature >= 15 && waterTemperature <= 22) {
+	            neoprene = "Usable";
+	        } else if (waterTemperature < 15) {
+	            neoprene = "Obligatory";
+	        }
+	    } else if (distanceInMeters >= 3001 && distanceInMeters <= 4000) {
+	        if (waterTemperature > 23) {
+	            neoprene = "Prohibited";
+	        } else if (waterTemperature >= 16 && waterTemperature <= 23) {
+	            neoprene = "Usable";
+	        } else if (waterTemperature < 16) {
+	            neoprene = "Obligatory";
+	        }
+	    }
+
+        
+        return neoprene;
+        
+    }
+
+	
+	
+	
 }

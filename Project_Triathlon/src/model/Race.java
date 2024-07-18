@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.text.Document;
 import javax.xml.parsers.DocumentBuilder;
@@ -166,6 +167,21 @@ public class Race {
 		this.stations = stations;
 	}
 
+	
+	
+	
+	
+	  // Static method to generate a random boolean
+    public static boolean UseOfDraftingInRacer() {
+        Random random = new Random();
+        return random.nextBoolean();
+    }
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public String toString() {

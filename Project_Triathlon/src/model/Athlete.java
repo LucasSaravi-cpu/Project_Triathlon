@@ -131,6 +131,9 @@ public abstract class Athlete {
         return Period.between(birthDateLocal, currentDate).getYears();
     }
     public abstract String getCathegory();
+    
+   public abstract String checkNeopreneUsage(int distance, double waterTemperature);
+    
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

@@ -44,6 +44,41 @@ public class Amateur extends Athlete {
 	}
   
 
+	
+	@Override
+	public String checkNeopreneUsage(int distanceInMeters, double waterTemperature) {
+	    String neoprene = "";
+
+	    double distanceInKm = distanceInMeters / 1000.0;
+
+	    if (distanceInKm <= 0.75) {
+	        if (waterTemperature > 15 && waterTemperature <= 20) {
+	            neoprene = "Usable";
+	        } else if (waterTemperature <= 15) {
+	            neoprene = "Obligatory";
+	        }
+	    } else if (distanceInKm > 0.75 && distanceInKm <= 1.5) {
+	        if (waterTemperature > 15 && waterTemperature <= 20) {
+	            neoprene = "Usable";
+	        } else if (waterTemperature <= 15) {
+	            neoprene = "Obligatory";
+	        }
+	    } else if (distanceInKm >= 1.501 && distanceInKm <= 3.0) {
+	        if (waterTemperature > 16 && waterTemperature <= 22) {
+	            neoprene = "Usable";
+	        } else if (waterTemperature <= 16) {
+	            neoprene = "Obligatory";
+	        }
+	    } else if (distanceInKm >= 3.001 && distanceInKm <= 4.0) {
+	        if (waterTemperature > 17 && waterTemperature <= 23) {
+	            neoprene = "Usable";
+	        } else if (waterTemperature <= 17) {
+	            neoprene = "Obligatory";
+	        }
+	    }
+
+	    return neoprene;
+	}
 
 
 }
