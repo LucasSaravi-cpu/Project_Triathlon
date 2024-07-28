@@ -3,21 +3,21 @@ package model;
 public class Cycling extends Discipline{
 
 	@Override
-	public double km(String modality) {
+	public double time (String modality) {
 		
-		double km = 0;
+		double time = 0;
 		
 		if (modality.equals("MediumDistance")) {
-		    km = 90;
+		    time = 120;
 		} else if (modality.equals("LongDistance")) {
-		    km = 180;
+		    time = 300;
 		} else if (modality.equals("Sprint")) {
-		    km = 20;
+		    time = 45;
 		} else if (modality.equals("OlympicDistance")) {
-		    km = 40;
+		    time = 60;
 		}
 		
-		return km;
+		return time;
 		
 		
 

@@ -23,10 +23,15 @@ import model.Athlete;
 import model.City;
 import model.Competitor;
 import model.Country;
+import model.Cycling;
+import model.Discipline;
+import model.DisciplineDistance;
 import model.Modality;
+import model.Pedestrianism;
 import model.PhysicalConditions;
 import model.Race;
 import model.Stations;
+import model.Swimming;
 
 public class Championship {
      
@@ -151,10 +156,24 @@ public class Championship {
                 	case "Distancia olímpico": modalityname="OlympicDistance";
                 	                        break;                        
                 }
+                
+               Discipline swimmingg = new Swimming();
+               Discipline cyclimm= new Cycling();
+               Discipline pedestriani = new Pedestrianism();
+               
+               List<DisciplineDistance> disciplinedistances = new ArrayList<>();
+               
+               DisciplineDistance disciplineDistanceSwimming = new  DisciplineDistance(swimming,swimmingg.time(modalityname),swimmingg);
+               DisciplineDistance disciplineDistanceCycling = new  DisciplineDistance(cyclism,cyclimm.time(modalityname),cyclimm);
+               DisciplineDistance disciplineDistancePedestrianism = new  DisciplineDistance(pedestrianism,pedestriani.time(modalityname),pedestriani);
+               
+               disciplinedistances.add(disciplineDistanceSwimming);
+               disciplinedistances.add(disciplineDistanceCycling);
+               disciplinedistances.add(disciplineDistancePedestrianism);
                     
                 Country country = new Country(countryname);
                 City city = new City(cityname , country);
-                Modality modality = new Modality(modalityname);
+                Modality modality = new Modality(modalityname,disciplinedistances);
                     
                     
                     

@@ -4,20 +4,22 @@ public class Swimming extends Discipline {
 	
 	
 	@Override
-	public double km(String modality) {   
+	public double time (String modality) {   
 		
-		double km = 0;
+	double time = 0 ;
 		
 		if (modality.equals("MediumDistance")) {
-		    km = 1.9;
+		   time = 40;
 		} else if (modality.equals("LongDistance")) {
-		    km = 3.8;
+		    time = 60;
 		} else if (modality.equals("Sprint")) {
-		    km = 0.75;
+		     time = 15;
 		} else if (modality.equals("OlympicDistance")) {
-		    km = 1.5;
+		    time = 30;
 		}
 		
-		return km;
+		return time;
+		
+	
     }
 }
