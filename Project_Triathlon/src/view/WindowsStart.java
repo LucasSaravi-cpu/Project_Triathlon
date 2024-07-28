@@ -8,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Font;
 
 public class WindowsStart extends JFrame {
