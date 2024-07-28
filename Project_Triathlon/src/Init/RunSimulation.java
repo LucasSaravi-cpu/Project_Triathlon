@@ -56,7 +56,7 @@ public class RunSimulation {
 	  
 	  //Crear los demas 
 	  
-	    thread.start();
+	  thread.start();
    
   
 	}
