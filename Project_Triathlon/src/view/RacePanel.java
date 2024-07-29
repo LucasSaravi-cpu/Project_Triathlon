@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -17,11 +18,31 @@ public class RacePanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private JLabel lblNewLabel_1;
     private List<JButton> buttons;
+    private List<JLabel> labels;
     private int startX;
     private int endX;
     private ImageIcon finishLineIcon;
     private Image scaledFinishLineImage;
-    public RacePanel() {
+    public List<JButton> getButtons(){
+    	return buttons;
+    }
+    public int getStartX() {
+		return startX;
+	}
+
+	public void setStartX(int startX) {
+		this.startX = startX;
+	}
+
+	public int getEndX() {
+		return endX;
+	}
+
+	public void setEndX(int endX) {
+		this.endX = endX;
+	}
+
+	public RacePanel() {
         setLayout(null);
 
         buttons = new ArrayList<>();
@@ -32,26 +53,22 @@ public class RacePanel extends JPanel {
             buttons.add(btn);
             add(btn);
         }
-
-        lblNewLabel_1 = new JLabel("New label");
-        lblNewLabel_1.setBounds(137, 80, 45, 13);
-        add(lblNewLabel_1);
-
-        for (int i = 0; i < 9; i++) {
-            JLabel lblNewLabel = new JLabel("New label");
-            lblNewLabel.setBounds(137, 126 + i * 46, 45, 13);
+        labels=new ArrayList<>();
+        for (int i = 0, j = 0; i < 10; i++, j+=2) { // Suponiendo 10 corredores
+            JLabel lblNewLabel = new JLabel("Corredor " + (i + 1));
+            lblNewLabel.setBounds(31, buttons.get(j).getY(), 100, 20); // Start position X set to 31
+            labels.add(lblNewLabel);
             add(lblNewLabel);
         }
         finishLineIcon = new ImageIcon(getClass().getResource("/image/finish_line.png"));
         setPreferredSize(new Dimension(966, 613));
     }
 
-    public JLabel getLblNewLabel_1() {
-        return lblNewLabel_1;
-    }
-
-    public void setLblNewLabel_1(JLabel lblNewLabel_1) {
-        this.lblNewLabel_1 = lblNewLabel_1;
+    public void updateLabelPosition(int index, int newPositionX) {
+        if (index >= 0 && index < labels.size()) {
+            JLabel label = labels.get(index);
+            label.setLocation(newPositionX, label.getY());
+        }
     }
 
     @Override

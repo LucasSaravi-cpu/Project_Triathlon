@@ -35,30 +35,18 @@ import view.WindowRace;
 
 public class RunSimulation {
 
-	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		
-		//Create weather conditions list
-	  
-	   List<Race> races =  Championship.loadXML();
-	   
-	   //Create competitions
-	   
-	   
-	 /*  for (Race race: races) {
-		   
-		    System.out.println(race.toString());
-		
-	   }*/
-   
-	  WindowRace windowrace = new WindowRace();
-	  windowrace.setVisible(true);
-	  RaceThread thread = new RaceThread(windowrace.getLblNewLabel_1(),windowrace.getLocation().x); 
-	  
-	  //Crear los demas 
-	  
-	  thread.start();
-   
-  
-	}
-	
+		public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+	        // Load races from XML
+	        List<Race> races = Championship.loadXML();
+
+	        // Create and show the main window
+	        WindowRace windowRace = new WindowRace();
+	        windowRace.setVisible(true);
+
+	        // Create and start the championship
+	        Championship championship = new Championship(windowRace);
+	        championship.startRace();
+	   }
 }
+	
+
