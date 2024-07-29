@@ -57,7 +57,7 @@ public class Championship implements RaceListener {
     	List<JButton> buttons = windowRace.getRacePanel().getButtons();
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
         for (int i = 0; i < 10; i++) { // Suponiendo 10 corredores
-            RaceThread thread = new RaceThread(startX, this);
+            RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this);
             raceThreads.add(thread);
             thread.start();
         }
