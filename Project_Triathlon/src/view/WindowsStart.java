@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class WindowsStart extends JFrame {
 
@@ -25,15 +27,19 @@ public class WindowsStart extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton_2 = new JButton("New button");
+		JButton btnNewButton_2 = new JButton("START");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_2.setBounds(35, 314, 201, 35);
 		contentPane.add(btnNewButton_2);
 		
-		JButton btnNewButton_1 = new JButton("New button");
+		JButton btnNewButton_1 = new JButton("LOAD");
 		btnNewButton_1.setBounds(35, 426, 201, 35);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("EXIT");
 		btnNewButton.setBounds(35, 371, 201, 35);
 		contentPane.add(btnNewButton);
 		

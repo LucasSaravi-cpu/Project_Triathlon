@@ -19,16 +19,24 @@ public class WindowRace extends JFrame {
 	private static final long serialVersionUID = 1L;
     private RacePanel race;
 
-    public JLabel getLblNewLabel_1() {
-		return race.getLblNewLabel_1();
+
+	public RacePanel getRacePanel() {
+		return race;
 	}
 
+	public void setRacePanel(RacePanel race) {
+		this.race = race;
+	}
 
 	public WindowRace() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 966, 613);
 		race = new RacePanel();
 		add(race);
+	}
+
+	public void updateLabelPosition(int index, int newPositionX) {
+		race.updateLabelPosition(index, newPositionX);
 	}
 	
 	

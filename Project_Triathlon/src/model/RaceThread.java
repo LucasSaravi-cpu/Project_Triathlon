@@ -1,36 +1,36 @@
 package model;
-
-import javax.swing.JLabel;
-
+import listeners.RaceListener;
 public class RaceThread extends Thread {
-   
-	private JLabel jlabel;
-	private int posicionX ;
- 
+    private int positionX;
+    private int endX;
+    private RaceListener listener;
 
-    public RaceThread(JLabel jlabel,int posicionX) {
-        this.jlabel =jlabel;
-        this.posicionX = posicionX;
-      
+    public RaceThread(int positionX, int endX, RaceListener listener) {
+        this.positionX = positionX;
+        this.listener = listener;
+        this.endX = endX;
     }
 
     @Override
     public void run() {
         try {
-
-        	 while (true) {
-                moverLabel();
+            while (!Thread.currentThread().isInterrupted()) {
+                moveLabel();
                 Thread.sleep(100); // Ajusta este valor para cambiar la velocidad de movimiento
-        	 }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            }
+        } catch (InterruptedException e) {}
     }
 
-    private void moverLabel() {
-        // Aquí defines cómo se mueve el JLabel
-        posicionX += 10; // Incrementa la posición X (ajusta según sea necesario)
-        jlabel.setLocation(posicionX, jlabel.getY());
-
-      }
+    private void moveLabel() {
+        if (positionX+10<=endX)
+    	    positionX += 10; // Incrementa la posición X (ajusta según sea necesario)
+        else {
+        	positionX=endX;
+        	Thread.currentThread().interrupt(); 
+        }
+        if (listener != null) {
+            listener.positionChanged(this, positionX);
+        }
+    }
 }
+

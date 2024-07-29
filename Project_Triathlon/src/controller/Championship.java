@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,6 +19,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import listeners.RaceListener;
 import model.Amateur;
 import model.Athlete;
 import model.City;
@@ -30,19 +32,41 @@ import model.Modality;
 import model.Pedestrianism;
 import model.PhysicalConditions;
 import model.Race;
+import model.RaceThread;
 import model.Stations;
 import model.Swimming;
-
-public class Championship {
-     
+import view.WindowRace;
+import listeners.RaceListener;
+public class Championship implements RaceListener {
+    private WindowRace windowRace;
 	private static List <Race> races;
+	private List<RaceThread> raceThreads;
      
+	public Championship(WindowRace windowRace) {
+        this.windowRace = windowRace;
+        this.raceThreads = new ArrayList<>();
+    }
+ 
      
-     
-     
-     public Iterator<Race> getRaces(){
+
+
+	public Iterator<Race> getRaces(){
     	 return races.iterator();
-     }
+    }
+    public void startRace() {
+    	List<JButton> buttons = windowRace.getRacePanel().getButtons();
+    	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
+        for (int i = 0; i < 10; i++) { // Suponiendo 10 corredores
+            RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this);
+            raceThreads.add(thread);
+            thread.start();
+        }
+    }
+    @Override
+    public void positionChanged(RaceThread thread, int newPositionX) {
+        int index = raceThreads.indexOf(thread);
+        windowRace.updateLabelPosition(index, newPositionX);
+    }
 	public static List<Race> loadXML() throws ParserConfigurationException, SAXException, IOException {
 		
 		// Load the XML file
