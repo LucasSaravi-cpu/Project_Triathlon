@@ -30,7 +30,7 @@ import model.Race;
 import model.RaceThread;
 import model.Stations;
 import view.WindowRace;
-
+import view.WindowStart;
 
 
 public class RunSimulation {
@@ -38,14 +38,10 @@ public class RunSimulation {
 		public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 	        // Load races from XML
 	        List<Race> races = Championship.loadXML();
-
-	        // Create and show the main window
-	        WindowRace windowRace = new WindowRace();
-	        windowRace.setVisible(true);
-
-	        // Create and start the championship
-	        Championship championship = new Championship(windowRace);
-	        championship.startRace();
+			WindowRace windowRace = new WindowRace();
+			Championship championship = new Championship(windowRace);
+            WindowStart windowStart = new WindowStart(championship);
+			windowStart.setVisible(true);
 	        
 	      
 	   }

@@ -5,10 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -21,6 +18,7 @@ public class RacePanel extends JPanel {
     private JLabel lblNewLabel_1;
     private List<JButton> buttons;
     private List<JLabel> labels;
+    private List <JLabel> energylabels;
     private int startX;
     private int endX;
     private ImageIcon finishLineIcon;
@@ -50,10 +48,19 @@ public class RacePanel extends JPanel {
         buttons = new ArrayList<>();
 
         for (int i = 0; i < 20; i++) {
-            JButton btn = new JButton("New button");
+            JButton btn;
+            if (i%2==0)
+                btn = new JButton("-");
+            else
+                btn = new JButton("+");
             btn.setBounds(31 + (i % 2) * 46, 76 + (i / 2) * 46, 50, 21);
             buttons.add(btn);
             add(btn);
+        }
+        energylabels = new ArrayList<>();
+        for (int i=0; i<10; i++) {
+            JLabel energy = new JLabel ("Energy");
+            energy.setBounds((buttons.get(i).getX() + buttons.get(i+2).getX())/2, (buttons.get(i).getY() + buttons.get(i+1).getY())/2, 100, 20);
         }
         labels=new ArrayList<>();
         for (int i = 0, j = 0; i < 10; i++, j+=2) { // Suponiendo 10 corredores
@@ -62,14 +69,13 @@ public class RacePanel extends JPanel {
             labels.add(lblNewLabel);
             add(lblNewLabel);
         }
-        
-        
-        finishLineIcon = new ImageIcon(getClass().getResource("/image/finish_line.png"));
-        
 
-        
-        
-        
+        finishLineIcon = new ImageIcon(getClass().getResource("/Image/finish_line.png"));
+
+
+
+
+
         setPreferredSize(new Dimension(966, 613));
     }
 
@@ -79,7 +85,12 @@ public class RacePanel extends JPanel {
             label.setLocation(newPositionX, label.getY());
         }
     }
-
+    public void updateEnergyLabel(int index, double energy) {
+        if (index >= 0 && index < energylabels.size()) {
+            JLabel energyLabel = energylabels.get(index);
+            energyLabel.setText(String.format("Energy: %.2f%%", energy));
+        }
+    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
