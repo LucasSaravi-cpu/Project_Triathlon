@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -60,7 +62,14 @@ public class RacePanel extends JPanel {
             labels.add(lblNewLabel);
             add(lblNewLabel);
         }
+        
+        
         finishLineIcon = new ImageIcon(getClass().getResource("/image/finish_line.png"));
+        
+
+        
+        
+        
         setPreferredSize(new Dimension(966, 613));
     }
 
@@ -91,4 +100,8 @@ public class RacePanel extends JPanel {
             g2d.drawImage(finishLineIcon.getImage(), endX - finishLineIcon.getIconWidth(), (int)buttons.get(buttons.size()/2).getAlignmentY() - (finishLineIcon.getIconHeight() / 2), null);
         }
     }
+    
+
+    
+    
 }

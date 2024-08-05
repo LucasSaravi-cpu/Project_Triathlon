@@ -46,6 +46,8 @@ public class RunSimulation {
 	        // Create and start the championship
 	        Championship championship = new Championship(windowRace);
 	        championship.startRace();
+	        
+	      
 	   }
 }
 	

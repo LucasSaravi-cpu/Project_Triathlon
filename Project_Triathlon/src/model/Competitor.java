@@ -76,6 +76,6 @@ public class Competitor extends Athlete {
     }
 
 	
-	
+
 	
 }

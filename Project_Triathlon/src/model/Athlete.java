@@ -3,7 +3,12 @@ package model;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import Events.EnergyEvent;
+import listeners.EnergyListener;
 
 public abstract class Athlete {
     private int num;
@@ -20,9 +25,12 @@ public abstract class Athlete {
     private double economicBudget;
     private int ranking;
     private PhysicalConditions stats;
+    private double energy;
+    private final List<EnergyListener> listeners = new ArrayList<>();
     
-    
-    
+   
+
+	public static final double K = 3.5;
     
 	public Athlete(int num, String name,String surname, String id, Country nationality, Date birthDate, String gender, double weight,
 			double height, double percEndedRaces, double economicBudget, int ranking, PhysicalConditions stats) {
@@ -130,9 +138,19 @@ public abstract class Athlete {
         LocalDate currentDate = LocalDate.now();
         return Period.between(birthDateLocal, currentDate).getYears();
     }
-    public abstract String getCathegory();
+	
+	
+
+
+	public abstract String getCathegory();
     
    public abstract String checkNeopreneUsage(int distance, double waterTemperature);
+   
+   public void updateEnergy(double height, double weight, double mentalStrength, double stamina) {
+       double newEnergy = K * (height * weight) * (stamina + mentalStrength);
+       setEnergy(newEnergy);
+       
+   }
     
 	@Override
 	public String toString() {
@@ -145,5 +163,43 @@ public abstract class Athlete {
 		
 		return sb.toString();
 	}
+	 public void addEnergyListener(EnergyListener listener) {
+	        listeners.add(listener);
+	    }
 
+	    public void removeEnergyListener(EnergyListener listener) {
+	        listeners.remove(listener);
+	    }
+	    
+	    public void decreaseEnergy(double amount) {
+	        energy -= amount;
+	        if (energy < 0) {
+	            energy = 0;
+	        }
+	        setEnergy(energy);
+	    }
+
+	    public void increaseEnergy(double amount) {
+	        energy += amount;
+	        if (energy > 100) { 
+	            energy = 100;
+	        }
+	        setEnergy(energy);
+	    }
+	    
+	    public double getEnergy() {
+			return energy;
+		}
+	    private void notifyEnergyChange(double newEnergy) {
+	        EnergyEvent event = new EnergyEvent(this, newEnergy);
+	        for (EnergyListener listener : listeners) {
+	            listener.energyChanged(event);
+	        }
+	    }
+
+		public void setEnergy(double energy) {
+			
+			this.energy = energy;
+	        notifyEnergyChange(energy);
+		}
 }

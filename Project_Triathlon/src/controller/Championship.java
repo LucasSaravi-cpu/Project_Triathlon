@@ -19,6 +19,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import Events.EnergyEvent;
+import listeners.EnergyListener;
 import listeners.RaceListener;
 import model.Amateur;
 import model.Athlete;
@@ -40,6 +42,7 @@ import listeners.RaceListener;
 public class Championship implements RaceListener {
     private WindowRace windowRace;
 	private static List <Race> races;
+	private static List<Athlete> atletas;
 	private List<RaceThread> raceThreads;
      
 	public Championship(WindowRace windowRace) {
@@ -56,12 +59,39 @@ public class Championship implements RaceListener {
     public void startRace() {
     	List<JButton> buttons = windowRace.getRacePanel().getButtons();
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
-        for (int i = 0; i < 10; i++) { // Suponiendo 10 corredores
-            RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this);
+       
+    	
+    	  
+    		  
+    	for (Athlete atleta: Championship.atletas) {
+    		  
+    //	for (int i = 0; i < 10; i++) { // Suponiendo 10 corredores
+            RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, atleta);
+            
+            atleta.updateEnergy(atleta.getHeight(),atleta.getWeight(), atleta.getStats().getMentalStrength(), atleta.getStats().getStamina());
+            
+            System.out.println(atleta.getEnergy());
+            
+            // Añade un listener a cada hilo
+            thread.addEnergyListener(new EnergyListener() {
+                @Override
+                public void energyChanged(EnergyEvent event) {
+                    double energy = event.getEnergyLevel();
+                    if (energy == 0) {
+                        System.out.println("Athlete has stopped due to zero energy." + atleta.getName());
+                    } else {
+                        System.out.println("Energy level changed: " + atleta.getName()+ "  "+ energy );
+                    }
+                }
+            });
+            
+            
+            
             raceThreads.add(thread);
             thread.start();
-        }
-    }
+        }}
+    	//}
+    
     @Override
     public void positionChanged(RaceThread thread, int newPositionX) {
         int index = raceThreads.indexOf(thread);
@@ -149,6 +179,11 @@ public class Championship implements RaceListener {
             }
             
         }
+        
+       
+        atletas = new ArrayList<>();
+      atletas=  Championship.getTop10Athletes(athletes);
+        
         
         
         // List for athletes
@@ -262,4 +297,32 @@ public class Championship implements RaceListener {
 	}
 	public static void loadDatabase() {}
 	//Loads the climatic changes data base    
+	
+	
+	  private static List<Athlete> getTop10Athletes(List<Athlete> originalAthletes) {
+	        List<Athlete> selectedAthletes = new ArrayList<>();
+	        
+	        // Limitar el tamaño a 10 o el tamaño de la lista original, lo que sea menor
+	        int numberOfAthletesToSelect = Math.min(originalAthletes.size(), 10);
+	        
+	        for (int i = 0; i < numberOfAthletesToSelect; i++) {
+	            selectedAthletes.add(originalAthletes.get(i));
+	        }
+	        
+	        return selectedAthletes;
+	    }
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
 }

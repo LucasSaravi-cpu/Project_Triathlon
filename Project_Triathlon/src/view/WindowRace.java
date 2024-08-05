@@ -32,16 +32,10 @@ public class WindowRace extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 966, 613);
 		race = new RacePanel();
-		add(race);
+		getContentPane().add(race);
 	}
 
 	public void updateLabelPosition(int index, int newPositionX) {
 		race.updateLabelPosition(index, newPositionX);
 	}
-	
-	
-
-
-	
-	
 }
