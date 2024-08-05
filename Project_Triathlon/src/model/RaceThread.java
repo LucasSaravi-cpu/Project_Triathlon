@@ -67,7 +67,8 @@ public class RaceThread extends Thread {
             listener.energyChanged(event);
         }
     }
-    
+
+
   
     
     

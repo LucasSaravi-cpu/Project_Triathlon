@@ -66,7 +66,8 @@ public class Championship implements RaceListener {
     	for (Athlete atleta: Championship.atletas) {
     		  
     //	for (int i = 0; i < 10; i++) { // Suponiendo 10 corredores
-            RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, atleta);
+    		 RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, atleta);
+    		
             
             atleta.updateEnergy(atleta.getHeight(),atleta.getWeight(), atleta.getStats().getMentalStrength(), atleta.getStats().getStamina());
             
@@ -87,8 +88,9 @@ public class Championship implements RaceListener {
             
             
             
-            raceThreads.add(thread);
+            raceThreads.add(  thread);
             thread.start();
+            
         }}
     	//}
     
