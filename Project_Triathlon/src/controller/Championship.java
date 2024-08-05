@@ -49,11 +49,12 @@ public class Championship implements RaceListener {
         this.windowRace = windowRace;
         this.raceThreads = new ArrayList<>();
     }
- 
-     
 
+    public WindowRace getWindowRace() {
+        return windowRace;
+    }
 
-	public Iterator<Race> getRaces(){
+    public Iterator<Race> getRaces(){
     	 return races.iterator();
     }
     public void startRace() {
@@ -78,6 +79,8 @@ public class Championship implements RaceListener {
                 @Override
                 public void energyChanged(EnergyEvent event) {
                     double energy = event.getEnergyLevel();
+                    int index = raceThreads.indexOf(thread);
+                    windowRace.getRacePanel().updateEnergyLabel(index, energy);
                     if (energy == 0) {
                         System.out.println("Athlete has stopped due to zero energy." + atleta.getName());
                     } else {
