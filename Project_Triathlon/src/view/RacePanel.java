@@ -57,11 +57,6 @@ public class RacePanel extends JPanel {
             buttons.add(btn);
             add(btn);
         }
-        energylabels = new ArrayList<>();
-        for (int i=0; i<10; i++) {
-            JLabel energy = new JLabel ("Energy");
-            energy.setBounds((buttons.get(i).getX() + buttons.get(i+2).getX())/2, (buttons.get(i).getY() + buttons.get(i+1).getY())/2, 100, 20);
-        }
         labels=new ArrayList<>();
         for (int i = 0, j = 0; i < 10; i++, j+=2) { // Suponiendo 10 corredores
             JLabel lblNewLabel = new JLabel("Corredor " + (i + 1));
@@ -69,7 +64,14 @@ public class RacePanel extends JPanel {
             labels.add(lblNewLabel);
             add(lblNewLabel);
         }
-
+        energylabels = new ArrayList<>();
+        int yPosition = (buttons.get(2).getY()-buttons.get(0).getY())/2;
+        for (int i=0; i<10; i++) {
+            JLabel energy = new JLabel ("Energy");
+            energy.setBounds(54, labels.get(i).getY() + yPosition, 100, 20); // Ajustar X según sea necesario
+            energylabels.add(energy);
+            add(energy);
+        }
         finishLineIcon = new ImageIcon(getClass().getResource("/Image/finish_line.png"));
 
 

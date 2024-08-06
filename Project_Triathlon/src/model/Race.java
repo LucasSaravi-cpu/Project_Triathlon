@@ -35,13 +35,12 @@ public class Race {
 
 
 
-	public Race(City city, Country country, Date date, List<Athlete> athlete, Modality modality, double kmswimming, double kmcyclism,
+	public Race(City city, Country country, Date date, Modality modality, double kmswimming, double kmcyclism,
 			double kmpedestrianism, List<Stations> stations) {
 		super();
 		this.city = city;
 		this.country = country;
 		this.date = date;
-		this.athlete = athlete;
 		this.modality = modality;
 		this.kmswimming = kmswimming;
 		this.kmcyclism = kmcyclism;

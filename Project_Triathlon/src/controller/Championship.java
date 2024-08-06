@@ -42,8 +42,9 @@ import listeners.RaceListener;
 public class Championship implements RaceListener {
     private WindowRace windowRace;
 	private static List <Race> races;
-	private static List<Athlete> atletas;
+	private static List<Athlete> athletes;
 	private List<RaceThread> raceThreads;
+
      
 	public Championship(WindowRace windowRace) {
         this.windowRace = windowRace;
@@ -62,18 +63,17 @@ public class Championship implements RaceListener {
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
        
     	
-    	  
+    	
     		  
-    	for (Athlete atleta: Championship.atletas) {
+    	for (Athlete atleta: Championship.getTop10Athletes(athletes)) {
     		  
-    //	for (int i = 0; i < 10; i++) { // Suponiendo 10 corredores
+    	
+  
     		 RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, atleta);
-    		
-            
+    		 
             atleta.updateEnergy(atleta.getHeight(),atleta.getWeight(), atleta.getStats().getMentalStrength(), atleta.getStats().getStamina());
-            
-            System.out.println(atleta.getEnergy());
-            
+       
+
             // Añade un listener a cada hilo
             thread.addEnergyListener(new EnergyListener() {
                 @Override
@@ -81,11 +81,7 @@ public class Championship implements RaceListener {
                     double energy = event.getEnergyLevel();
                     int index = raceThreads.indexOf(thread);
                     windowRace.getRacePanel().updateEnergyLabel(index, energy);
-                    if (energy == 0) {
-                        System.out.println("Athlete has stopped due to zero energy." + atleta.getName());
-                    } else {
-                        System.out.println("Energy level changed: " + atleta.getName()+ "  "+ energy );
-                    }
+                 
                 }
             });
             
@@ -95,14 +91,14 @@ public class Championship implements RaceListener {
             thread.start();
             
         }}
-    	//}
+   
     
     @Override
     public void positionChanged(RaceThread thread, int newPositionX) {
         int index = raceThreads.indexOf(thread);
         windowRace.updateLabelPosition(index, newPositionX);
     }
-	public static List<Race> loadXML() throws ParserConfigurationException, SAXException, IOException {
+	public static void loadXML() throws ParserConfigurationException, SAXException, IOException {
 		
 		// Load the XML file
         File xmlFile = new File("triatlon.xml");
@@ -130,7 +126,7 @@ public class Championship implements RaceListener {
         
 
         // List for elements <athlete>
-        List<Athlete> athletes = new ArrayList<>();
+        athletes = new ArrayList<>();
       
         
         // Iterate over each athlete
@@ -186,8 +182,7 @@ public class Championship implements RaceListener {
         }
         
        
-        atletas = new ArrayList<>();
-      atletas=  Championship.getTop10Athletes(athletes);
+
         
         
         
@@ -263,7 +258,7 @@ public class Championship implements RaceListener {
                     }
                 }
                     
-                Race race = new Race(city, country, date, athletes, modality, swimming, cyclism, pedestrianism, stati);
+                Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati);
                     
                     
                 races.add(race);
@@ -271,8 +266,7 @@ public class Championship implements RaceListener {
         }
             
             
-		return races;
-        
+		
     }
       
 	
@@ -305,7 +299,7 @@ public class Championship implements RaceListener {
 	
 	
 	  private static List<Athlete> getTop10Athletes(List<Athlete> originalAthletes) {
-	        List<Athlete> selectedAthletes = new ArrayList<>();
+		  List<Athlete>  selectedAthletes = new ArrayList<>();
 	        
 	        // Limitar el tamaño a 10 o el tamaño de la lista original, lo que sea menor
 	        int numberOfAthletesToSelect = Math.min(originalAthletes.size(), 10);
