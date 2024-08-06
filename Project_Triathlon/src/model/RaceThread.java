@@ -11,6 +11,7 @@ public class RaceThread extends Thread {
     private RaceListener listener;
     private final List<EnergyListener> listeners = new ArrayList<>();
     private final Athlete athlete;
+
     
 
     public RaceThread(int positionX, int endX, RaceListener listener, Athlete athlete) {
@@ -18,10 +19,11 @@ public class RaceThread extends Thread {
         this.listener = listener;
         this.endX = endX;
         this.athlete = athlete;
+       
     }
 
     @Override
-    public void run() {
+    public  void run() {
         try {
             while (!Thread.currentThread().isInterrupted()) {
                 moveLabel();
@@ -67,6 +69,8 @@ public class RaceThread extends Thread {
             listener.energyChanged(event);
         }
     }
+
+
 
 
   

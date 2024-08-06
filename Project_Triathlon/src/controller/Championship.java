@@ -37,6 +37,7 @@ import model.Race;
 import model.RaceThread;
 import model.Stations;
 import model.Swimming;
+import view.RacePanel;
 import view.WindowRace;
 import listeners.RaceListener;
 public class Championship implements RaceListener {
@@ -62,15 +63,14 @@ public class Championship implements RaceListener {
     	List<JButton> buttons = windowRace.getRacePanel().getButtons();
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
        
-    	
-    	
+   
     		  
     	for (Athlete atleta: Championship.getTop10Athletes(athletes)) {
     		  
-    	
+      
   
-    		 RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, atleta);
-    		 
+    		 RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this,atleta);
+    		
             atleta.updateEnergy(atleta.getHeight(),atleta.getWeight(), atleta.getStats().getMentalStrength(), atleta.getStats().getStamina());
        
 
@@ -88,7 +88,9 @@ public class Championship implements RaceListener {
             
             
             raceThreads.add(  thread);
+     
             thread.start();
+          
             
         }}
    
@@ -97,6 +99,8 @@ public class Championship implements RaceListener {
     public void positionChanged(RaceThread thread, int newPositionX) {
         int index = raceThreads.indexOf(thread);
         windowRace.updateLabelPosition(index, newPositionX);
+        
+     
     }
 	public static void loadXML() throws ParserConfigurationException, SAXException, IOException {
 		

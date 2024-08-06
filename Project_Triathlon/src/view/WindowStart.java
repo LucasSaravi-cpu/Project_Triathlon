@@ -15,26 +15,29 @@ public class WindowStart extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
     private WindowRace wr;
+    private WindowDate dt;
 
 	
 	public WindowStart(Championship controller) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 963, 550);
+		setBounds(100, 100, 848, 564);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		JButton btnNewButton_2 = new JButton("START");
+		btnNewButton_2.setBounds(35, 314, 201, 35);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			WindowDate dt = new WindowDate();
 				wr = controller.getWindowRace();
 				wr.setVisible(true);
 				controller.startRace();
+				dt.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(35, 314, 201, 35);
+		contentPane.setLayout(null);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_1 = new JButton("LOAD");
@@ -45,9 +48,9 @@ public class WindowStart extends JFrame {
 		btnNewButton.setBounds(35, 371, 201, 35);
 		contentPane.add(btnNewButton);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(WindowStart.class.getResource("/Image/Start.jpg")));
-		lblNewLabel.setBounds(-24, -49, 963, 603);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(0, 0, 841, 540);
+		lblNewLabel.setIcon(new ImageIcon(WindowStart.class.getResource("/Image/ImgStart.png")));
 		contentPane.add(lblNewLabel);
 	}
 }

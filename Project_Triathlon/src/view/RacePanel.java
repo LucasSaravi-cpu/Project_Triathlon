@@ -43,8 +43,6 @@ public class RacePanel extends JPanel {
 	}
 
 	public RacePanel() {
-        setLayout(null);
-
         buttons = new ArrayList<>();
 
         for (int i = 0; i < 20; i++) {
@@ -64,6 +62,9 @@ public class RacePanel extends JPanel {
             labels.add(lblNewLabel);
             add(lblNewLabel);
         }
+        
+ 
+        
         energylabels = new ArrayList<>();
         int yPosition = (buttons.get(2).getY()-buttons.get(0).getY())/2;
         for (int i=0; i<10; i++) {
@@ -79,6 +80,9 @@ public class RacePanel extends JPanel {
 
 
         setPreferredSize(new Dimension(966, 613));
+        setLayout(null);
+        
+       
     }
 
     public void updateLabelPosition(int index, int newPositionX) {
@@ -113,6 +117,12 @@ public class RacePanel extends JPanel {
             g2d.drawImage(finishLineIcon.getImage(), endX - finishLineIcon.getIconWidth(), (int)buttons.get(buttons.size()/2).getAlignmentY() - (finishLineIcon.getIconHeight() / 2), null);
         }
     }
+	public List<JLabel> getLabels() {
+		return labels;
+	}
+	public void setLabels(List<JLabel> labels) {
+		this.labels = labels;
+	}
     
 
     
