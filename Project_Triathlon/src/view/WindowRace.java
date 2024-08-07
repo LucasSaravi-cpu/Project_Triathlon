@@ -18,6 +18,7 @@ public class WindowRace extends JFrame {
 
 	private static final long serialVersionUID = 1L;
     private RacePanel race;
+	private WindowDate windowDate;
 
 
 	public RacePanel getRacePanel() {
@@ -37,5 +38,11 @@ public class WindowRace extends JFrame {
 
 	public void updateLabelPosition(int index, int newPositionX) {
 		race.updateLabelPosition(index, newPositionX);
+	}
+	public void setWindowDate() {
+		if (windowDate == null) {
+			windowDate = new WindowDate();
+		}
+		windowDate.setVisible(true);
 	}
 }
