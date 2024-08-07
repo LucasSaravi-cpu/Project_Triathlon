@@ -105,6 +105,6 @@ public class WindowDate extends JFrame {
 		
 	
 	}
-	
+
 	
 }
