@@ -35,6 +35,7 @@ import model.Modality;
 import model.Pedestrianism;
 import model.PhysicalConditions;
 import model.Race;
+import model.RaceManager;
 import model.RaceThread;
 import model.Stations;
 import model.Swimming;
@@ -69,9 +70,9 @@ public class Championship implements RaceListener {
     		  
     	for (Athlete athlete:  SelectionAthletes) {
     		  
-      
+    		RaceManager raceManager = new RaceManager();
   
-    		 RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this);
+    		 RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager);
     		
             athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
        

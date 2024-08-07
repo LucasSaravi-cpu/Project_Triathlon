@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.Championship;
 import model.Athlete;
+import model.RaceManager;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -91,7 +92,7 @@ public class WindowDate extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Method for listing race Stats
-				
+				textArea.setText( RaceManager.updateRaceResults());
 				
 			}
 		});

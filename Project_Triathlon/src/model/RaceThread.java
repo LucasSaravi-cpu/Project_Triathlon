@@ -1,6 +1,7 @@
 package model;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import Events.EnergyEvent;
 import listeners.EnergyListener;
@@ -15,32 +16,40 @@ public class RaceThread extends Thread {
     private final Athlete athlete;
     private static AtomicInteger activeThreads = new AtomicInteger(0);
     private final Championship controller;
+    private RaceManager raceManager;
     
 
-    public RaceThread(int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller) {
+    public RaceThread(int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller, RaceManager raceManager) {
         this.positionX = positionX;
         this.listener = listener;
         this.endX = endX;
         this.athlete = athlete;
         this.controller=controller;
         activeThreads.incrementAndGet();
+        this.raceManager = raceManager;
     }
 
     @Override
     public  void run() {
         try {
             while (!Thread.currentThread().isInterrupted()) {
+            	 Random random = new Random();
                 moveLabel();
-                athlete.decreaseEnergy(100); // Ajusta el decremento
-                Thread.sleep(100); // Ajusta este valor para cambiar la velocidad de movimiento
+                athlete.decreaseEnergy(10); // Ajusta el decremento
+                Thread.sleep(random.nextInt(1000)); // Ajusta este valor para cambiar la velocidad de movimiento
                 
                 // Notifica los cambios de energía
                 notifyEnergyChange(athlete.getEnergy());
-
+               
                 // Verifica si el atleta ha agotado la energía
                 if (athlete.getEnergy() <= 0) {
                     Thread.currentThread().interrupt(); // Detiene el hilo si la energía es 0
+                  
                 }
+                
+              
+               
+                
                 
             }
         } catch (InterruptedException e) {
@@ -59,6 +68,7 @@ public class RaceThread extends Thread {
         else {
         	positionX=endX;
         	Thread.currentThread().interrupt(); 
+        	 raceManager.notifyAthleteFinished(athlete);
         }
         if (listener != null) {
             listener.positionChanged(this, positionX);
