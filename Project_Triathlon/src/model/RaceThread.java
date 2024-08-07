@@ -33,7 +33,7 @@ public class RaceThread extends Thread {
             while (!Thread.currentThread().isInterrupted()) {
                 moveLabel();
                 Random random = new Random();
-                athlete.decreaseEnergy(100); // Ajusta el decremento
+                athlete.decreaseEnergy(10); // Ajusta el decremento
                 Thread.sleep(random.nextInt(1000)); // Ajusta este valor para cambiar la velocidad de movimiento
                 
                 // Notifica los cambios de energía
