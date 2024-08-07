@@ -124,8 +124,8 @@ public class WindowDate extends JFrame {
 		sb.append("\n Surname: ").append(athete.getSurname()).append("\n Name: ").append(athete.getName())
 		  .append("\n Nationality: ").append(athete.getNationality()) .append("\n StageWinS: ").append(athete.getStagesWinS())
 		  .append("\n StagesWinP: ").append(athete.getStagesWinP()).append("\n StagesWinC: ").append(athete.getStagesWinC())
-		  .append("\n RacerWin: ").append(athete.getRacerWin()).append("\n  Racer Desertion: ").append(athete.getRacerdesertion())
-		.append("\n  Racer Complete: ").append(athete.getRacercomplete());
+		  .append("\n RacerWin: ").append(athete.getRacerWin()).append("\nRacer Desertion: ").append(athete.getRacerdesertion())
+		.append("\nRacer Complete: ").append(athete.getRacercomplete());
 			
 		sb.append("\n");
 		}

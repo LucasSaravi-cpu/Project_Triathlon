@@ -1,6 +1,7 @@
 package model;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import Events.EnergyEvent;
 import listeners.EnergyListener;
@@ -27,8 +28,9 @@ public class RaceThread extends Thread {
         try {
             while (!Thread.currentThread().isInterrupted()) {
                 moveLabel();
+                Random random = new Random();
                 athlete.decreaseEnergy(100); // Ajusta el decremento
-                Thread.sleep(100); // Ajusta este valor para cambiar la velocidad de movimiento
+                Thread.sleep(random.nextInt(1000)); // Ajusta este valor para cambiar la velocidad de movimiento
                 
                 // Notifica los cambios de energía
                 notifyEnergyChange(athlete.getEnergy());
