@@ -30,11 +30,12 @@ public class WindowStart extends JFrame {
 		btnNewButton_2.setBounds(35, 314, 201, 35);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			WindowDate dt = new WindowDate();
+			//WindowDate dt = new WindowDate();
 				wr = controller.getWindowRace();
 				wr.setVisible(true);
 				controller.startRace();
-				dt.setVisible(true);
+			//	dt.setVisible(true);
+				// We have to set dt visible when the race ends!!!!
 			}
 		});
 		contentPane.setLayout(null);

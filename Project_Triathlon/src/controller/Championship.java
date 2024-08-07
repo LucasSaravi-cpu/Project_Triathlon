@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Comparator;
 
 import javax.swing.JButton;
 import javax.xml.parsers.DocumentBuilder;
@@ -66,13 +67,13 @@ public class Championship implements RaceListener {
        
         SelectionAthletes =Championship.getTop10Athletes(athletes);
     		  
-    	for (Athlete atleta:  SelectionAthletes) {
+    	for (Athlete athlete:  SelectionAthletes) {
     		  
       
   
-    		 RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this,atleta);
+    		 RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this);
     		
-            atleta.updateEnergy(atleta.getHeight(),atleta.getWeight(), atleta.getStats().getMentalStrength(), atleta.getStats().getStamina());
+            athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
        
 
             // Añade un listener a cada hilo
@@ -323,6 +324,29 @@ public class Championship implements RaceListener {
 	public static void setSelectionAthletes(List<Athlete> selectionAthletes) {
 		SelectionAthletes = selectionAthletes;
 	}
+    public static String ListAthletes () {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Athlete athlete: SelectionAthletes) {
+
+            sb.append("\n Surname: ").append(athlete.getSurname()).append("\n Name: ").append(athlete.getName())
+                    .append("\n Nationality: ").append(athlete.getNationality()) .append("\n StageWinS: ").append(athlete.getStagesWinS())
+                    .append("\n StagesWinP: ").append(athlete.getStagesWinP()).append("\n StagesWinC: ").append(athlete.getStagesWinC())
+                    .append("\n RacerWin: ").append(athlete.getRacerWin()).append("\n  Racer Desertion: ").append(athlete.getRacerdesertion())
+                    .append("\n  Racer Complete: ").append(athlete.getRacercomplete());
+
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
+    public void allThreadsCompleted() {
+        windowRace.setWindowDate();
+    }
+    public static void sortByAlphabeticOrder(){
+        SelectionAthletes.sort(Comparator.comparing(Athlete::getSurname));
+    }
 
 
 
@@ -332,9 +356,6 @@ public class Championship implements RaceListener {
 
 
 
-	
-	
-	
-	
-	
+
+
 }

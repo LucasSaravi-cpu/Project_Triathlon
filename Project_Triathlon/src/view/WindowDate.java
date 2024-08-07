@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,24 +11,18 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
-import javax.swing.JList;
-import java.awt.TextField;
 import java.awt.TextArea;
-
+import javax.swing.ButtonGroup;
 public class WindowDate extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnNewButton;
 	private JButton btnNewButton_3;
-    private JRadioButton rdbtnNewRadioButton_1;
-    private JRadioButton rdbtnNewRadioButton;
+    private JRadioButton rdbtnalphabetic;
+    private JRadioButton rdbtnposition;
     private JButton btnNewButton_1;
     private JButton btnNewButton_2;
 
@@ -55,14 +47,14 @@ public class WindowDate extends JFrame {
 		contentPane.add(textArea);
 		
 		
-		btnNewButton = new JButton("Listar Estadisticas de los atletas");
+		btnNewButton = new JButton("List Athletes' stats");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		 btnNewButton_3 = new JButton("Limpiar ");
-		 btnNewButton_3.addActionListener(new ActionListener() {
+		btnNewButton_3 = new JButton("Clean ");
+		btnNewButton_3.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 		textArea.setText("");
 		 	}
@@ -70,34 +62,35 @@ public class WindowDate extends JFrame {
 		btnNewButton_3.setBounds(24, 522, 218, 38);
 		contentPane.add(btnNewButton_3);
 		
-		 rdbtnNewRadioButton_1 = new JRadioButton("Por orden alfabetico");
-		rdbtnNewRadioButton_1.setBounds(247, 347, 219, 43);
-		contentPane.add(rdbtnNewRadioButton_1);
-		
-		rdbtnNewRadioButton = new JRadioButton("Por posicion en el campeoanto");
-		rdbtnNewRadioButton.setBounds(248, 293, 218, 43);
-		contentPane.add(rdbtnNewRadioButton);
+		rdbtnalphabetic = new JRadioButton("By alphabetic order");
+		rdbtnalphabetic.setBounds(247, 347, 219, 43);
+		contentPane.add(rdbtnalphabetic);
+		rdbtnposition = new JRadioButton("By championship position");
+		rdbtnposition.setBounds(248, 293, 218, 43);
+		contentPane.add(rdbtnposition);
 		btnNewButton.setBounds(24, 293, 218, 43);
 		contentPane.add(btnNewButton);
-		
-		btnNewButton_1 = new JButton("Listado de atletas");
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnalphabetic);
+		group.add(rdbtnposition);
+		btnNewButton_1 = new JButton("List of athletes");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				for ( Athlete athete : Championship.getSelectionAthletes()) {
-					textArea.setText(WindowDate.ListAthete());
+				if (rdbtnalphabetic.isSelected())
+					Championship.sortByAlphabeticOrder();
+				for (Athlete athete : Championship.getSelectionAthletes()) {
+					textArea.setText(Championship.ListAthletes());
 				}
-				
+
 			}
 		});
 		btnNewButton_1.setBounds(24, 393, 218, 43);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Listar estadisticas de la carrera");
+		JButton btnNewButton_2 = new JButton("List Race Stats");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				// Method for listing race Stats
 				
 				
 			}
@@ -114,6 +107,7 @@ public class WindowDate extends JFrame {
 	}
 	
 	
+
 	
 	public static String ListAthete () {
 		
@@ -138,4 +132,5 @@ public class WindowDate extends JFrame {
 	
 	
 	
+
 }

@@ -6,21 +6,25 @@ import java.util.Random;
 import Events.EnergyEvent;
 import listeners.EnergyListener;
 import listeners.RaceListener;
+import java.util.concurrent.atomic.AtomicInteger;
+import controller.Championship;
 public class RaceThread extends Thread {
     private int positionX;
     private int endX;
     private RaceListener listener;
     private final List<EnergyListener> listeners = new ArrayList<>();
     private final Athlete athlete;
-
+    private static AtomicInteger activeThreads = new AtomicInteger(0);
+    private final Championship controller;
     
 
-    public RaceThread(int positionX, int endX, RaceListener listener, Athlete athlete) {
+    public RaceThread(int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller) {
         this.positionX = positionX;
         this.listener = listener;
         this.endX = endX;
         this.athlete = athlete;
-       
+        this.controller=controller;
+        activeThreads.incrementAndGet();
     }
 
     @Override
@@ -37,11 +41,18 @@ public class RaceThread extends Thread {
 
                 // Verifica si el atleta ha agotado la energía
                 if (athlete.getEnergy() <= 0) {
-                    break; // Detiene el hilo si la energía es 0
+                    Thread.currentThread().interrupt(); // Detiene el hilo si la energía es 0
                 }
                 
             }
-        } catch (InterruptedException e) {}
+        } catch (InterruptedException e) {
+
+        }  finally {
+            if (activeThreads.decrementAndGet() == 0) {
+                controller.allThreadsCompleted();
+            }
+        }
+
     }
 
     private void moveLabel() {
