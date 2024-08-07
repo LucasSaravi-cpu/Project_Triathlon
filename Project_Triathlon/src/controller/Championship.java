@@ -44,6 +44,7 @@ public class Championship implements RaceListener {
     private WindowRace windowRace;
 	private static List <Race> races;
 	private static List<Athlete> athletes;
+	private static List<Athlete> SelectionAthletes;
 	private List<RaceThread> raceThreads;
 
      
@@ -63,9 +64,9 @@ public class Championship implements RaceListener {
     	List<JButton> buttons = windowRace.getRacePanel().getButtons();
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
        
-   
+        SelectionAthletes =Championship.getTop10Athletes(athletes);
     		  
-    	for (Athlete atleta: Championship.getTop10Athletes(athletes)) {
+    	for (Athlete atleta:  SelectionAthletes) {
     		  
       
   
@@ -314,6 +315,14 @@ public class Championship implements RaceListener {
 	        
 	        return selectedAthletes;
 	    }
+
+	public static List<Athlete> getSelectionAthletes() {
+		return SelectionAthletes;
+	}
+
+	public static void setSelectionAthletes(List<Athlete> selectionAthletes) {
+		SelectionAthletes = selectionAthletes;
+	}
 
 
 

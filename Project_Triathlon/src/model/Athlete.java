@@ -27,7 +27,14 @@ public abstract class Athlete {
     private PhysicalConditions stats;
     private double energy;
     private final List<EnergyListener> listeners = new ArrayList<>();
+    private int stagesWinS;
+    private int stagesWinP;
+    private int stagesWinC;
+    private int racerWin;
+    private int racerdesertion;
+    private int racercomplete;
     
+ 
    
 
 	public static final double K = 3.5;
@@ -140,6 +147,66 @@ public abstract class Athlete {
     }
 	
 	
+
+
+	public int getStagesWinS() {
+		return stagesWinS;
+	}
+
+
+	public void setStagesWinS(int stagesWinS) {
+		this.stagesWinS = stagesWinS;
+	}
+
+
+	public int getStagesWinP() {
+		return stagesWinP;
+	}
+
+
+	public void setStagesWinP(int stagesWinP) {
+		this.stagesWinP = stagesWinP;
+	}
+
+
+	public int getStagesWinC() {
+		return stagesWinC;
+	}
+
+
+	public void setStagesWinC(int stagesWinC) {
+		this.stagesWinC = stagesWinC;
+	}
+
+
+	public int getRacerWin() {
+		return racerWin;
+	}
+
+
+	public void setRacerWin(int racerWin) {
+		this.racerWin = racerWin;
+	}
+
+
+	public int getRacerdesertion() {
+		return racerdesertion;
+	}
+
+
+	public void setRacerdesertion(int racerdesertion) {
+		this.racerdesertion = racerdesertion;
+	}
+
+
+	public int getRacercomplete() {
+		return racercomplete;
+	}
+
+
+	public void setRacercomplete(int racercomplete) {
+		this.racercomplete = racercomplete;
+	}
 
 
 	public abstract String getCathegory();
