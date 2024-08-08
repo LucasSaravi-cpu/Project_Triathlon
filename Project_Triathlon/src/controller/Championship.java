@@ -67,15 +67,15 @@ public class Championship implements RaceListener {
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
        
         SelectionAthletes =Championship.getTop10Athletes(athletes);
-    		  
+    	int i=0;
     	for (Athlete athlete:  SelectionAthletes) {
-    		  
+    		windowRace.getRacePanel().getLabels().get(i).setText(athlete.getName() + " " + athlete.getSurname());
     		RaceManager raceManager = new RaceManager();
   
     		 RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager);
     		
             athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
-       
+            i++;
 
             // Añade un listener a cada hilo
             thread.addEnergyListener(new EnergyListener() {

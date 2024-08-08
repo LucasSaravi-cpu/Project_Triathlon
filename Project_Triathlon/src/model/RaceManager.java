@@ -12,7 +12,7 @@ public class RaceManager {
     
     public static String updateRaceResults() {
     	StringBuilder sb = new StringBuilder();
-    	sb.append("Orden de llegada: \n");
+    	sb.append("Race results: \n");
        
         for (int i = 0; i < finishedAthletes.size(); i++) {
         	sb.append((i + 1) + ": " + finishedAthletes.get(i).getName() + "\n");

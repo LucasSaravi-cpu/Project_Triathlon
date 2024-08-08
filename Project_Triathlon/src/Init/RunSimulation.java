@@ -31,13 +31,13 @@ import model.RaceThread;
 import model.Stations;
 import view.WindowRace;
 import view.WindowStart;
-
+import view.WindowSAGA;
 
 public class RunSimulation {
 
 		public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 	        // Load races from XML
-	      
+	        WindowSAGA windowSAGA = new WindowSAGA();
 			Championship.loadXML();
 			WindowRace windowRace = new WindowRace();
 			Championship championship = new Championship(windowRace);

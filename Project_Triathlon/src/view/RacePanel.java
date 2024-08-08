@@ -56,9 +56,14 @@ public class RacePanel extends JPanel {
             add(btn);
         }
         labels=new ArrayList<>();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Image/running.png"));
+        Image image = icon.getImage(); // Obtén la imagen del ImageIcon
+        Image scaledImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Escala la imagen
+        ImageIcon scaledIcon = new ImageIcon(scaledImage); // Crea un nuevo ImageIcon con la imagen escalada
+
         for (int i = 0, j = 0; i < 10; i++, j+=2) { // Suponiendo 10 corredores
-            JLabel lblNewLabel = new JLabel("Corredor " + (i + 1));
-            lblNewLabel.setBounds(31, buttons.get(j).getY(), 100, 20); // Start position X set to 31
+            JLabel lblNewLabel = new JLabel(scaledIcon);
+            lblNewLabel.setBounds(31, buttons.get(j).getY(), 110, 30); // Start position X set to 31
             labels.add(lblNewLabel);
             add(lblNewLabel);
         }
