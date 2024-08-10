@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -307,7 +308,11 @@ public class Championship implements RaceListener {
 	
 	  private static List<Athlete> getTop10Athletes(List<Athlete> originalAthletes) {
 		  List<Athlete>  selectedAthletes = new ArrayList<>();
-	        
+	       
+		 // Shuffle the list to obtain a random order
+		  Collections.shuffle(originalAthletes);
+		  
+		  
 	        // Limitar el tamaño a 10 o el tamaño de la lista original, lo que sea menor
 	        int numberOfAthletesToSelect = Math.min(originalAthletes.size(), 10);
 	        
