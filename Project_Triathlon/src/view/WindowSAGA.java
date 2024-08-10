@@ -24,9 +24,10 @@ public class WindowSAGA extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
 	}
-	
-	
-	
+
+
+
 
 }
