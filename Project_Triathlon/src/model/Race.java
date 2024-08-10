@@ -46,6 +46,7 @@ public class Race {
 		this.kmcyclism = kmcyclism;
 		this.kmpedestrianism = kmpedestrianism;
 		this.stations = stations;
+		 this.athlete = new ArrayList<Athlete>();
 	}
 
 

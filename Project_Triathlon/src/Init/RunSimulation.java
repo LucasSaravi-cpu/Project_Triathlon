@@ -52,7 +52,7 @@ public class RunSimulation {
 			System.out.println(race.getDate());
 		}
 			
-			
+		Championship.loadDatabase();
 	   
 }
 	

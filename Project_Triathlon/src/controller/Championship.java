@@ -43,6 +43,7 @@ import model.Country;
 import model.Cycling;
 import model.Discipline;
 import model.DisciplineDistance;
+import model.MeasurementUnit;
 import model.Modality;
 import model.Pedestrianism;
 import model.PhysicalConditions;
@@ -51,6 +52,7 @@ import model.RaceManager;
 import model.RaceThread;
 import model.Stations;
 import model.Swimming;
+import model.WeatherConditions;
 import view.RacePanel;
 import view.WindowRace;
 import listeners.RaceListener;
@@ -59,6 +61,7 @@ public class Championship implements RaceListener {
 	private static List <Race> races;
 	private static List<Athlete> athletes;
 	private static List<Athlete> SelectionAthletes;
+	private static List<Race> SelectionRace;
 	private List<RaceThread> raceThreads;
 
      
@@ -71,16 +74,27 @@ public class Championship implements RaceListener {
         return windowRace;
     }
 
-  /*  public static Iterator<Race> getRaces(){
-    	 return races.iterator();
-    }*/
+ 
     public void startRace() {
     	List<JButton> buttons = windowRace.getRacePanel().getButtons();
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
+    	
+    	
        
+    	SelectionRace = Championship.getTop4Race(races); 	
         SelectionAthletes =Championship.getTop10Athletes(athletes);
+        
+        
+      //  for (Race race :SelectionRace ) {
+        	
+        	
+        	
     	int i=0;
     	for (Athlete athlete:  SelectionAthletes) {
+    		
+    	//	race.getAthlete().add(athlete);
+    		
+    		
     		windowRace.getRacePanel().getLabels().get(i).setText(athlete.getName() + " " + athlete.getSurname());
     		RaceManager raceManager = new RaceManager();
   
@@ -107,8 +121,13 @@ public class Championship implements RaceListener {
             thread.start();
           
             
-        }}
-   
+        }
+    	
+        
+        
+        
+        }
+  //  }
     
     @Override
     public void positionChanged(RaceThread thread, int newPositionX) {
@@ -318,21 +337,26 @@ public class Championship implements RaceListener {
 
 		try {
 			
-		DBManager dbManager = new DBManager("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/racerDB", "postgres", "1234");
+		DBManager dbManager = new DBManager("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/Proyecto_Triathlon", "postgres", "1234");
 		
 		Connection connection = dbManager.getConnection();
 				
 		Statement statement = connection.createStatement();
 	
-	String query = "SELECT  FROM ";
+	String query = "SELECT id ,description, measurementunit,lowertier,uppertier,swimmingweathering,cyclingweathering,pedestrianismweathering FROM weatherconditions ";
 	
 	 ResultSet TableWeatherConditions= statement.executeQuery(query);
 	 
 	 while(TableWeatherConditions.next() ) { 
 		 
+		 MeasurementUnit measurementunit = new MeasurementUnit(TableWeatherConditions.getString("measurementunit"));
 		 
 		 
+		 WeatherConditions weatherconditions = new  WeatherConditions(TableWeatherConditions.getInt("id"),TableWeatherConditions.getString("description"),
+		 measurementunit,TableWeatherConditions.getDouble("lowertier"),TableWeatherConditions.getDouble("uppertier"),
+		 TableWeatherConditions.getDouble("swimmingweathering"),TableWeatherConditions.getDouble("cyclingweathering"),TableWeatherConditions.getDouble("pedestrianismweathering"));
 		 
+		 System.out.println(weatherconditions.toString());
 	 }
 		
 		statement.close();

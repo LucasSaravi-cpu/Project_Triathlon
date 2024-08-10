@@ -7,9 +7,25 @@ public class MeasurementUnit {
     
     
     
-    public String getUnit() {
+    public MeasurementUnit(String unit) {
+		super();
+		this.unit = unit;
+	}
+
+
+
+
+	public String getUnit() {
         return unit;
     }
+
+
+
+
+	@Override
+	public String toString() {
+		return "MeasurementUnit [unit=" + unit + "]";
+	}
     
     
     
