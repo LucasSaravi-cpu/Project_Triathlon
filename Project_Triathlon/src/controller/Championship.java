@@ -2,13 +2,23 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.Comparator;
 
 import javax.swing.JButton;
@@ -22,6 +32,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import Events.EnergyEvent;
+import dataaccess.DBManager;
 import listeners.EnergyListener;
 import listeners.RaceListener;
 import model.Amateur;
@@ -60,9 +71,9 @@ public class Championship implements RaceListener {
         return windowRace;
     }
 
-    public Iterator<Race> getRaces(){
+  /*  public static Iterator<Race> getRaces(){
     	 return races.iterator();
-    }
+    }*/
     public void startRace() {
     	List<JButton> buttons = windowRace.getRacePanel().getButtons();
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
@@ -302,9 +313,71 @@ public class Championship implements RaceListener {
 	        return null;
 	    }
 	}
-	public static void loadDatabase() {}
+	public static void loadDatabase() {
 	//Loads the climatic changes data base    
+
+		try {
+			
+		DBManager dbManager = new DBManager("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/racerDB", "postgres", "1234");
+		
+		Connection connection = dbManager.getConnection();
+				
+		Statement statement = connection.createStatement();
 	
+	String query = "SELECT  FROM ";
+	
+	 ResultSet TableWeatherConditions= statement.executeQuery(query);
+	 
+	 while(TableWeatherConditions.next() ) { 
+		 
+		 
+		 
+		 
+	 }
+		
+		statement.close();
+		connection.close();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		
+		
+	} 
+
+		
+
+	  public static List<Race> getTop4Race(List<Race> originalRace) {
+	       
+	        Map<String, Race> bestRaceForModality = new LinkedHashMap<>();
+	       
+	        Set<City> usedCities = new HashSet<>();
+	        
+	        Set<Date> usedDates = new HashSet<>();
+
+	      
+	        for (Race race : originalRace) {
+	            String modalityName = race.getModality().getName();
+	            City city = race.getCity();
+	            Date date = race.getDate();
+
+	          
+	            if (!bestRaceForModality.containsKey(modalityName) && !usedCities.contains(city) && !usedDates.contains(date)) {
+	                //    Add the race to the map and mark the city and date as used
+	                bestRaceForModality.put(modalityName, race);
+	                usedCities.add(city);
+	                usedDates.add(date);
+	            }
+	        }
+
+	    
+
+	      
+	        return new ArrayList<>(bestRaceForModality.values()).subList(0, 4);
+	    }
 	
 	  private static List<Athlete> getTop10Athletes(List<Athlete> originalAthletes) {
 		  List<Athlete>  selectedAthletes = new ArrayList<>();
@@ -313,7 +386,7 @@ public class Championship implements RaceListener {
 		  Collections.shuffle(originalAthletes);
 		  
 		  
-	        // Limitar el tamaño a 10 o el tamaño de la lista original, lo que sea menor
+	        //Limit the size to 10 or the size of the original list, whichever is smaller
 	        int numberOfAthletesToSelect = Math.min(originalAthletes.size(), 10);
 	        
 	        for (int i = 0; i < numberOfAthletesToSelect; i++) {
@@ -347,6 +420,9 @@ public class Championship implements RaceListener {
 
         return sb.toString();
     }
+  
+    
+    
     public void allThreadsCompleted() {
         windowRace.setWindowDate();
     }
@@ -355,6 +431,17 @@ public class Championship implements RaceListener {
     }
 
 
+	public static List<Race> getRaces() {
+		return races;
+	}
+
+	public static void setRaces(List<Race> races) {
+		Championship.races = races;
+	}
+
+	
+
+	
 
 
 

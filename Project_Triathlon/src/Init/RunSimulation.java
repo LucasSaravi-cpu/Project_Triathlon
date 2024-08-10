@@ -45,7 +45,16 @@ public class RunSimulation {
 			windowStart.setVisible(true);
 	        
 	      
-	   }
+	for (Race race:	Championship.getTop4Race(Championship.getRaces())) {
+			
+			System.out.println(race.getModality() );
+			System.out.println(race.getCity() );
+			System.out.println(race.getDate());
+		}
+			
+			
+	   
 }
 	
 
+}
