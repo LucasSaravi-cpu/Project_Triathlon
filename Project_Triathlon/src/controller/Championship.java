@@ -54,52 +54,61 @@ import model.Stations;
 import model.Swimming;
 import model.WeatherConditions;
 import view.RacePanel;
+import view.WindowDate;
 import view.WindowRace;
 import listeners.RaceListener;
 public class Championship implements RaceListener {
     private WindowRace windowRace;
+    private WindowDate windowDate;
 	private static List <Race> races;
 	private static List<Athlete> athletes;
 	private static List<Athlete> SelectionAthletes;
 	private static List<Race> SelectionRace;
 	private List<RaceThread> raceThreads;
+    private static int race;
 
-     
+
 	public Championship(WindowRace windowRace) {
         this.windowRace = windowRace;
+        this.windowDate = new WindowDate(this);
         this.raceThreads = new ArrayList<>();
     }
 
+    public WindowDate getWindowDate() {
+        return windowDate;
+    }
     public WindowRace getWindowRace() {
         return windowRace;
     }
+    public static int getIndexRace(){
+        return race;
+    }
+    public void startChampionship(){
+        SelectionRace = getTop4Race(races);
+        SelectionAthletes = getTop10Athletes(athletes);
+        for (Race race: SelectionRace) {
+            for (Athlete athlete: SelectionAthletes)
+                race.getAthlete().add(athlete);
+        }
+        race=0;
+    }
 
- 
     public void startRace() {
+        raceThreads.clear();
     	List<JButton> buttons = windowRace.getRacePanel().getButtons();
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
-    	
-    	
-       
-    	SelectionRace = Championship.getTop4Race(races); 	
-        SelectionAthletes =Championship.getTop10Athletes(athletes);
-        
-        
-      //  for (Race race :SelectionRace ) {
-        	
-        	
-        	
+
+        windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + SelectionRace.get(race).getDate());
     	int i=0;
     	for (Athlete athlete:  SelectionAthletes) {
-    		
+
     	//	race.getAthlete().add(athlete);
-    		
-    		
+
     		windowRace.getRacePanel().getLabels().get(i).setText(athlete.getName() + " " + athlete.getSurname());
     		RaceManager raceManager = new RaceManager();
-  
-    		 RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager);
-    		
+
+    		RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager, SelectionRace.get(race));
+
             athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
             i++;
 
@@ -110,34 +119,34 @@ public class Championship implements RaceListener {
                     double energy = event.getEnergyLevel();
                     int index = raceThreads.indexOf(thread);
                     windowRace.getRacePanel().updateEnergyLabel(index, energy);
-                 
+
                 }
             });
-            
-            
-            
-            raceThreads.add(  thread);
-     
+
+
+
+            raceThreads.add(thread);
+
             thread.start();
-          
-            
+
+
         }
-    	
-        
-        
-        
+        race++;
+
+
+
         }
   //  }
-    
+
     @Override
     public void positionChanged(RaceThread thread, int newPositionX) {
         int index = raceThreads.indexOf(thread);
         windowRace.updateLabelPosition(index, newPositionX);
-        
-     
+
+
     }
 	public static void loadXML() throws ParserConfigurationException, SAXException, IOException {
-		
+
 		// Load the XML file
         File xmlFile = new File("triatlon.xml");
 
@@ -147,35 +156,35 @@ public class Championship implements RaceListener {
 
         // Parse the XML file and get document
         org.w3c.dom.Document document = builder.parse(xmlFile);
-  
-       
+
+
 
         //  Print the root element
         document.getDocumentElement().normalize();
        // System.out.println("Root Element: " + document.getDocumentElement().getNodeName());
-        
-    
+
+
         // Get objects <athlete>
         NodeList AthleteList = document.getElementsByTagName("atleta");
       //  System.out.println("Number of athletes: " + AthleteList.getLength());
-        
+
         NodeList CareerList = document.getElementsByTagName("carrera");
      //   System.out.println("Number of Races:" + CareerList.getLength());
-        
+
 
         // List for elements <athlete>
         athletes = new ArrayList<>();
-      
-        
+
+
         // Iterate over each athlete
         for (int i = 0; i < AthleteList.getLength(); i++) {
             Node athleteNode = AthleteList.item(i);
             if (athleteNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element athleteElement =  (Element) athleteNode;
-                
-               
-          
-                
+
+
+
+
 
                 int num = Integer.parseInt(athleteElement.getAttribute("numero"));
                 String surname = getChildElementValue(athleteElement, "apellido");
@@ -195,48 +204,48 @@ public class Championship implements RaceListener {
                 double percEndedRaces = Double.parseDouble(getChildElementValue(athleteElement, "porcentajeCarrerasTerminadas"));
                 double economicBudget = Double.parseDouble(getChildElementValue(athleteElement, "presupuestoEconomico"));
                 int ranking = Integer.parseInt(getChildElementValue(athleteElement, "ranking"));
-                
-                
+
+
                 switch (gender) {
                 	case "Masculino": gender = "Male";
                 	default: gender = "Female";
                 }
-                
+
                 PhysicalConditions physicalconditions  = new PhysicalConditions(swimmingAptitude, cyclismAptitude, pedestrianismAptitude, stamina, mentalStrength);
-                
+
                 if (category.equalsIgnoreCase("Amateur")) {
 	                Athlete athlete = new Amateur(num, surname, name, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions);
 	                athletes.add(athlete);
                 }
                 else {
-          
-                	Athlete athlete = new Competitor(num, surname, name, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions);
-                	athletes.add(athlete);	
-                }
-                
-                
-            }
-            
-        }
-        
-       
 
-        
-        
-        
+                	Athlete athlete = new Competitor(num, surname, name, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions);
+                	athletes.add(athlete);
+                }
+
+
+            }
+
+        }
+
+
+
+
+
+
         // List for athletes
         races = new ArrayList<>();
-            
-            
+
+
         for (int j = 0; j <  CareerList.getLength(); j++) {
             Node careerNode = CareerList.item(j);
-               
+
             if (careerNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element careerElement =  (Element) careerNode;
-            	
-            
-                    
-                
+
+
+
+
                 String cityname = getChildElementValue(careerElement, "ciudad");
                 String countryname = getChildElementValue( careerElement,"pais");
                 Date date = parseFecha(getChildElementValue( careerElement,"fecha"));
@@ -251,29 +260,29 @@ public class Championship implements RaceListener {
                 	case "Media distancia": modalityname="MediumDistance";
                 	                        break;
                 	case "Distancia olímpico": modalityname="OlympicDistance";
-                	                        break;                        
+                	                        break;
                 }
-                
+
                Discipline swimmingg = new Swimming();
                Discipline cyclimm= new Cycling();
                Discipline pedestriani = new Pedestrianism();
-               
+
                List<DisciplineDistance> disciplinedistances = new ArrayList<>();
-               
+
                DisciplineDistance disciplineDistanceSwimming = new  DisciplineDistance(swimming,swimmingg.time(modalityname),swimmingg);
                DisciplineDistance disciplineDistanceCycling = new  DisciplineDistance(cyclism,cyclimm.time(modalityname),cyclimm);
                DisciplineDistance disciplineDistancePedestrianism = new  DisciplineDistance(pedestrianism,pedestriani.time(modalityname),pedestriani);
-               
+
                disciplinedistances.add(disciplineDistanceSwimming);
                disciplinedistances.add(disciplineDistanceCycling);
                disciplinedistances.add(disciplineDistancePedestrianism);
-                    
+
                 Country country = new Country(countryname);
                 City city = new City(cityname , country);
                 Modality modality = new Modality(modalityname,disciplinedistances);
-                    
-                    
-                    
+
+
+
                 List<Stations> stati = new ArrayList<>();
                 Element provisioningstationsElement = (Element) careerElement.getElementsByTagName("puestos_aprovisionamiento").item(0);
                 NodeList stationsList = provisioningstationsElement.getElementsByTagName("puesto");
@@ -284,7 +293,7 @@ public class Championship implements RaceListener {
                         String tipo = puestoElement.getAttribute("tipo");
                         int numero = Integer.parseInt(puestoElement.getAttribute("numero"));
                         double distancia = Double.parseDouble(getChildElementValue(puestoElement, "distancia"));
-                        
+
                         switch (tipo) {
                         	case "ciclismo": tipo = "Cyclism";
                         	case "pedestrismo": tipo = "Pedestrianism";
@@ -295,23 +304,23 @@ public class Championship implements RaceListener {
                         stati.add(station);
                     }
                 }
-                    
-                Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati);
-                    
-                    
-                races.add(race);
-            }    
-        }
-            
-            
-		
-    }
-      
-	
-           
-		
 
-    
+                Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati);
+
+
+                races.add(race);
+            }
+        }
+
+
+
+    }
+
+
+
+
+
+
 //Helper method for obtaining the value of a child element given its name
 	private static String getChildElementValue(Element parentElement, String childElementName) {
 		 NodeList nodeList = parentElement.getElementsByTagName(childElementName);
@@ -333,62 +342,62 @@ public class Championship implements RaceListener {
 	    }
 	}
 	public static void loadDatabase() {
-	//Loads the climatic changes data base    
+	//Loads the climatic changes data base
 
 		try {
-			
-		DBManager dbManager = new DBManager("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/Proyecto_Triathlon", "postgres", "1234");
-		
+
+		DBManager dbManager = new DBManager("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/Project_triathlon", "postgres", "1234");
+
 		Connection connection = dbManager.getConnection();
-				
+
 		Statement statement = connection.createStatement();
-	
+
 	String query = "SELECT id ,description, measurementunit,lowertier,uppertier,swimmingweathering,cyclingweathering,pedestrianismweathering FROM weatherconditions ";
-	
+
 	 ResultSet TableWeatherConditions= statement.executeQuery(query);
-	 
-	 while(TableWeatherConditions.next() ) { 
-		 
+
+	 while(TableWeatherConditions.next() ) {
+
 		 MeasurementUnit measurementunit = new MeasurementUnit(TableWeatherConditions.getString("measurementunit"));
-		 
-		 
+
+
 		 WeatherConditions weatherconditions = new  WeatherConditions(TableWeatherConditions.getInt("id"),TableWeatherConditions.getString("description"),
 		 measurementunit,TableWeatherConditions.getDouble("lowertier"),TableWeatherConditions.getDouble("uppertier"),
 		 TableWeatherConditions.getDouble("swimmingweathering"),TableWeatherConditions.getDouble("cyclingweathering"),TableWeatherConditions.getDouble("pedestrianismweathering"));
-		 
+
 		 System.out.println(weatherconditions.toString());
 	 }
-		
+
 		statement.close();
 		connection.close();
-			
-			
+
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
-		
-		
-		
-	} 
+		}
 
-		
+
+
+	}
+
+
 
 	  public static List<Race> getTop4Race(List<Race> originalRace) {
-	       
+
 	        Map<String, Race> bestRaceForModality = new LinkedHashMap<>();
-	       
+
 	        Set<City> usedCities = new HashSet<>();
-	        
+
 	        Set<Date> usedDates = new HashSet<>();
 
-	      
+
 	        for (Race race : originalRace) {
 	            String modalityName = race.getModality().getName();
 	            City city = race.getCity();
 	            Date date = race.getDate();
 
-	          
+
 	            if (!bestRaceForModality.containsKey(modalityName) && !usedCities.contains(city) && !usedDates.contains(date)) {
 	                //    Add the race to the map and mark the city and date as used
 	                bestRaceForModality.put(modalityName, race);
@@ -397,26 +406,26 @@ public class Championship implements RaceListener {
 	            }
 	        }
 
-	    
 
-	      
+
+
 	        return new ArrayList<>(bestRaceForModality.values()).subList(0, 4);
 	    }
-	
+
 	  private static List<Athlete> getTop10Athletes(List<Athlete> originalAthletes) {
 		  List<Athlete>  selectedAthletes = new ArrayList<>();
-	       
+
 		 // Shuffle the list to obtain a random order
 		  Collections.shuffle(originalAthletes);
-		  
-		  
+
+
 	        //Limit the size to 10 or the size of the original list, whichever is smaller
 	        int numberOfAthletesToSelect = Math.min(originalAthletes.size(), 10);
-	        
+
 	        for (int i = 0; i < numberOfAthletesToSelect; i++) {
 	            selectedAthletes.add(originalAthletes.get(i));
 	        }
-	        
+
 	        return selectedAthletes;
 	    }
 
@@ -444,11 +453,12 @@ public class Championship implements RaceListener {
 
         return sb.toString();
     }
-  
-    
-    
+
+
+
     public void allThreadsCompleted() {
-        windowRace.setWindowDate();
+        windowDate.setNewRace();
+
     }
     public static void sortByAlphabeticOrder(){
         SelectionAthletes.sort(Comparator.comparing(Athlete::getSurname));
@@ -463,9 +473,9 @@ public class Championship implements RaceListener {
 		Championship.races = races;
 	}
 
-	
 
-	
+
+
 
 
 

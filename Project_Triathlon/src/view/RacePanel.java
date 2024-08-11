@@ -1,10 +1,6 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +47,7 @@ public class RacePanel extends JPanel {
                 btn = new JButton("-");
             else
                 btn = new JButton("+");
-            btn.setBounds(31 + (i % 2) * 46, 76 + (i / 2) * 46, 50, 21);
+            btn.setBounds(31 +(i % 2) * 46, 35 + (i / 2) * 46, 50, 21);
             buttons.add(btn);
             add(btn);
         }
@@ -128,7 +124,7 @@ public class RacePanel extends JPanel {
 	public void setLabels(List<JLabel> labels) {
 		this.labels = labels;
 	}
-    
+
 
     
     

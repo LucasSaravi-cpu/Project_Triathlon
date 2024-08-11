@@ -26,15 +26,15 @@ public class WindowDate extends JFrame {
     private JRadioButton rdbtnposition;
     private JButton btnNewButton_1;
     private JButton btnNewButton_2;
+    private JButton newRace;
 
 
-
-	public WindowDate() {
+	public WindowDate(Championship controller) {
 		
 		
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 578, 699);
+		setBounds(977, 100, 578, 699);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -62,7 +62,6 @@ public class WindowDate extends JFrame {
 		 });
 		btnNewButton_3.setBounds(24, 522, 218, 38);
 		contentPane.add(btnNewButton_3);
-		
 		rdbtnalphabetic = new JRadioButton("By alphabetic order");
 		rdbtnalphabetic.setBounds(247, 347, 219, 43);
 		contentPane.add(rdbtnalphabetic);
@@ -103,9 +102,30 @@ public class WindowDate extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(WindowDate.class.getResource("/Image/Imagen.png")));
 		lblNewLabel.setBounds(0, 0, 574, 686);
 		contentPane.add(lblNewLabel);
-		
+
+		newRace = new JButton("New Race");
+		newRace.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Method for listing race Stats
+				if (Championship.getIndexRace()<4) {
+					controller.getWindowRace().reset();
+					controller.startRace();
+					newRace.setVisible(false);
+				} else {
+
+                }
+			}
+		});
+		newRace.setBounds(248, 522, 218, 38);
+		contentPane.add(newRace);
+		newRace.setVisible(false);
 	
 	}
 
-	
+	public void setNewRace(){
+		newRace.setVisible(true);
+		contentPane.revalidate();
+		contentPane.repaint();
+		System.out.println("Button repainted");
+	}
 }
