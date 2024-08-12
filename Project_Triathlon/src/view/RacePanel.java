@@ -16,6 +16,7 @@ public class RacePanel extends JPanel {
     private List<JLabel> labels;
     private List <JLabel> energylabels;
     private List<Double> disciplineChangePoints;
+    private List<Double> stationPoints;
     private int startX;
     private int endX;
     private ImageIcon finishLineIcon;
@@ -111,16 +112,22 @@ public class RacePanel extends JPanel {
             JButton btn = buttons.get(i);
             int y = btn.getY() + btn.getHeight() / 2;
             g2d.drawLine(startX, y, endX, y);
-            if (finishLineIcon != null) {
-                g2d.drawImage(finishLineIcon.getImage(), endX - finishLineIcon.getIconWidth(), y - (finishLineIcon.getIconHeight() / 2), null);
-            }
         }
         if (finishLineIcon != null) {
-            g2d.drawImage(finishLineIcon.getImage(), endX - finishLineIcon.getIconWidth(), (int)buttons.get(buttons.size()/2).getAlignmentY() - (finishLineIcon.getIconHeight() / 2), null);
+            g2d.drawImage(finishLineIcon.getImage(), endX, (int)buttons.get(buttons.size()*2/3).getAlignmentY(), null);
         }
         g2d.setColor(Color.BLUE);
         for (Double point : disciplineChangePoints) {
             int x = startX + (int) ((endX - startX) * point);
+            if (disciplineChangePoints.indexOf(point)==0)
+                x+=100;
+            g2d.drawLine(x, 0, x, getHeight());
+        }
+        g2d.setColor(Color.GREEN);
+        for (Double point : stationPoints) {
+            int x = startX + (int) ((endX - startX) * point);
+            if (x<= startX + 100 + (int) ((endX - startX) * disciplineChangePoints.get(0)))
+                x+=100;
             g2d.drawLine(x, 0, x, getHeight());
         }
     }
@@ -134,7 +141,10 @@ public class RacePanel extends JPanel {
         this.disciplineChangePoints = points;
         repaint();
     }
-
+    public void setStationPoints(List<Double> points){
+        this.stationPoints=points;
+        repaint();
+    }
     
     
 }

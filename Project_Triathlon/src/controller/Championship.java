@@ -99,6 +99,8 @@ public class Championship implements RaceListener {
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
         List<Double> changePoints = SelectionRace.get(race).getDisciplineChangePoints();
         windowRace.getRacePanel().setDisciplineChangePoints(changePoints);
+        List<Double> stationPoints = SelectionRace.get(race).getStationPoints(changePoints);
+        windowRace.getRacePanel().setStationPoints(stationPoints);
         windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + SelectionRace.get(race).getDate());
     	int i=0;
     	for (Athlete athlete:  SelectionAthletes) {
@@ -297,7 +299,9 @@ public class Championship implements RaceListener {
 
                         switch (tipo) {
                         	case "ciclismo": tipo = "Cyclism";
+                                             break;
                         	case "pedestrismo": tipo = "Pedestrianism";
+                                             break;
                         	default: tipo = "Swimming";
                         }
 

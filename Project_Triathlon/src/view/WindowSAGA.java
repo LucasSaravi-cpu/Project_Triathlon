@@ -24,7 +24,7 @@ public class WindowSAGA extends JFrame {
 
     public WindowSAGA() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 904, 551);
+        setBounds(100, 100, 960, 540);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -32,7 +32,7 @@ public class WindowSAGA extends JFrame {
 
         // Initialize JFXPanel
         fxPanel = new JFXPanel();
-        fxPanel.setBounds(0, 0, 904, 551); //Full screen
+        fxPanel.setBounds(0, 0, 960, 540); //Full screen
         contentPane.add(fxPanel);
 
       //   Start JavaFX in a separate thread
@@ -52,7 +52,7 @@ public class WindowSAGA extends JFrame {
                 MediaPlayer mediaPlayer = new MediaPlayer(media);
                 MediaView mediaView = new MediaView(mediaPlayer);
                 StackPane root = new StackPane(mediaView);
-                Scene scene = new Scene(root, 904, 551); 
+                Scene scene = new Scene(root, 960, 540);
                 fxPanel.setScene(scene);
                mediaPlayer.setAutoPlay(true);
            });

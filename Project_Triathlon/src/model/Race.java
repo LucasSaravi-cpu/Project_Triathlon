@@ -188,11 +188,27 @@ public class Race {
 			cumulativeDistance += disciplineDistance.getDistance();
 			points.add(cumulativeDistance / totalDistance);
 		}
-
+		points.remove(2);
 		return points;
+
 	}
 	
-	
+	public List<Double> getStationPoints(List<Double> disciplineChangePoints){
+		List<Double> points = new ArrayList<>();
+		double totalDistance = getTotalDistance();
+		double distance = 0.0;
+
+		for (Stations  station: stations) {
+
+			if (station.getType().equals("Cycling"))
+			   points.add(station.getDistancing() / totalDistance + disciplineChangePoints.get(0));
+			else if (station.getType().equals("Pedestrianism"))
+			   points.add(station.getDistancing() / totalDistance + disciplineChangePoints.get(1));
+			else
+			   points.add(station.getDistancing()/totalDistance);
+		}
+		return points;
+	}
 	
 	
 
