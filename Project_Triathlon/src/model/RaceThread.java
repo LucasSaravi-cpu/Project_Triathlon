@@ -17,9 +17,9 @@ public class RaceThread extends Thread {
     private static AtomicInteger activeThreads = new AtomicInteger(0);
     private final Championship controller;
     private RaceManager raceManager;
-    
+    private Race race;
 
-    public RaceThread(int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller, RaceManager raceManager) {
+    public RaceThread(int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller, RaceManager raceManager, Race race) {
         this.positionX = positionX;
         this.listener = listener;
         this.endX = endX;
@@ -27,18 +27,19 @@ public class RaceThread extends Thread {
         this.controller=controller;
         activeThreads.incrementAndGet();
         this.raceManager = raceManager;
+        this.race=race;
     }
 
     @Override
     public  void run() {
         try {
             while (!Thread.currentThread().isInterrupted()) {
-            	 Random random = new Random();
+                Random random = new Random();
                 moveLabel();
-                athlete.decreaseEnergy(10); // Ajusta el decremento
-                Thread.sleep(random.nextInt(1000)); // Ajusta este valor para cambiar la velocidad de movimiento
+                athlete.decreaseEnergy(10); // Adjust decrement
+                Thread.sleep(random.nextInt(1000)); // Adjust thread speed
                 
-                // Notifica los cambios de energía
+                // Notify Energy Change
                 notifyEnergyChange(athlete.getEnergy());
                
                 // Verifica si el atleta ha agotado la energía

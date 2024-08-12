@@ -1,24 +1,19 @@
 package view;
 
-import java.awt.EventQueue;
-import java.awt.Graphics2D;
+import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.Button;
 import javax.swing.Box;
-import java.awt.Canvas;
-import java.awt.Color;
 
 public class WindowRace extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	public JLabel title;
     private RacePanel race;
-	private WindowDate windowDate;
 
 
 	public RacePanel getRacePanel() {
@@ -31,18 +26,33 @@ public class WindowRace extends JFrame {
 
 	public WindowRace() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 966, 613);
+		setBounds(10, 100, 966, 625);
 		race = new RacePanel();
 		getContentPane().add(race);
+		repaint();
 	}
 
 	public void updateLabelPosition(int index, int newPositionX) {
 		race.updateLabelPosition(index, newPositionX);
 	}
-	public void setWindowDate() {
-		if (windowDate == null) {
-			windowDate = new WindowDate();
+	public void setRaceTitle(String racetitle) {
+		if (title == null) {
+			title = new JLabel(racetitle);
+			title.setFont(new Font("Georgia", Font.BOLD, 24));
+			title.setHorizontalAlignment(JLabel.CENTER);
+			title.setBorder(new EmptyBorder(20, 0, 20, 0));
+			getContentPane().add(title, BorderLayout.NORTH);
+		} else {
+			title.setText(racetitle);
 		}
-		windowDate.setVisible(true);
+		revalidate();  // Revalidar el contenedor
+		repaint();     // Repintar para asegurar la actualización de la UI
+	}
+	public void reset(){
+		for (JLabel label : race.getLabels()) {
+			label.setLocation(race.getStartX(), label.getY());
+		}
+		race.revalidate();
+		race.repaint();
 	}
 }
