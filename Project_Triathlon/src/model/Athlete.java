@@ -33,6 +33,7 @@ public abstract class Athlete {
     private int racerWin;
     private int racerdesertion;
     private int racercomplete;
+    private Competition competition;
     
  
    
@@ -40,7 +41,7 @@ public abstract class Athlete {
 	public static final double K = 3.5;
     
 	public Athlete(int num, String name,String surname, String id, Country nationality, Date birthDate, String gender, double weight,
-			double height, double percEndedRaces, double economicBudget, int ranking, PhysicalConditions stats) {
+			double height, double percEndedRaces, double economicBudget, int ranking, PhysicalConditions stats,Competition competition) {
 		super();
 		this.num = num;
 		this.name = name;
@@ -55,6 +56,7 @@ public abstract class Athlete {
 		this.economicBudget = economicBudget;
 		this.ranking = ranking;
 		this.stats = stats;
+		this.competition=competition;
 	}
 	
 	
@@ -206,6 +208,18 @@ public abstract class Athlete {
 
 	public void setRacercomplete(int racercomplete) {
 		this.racercomplete = racercomplete;
+	}
+
+	
+	
+
+	public Competition getCompetition() {
+		return competition;
+	}
+
+
+	public void setCompetition(Competition competition) {
+		this.competition = competition;
 	}
 
 

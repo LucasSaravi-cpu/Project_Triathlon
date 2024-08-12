@@ -36,7 +36,7 @@ public class Race {
 
 
 	public Race(City city, Country country, Date date, Modality modality, double kmswimming, double kmcyclism,
-			double kmpedestrianism, List<Stations> stations) {
+			double kmpedestrianism, List<Stations> stations,List<WeatherConditions> condition) {
 		super();
 		this.city = city;
 		this.country = country;
@@ -47,6 +47,7 @@ public class Race {
 		this.kmpedestrianism = kmpedestrianism;
 		this.stations = stations;
 		 this.athlete = new ArrayList<Athlete>();
+		 this.condition = new ArrayList<WeatherConditions>();
 	}
 
 

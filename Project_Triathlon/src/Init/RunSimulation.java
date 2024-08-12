@@ -43,7 +43,7 @@ public class RunSimulation {
 	        WindowSAGA windowSAGA = new WindowSAGA();
 	    	windowSAGA.setVisible(true);
 			Championship.loadXML();
-			Championship.loadDatabase();
+		//	Championship.loadDatabase();
 			WindowRace windowRace = new WindowRace();
 			Championship championship = new Championship(windowRace);
 			championship.startChampionship();

@@ -10,6 +10,19 @@ public class Competition {
 	private List<AthletePenalty> penalties;
 	private Race race;
 
+	
+	
+	
+	public Competition(int position, String athleteName, Set<DisciplineDistance> distances,
+			List<AthletePenalty> penalties, Race race) {
+		super();
+		this.position = position;
+		this.athleteName = athleteName;
+		this.distances = distances;
+		this.penalties = penalties;
+		this.race = race;
+	}
+
 	public Set<DisciplineDistance> getDistances() {
 		return distances;
 	}

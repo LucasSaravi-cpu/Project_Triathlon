@@ -35,6 +35,7 @@ import listeners.RaceListener;
 import model.Amateur;
 import model.Athlete;
 import model.City;
+import model.Competition;
 import model.Competitor;
 import model.Country;
 import model.Cycling;
@@ -213,13 +214,15 @@ public class Championship implements RaceListener {
 
                 PhysicalConditions physicalconditions  = new PhysicalConditions(swimmingAptitude, cyclismAptitude, pedestrianismAptitude, stamina, mentalStrength);
 
+                Competition competition = new Competition(0, "" ,null, null, null);
+                
                 if (category.equalsIgnoreCase("Amateur")) {
-	                Athlete athlete = new Amateur(num, surname, name, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions);
+	                Athlete athlete = new Amateur(num, surname, name, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions,competition);
 	                athletes.add(athlete);
                 }
                 else {
 
-                	Athlete athlete = new Competitor(num, surname, name, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions);
+                	Athlete athlete = new Competitor(num, surname, name, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions,competition);
                 	athletes.add(athlete);
                 }
 
@@ -306,8 +309,10 @@ public class Championship implements RaceListener {
                         stati.add(station);
                     }
                 }
+                
+       
 
-                Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati);
+                Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati,  Championship.loadDatabase());
 
 
                 races.add(race);
@@ -343,8 +348,10 @@ public class Championship implements RaceListener {
 	        return null;
 	    }
 	}
-	public static void loadDatabase() {
+	public static List<WeatherConditions> loadDatabase() {
 	//Loads the Weather Conditions Database
+		
+		 ArrayList<WeatherConditions> weatherConditions = new ArrayList<>();
 
 		try {
 
@@ -367,7 +374,7 @@ public class Championship implements RaceListener {
 		 measurementunit,TableWeatherConditions.getDouble("lowertier"),TableWeatherConditions.getDouble("uppertier"),
 		 TableWeatherConditions.getDouble("swimmingweathering"),TableWeatherConditions.getDouble("cyclingweathering"),TableWeatherConditions.getDouble("pedestrianismweathering"));
 
-		 System.out.println(weatherconditions.toString());
+		 weatherConditions.add(weatherconditions);
 	 }
 
 		statement.close();
@@ -378,6 +385,9 @@ public class Championship implements RaceListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		return weatherConditions;
 
 
 
@@ -461,8 +471,10 @@ public class Championship implements RaceListener {
         StringBuilder sb = new StringBuilder();
         for (Athlete athlete: SelectionAthletes)
         {
-            sb.append(athlete.)
+            sb.append(athlete.toString());
         }
+        
+        return sb.toString();
     }
 
     public void allThreadsCompleted() {

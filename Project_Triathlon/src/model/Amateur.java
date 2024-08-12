@@ -6,9 +6,9 @@ public class Amateur extends Athlete {
 
 	public Amateur(int num, String name, String surname, String id, Country nationality, Date birthDate, String gender,
 			double weight, double height, double percEndedRaces, double economicBudget, int ranking,
-			PhysicalConditions stats) {
+			PhysicalConditions stats,Competition competition) {
 		super(num, name, surname, id, nationality, birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking,
-				stats);
+				stats,competition);
 		// TODO Auto-generated constructor stub
 	}
 
