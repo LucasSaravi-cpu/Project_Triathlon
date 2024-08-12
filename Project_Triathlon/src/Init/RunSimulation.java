@@ -1,5 +1,7 @@
 package Init;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.Timer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -37,24 +40,31 @@ import view.WindowSAGA;
 public class RunSimulation {
 
 		public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-	        // Load races from XML
+	      
+			
+			
 	        WindowSAGA windowSAGA = new WindowSAGA();
+	    	windowSAGA.setVisible(true);
 			Championship.loadXML();
 			WindowRace windowRace = new WindowRace();
 			Championship championship = new Championship(windowRace);
 			championship.startChampionship();
             WindowStart windowStart = new WindowStart(championship);
-			windowStart.setVisible(true);
-	        
+        
+		   
+            Timer timer = new Timer(3000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Ocultar la primera ventana y mostrar la segunda
+                	windowSAGA.setVisible(false);
+                	windowStart.setVisible(true);
+                }
+            });
+            timer.setRepeats(false); 
+            timer.start();
+       
 	      
-	for (Race race:	Championship.getTop4Race(Championship.getRaces())) {
-			
-			System.out.println(race.getModality() );
-			System.out.println(race.getCity() );
-			System.out.println(race.getDate());
-		}
-			
-		Championship.loadDatabase();
+        
 	   
 }
 	
