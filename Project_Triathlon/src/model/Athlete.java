@@ -230,6 +230,10 @@ public abstract class Athlete {
 		
 		return sb.toString();
 	}
+	public String listStats()
+	{
+		return stats.toString();
+	}
 	 public void addEnergyListener(EnergyListener listener) {
 	        listeners.add(listener);
 	    }

@@ -8,13 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,12 +51,12 @@ import model.Stations;
 import model.Swimming;
 import model.WeatherConditions;
 import view.RacePanel;
-import view.WindowDate;
+import view.Scoreboard;
 import view.WindowRace;
-import listeners.RaceListener;
+
 public class Championship implements RaceListener {
     private WindowRace windowRace;
-    private WindowDate windowDate;
+    private Scoreboard scoreboard;
 	private static List <Race> races;
 	private static List<Athlete> athletes;
 	private static List<Athlete> SelectionAthletes;
@@ -70,12 +67,12 @@ public class Championship implements RaceListener {
 
 	public Championship(WindowRace windowRace) {
         this.windowRace = windowRace;
-        this.windowDate = new WindowDate(this);
+        this.scoreboard = new Scoreboard(this);
         this.raceThreads = new ArrayList<>();
     }
 
-    public WindowDate getWindowDate() {
-        return windowDate;
+    public Scoreboard getScoreboard() {
+        return scoreboard;
     }
     public WindowRace getWindowRace() {
         return windowRace;
@@ -112,7 +109,7 @@ public class Championship implements RaceListener {
             athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
             i++;
 
-            // Añade un listener a cada hilo
+            //Adds a Listener to each Thread
             thread.addEnergyListener(new EnergyListener() {
                 @Override
                 public void energyChanged(EnergyEvent event) {
@@ -154,7 +151,7 @@ public class Championship implements RaceListener {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
 
-        // Parse the XML file and get document
+        // Parse the XML file and get the document
         org.w3c.dom.Document document = builder.parse(xmlFile);
 
 
@@ -172,7 +169,7 @@ public class Championship implements RaceListener {
      //   System.out.println("Number of Races:" + CareerList.getLength());
 
 
-        // List for elements <athlete>
+        // List for elements of type <athlete>
         athletes = new ArrayList<>();
 
 
@@ -342,7 +339,7 @@ public class Championship implements RaceListener {
 	    }
 	}
 	public static void loadDatabase() {
-	//Loads the climatic changes data base
+	//Loads the Weather Conditions Database
 
 		try {
 
@@ -454,10 +451,17 @@ public class Championship implements RaceListener {
         return sb.toString();
     }
 
+    public static String ListAthletesStats () {
 
+        StringBuilder sb = new StringBuilder();
+        for (Athlete athlete: SelectionAthletes)
+        {
+            sb.append(athlete.)
+        }
+    }
 
     public void allThreadsCompleted() {
-        windowDate.setNewRace();
+        scoreboard.setNewRace();
 
     }
     public static void sortByAlphabeticOrder(){

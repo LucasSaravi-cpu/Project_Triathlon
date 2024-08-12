@@ -15,7 +15,7 @@ public class WindowStart extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
     private WindowRace wr;
-    private WindowDate dt;
+    private Scoreboard dt;
 
 	
 	public WindowStart(Championship controller) {
@@ -33,7 +33,7 @@ public class WindowStart extends JFrame {
 				wr = controller.getWindowRace();
 				wr.setVisible(true);
 				controller.startRace();
-			    controller.getWindowDate().setVisible(true);
+			    controller.getScoreboard().setVisible(true);
 				// We have to set dt visible when the race ends!!!!
 			}
 		});

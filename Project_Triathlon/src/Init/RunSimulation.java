@@ -29,7 +29,7 @@ import model.PhysicalConditions;
 import model.Race;
 import model.RaceThread;
 import model.Stations;
-import view.WindowDate;
+import view.Scoreboard;
 import view.WindowRace;
 import view.WindowStart;
 import view.WindowSAGA;
