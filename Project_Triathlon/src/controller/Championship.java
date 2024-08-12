@@ -85,14 +85,14 @@ public class Championship implements RaceListener {
         SelectionAthletes =Championship.getTop10Athletes(athletes);
         
         
-      //  for (Race race :SelectionRace ) {
+        for (Race race :SelectionRace ) {
         	
         	
         	
     	int i=0;
     	for (Athlete athlete:  SelectionAthletes) {
     		
-    	//	race.getAthlete().add(athlete);
+    		race.getAthlete().add(athlete);
     		
     		
     		windowRace.getRacePanel().getLabels().get(i).setText(athlete.getName() + " " + athlete.getSurname());
@@ -127,7 +127,7 @@ public class Championship implements RaceListener {
         
         
         }
-  //  }
+    }
     
     @Override
     public void positionChanged(RaceThread thread, int newPositionX) {
@@ -337,7 +337,7 @@ public class Championship implements RaceListener {
 
 		try {
 			
-		DBManager dbManager = new DBManager("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/Proyecto_Triathlon", "postgres", "1234");
+		DBManager dbManager = new DBManager("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/Project_triathlon", "postgres", "1234");
 		
 		Connection connection = dbManager.getConnection();
 				
