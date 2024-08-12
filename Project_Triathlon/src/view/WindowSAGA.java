@@ -32,27 +32,23 @@ public class WindowSAGA extends JFrame {
 
         // Initialize JFXPanel
         fxPanel = new JFXPanel();
-        fxPanel.setBounds(10, 10, 904, 551);
+        fxPanel.setBounds(0, 0, 904, 551);
         contentPane.add(fxPanel);
 
       //   Start JavaFX in a separate thread
        SwingUtilities.invokeLater(() -> {
             Platform.runLater(() -> {
                // Ruta del archivo de video
-                
-            
-            	 
-            
-           
-            
-            	
-              
-            	 String mediaFilePath = "C:/Users/user/git/Project_Triathlon/Project_Triathlon/src/Image/SAGA.mp4";
-            	  File archivo = new File(mediaFilePath);
-            	  String mediaUrl = archivo.toURI().toString();
-            	  
-            	  
-                Media media = new Media(mediaUrl);
+
+
+
+
+
+
+
+
+                String path = getClass().getResource("/Image/SAGA.mp4").toExternalForm();
+                Media media = new Media(path);
                 MediaPlayer mediaPlayer = new MediaPlayer(media);
                 MediaView mediaView = new MediaView(mediaPlayer);
                 StackPane root = new StackPane(mediaView);
