@@ -32,7 +32,7 @@ public class WindowSAGA extends JFrame {
 
         // Initialize JFXPanel
         fxPanel = new JFXPanel();
-        fxPanel.setBounds(0, 0, 904, 551);
+        fxPanel.setBounds(0, 0, 904, 551); //Full screen
         contentPane.add(fxPanel);
 
       //   Start JavaFX in a separate thread
