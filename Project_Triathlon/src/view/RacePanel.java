@@ -15,6 +15,7 @@ public class RacePanel extends JPanel {
     private List<JButton> buttons;
     private List<JLabel> labels;
     private List <JLabel> energylabels;
+    private List<Double> disciplineChangePoints;
     private int startX;
     private int endX;
     private ImageIcon finishLineIcon;
@@ -117,6 +118,11 @@ public class RacePanel extends JPanel {
         if (finishLineIcon != null) {
             g2d.drawImage(finishLineIcon.getImage(), endX - finishLineIcon.getIconWidth(), (int)buttons.get(buttons.size()/2).getAlignmentY() - (finishLineIcon.getIconHeight() / 2), null);
         }
+        g2d.setColor(Color.BLUE);
+        for (Double point : disciplineChangePoints) {
+            int x = startX + (int) ((endX - startX) * point);
+            g2d.drawLine(x, 0, x, getHeight());
+        }
     }
 	public List<JLabel> getLabels() {
 		return labels;
@@ -124,7 +130,10 @@ public class RacePanel extends JPanel {
 	public void setLabels(List<JLabel> labels) {
 		this.labels = labels;
 	}
-
+    public void setDisciplineChangePoints(List<Double> points) {
+        this.disciplineChangePoints = points;
+        repaint();
+    }
 
     
     

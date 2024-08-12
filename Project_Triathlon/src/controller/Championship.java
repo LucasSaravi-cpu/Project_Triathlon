@@ -97,7 +97,8 @@ public class Championship implements RaceListener {
         raceThreads.clear();
     	List<JButton> buttons = windowRace.getRacePanel().getButtons();
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
-
+        List<Double> changePoints = SelectionRace.get(race).getDisciplineChangePoints();
+        windowRace.getRacePanel().setDisciplineChangePoints(changePoints);
         windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + SelectionRace.get(race).getDate());
     	int i=0;
     	for (Athlete athlete:  SelectionAthletes) {

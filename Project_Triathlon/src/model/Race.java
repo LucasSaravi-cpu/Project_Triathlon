@@ -176,8 +176,21 @@ public class Race {
         Random random = new Random();
         return random.nextBoolean();
     }
-	
-	
+	public double getTotalDistance() {
+		return modality.getDisciplinedistance().stream().mapToDouble(DisciplineDistance::getDistance).sum();
+	}
+	public List<Double> getDisciplineChangePoints() {
+		List<Double> points = new ArrayList<>();
+		double totalDistance = getTotalDistance();
+		double cumulativeDistance = 0.0;
+
+		for (DisciplineDistance disciplineDistance : modality.getDisciplinedistance()) {
+			cumulativeDistance += disciplineDistance.getDistance();
+			points.add(cumulativeDistance / totalDistance);
+		}
+
+		return points;
+	}
 	
 	
 	
