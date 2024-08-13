@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -19,7 +22,7 @@ public class WindowStart extends JFrame {
 	private JPanel contentPane;
     private WindowRace wr;
     private Scoreboard dt;
-
+    private static Clip music;
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public WindowStart(Championship controller) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,6 +41,8 @@ public class WindowStart extends JFrame {
 				controller.startRace();
 			    controller.getScoreboard().setVisible(true);
 				// We have to set dt visible when the race ends!!!!
+			    music();
+			    playMusic();
 			}
 		});
 		contentPane.setLayout(null);
@@ -56,4 +61,43 @@ public class WindowStart extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(WindowStart.class.getResource("/Image/ImgStart.png")));
 		contentPane.add(lblNewLabel);
 	}
+	
+	
+	
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\	
+	public void music() { 
+		   
+		   	   try {
+	            // Load music
+	            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream("/music/Road_Runner.wav"));
+	            music = AudioSystem.getClip();
+	            music.open(audioInputStream);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }	   
+  }
+	
+
+
+public static void playMusic() {
+ if (music != null && !music.isRunning()) {
+     // Play music in a continuous loop
+     music.loop(Clip.LOOP_CONTINUOUSLY);
+ }
+}
+
+
+
+public static Clip getMusic() {
+	return music;
+}
+
+
+public static void setMusic(Clip music) {
+	WindowStart.music = music;
+}
+
+
+	
+	
 }

@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import java.awt.TextArea;
+
+import javax.sound.sampled.Clip;
 import javax.swing.ButtonGroup;
 public class Scoreboard extends JFrame {
 	
@@ -29,6 +31,7 @@ public class Scoreboard extends JFrame {
     private JButton btnNewButton_1;
     private JButton btnNewButton_2;
     private JButton newRace;
+    private JButton btnNewButton_5;
 
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
@@ -41,6 +44,29 @@ public class Scoreboard extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JButton btnNewButton_4 = new JButton("Stop Music");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				WindowStart.getMusic().stop();
+				
+			}
+		});
+		
+		btnNewButton_5 = new JButton("Play Music");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				WindowStart.playMusic();
+			}
+			
+			
+		});
+		btnNewButton_5.setBounds(134, 603, 92, 26);
+		contentPane.add(btnNewButton_5);
+		btnNewButton_4.setBounds(24, 603, 100, 26);
+		contentPane.add(btnNewButton_4);
 		
 		
 
