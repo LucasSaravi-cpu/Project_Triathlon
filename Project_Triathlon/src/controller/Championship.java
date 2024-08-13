@@ -57,7 +57,8 @@ import view.WindowRace;
 
 public class Championship implements RaceListener {
 	
-	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+	
+//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	
     private WindowRace windowRace;
     private Scoreboard scoreboard;
