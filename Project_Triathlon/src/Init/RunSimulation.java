@@ -39,11 +39,14 @@ import view.WindowSAGA;
 
 public class RunSimulation {
 
+
+
+	//------------------------------------------------>||MAIN CLASS|<--------------------------------------------------------\\
+	
 		public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 	        WindowSAGA windowSAGA = new WindowSAGA();
 	    	windowSAGA.setVisible(true);
 			Championship.loadXML();
-		//	Championship.loadDatabase();
 			WindowRace windowRace = new WindowRace();
 			Championship championship = new Championship(windowRace);
 			championship.startChampionship();

@@ -11,13 +11,16 @@ import java.awt.event.ActionEvent;
 import view.WindowRace;
 import controller.Championship;
 public class WindowStart extends JFrame {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
     private WindowRace wr;
     private Scoreboard dt;
 
-	
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public WindowStart(Championship controller) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 848, 564);

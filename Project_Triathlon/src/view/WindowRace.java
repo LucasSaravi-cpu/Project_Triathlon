@@ -11,19 +11,17 @@ import javax.swing.Box;
 
 public class WindowRace extends JFrame {
 
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	private static final long serialVersionUID = 1L;
 	public JLabel title;
     private RacePanel race;
 
-
-	public RacePanel getRacePanel() {
-		return race;
-	}
-
+  
 	public void setRacePanel(RacePanel race) {
 		this.race = race;
 	}
-
+	  //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public WindowRace() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 100, 966, 625);
@@ -32,6 +30,14 @@ public class WindowRace extends JFrame {
 		repaint();
 	}
 
+	
+	  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
+		public RacePanel getRacePanel() {
+			return race;
+		}
+
+		 //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\	
+		
 	public void updateLabelPosition(int index, int newPositionX) {
 		race.updateLabelPosition(index, newPositionX);
 	}

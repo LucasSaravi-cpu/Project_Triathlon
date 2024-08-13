@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Competitor extends Athlete {
+	
+	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
 	public Competitor(int num, String name, String surname, String id, Country nationality, Date birthDate,
 			String gender, double weight, double height, double percEndedRaces, double economicBudget, int ranking,
@@ -13,6 +15,9 @@ public class Competitor extends Athlete {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	 //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+	
 	@Override
 	public String getCathegory() {
 		int age = getAge();

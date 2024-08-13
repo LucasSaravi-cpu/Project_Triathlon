@@ -2,13 +2,14 @@ package model;
 
 public class DisciplineDistance {
 	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+	
 	private double distance;
 	private double time;
 	private Discipline discipline;
 	
 	
-	
-	
+	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	
 	public DisciplineDistance(double distance, double time, Discipline discipline) {
 		super();
@@ -17,7 +18,7 @@ public class DisciplineDistance {
 		this.discipline = discipline;
 	}
 	
-	
+	 //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 	public double getDistance() {
 		return distance;
 	}

@@ -1,6 +1,8 @@
 package model;
 
 public class PhysicalConditions {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private double swimmingAptitude;
     private double cyclismAptitude;
     private double pedestrianismAptitude;
@@ -8,7 +10,7 @@ public class PhysicalConditions {
     private double mentalStrength;
     
     
-    
+  //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
     
 	public PhysicalConditions(double swimmingAptitude, double cyclismAptitude, double pedestrianismAptitude,
@@ -21,6 +23,8 @@ public class PhysicalConditions {
 		this.mentalStrength = mentalStrength;
 	}
 	
+	  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
+    
 	
 	public double getSwimmingAptitude() {
 		return swimmingAptitude;
@@ -52,7 +56,8 @@ public class PhysicalConditions {
 	public void setMentalStrength(double mentalStrength) {
 		this.mentalStrength = mentalStrength;
 	}
-
+	
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
 	@Override
 	public String toString() {

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Competition {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	private int position;
 	private String athleteName;
 	private Set<DisciplineDistance> distances;
@@ -11,7 +13,7 @@ public class Competition {
 	private Race race;
 
 	
-	
+	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	
 	public Competition(int position, String athleteName, Set<DisciplineDistance> distances,
 			List<AthletePenalty> penalties, Race race) {
@@ -22,6 +24,8 @@ public class Competition {
 		this.penalties = penalties;
 		this.race = race;
 	}
+	
+	 //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 
 	public Set<DisciplineDistance> getDistances() {
 		return distances;

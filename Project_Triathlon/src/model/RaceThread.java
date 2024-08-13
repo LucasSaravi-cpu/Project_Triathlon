@@ -9,6 +9,8 @@ import listeners.RaceListener;
 import java.util.concurrent.atomic.AtomicInteger;
 import controller.Championship;
 public class RaceThread extends Thread {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private int positionX;
     private int endX;
     private RaceListener listener;
@@ -18,6 +20,8 @@ public class RaceThread extends Thread {
     private final Championship controller;
     private RaceManager raceManager;
     private Race race;
+    
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
     public RaceThread(int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller, RaceManager raceManager, Race race) {
         this.positionX = positionX;
@@ -30,6 +34,9 @@ public class RaceThread extends Thread {
         this.race=race;
     }
 
+    
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+    
     @Override
     public  void run() {
         try {
@@ -48,10 +55,7 @@ public class RaceThread extends Thread {
                   
                 }
                 
-              
-               
-                
-                
+                    
             }
         } catch (InterruptedException e) {
 
@@ -63,6 +67,8 @@ public class RaceThread extends Thread {
 
     }
 
+    
+    
     private void moveLabel() {
         if (positionX+10<=endX)
     	    positionX += 10; // Incrementa la posición X (ajusta según sea necesario)

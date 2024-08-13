@@ -2,9 +2,13 @@ package model;
 
 public class Stations {
 	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+	
 	private String type;
 	private int id;
 	private double distancing;
+	
+	  //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	
 	public Stations(String type, int id, double distancing) {
 		super();
@@ -13,6 +17,8 @@ public class Stations {
 		this.distancing = distancing;
 	}
 
+	  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
+	
 	public String getType() {
 		return type;
 	}
@@ -36,6 +42,8 @@ public class Stations {
 	public void setDistancing(double distancing) {
 		this.distancing = distancing;
 	}
+	
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
 	@Override
 	public String toString() {

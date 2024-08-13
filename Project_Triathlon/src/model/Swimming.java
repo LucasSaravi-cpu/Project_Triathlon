@@ -2,6 +2,7 @@ package model;
 
 public class Swimming extends Discipline {
 	
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	
 	@Override
 	public double time (String modality) {   

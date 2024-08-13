@@ -2,7 +2,7 @@ package model;
 
 public class Pedestrianism extends Discipline {
 	
-	
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	@Override
 	public double time(String modality) {
 		

@@ -21,6 +21,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class Race {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+	
     private City city;
     private Country country;
     private Date date;
@@ -34,7 +37,8 @@ public class Race {
     
 
 
-
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
+    
 	public Race(City city, Country country, Date date, Modality modality, double kmswimming, double kmcyclism,
 			double kmpedestrianism, List<Stations> stations,List<WeatherConditions> condition) {
 		super();
@@ -51,82 +55,61 @@ public class Race {
 	}
 
 
-
+	  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 	public City getCity() {
 		return city;
 	}
-
 
 
 	public void setCity(City city) {
 		this.city = city;
 	}
 	
-	
 	public Country getCountry() {
 		return country;
 	}
-
 
 
 	public void setCountry(Country country) {
 		this.country = country;
 	}
 
-
 	public Date getDate() {
 		return date;
 	}
-
 
 
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
-
-
 	public List<WeatherConditions> getCondition() {
 		return condition;
 	}
-
-
 
 	public void setCondition(List<WeatherConditions> condition) {
 		this.condition = condition;
 	}
 
-
-
 	public List<Athlete> getAthlete() {
 		return athlete;
 	}
-
-
 
 	public void setAthlete(List<Athlete> athlete) {
 		this.athlete = athlete;
 	}
 
-
-
 	public Modality getModality() {
 		return modality;
 	}
-
-
 
 	public void setModality(Modality modality) {
 		this.modality = modality;
 	}
 
-
-
 	public double getKmswimming() {
 		return kmswimming;
 	}
-
-
 
 	public void setKmswimming(double kmswimming) {
 		this.kmswimming = kmswimming;
@@ -137,7 +120,6 @@ public class Race {
 	public double getKmcyclism() {
 		return kmcyclism;
 	}
-
 
 
 	public void setKmcyclism(double kmcyclism) {
@@ -170,16 +152,20 @@ public class Race {
 
 	
 	
-	
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	
 	  // Static method to generate a random boolean
     public static boolean UseOfDraftingInRacer() {
         Random random = new Random();
         return random.nextBoolean();
     }
+    
+    
 	public double getTotalDistance() {
 		return modality.getDisciplinedistance().stream().mapToDouble(DisciplineDistance::getDistance).sum();
 	}
+	
+	
 	public List<Double> getDisciplineChangePoints() {
 		List<Double> points = new ArrayList<>();
 		double totalDistance = getTotalDistance();

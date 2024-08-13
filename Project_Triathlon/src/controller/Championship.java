@@ -56,6 +56,9 @@ import view.Scoreboard;
 import view.WindowRace;
 
 public class Championship implements RaceListener {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+	
     private WindowRace windowRace;
     private Scoreboard scoreboard;
 	private static List <Race> races;
@@ -65,13 +68,13 @@ public class Championship implements RaceListener {
 	private List<RaceThread> raceThreads;
     private static int race;
 
-
+  //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public Championship(WindowRace windowRace) {
         this.windowRace = windowRace;
         this.scoreboard = new Scoreboard(this);
         this.raceThreads = new ArrayList<>();
     }
-
+	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
         return scoreboard;
     }
@@ -81,6 +84,27 @@ public class Championship implements RaceListener {
     public static int getIndexRace(){
         return race;
     }
+    
+    public static List<Athlete> getSelectionAthletes() {
+		return SelectionAthletes;
+	}
+
+	public static void setSelectionAthletes(List<Athlete> selectionAthletes) {
+		SelectionAthletes = selectionAthletes;
+	}
+    
+	public static List<Race> getRaces() {
+		return races;
+	}
+
+	public static void setRaces(List<Race> races) {
+		Championship.races = races;
+	}
+
+	
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+
+    
     public void startChampionship(){
         SelectionRace = getTop4Race(races);
         SelectionAthletes = getTop10Athletes(athletes);
@@ -103,14 +127,10 @@ public class Championship implements RaceListener {
     	int i=0;
     	for (Athlete athlete:  SelectionAthletes) {
 
-    	//	race.getAthlete().add(athlete);
-
     		windowRace.getRacePanel().getLabels().get(i).setText(athlete.getName() + " " + athlete.getSurname());
     		RaceManager raceManager = new RaceManager();
-
     		RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager, SelectionRace.get(race));
-
-            athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
+    		athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
             i++;
 
             //Adds a Listener to each Thread
@@ -127,65 +147,51 @@ public class Championship implements RaceListener {
 
 
             raceThreads.add(thread);
-
             thread.start();
-
-
         }
+    	
         race++;
 
-
-
         }
-  //  }
+
 
     @Override
     public void positionChanged(RaceThread thread, int newPositionX) {
         int index = raceThreads.indexOf(thread);
         windowRace.updateLabelPosition(index, newPositionX);
-
-
     }
+    
+    
+   
 	public static void loadXML() throws ParserConfigurationException, SAXException, IOException {
 
-		// Load the XML file
+		//Load the XML file
         File xmlFile = new File("triatlon.xml");
 
-        // Create a DocumentBuilderFactory and a DocumentBuilder
+        //Create a DocumentBuilderFactory and a DocumentBuilder
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
 
-        // Parse the XML file and get the document
+        //Parse the XML file and get the document
         org.w3c.dom.Document document = builder.parse(xmlFile);
 
-
-
-        //  Print the root element
+       //Print the root element
         document.getDocumentElement().normalize();
        // System.out.println("Root Element: " + document.getDocumentElement().getNodeName());
-
-
-        // Get objects <athlete>
+       //Get objects <athlete>
         NodeList AthleteList = document.getElementsByTagName("atleta");
-      //  System.out.println("Number of athletes: " + AthleteList.getLength());
+       //System.out.println("Number of athletes: " + AthleteList.getLength());
+       NodeList CareerList = document.getElementsByTagName("carrera");
+       //System.out.println("Number of Races:" + CareerList.getLength());
 
-        NodeList CareerList = document.getElementsByTagName("carrera");
-     //   System.out.println("Number of Races:" + CareerList.getLength());
-
-
-        // List for elements of type <athlete>
+        //List for elements of type <athlete>
         athletes = new ArrayList<>();
-
 
         // Iterate over each athlete
         for (int i = 0; i < AthleteList.getLength(); i++) {
             Node athleteNode = AthleteList.item(i);
             if (athleteNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element athleteElement =  (Element) athleteNode;
-
-
-
-
 
                 int num = Integer.parseInt(athleteElement.getAttribute("numero"));
                 String surname = getChildElementValue(athleteElement, "apellido");
@@ -232,21 +238,13 @@ public class Championship implements RaceListener {
         }
 
 
-
-
-
-
-        // List for athletes
         races = new ArrayList<>();
-
 
         for (int j = 0; j <  CareerList.getLength(); j++) {
             Node careerNode = CareerList.item(j);
 
             if (careerNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element careerElement =  (Element) careerNode;
-
-
 
 
                 String cityname = getChildElementValue(careerElement, "ciudad");
@@ -256,6 +254,7 @@ public class Championship implements RaceListener {
                 double swimming = Double.parseDouble(getChildElementValue(careerElement, "natacion"));
                 double cyclism = Double.parseDouble(getChildElementValue(careerElement, "ciclismo"));
                 double pedestrianism = Double.parseDouble(getChildElementValue(careerElement, "pedestrismo"));
+               
                 // Change names to English
                 switch (modalityname) {
                 	case "Larga distancia": modalityname="LongDistance";
@@ -311,20 +310,13 @@ public class Championship implements RaceListener {
                 }
                 
        
+               Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati,  Championship.loadDatabase());
 
-                Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati,  Championship.loadDatabase());
-
-
-                races.add(race);
+               races.add(race);
             }
         }
 
-
-
     }
-
-
-
 
 
 
@@ -338,7 +330,9 @@ public class Championship implements RaceListener {
 		 }
 	}
 
-// Method for parsing date in "yyyy-MM-dd" to Date
+	
+	
+//Method for parsing date in "yyyy-MM-dd" to Date
 	private static Date parseFecha(String fechaStr) {
 	    try {
 	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -348,10 +342,13 @@ public class Championship implements RaceListener {
 	        return null;
 	    }
 	}
+	
+	
+	
 	public static List<WeatherConditions> loadDatabase() {
-	//Loads the Weather Conditions Database
 		
-		 ArrayList<WeatherConditions> weatherConditions = new ArrayList<>();
+	//Loads the Weather Conditions Database
+		ArrayList<WeatherConditions> weatherConditions = new ArrayList<>();
 
 		try {
 
@@ -361,11 +358,11 @@ public class Championship implements RaceListener {
 
 		Statement statement = connection.createStatement();
 
-	String query = "SELECT id ,description, measurementunit,lowertier,uppertier,swimmingweathering,cyclingweathering,pedestrianismweathering FROM weatherconditions ";
+	    String query = "SELECT id ,description, measurementunit,lowertier,uppertier,swimmingweathering,cyclingweathering,pedestrianismweathering FROM weatherconditions ";
 
-	 ResultSet TableWeatherConditions= statement.executeQuery(query);
+	    ResultSet TableWeatherConditions= statement.executeQuery(query);
 
-	 while(TableWeatherConditions.next() ) {
+   	 while(TableWeatherConditions.next() ) {
 
 		 MeasurementUnit measurementunit = new MeasurementUnit(TableWeatherConditions.getString("measurementunit"));
 
@@ -385,14 +382,10 @@ public class Championship implements RaceListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+				
 		return weatherConditions;
 
-
-
 	}
-
 
 
 	  public static List<Race> getTop4Race(List<Race> originalRace) {
@@ -418,16 +411,14 @@ public class Championship implements RaceListener {
 	            }
 	        }
 
-
-
-
 	        return new ArrayList<>(bestRaceForModality.values()).subList(0, 4);
 	    }
-
+  
+	  
 	  private static List<Athlete> getTop10Athletes(List<Athlete> originalAthletes) {
 		  List<Athlete>  selectedAthletes = new ArrayList<>();
 
-		 // Shuffle the list to obtain a random order
+		 //Shuffle the list to obtain a random order
 		  Collections.shuffle(originalAthletes);
 
 
@@ -441,13 +432,7 @@ public class Championship implements RaceListener {
 	        return selectedAthletes;
 	    }
 
-	public static List<Athlete> getSelectionAthletes() {
-		return SelectionAthletes;
-	}
-
-	public static void setSelectionAthletes(List<Athlete> selectionAthletes) {
-		SelectionAthletes = selectionAthletes;
-	}
+	
     public static String ListAthletes () {
 
         StringBuilder sb = new StringBuilder();
@@ -484,24 +469,6 @@ public class Championship implements RaceListener {
     public static void sortByAlphabeticOrder(){
         SelectionAthletes.sort(Comparator.comparing(Athlete::getSurname));
     }
-
-
-	public static List<Race> getRaces() {
-		return races;
-	}
-
-	public static void setRaces(List<Race> races) {
-		Championship.races = races;
-	}
-
-
-
-
-
-
-
-
-
 
 
 

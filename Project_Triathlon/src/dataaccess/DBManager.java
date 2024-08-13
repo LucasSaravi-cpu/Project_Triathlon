@@ -4,8 +4,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBManager {
+	
+	//------------------------------------------------>||VARIABLE||<--------------------------------------------------------\\
 
 	private Connection connection = null;
+	
+	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	
 	public DBManager(String _driver, String _url, String _username, String _password) {
 		super();
@@ -21,6 +25,9 @@ public class DBManager {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 	
 	public Connection getConnection() {
 		return connection;

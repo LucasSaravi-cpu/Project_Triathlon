@@ -4,11 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RaceManager {
+	
+	//------------------------------------------------>||VARIABLE||<--------------------------------------------------------\\
+	
     private static List<Athlete> finishedAthletes = new ArrayList<>();
+    
+  
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     
     public synchronized void notifyAthleteFinished(Athlete athlete) {
         finishedAthletes.add(athlete);
        }
+     
     
     public static String updateRaceResults() {
     	StringBuilder sb = new StringBuilder();

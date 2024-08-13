@@ -2,12 +2,14 @@ package model;
 
 public class City {
 	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+	
 	private String namecity;
     private Country country;
     
 
     
-    
+	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
 	public City(String namecity, Country country) {
 		super();
@@ -15,7 +17,7 @@ public class City {
 		this.country = country;
 	}
 	
-	
+	 //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 	public String getNamecity() {
 		return namecity;
 	}
@@ -29,7 +31,7 @@ public class City {
 		this.country = country;
 	}
 
-
+	  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	@Override
 	public String toString() {
 		return namecity + ", " + country;

@@ -11,10 +11,12 @@ import Events.EnergyEvent;
 import listeners.EnergyListener;
 
 public abstract class Athlete {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+	
     private int num;
     private String surname;
     private String name;
-  
     private String id;
     private Country nationality;
     private Date birthDate;
@@ -36,9 +38,11 @@ public abstract class Athlete {
     private Competition competition;
     
  
-   
+   //------------------------------------------------>||VARIABLE||<--------------------------------------------------------\\
 
 	public static final double K = 3.5;
+	
+	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
 	public Athlete(int num, String name,String surname, String id, Country nationality, Date birthDate, String gender, double weight,
 			double height, double percEndedRaces, double economicBudget, int ranking, PhysicalConditions stats,Competition competition) {
@@ -59,16 +63,14 @@ public abstract class Athlete {
 		this.competition=competition;
 	}
 	
-	
+	   //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 	public String getSurname() {
 		return surname;
 	}
 
-
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-
 
 	public int getNum() {
 		return num;
@@ -142,24 +144,14 @@ public abstract class Athlete {
 	public void setStats(PhysicalConditions stats) {
 		this.stats = stats;
 	}
-	public int getAge() {
-        LocalDate birthDateLocal = birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate currentDate = LocalDate.now();
-        return Period.between(birthDateLocal, currentDate).getYears();
-    }
 	
-	
-
-
 	public int getStagesWinS() {
 		return stagesWinS;
 	}
-
-
+	
 	public void setStagesWinS(int stagesWinS) {
 		this.stagesWinS = stagesWinS;
 	}
-
 
 	public int getStagesWinP() {
 		return stagesWinP;
@@ -210,20 +202,38 @@ public abstract class Athlete {
 		this.racercomplete = racercomplete;
 	}
 
-	
-	
 
 	public Competition getCompetition() {
 		return competition;
 	}
 
-
 	public void setCompetition(Competition competition) {
 		this.competition = competition;
 	}
+	
+	   public double getEnergy() {
+				return energy;
+			
+	   }
+	   public void setEnergy(double energy) {
+			
+			this.energy = energy;
+	        notifyEnergyChange(energy);
+		}
+	   
+		
+	
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+	
 
+	   public int getAge() {
+	        LocalDate birthDateLocal = birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	        LocalDate currentDate = LocalDate.now();
+	        return Period.between(birthDateLocal, currentDate).getYears();
+	    }
+	
 
-	public abstract String getCathegory();
+   public abstract String getCathegory();
     
    public abstract String checkNeopreneUsage(int distance, double waterTemperature);
    
@@ -244,10 +254,12 @@ public abstract class Athlete {
 		
 		return sb.toString();
 	}
-	public String listStats()
-	{
+	
+	
+	public String listStats(){
 		return stats.toString();
 	}
+	
 	 public void addEnergyListener(EnergyListener listener) {
 	        listeners.add(listener);
 	    }
@@ -272,9 +284,7 @@ public abstract class Athlete {
 	        setEnergy(energy);
 	    }
 	    
-	    public double getEnergy() {
-			return energy;
-		}
+	 
 	    private void notifyEnergyChange(double newEnergy) {
 	        EnergyEvent event = new EnergyEvent(this, newEnergy);
 	        for (EnergyListener listener : listeners) {
@@ -282,9 +292,5 @@ public abstract class Athlete {
 	        }
 	    }
 
-		public void setEnergy(double energy) {
-			
-			this.energy = energy;
-	        notifyEnergyChange(energy);
-		}
+		
 }

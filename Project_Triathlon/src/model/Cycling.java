@@ -1,6 +1,8 @@
 package model;
 
 public class Cycling extends Discipline{
+	
+	 //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
 	@Override
 	public double time (String modality) {

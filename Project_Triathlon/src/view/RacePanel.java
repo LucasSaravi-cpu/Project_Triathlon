@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 public class RacePanel extends JPanel {
+	
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 
     private static final long serialVersionUID = 1L;
     private JLabel lblNewLabel_1;
@@ -21,6 +24,9 @@ public class RacePanel extends JPanel {
     private int endX;
     private ImageIcon finishLineIcon;
     private Image scaledFinishLineImage;
+    
+  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
+    
     public List<JButton> getButtons(){
     	return buttons;
     }
@@ -40,6 +46,24 @@ public class RacePanel extends JPanel {
 		this.endX = endX;
 	}
 
+	
+	public List<JLabel> getLabels() {
+		return labels;
+	}
+	public void setLabels(List<JLabel> labels) {
+		this.labels = labels;
+	}
+    public void setDisciplineChangePoints(List<Double> points) {
+        this.disciplineChangePoints = points;
+        repaint();
+    }
+    public void setStationPoints(List<Double> points){
+        this.stationPoints=points;
+        repaint();
+    }
+    
+	  //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
+	
 	public RacePanel() {
         buttons = new ArrayList<>();
 
@@ -65,9 +89,7 @@ public class RacePanel extends JPanel {
             labels.add(lblNewLabel);
             add(lblNewLabel);
         }
-        
- 
-        
+             
         energylabels = new ArrayList<>();
         int yPosition = (buttons.get(2).getY()-buttons.get(0).getY())/2;
         for (int i=0; i<10; i++) {
@@ -78,16 +100,12 @@ public class RacePanel extends JPanel {
         }
         finishLineIcon = new ImageIcon(getClass().getResource("/Image/finish_line.png"));
 
-
-
-
-
         setPreferredSize(new Dimension(966, 613));
         setLayout(null);
-        
-       
+           
     }
 
+	
     public void updateLabelPosition(int index, int newPositionX) {
         if (index >= 0 && index < labels.size()) {
             JLabel label = labels.get(index);
@@ -100,6 +118,8 @@ public class RacePanel extends JPanel {
             energyLabel.setText(String.format("Energy: %.2f%%", energy));
         }
     }
+    
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -131,20 +151,6 @@ public class RacePanel extends JPanel {
             g2d.drawLine(x, 0, x, getHeight());
         }
     }
-	public List<JLabel> getLabels() {
-		return labels;
-	}
-	public void setLabels(List<JLabel> labels) {
-		this.labels = labels;
-	}
-    public void setDisciplineChangePoints(List<Double> points) {
-        this.disciplineChangePoints = points;
-        repaint();
-    }
-    public void setStationPoints(List<Double> points){
-        this.stationPoints=points;
-        repaint();
-    }
-    
+	
     
 }

@@ -17,7 +17,9 @@ import javax.swing.JRadioButton;
 import java.awt.TextArea;
 import javax.swing.ButtonGroup;
 public class Scoreboard extends JFrame {
-
+	
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnNewButton;
@@ -28,11 +30,10 @@ public class Scoreboard extends JFrame {
     private JButton btnNewButton_2;
     private JButton newRace;
 
-
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
+    
 	public Scoreboard(Championship controller) {
 		
-		
-	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(977, 100, 578, 699);
 		contentPane = new JPanel();
@@ -126,6 +127,8 @@ public class Scoreboard extends JFrame {
 		newRace.setVisible(false);
 	
 	}
+	
+	 //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 
 	public void setNewRace(){
 		newRace.setVisible(true);

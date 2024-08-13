@@ -3,15 +3,22 @@ package model;
 import java.util.Date;
 
 public class AthletePenalty {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	    private Date dateHour;
 	    private double distance;
 	    private Penalty penalty;
+	    
+	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
+	    
 		public AthletePenalty(Date dateHour, double distance, Penalty penalty) {
 			super();
 			this.dateHour = dateHour;
 			this.distance = distance;
 			this.penalty = penalty;
 		}
+		
+	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 		public Date getDateHour() {
 			return dateHour;
 		}

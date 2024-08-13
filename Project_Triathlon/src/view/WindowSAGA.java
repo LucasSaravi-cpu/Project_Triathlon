@@ -17,10 +17,15 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 public class WindowSAGA extends JFrame {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JFXPanel fxPanel;
+    
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
     public WindowSAGA() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,13 +44,6 @@ public class WindowSAGA extends JFrame {
        SwingUtilities.invokeLater(() -> {
             Platform.runLater(() -> {
                // Ruta del archivo de video
-
-
-
-
-
-
-
 
                 String path = getClass().getResource("/Image/SAGA.mp4").toExternalForm();
                 Media media = new Media(path);
