@@ -78,7 +78,7 @@ public class RacePanel extends JPanel {
             add(btn);
         }
         labels=new ArrayList<>();
-        ImageIcon icon = new ImageIcon(getClass().getResource("/Image/running.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Image/swimming.png"));
         Image image = icon.getImage(); // Obtén la imagen del ImageIcon
         Image scaledImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Escala la imagen
         ImageIcon scaledIcon = new ImageIcon(scaledImage); // Crea un nuevo ImageIcon con la imagen escalada

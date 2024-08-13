@@ -4,17 +4,21 @@ import java.util.List;
 import java.util.Random;
 
 import Events.EnergyEvent;
+import Events.DisciplineChangeEvent;
 import listeners.EnergyListener;
 import listeners.RaceListener;
+import listeners.DisciplineChangeListener;
 import java.util.concurrent.atomic.AtomicInteger;
 import controller.Championship;
 public class RaceThread extends Thread {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+    private int startX;
     private int positionX;
     private int endX;
     private RaceListener listener;
     private final List<EnergyListener> listeners = new ArrayList<>();
+    private final List<DisciplineChangeListener> disciplineListeners = new ArrayList<>();
     private final Athlete athlete;
     private static AtomicInteger activeThreads = new AtomicInteger(0);
     private final Championship controller;
@@ -23,7 +27,8 @@ public class RaceThread extends Thread {
     
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
-    public RaceThread(int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller, RaceManager raceManager, Race race) {
+    public RaceThread(int startX, int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller, RaceManager raceManager, Race race) {
+        this.startX=startX;
         this.positionX = positionX;
         this.listener = listener;
         this.endX = endX;
@@ -45,7 +50,7 @@ public class RaceThread extends Thread {
                 moveLabel();
                 athlete.decreaseEnergy(10); // Adjust decrement
                 Thread.sleep(random.nextInt(1000)); // Adjust thread speed
-                
+                checkForDisciplineChange();
                 // Notify Energy Change
                 notifyEnergyChange(athlete.getEnergy());
                
@@ -71,7 +76,7 @@ public class RaceThread extends Thread {
     
     private void moveLabel() {
         if (positionX+10<=endX)
-    	    positionX += 10; // Incrementa la posición X (ajusta según sea necesario)
+    	    positionX += 10; // Increments X position
         else {
         	positionX=endX;
         	Thread.currentThread().interrupt(); 
@@ -97,11 +102,28 @@ public class RaceThread extends Thread {
             listener.energyChanged(event);
         }
     }
+    private void checkForDisciplineChange() {
+        double progress = (double) (positionX - startX) / (endX - startX);
+        if (progress >= race.getDisciplineChangePoints().get(0) + 100 / (endX-startX) && progress < race.getDisciplineChangePoints().get(1)) { // Primera línea azul
+            notifyDisciplineChange("cycling");
+        } else if (progress >= race.getDisciplineChangePoints().get(1)) { // Segunda línea azul
+            notifyDisciplineChange("running");
+        }
+    }
 
+    public void addDisciplineChangeListener(DisciplineChangeListener listener) {
+        disciplineListeners.add(listener);
+    }
 
+    public void removeDisciplineChangeListener(DisciplineChangeListener listener) {
+        disciplineListeners.remove(listener);
+    }
 
+    private void notifyDisciplineChange(String newDiscipline) {
+        DisciplineChangeEvent event = new DisciplineChangeEvent(this, newDiscipline);
+        for (DisciplineChangeListener listener : disciplineListeners) {
+            listener.disciplineChanged(event);
+        }
+    }
 
-  
-    
-    
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,11 +19,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Comparator;
 
-import javax.swing.JButton;
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import Events.DisciplineChangeEvent;
+import listeners.DisciplineChangeListener;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -130,7 +133,7 @@ public class Championship implements RaceListener {
 
     		windowRace.getRacePanel().getLabels().get(i).setText(athlete.getName() + " " + athlete.getSurname());
     		RaceManager raceManager = new RaceManager();
-    		RaceThread thread = new RaceThread(startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager, SelectionRace.get(race));
+    		RaceThread thread = new RaceThread(startX, startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager, SelectionRace.get(race));
     		athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
             i++;
 
@@ -143,6 +146,31 @@ public class Championship implements RaceListener {
                     windowRace.getRacePanel().updateEnergyLabel(index, energy);
 
                 }
+            });
+
+            thread.addDisciplineChangeListener(new DisciplineChangeListener() {
+                @Override
+                public void disciplineChanged(DisciplineChangeEvent event) {
+                    String newDiscipline = event.getNewDiscipline();
+                    ImageIcon newIcon;
+
+                    if ("cycling".equals(newDiscipline)) {
+                        newIcon = new ImageIcon(getClass().getResource("/Image/cycling.png"));
+                    } else if ("running".equals(newDiscipline)) {
+                        newIcon = new ImageIcon(getClass().getResource("/Image/running.png"));
+                    } else
+                        newIcon = null;
+                    // Escalar la imagen
+                    if (newIcon != null) {
+                        Image scaledImage = newIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+                        newIcon = new ImageIcon(scaledImage);
+
+                        // Cambiar la imagen del atleta correspondiente
+                        int index = raceThreads.indexOf(thread);
+                        windowRace.getRacePanel().getLabels().get(index).setIcon(newIcon);
+                    }
+                }
+
             });
 
 

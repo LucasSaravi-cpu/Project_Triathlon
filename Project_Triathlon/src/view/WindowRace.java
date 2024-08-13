@@ -2,12 +2,8 @@ package view;
 
 import java.awt.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.Box;
 
 public class WindowRace extends JFrame {
 
@@ -57,6 +53,11 @@ public class WindowRace extends JFrame {
 	public void reset(){
 		for (JLabel label : race.getLabels()) {
 			label.setLocation(race.getStartX(), label.getY());
+			ImageIcon icon = new ImageIcon(getClass().getResource("/Image/swimming.png"));
+			Image image = icon.getImage(); // Obtén la imagen del ImageIcon
+			Image scaledImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Escala la imagen
+			ImageIcon scaledIcon = new ImageIcon(scaledImage); // Crea un nuevo ImageIcon con la imagen escalada
+            label.setIcon(scaledIcon);
 		}
 		race.revalidate();
 		race.repaint();
