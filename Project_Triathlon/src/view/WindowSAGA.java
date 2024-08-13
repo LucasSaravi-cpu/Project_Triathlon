@@ -52,7 +52,12 @@ public class WindowSAGA extends JFrame {
                 StackPane root = new StackPane(mediaView);
                 Scene scene = new Scene(root, 960, 540);
                 fxPanel.setScene(scene);
-               mediaPlayer.setAutoPlay(true);
+                mediaPlayer.setAutoPlay(true);
+                WindowStart windowStart = new WindowStart(null);
+		    	windowStart.music("/music/SAGAMusic.wav");
+                windowStart.playMusic();
+               
+               
            });
         });
        

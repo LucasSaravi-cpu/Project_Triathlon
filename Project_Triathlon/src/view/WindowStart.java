@@ -36,12 +36,13 @@ public class WindowStart extends JFrame {
 		btnNewButton_2.setBounds(35, 314, 201, 35);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				music.close();
 				wr = controller.getWindowRace();
 				wr.setVisible(true);
 				controller.startRace();
 			    controller.getScoreboard().setVisible(true);
 				// We have to set dt visible when the race ends!!!!
-			    music();
+			    music("/music/Road_Runner.wav");
 			    playMusic();
 			}
 		});
@@ -65,11 +66,11 @@ public class WindowStart extends JFrame {
 	
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\	
-	public void music() { 
+	public void music(String url) { 
 		   
 		   	   try {
 	            // Load music
-	            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream("/music/Road_Runner.wav"));
+	            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(url));
 	            music = AudioSystem.getClip();
 	            music.open(audioInputStream);
 	        } catch (Exception e) {

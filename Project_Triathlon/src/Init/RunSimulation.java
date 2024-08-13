@@ -51,9 +51,10 @@ public class RunSimulation {
 			Championship championship = new Championship(windowRace);
 			championship.startChampionship();
             WindowStart windowStart = new WindowStart(championship);
+            
         
 		   
-            Timer timer = new Timer(3000, new ActionListener() {
+            Timer timer = new Timer(1000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // Ocultar la primera ventana y mostrar la segunda
