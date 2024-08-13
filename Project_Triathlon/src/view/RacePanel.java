@@ -79,9 +79,9 @@ public class RacePanel extends JPanel {
         }
         labels=new ArrayList<>();
         ImageIcon icon = new ImageIcon(getClass().getResource("/Image/swimming.png"));
-        Image image = icon.getImage(); // Obtén la imagen del ImageIcon
-        Image scaledImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Escala la imagen
-        ImageIcon scaledIcon = new ImageIcon(scaledImage); // Crea un nuevo ImageIcon con la imagen escalada
+        Image image = icon.getImage(); // get ImageIcon
+        Image scaledImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Scale image
+        ImageIcon scaledIcon = new ImageIcon(scaledImage); // creates a new ImageIcon with Scaled image
 
         for (int i = 0, j = 0; i < 10; i++, j+=2) { // Suponiendo 10 corredores
             JLabel lblNewLabel = new JLabel(scaledIcon);

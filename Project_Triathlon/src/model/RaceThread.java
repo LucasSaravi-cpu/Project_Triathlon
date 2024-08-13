@@ -104,7 +104,7 @@ public class RaceThread extends Thread {
     }
     private void checkForDisciplineChange() {
         double progress = (double) (positionX - startX) / (endX - startX);
-        if (progress >= race.getDisciplineChangePoints().get(0) + 100 / (endX-startX) && progress < race.getDisciplineChangePoints().get(1)) { // Primera línea azul
+        if (progress >= race.getDisciplineChangePoints().get(0) + (100-startX) / (endX-startX) && progress < race.getDisciplineChangePoints().get(1)) { // Primera línea azul
             notifyDisciplineChange("cycling");
         } else if (progress >= race.getDisciplineChangePoints().get(1)) { // Segunda línea azul
             notifyDisciplineChange("running");
