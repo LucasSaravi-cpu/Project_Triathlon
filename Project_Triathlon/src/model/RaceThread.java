@@ -49,7 +49,7 @@ public class RaceThread extends Thread {
                 Random random = new Random();
                 moveLabel();
                 athlete.decreaseEnergy(10); // Adjust decrement
-                Thread.sleep(random.nextInt(1000)); // Adjust thread speed
+                Thread.sleep(random.nextInt((int) this.athlete.getBaseSpeed())); // Adjust thread speed
                 checkForDisciplineChange();
                 // Notify Energy Change
                 notifyEnergyChange(athlete.getEnergy());
@@ -125,5 +125,6 @@ public class RaceThread extends Thread {
             listener.disciplineChanged(event);
         }
     }
+
 
 }

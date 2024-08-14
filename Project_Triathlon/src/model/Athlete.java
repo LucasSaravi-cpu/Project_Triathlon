@@ -36,6 +36,7 @@ public abstract class Athlete {
     private int racerdesertion;
     private int racercomplete;
     private Competition competition;
+	private Discipline currentDiscipline;
     
  
    //------------------------------------------------>||VARIABLE||<--------------------------------------------------------\\
@@ -220,11 +221,28 @@ public abstract class Athlete {
 			this.energy = energy;
 	        notifyEnergyChange(energy);
 		}
-	   
-		
-	
+
+	public void setCurrentDiscipline(Discipline currentDiscipline) {
+		this.currentDiscipline = currentDiscipline;
+	}
+
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
-	
+
+
+	public double getBaseSpeed() {
+		double baseSpeed = 0.0; //FALTA UNA FORMA DE CAMBIAR CURRENT DISCIPLINE CON EL LISTENER
+
+		if (this.currentDiscipline.getClass().equals(Pedestrianism.class)) {
+			baseSpeed = 1000 + this.stats.getPedestrianismAptitude() * 70;
+		} else if (this.currentDiscipline.getClass().equals(Cycling.class)) {
+			baseSpeed = 1000 + this.stats.getCyclismAptitude() * 100;
+		} else if (this.currentDiscipline.getClass().equals(Swimming.class)) {
+			baseSpeed = 1000 + this.stats.getSwimmingAptitude() * 40;
+		}
+
+		return baseSpeed;
+	}
+
 
 	   public int getAge() {
 	        LocalDate birthDateLocal = birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
