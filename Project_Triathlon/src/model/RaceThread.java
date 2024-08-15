@@ -49,8 +49,7 @@ public class RaceThread extends Thread {
                 Random random = new Random();
                 moveLabel();
                 athlete.decreaseEnergy(10); // Adjust decrement
-                Thread.sleep(random.nextInt((int) this.athlete.getBaseSpeed())); // Adjust thread speed
-                checkForDisciplineChange();
+                Thread.sleep(random.nextInt((int)athlete.getBaseSpeed())); // Adjust thread speed
                 // Notify Energy Change
                 notifyEnergyChange(athlete.getEnergy());
                
@@ -82,6 +81,7 @@ public class RaceThread extends Thread {
         	Thread.currentThread().interrupt(); 
         	 raceManager.notifyAthleteFinished(athlete);
         }
+        checkForDisciplineChange();
         if (listener != null) {
             listener.positionChanged(this, positionX);
         }
@@ -104,10 +104,12 @@ public class RaceThread extends Thread {
     }
     private void checkForDisciplineChange() {
         double progress = (double) (positionX - startX) / (endX - startX);
-        if (progress >= race.getDisciplineChangePoints().get(0) + (100-startX) / (endX-startX) && progress < race.getDisciplineChangePoints().get(1)) { // Primera línea azul
+        if (progress >= race.getDisciplineChangePoints().get(0) + 70.0 / (endX-startX) && progress < race.getDisciplineChangePoints().get(0)+90.0/(endX-startX)) { // Primera línea azul
             notifyDisciplineChange("cycling");
-        } else if (progress >= race.getDisciplineChangePoints().get(1)) { // Segunda línea azul
+            athlete.setCurrentDiscipline(new Cycling());
+        } else if (progress >= race.getDisciplineChangePoints().get(1)-30.0/(endX-startX) && progress<race.getDisciplineChangePoints().get(1)-10.0/(endX-startX)) { // Segunda línea azul
             notifyDisciplineChange("running");
+            athlete.setCurrentDiscipline(new Pedestrianism());
         }
     }
 

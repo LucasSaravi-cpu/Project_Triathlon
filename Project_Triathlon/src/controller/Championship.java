@@ -130,7 +130,7 @@ public class Championship implements RaceListener {
         windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + SelectionRace.get(race).getDate());
     	int i=0;
     	for (Athlete athlete:  SelectionAthletes) {
-
+            athlete.setCurrentDiscipline(new Swimming());
     		windowRace.getRacePanel().getLabels().get(i).setText(athlete.getName() + " " + athlete.getSurname());
     		RaceManager raceManager = new RaceManager();
     		RaceThread thread = new RaceThread(startX, startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager, SelectionRace.get(race));
