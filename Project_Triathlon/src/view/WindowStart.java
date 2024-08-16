@@ -41,7 +41,6 @@ public class WindowStart extends JFrame {
 				wr.setVisible(true);
 				controller.startRace();
 			    controller.getScoreboard().setVisible(true);
-				// We have to set dt visible when the race ends!!!!
 			    music("/music/Road_Runner.wav");
 			    playMusic();
 			}

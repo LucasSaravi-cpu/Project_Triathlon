@@ -121,13 +121,15 @@ public class Championship implements RaceListener {
 
     public void startRace() {
         raceThreads.clear();
+        RaceManager.clearFinishedAthletes();
     	List<JButton> buttons = windowRace.getRacePanel().getButtons();
     	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
         List<Double> changePoints = SelectionRace.get(race).getDisciplineChangePoints();
         windowRace.getRacePanel().setDisciplineChangePoints(changePoints);
         List<Double> stationPoints = SelectionRace.get(race).getStationPoints(changePoints);
         windowRace.getRacePanel().setStationPoints(stationPoints);
-        windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + SelectionRace.get(race).getDate());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + dateFormat.format(SelectionRace.get(race).getDate()));
     	int i=0;
     	for (Athlete athlete:  SelectionAthletes) {
             athlete.setCurrentDiscipline(new Swimming());
@@ -137,7 +139,7 @@ public class Championship implements RaceListener {
     		athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
             i++;
 
-            //Adds a Listener to each Thread
+            //Add a Listener to each Thread
             thread.addEnergyListener(new EnergyListener() {
                 @Override
                 public void energyChanged(EnergyEvent event) {
@@ -160,12 +162,12 @@ public class Championship implements RaceListener {
                         newIcon = new ImageIcon(getClass().getResource("/Image/running.png"));
                     } else
                         newIcon = null;
-                    // Escalar la imagen
+                    // Scale image
                     if (newIcon != null) {
                         Image scaledImage = newIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
                         newIcon = new ImageIcon(scaledImage);
 
-                        // Cambiar la imagen del atleta correspondiente
+                        // Change athlete icon
                         int index = raceThreads.indexOf(thread);
                         windowRace.getRacePanel().getLabels().get(index).setIcon(newIcon);
                     }
@@ -447,7 +449,7 @@ public class Championship implements RaceListener {
 	  private static List<Athlete> getTop10Athletes(List<Athlete> originalAthletes) {
 		  List<Athlete>  selectedAthletes = new ArrayList<>();
 
-		 //Shuffle the list to obtain a random order
+	 	 //Shuffle the list to obtain a random order
 		  Collections.shuffle(originalAthletes);
 
 

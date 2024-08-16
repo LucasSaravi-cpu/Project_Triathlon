@@ -53,9 +53,9 @@ public class RaceThread extends Thread {
                 // Notify Energy Change
                 notifyEnergyChange(athlete.getEnergy());
                
-                // Verifica si el atleta ha agotado la energía
+                // Verifies if the athlete has energy
                 if (athlete.getEnergy() <= 0) {
-                    Thread.currentThread().interrupt(); // Detiene el hilo si la energía es 0
+                    Thread.currentThread().interrupt(); // Stops thread if the athlete has no energy
                   
                 }
                 
@@ -104,10 +104,10 @@ public class RaceThread extends Thread {
     }
     private void checkForDisciplineChange() {
         double progress = (double) (positionX - startX) / (endX - startX);
-        if (progress >= race.getDisciplineChangePoints().get(0) + 70.0 / (endX-startX) && progress < race.getDisciplineChangePoints().get(0)+90.0/(endX-startX)) { // Primera línea azul
+        if (progress >= race.getDisciplineChangePoints().get(0) + 70.0 / (endX-startX) && progress < race.getDisciplineChangePoints().get(0)+90.0/(endX-startX)) { // first line
             notifyDisciplineChange("cycling");
             athlete.setCurrentDiscipline(new Cycling());
-        } else if (progress >= race.getDisciplineChangePoints().get(1)-30.0/(endX-startX) && progress<race.getDisciplineChangePoints().get(1)-10.0/(endX-startX)) { // Segunda línea azul
+        } else if (progress >= race.getDisciplineChangePoints().get(1)-30.0/(endX-startX) && progress<race.getDisciplineChangePoints().get(1)-10.0/(endX-startX)) { // Second line
             notifyDisciplineChange("running");
             athlete.setCurrentDiscipline(new Pedestrianism());
         }

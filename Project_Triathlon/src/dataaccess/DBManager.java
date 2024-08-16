@@ -18,7 +18,7 @@ public class DBManager {
 			connection = DriverManager.getConnection(_url, _username, _password);
 		} 
 		catch (ClassNotFoundException ex) {
-			System.out.println("Error al registrar el driver de PostgreSQL: " + ex);
+			System.out.println("Error when registering PostGreSQL driver: " + ex);
 		} 
 		catch (SQLException e) {
 			System.out.println(e.getMessage());

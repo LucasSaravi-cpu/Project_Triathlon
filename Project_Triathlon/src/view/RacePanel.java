@@ -83,7 +83,7 @@ public class RacePanel extends JPanel {
         Image scaledImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Scale image
         ImageIcon scaledIcon = new ImageIcon(scaledImage); // creates a new ImageIcon with Scaled image
 
-        for (int i = 0, j = 0; i < 10; i++, j+=2) { // Suponiendo 10 corredores
+        for (int i = 0, j = 0; i < 10; i++, j+=2) {
             JLabel lblNewLabel = new JLabel(scaledIcon);
             lblNewLabel.setBounds(31, buttons.get(j).getY(), 110, 30); // Start position X set to 31
             labels.add(lblNewLabel);
@@ -94,7 +94,7 @@ public class RacePanel extends JPanel {
         int yPosition = (buttons.get(2).getY()-buttons.get(0).getY())/2;
         for (int i=0; i<10; i++) {
             JLabel energy = new JLabel ("Energy");
-            energy.setBounds(54, labels.get(i).getY() + yPosition, 100, 20); // Ajustar X según sea necesario
+            energy.setBounds(54, labels.get(i).getY() + yPosition, 100, 20);
             energylabels.add(energy);
             add(energy);
         }

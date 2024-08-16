@@ -37,13 +37,12 @@ public class WindowSAGA extends JFrame {
 
         // Initialize JFXPanel
         fxPanel = new JFXPanel();
-        fxPanel.setBounds(0, 0, 960, 540); //Full screen
+        fxPanel.setBounds(0, 0, 960, 540); // Full screen
         contentPane.add(fxPanel);
 
       //   Start JavaFX in a separate thread
        SwingUtilities.invokeLater(() -> {
             Platform.runLater(() -> {
-               // Ruta del archivo de video
 
                 String path = getClass().getResource("/Image/SAGA.mp4").toExternalForm();
                 Media media = new Media(path);

@@ -9,7 +9,9 @@ public class RaceManager {
 	
     private static List<Athlete> finishedAthletes = new ArrayList<>();
     
-  
+    public static void clearFinishedAthletes(){
+        finishedAthletes.clear();
+    }
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     
     public synchronized void notifyAthleteFinished(Athlete athlete) {

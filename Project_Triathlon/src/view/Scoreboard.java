@@ -1,37 +1,31 @@
 package view;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import controller.Championship;
 import model.Athlete;
 import model.RaceManager;
 
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JRadioButton;
 import java.awt.TextArea;
 
-import javax.sound.sampled.Clip;
-import javax.swing.ButtonGroup;
 public class Scoreboard extends JFrame {
 	
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JButton btnNewButton;
-	private JButton btnNewButton_3;
+	private JButton btnListAthletesStats;
+	private JButton btnClean;
     private JRadioButton rdbtnalphabetic;
     private JRadioButton rdbtnposition;
-    private JButton btnNewButton_1;
-    private JButton btnNewButton_2;
+    private JButton btnListAthletes;
+    private JButton listRaceStats;
     private JButton newRace;
-    private JButton btnNewButton_5;
+    private JButton btnPlayMusic;
+	private TextArea textArea;
 
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
@@ -45,8 +39,8 @@ public class Scoreboard extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton_4 = new JButton("Stop Music");
-		btnNewButton_4.addActionListener(new ActionListener() {
+		JButton btnStopMusic = new JButton("Stop Music");
+		btnStopMusic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				WindowStart.getMusic().stop();
@@ -54,8 +48,8 @@ public class Scoreboard extends JFrame {
 			}
 		});
 		
-		btnNewButton_5 = new JButton("Play Music");
-		btnNewButton_5.addActionListener(new ActionListener() {
+		btnPlayMusic = new JButton("Play Music");
+		btnPlayMusic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				WindowStart.playMusic();
@@ -63,20 +57,20 @@ public class Scoreboard extends JFrame {
 			
 			
 		});
-		btnNewButton_5.setBounds(134, 603, 92, 26);
-		contentPane.add(btnNewButton_5);
-		btnNewButton_4.setBounds(24, 603, 100, 26);
-		contentPane.add(btnNewButton_4);
+		btnPlayMusic.setBounds(134, 603, 92, 26);
+		contentPane.add(btnPlayMusic);
+		btnStopMusic.setBounds(24, 603, 100, 26);
+		contentPane.add(btnStopMusic);
 		
 		
 
-		TextArea textArea = new TextArea();
+		textArea = new TextArea();
 		textArea.setBounds(21, 43, 517, 216);
 		contentPane.add(textArea);
 		
 		
-		btnNewButton = new JButton("List Athletes' stats");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnListAthletesStats = new JButton("List Athletes' stats");
+		btnListAthletesStats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				for(Athlete athlete: Championship.getSelectionAthletes())
@@ -86,27 +80,27 @@ public class Scoreboard extends JFrame {
 			}
 		});
 		
-		btnNewButton_3 = new JButton("Clean ");
-		btnNewButton_3.addActionListener(new ActionListener() {
+		btnClean = new JButton("Clean ");
+		btnClean.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 		textArea.setText("");
 		 	}
 		 });
-		btnNewButton_3.setBounds(24, 522, 218, 38);
-		contentPane.add(btnNewButton_3);
+		btnClean.setBounds(24, 522, 218, 38);
+		contentPane.add(btnClean);
 		rdbtnalphabetic = new JRadioButton("By alphabetic order");
 		rdbtnalphabetic.setBounds(247, 347, 219, 43);
 		contentPane.add(rdbtnalphabetic);
 		rdbtnposition = new JRadioButton("By championship position");
 		rdbtnposition.setBounds(248, 293, 218, 43);
 		contentPane.add(rdbtnposition);
-		btnNewButton.setBounds(24, 293, 218, 43);
-		contentPane.add(btnNewButton);
+		btnListAthletesStats.setBounds(24, 293, 218, 43);
+		contentPane.add(btnListAthletesStats);
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnalphabetic);
 		group.add(rdbtnposition);
-		btnNewButton_1 = new JButton("List of athletes");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnListAthletes = new JButton("List of athletes");
+		btnListAthletes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rdbtnalphabetic.isSelected())
 					Championship.sortByAlphabeticOrder();
@@ -116,29 +110,30 @@ public class Scoreboard extends JFrame {
 
 			}
 		});
-		btnNewButton_1.setBounds(24, 393, 218, 43);
-		contentPane.add(btnNewButton_1);
+		btnListAthletes.setBounds(24, 393, 218, 43);
+		contentPane.add(btnListAthletes);
 		
-		JButton btnNewButton_2 = new JButton("List Race Stats");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		listRaceStats = new JButton("List Race Stats");
+		listRaceStats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Method for listing race Stats
 				textArea.setText( RaceManager.updateRaceResults());
 				
 			}
 		});
-		btnNewButton_2.setBounds(24, 455, 218, 43);
-		contentPane.add(btnNewButton_2);
+		listRaceStats.setBounds(24, 455, 218, 43);
+		contentPane.add(listRaceStats);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(Scoreboard.class.getResource("/Image/Imagen.png")));
-		lblNewLabel.setBounds(0, 0, 574, 686);
-		contentPane.add(lblNewLabel);
+		JLabel background = new JLabel("New label");
+		background.setIcon(new ImageIcon(Scoreboard.class.getResource("/Image/Scoreboard_background.png")));
+		background.setBounds(0, 0, 574, 686);
+		contentPane.add(background);
 
 		newRace = new JButton("New Race");
 		newRace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Method for listing race Stats
+				textArea.setText("");
 				if (Championship.getIndexRace()<4) {
 					controller.getWindowRace().reset();
 					controller.startRace();
@@ -146,6 +141,7 @@ public class Scoreboard extends JFrame {
 				} else {
 
                 }
+
 			}
 		});
 		newRace.setBounds(248, 522, 218, 38);
@@ -160,6 +156,5 @@ public class Scoreboard extends JFrame {
 		newRace.setVisible(true);
 		contentPane.revalidate();
 		contentPane.repaint();
-		System.out.println("Button repainted");
 	}
 }
