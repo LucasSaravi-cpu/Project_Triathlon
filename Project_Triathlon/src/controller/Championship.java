@@ -71,6 +71,7 @@ public class Championship implements RaceListener {
 	private static List<Race> SelectionRace;
 	private List<RaceThread> raceThreads;
     private static int race;
+    private RaceManager raceManager;
 
   //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public Championship(WindowRace windowRace) {
@@ -131,10 +132,10 @@ public class Championship implements RaceListener {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + dateFormat.format(SelectionRace.get(race).getDate()));
     	int i=0;
+        raceManager = new RaceManager();
     	for (Athlete athlete:  SelectionAthletes) {
             athlete.setCurrentDiscipline(new Swimming());
     		windowRace.getRacePanel().getLabels().get(i).setText(athlete.getName() + " " + athlete.getSurname());
-    		RaceManager raceManager = new RaceManager();
     		RaceThread thread = new RaceThread(startX, startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager, SelectionRace.get(race));
     		athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
             i++;
@@ -500,7 +501,9 @@ public class Championship implements RaceListener {
     public static void sortByAlphabeticOrder(){
         SelectionAthletes.sort(Comparator.comparing(Athlete::getSurname));
     }
-
+    public String updateRaceResults() {
+        return raceManager.getCurrentPositions(raceThreads);
+    }
 
 
 

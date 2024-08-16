@@ -117,7 +117,7 @@ public class Scoreboard extends JFrame {
 		listRaceStats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Method for listing race Stats
-				textArea.setText( RaceManager.updateRaceResults());
+				textArea.setText(controller.updateRaceResults());
 				
 			}
 		});

@@ -38,7 +38,12 @@ public class RaceThread extends Thread {
         this.raceManager = raceManager;
         this.race=race;
     }
-
+    public int getPositionX(){
+        return positionX;
+    }
+    public Athlete getAthlete(){
+        return athlete;
+    }
     
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     
