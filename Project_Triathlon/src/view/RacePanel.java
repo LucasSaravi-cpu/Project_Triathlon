@@ -67,7 +67,7 @@ public class RacePanel extends JPanel {
 	public RacePanel() {
         buttons = new ArrayList<>();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 86; i++) {
             JButton btn;
             if (i%2==0)
                 btn = new JButton("-");
@@ -83,7 +83,7 @@ public class RacePanel extends JPanel {
         Image scaledImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Scale image
         ImageIcon scaledIcon = new ImageIcon(scaledImage); // creates a new ImageIcon with Scaled image
 
-        for (int i = 0, j = 0; i < 10; i++, j+=2) {
+        for (int i = 0, j = 0; i < 43; i++, j+=2) {
             JLabel lblNewLabel = new JLabel(scaledIcon);
             lblNewLabel.setBounds(31, buttons.get(j).getY(), 110, 30); // Start position X set to 31
             labels.add(lblNewLabel);
@@ -92,7 +92,7 @@ public class RacePanel extends JPanel {
              
         energylabels = new ArrayList<>();
         int yPosition = (buttons.get(2).getY()-buttons.get(0).getY())/2;
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<43; i++) {
             JLabel energy = new JLabel ("Energy");
             energy.setBounds(54, labels.get(i).getY() + yPosition, 100, 20);
             energylabels.add(energy);
@@ -100,7 +100,7 @@ public class RacePanel extends JPanel {
         }
         finishLineIcon = new ImageIcon(getClass().getResource("/Image/finish_line.png"));
 
-        setPreferredSize(new Dimension(966, 613));
+        setPreferredSize(new Dimension(966, 2045));
         setLayout(null);
            
     }
@@ -132,9 +132,17 @@ public class RacePanel extends JPanel {
             JButton btn = buttons.get(i);
             int y = btn.getY() + btn.getHeight() / 2;
             g2d.drawLine(startX, y, endX, y);
+            if (finishLineIcon != null) {
+                g2d.drawImage(finishLineIcon.getImage(), endX, (int)buttons.get(buttons.size()*2/3).getAlignmentY(), null);
+            }
         }
         if (finishLineIcon != null) {
-            g2d.drawImage(finishLineIcon.getImage(), endX, (int)buttons.get(buttons.size()*2/3).getAlignmentY(), null);
+            int finishLineWidth = finishLineIcon.getIconWidth();
+            int finishLineHeight = finishLineIcon.getIconHeight();
+
+            for (int y = 0; y < getHeight(); y += finishLineHeight) {
+                g2d.drawImage(finishLineIcon.getImage(), endX, y, null);
+            }
         }
         g2d.setColor(Color.BLUE);
         for (Double point : disciplineChangePoints) {

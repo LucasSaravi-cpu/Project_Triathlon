@@ -73,7 +73,7 @@ public class Scoreboard extends JFrame {
 		btnListAthletesStats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				for(Athlete athlete: Championship.getSelectionAthletes())
+				for(Athlete athlete: Championship.getAthletes())
 				{
 					textArea.setText(athlete.listStats());
 				}
@@ -104,7 +104,7 @@ public class Scoreboard extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (rdbtnalphabetic.isSelected())
 					Championship.sortByAlphabeticOrder();
-				for (Athlete athete : Championship.getSelectionAthletes()) {
+				for (Athlete athete : Championship.getAthletes()) {
 					textArea.setText(Championship.ListAthletes());
 				}
 

@@ -11,6 +11,7 @@ public class Competition {
 	private Set<DisciplineDistance> distances;
 	private List<AthletePenalty> penalties;
 	private Race race;
+	private int points;
 
 	
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\

@@ -90,12 +90,12 @@ public class Championship implements RaceListener {
         return race;
     }
     
-    public static List<Athlete> getSelectionAthletes() {
-		return SelectionAthletes;
+    public static List<Athlete> getAthletes() {
+		return athletes;
 	}
 
-	public static void setSelectionAthletes(List<Athlete> selectionAthletes) {
-		SelectionAthletes = selectionAthletes;
+	public static void setAthletes(List<Athlete> athletes) {
+		athletes = athletes;
 	}
     
 	public static List<Race> getRaces() {
@@ -112,9 +112,8 @@ public class Championship implements RaceListener {
     
     public void startChampionship(){
         SelectionRace = getTop4Race(races);
-        SelectionAthletes = getTop10Athletes(athletes);
         for (Race race: SelectionRace) {
-            for (Athlete athlete: SelectionAthletes)
+            for (Athlete athlete: athletes)
                 race.getAthlete().add(athlete);
         }
         race=0;
@@ -133,7 +132,7 @@ public class Championship implements RaceListener {
         windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + dateFormat.format(SelectionRace.get(race).getDate()));
     	int i=0;
         raceManager = new RaceManager();
-    	for (Athlete athlete:  SelectionAthletes) {
+    	for (Athlete athlete:  athletes) {
             athlete.setCurrentDiscipline(new Swimming());
     		windowRace.getRacePanel().getLabels().get(i).setText(athlete.getName() + " " + athlete.getSurname());
     		RaceThread thread = new RaceThread(startX, startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager, SelectionRace.get(race));
@@ -469,7 +468,7 @@ public class Championship implements RaceListener {
 
         StringBuilder sb = new StringBuilder();
 
-        for (Athlete athlete: SelectionAthletes) {
+        for (Athlete athlete: athletes) {
 
             sb.append("\n Surname: ").append(athlete.getSurname()).append("\n Name: ").append(athlete.getName())
                     .append("\n Nationality: ").append(athlete.getNationality()) .append("\n StageWinS: ").append(athlete.getStagesWinS())
@@ -486,7 +485,7 @@ public class Championship implements RaceListener {
     public static String ListAthletesStats () {
 
         StringBuilder sb = new StringBuilder();
-        for (Athlete athlete: SelectionAthletes)
+        for (Athlete athlete: athletes)
         {
             sb.append(athlete.toString());
         }
@@ -499,7 +498,7 @@ public class Championship implements RaceListener {
 
     }
     public static void sortByAlphabeticOrder(){
-        SelectionAthletes.sort(Comparator.comparing(Athlete::getSurname));
+        athletes.sort(Comparator.comparing(Athlete::getSurname));
     }
     public String updateRaceResults() {
         return raceManager.getCurrentPositions(raceThreads);
