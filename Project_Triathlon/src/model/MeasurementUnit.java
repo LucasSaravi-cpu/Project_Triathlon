@@ -24,7 +24,7 @@ public class MeasurementUnit {
 
 	@Override
 	public String toString() {
-		return "MeasurementUnit [unit=" + unit + "]";
+		return  unit ;
 	}
     
     

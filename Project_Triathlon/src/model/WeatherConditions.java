@@ -82,10 +82,10 @@ public class WeatherConditions {
 
 	@Override
 	public String toString() {
-		return "WeatherConditions [id=" + id + ", description=" + description + ", measurementUnit=" + measurementUnit
-				+ ", lowertier=" + lowertier + ", uppertier=" + uppertier + ", swimmingweathering=" + swimmingweathering
-				+ ", cyclingweathering=" + cyclingweathering + ", pedestrianismweathering=" + pedestrianismweathering
-				+ "]";
+		return description +"\n"+ "("+lowertier+"/"+uppertier+")" + measurementUnit+ "\n" + "Decreased vel "+"\n"
+				+"swimming "+ swimmingweathering + "%"+"\n"
+				+"cycling "+ cyclingweathering + "%" +"\n"
+				+"pedestrianism "+ pedestrianismweathering + "%";
 	}
     
     
