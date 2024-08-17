@@ -20,7 +20,7 @@ public class WindowRace extends JFrame {
 	  //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public WindowRace() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(10, 100, 976, 625);
+		setBounds(10, 200, 976, 625);
 		racePanel = new RacePanel();
 		getContentPane().add(racePanel);
 		repaint();

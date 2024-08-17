@@ -24,6 +24,7 @@ public class WindowStart extends JFrame {
     private WindowRace wr;
     private Scoreboard dt;
     private static Clip music;
+    private Weatherboard weatherboard;
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public WindowStart(Championship controller) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,6 +45,9 @@ public class WindowStart extends JFrame {
 			    controller.getScoreboard().setVisible(true);
 			    music("/music/Road_Runner.wav");
 			    playMusic();
+			    weatherboard = controller.getWeatherboard();
+			    weatherboard.setVisible(true);
+			    
 			}
 		});
 

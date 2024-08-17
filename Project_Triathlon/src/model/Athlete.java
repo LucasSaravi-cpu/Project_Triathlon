@@ -225,9 +225,17 @@ public abstract class Athlete {
 	public void setCurrentDiscipline(Discipline currentDiscipline) {
 		this.currentDiscipline = currentDiscipline;
 	}
-
+	
+	
+	
+	public Discipline getCurrentDiscipline() {
+		return currentDiscipline;
+	}
+	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
+
+	
 
 	public double getBaseSpeed() {
 		double baseSpeed = 0.0; //FALTA UNA FORMA DE CAMBIAR CURRENT DISCIPLINE CON EL LISTENER

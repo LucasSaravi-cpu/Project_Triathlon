@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.Comparator;
 
@@ -32,9 +33,11 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import Events.EnergyEvent;
+import Events.WeatherEvent;
 import dataaccess.DBManager;
 import listeners.EnergyListener;
 import listeners.RaceListener;
+import listeners.WeatherEventListener;
 import model.Amateur;
 import model.Athlete;
 import model.City;
@@ -56,6 +59,7 @@ import model.Swimming;
 import model.WeatherConditions;
 import view.RacePanel;
 import view.Scoreboard;
+import view.Weatherboard;
 import view.WindowRace;
 
 public class Championship implements RaceListener {
@@ -63,21 +67,26 @@ public class Championship implements RaceListener {
 	
 //------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	
-    private WindowRace windowRace;
-    private Scoreboard scoreboard;
-	private static List <Race> races;
-	private static List<Athlete> athletes;
-	private static List<Athlete> SelectionAthletes;
-	private static List<Race> SelectionRace;
-	private List<RaceThread> raceThreads;
-    private static int race;
-    private RaceManager raceManager;
+	 private WindowRace windowRace;
+	 private Scoreboard scoreboard;
+	 private Weatherboard weatherboard;
+     private static List <Race> races;
+	 private static List<Athlete> athletes;
+	 private static List<Athlete> SelectionAthletes;
+	 private static List<Race> SelectionRace;
+	 private List<RaceThread> raceThreads;
+	 private static int race;
+	 private RaceManager raceManager;
+	 private List<WeatherEventListener> weatherListeners = new ArrayList<>();;
+	 
+	 private static WeatherConditions lastCondition = null;
 
   //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public Championship(WindowRace windowRace) {
         this.windowRace = windowRace;
         this.scoreboard = new Scoreboard(this);
         this.raceThreads = new ArrayList<>();
+        this.weatherboard = new  Weatherboard(this);
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
@@ -107,6 +116,24 @@ public class Championship implements RaceListener {
 	}
 
 	
+	public Weatherboard getWeatherboard() {
+		return weatherboard;
+	}
+	public void setWeatherboard(Weatherboard weatherboard) {
+		this.weatherboard = weatherboard;
+	}
+	public List<WeatherEventListener> getWeatherListeners() {
+		return weatherListeners;
+	}
+	public void setWeatherListeners(List<WeatherEventListener> weatherListeners) {
+		this.weatherListeners = weatherListeners;
+	}
+	
+	
+	
+	
+	
+	
   //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
     
@@ -130,7 +157,27 @@ public class Championship implements RaceListener {
         windowRace.getRacePanel().setStationPoints(stationPoints);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + dateFormat.format(SelectionRace.get(race).getDate()));
-    	int i=0;
+    	
+        
+       
+       
+      this.addWeatherEventListener(new WeatherEventListener() {
+    	    @Override
+    	    public void onWeatherUpdate(WeatherEvent event) {
+    	    	 WeatherConditions weatherCondition = event.getWeatherConditions();
+    		        weatherboard.updateWeatherLabel(weatherCondition);
+    		        if (weatherboard != null) {
+    		            weatherboard.updateWeatherLabel(weatherCondition);
+    		        }
+    	    }
+    	});
+       
+       
+      WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(Championship.loadDatabase());
+      notifyWeatherUpdate(weatherconditions);
+       
+       
+        int i=0;
         raceManager = new RaceManager();
     	for (Athlete athlete:  athletes) {
             athlete.setCurrentDiscipline(new Swimming());
@@ -504,7 +551,30 @@ public class Championship implements RaceListener {
         return raceManager.getCurrentPositions(raceThreads);
     }
 
+  
+    public static WeatherConditions getRandomWeatherCondition(List<WeatherConditions> conditionsList) {
+     
+        Random random = new Random();
+        WeatherConditions newCondition;      
+       do {
+            int randomIndex = random.nextInt(conditionsList.size());
+            newCondition = conditionsList.get(randomIndex);
+        } while (newCondition.equals(lastCondition));
+     
+        lastCondition = newCondition;
+        return newCondition;
+    }
+    
+	 public void addWeatherEventListener(WeatherEventListener listener) {
+	        weatherListeners.add(listener);
+	    }
 
+	    public void notifyWeatherUpdate(WeatherConditions weatherCondition) {
+	        WeatherEvent event = new WeatherEvent(this, weatherCondition);     
+	        for (WeatherEventListener listener : weatherListeners) {
+	            listener.onWeatherUpdate(event);
+	        }
+	    }
 
 }
 
