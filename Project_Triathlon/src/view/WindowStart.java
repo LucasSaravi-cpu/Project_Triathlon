@@ -9,6 +9,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import view.WindowRace;
@@ -31,10 +32,10 @@ public class WindowStart extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		
-		JButton btnNewButton_2 = new JButton("START");
-		btnNewButton_2.setBounds(35, 314, 201, 35);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		ImageIcon icon = new ImageIcon(getClass().getResource("/Image/startButton.png"));
+		JButton startbutton = new JButton(scaleImage(icon));
+		startbutton.setBounds(35, 314, 201, 35);
+		startbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				music.close();
 				wr = controller.getWindowRace();
@@ -45,16 +46,23 @@ public class WindowStart extends JFrame {
 			    playMusic();
 			}
 		});
+
 		contentPane.setLayout(null);
-		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_1 = new JButton("LOAD");
-		btnNewButton_1.setBounds(35, 426, 201, 35);
-		contentPane.add(btnNewButton_1);
-		
-		JButton btnNewButton = new JButton("EXIT");
-		btnNewButton.setBounds(35, 371, 201, 35);
-		contentPane.add(btnNewButton);
+		contentPane.add(startbutton);
+		icon = new ImageIcon(getClass().getResource("/Image/loadButton.png"));
+		JButton loadButton = new JButton(scaleImage(icon));
+		loadButton.setBounds(35, 426, 201, 35);
+		contentPane.add(loadButton);
+		icon = new ImageIcon(getClass().getResource("/Image/exitButton.png"));
+		JButton exitButton = new JButton(scaleImage(icon));
+		exitButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		exitButton.setBounds(35, 371, 201, 35);
+		contentPane.add(exitButton);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 0, 841, 540);
@@ -96,7 +104,10 @@ public static Clip getMusic() {
 public static void setMusic(Clip music) {
 	WindowStart.music = music;
 }
-
+public ImageIcon scaleImage(ImageIcon newIcon){
+	Image scaledImage = newIcon.getImage().getScaledInstance(201, 35, Image.SCALE_SMOOTH);
+	return new ImageIcon(scaledImage);
+}
 
 	
 	
