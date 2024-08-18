@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.metal.MetalRadioButtonUI;
 
 import controller.Championship;
 import model.Athlete;
@@ -10,6 +11,9 @@ import model.RaceManager;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Scoreboard extends JFrame {
 	
@@ -89,11 +93,60 @@ public class Scoreboard extends JFrame {
 		 });
 		btnClean.setBounds(24, 522, 218, 43);
 		contentPane.add(btnClean);
+		Font myFont = loadCustomFont("/fonts/Kanit-ThinItalic.ttf");
 		rdbtnalphabetic = new JRadioButton("By alphabetic order");
 		rdbtnalphabetic.setBounds(247, 347, 218, 43);
+		rdbtnalphabetic.setFont(myFont);
+		rdbtnalphabetic.setForeground(Color.WHITE);
+		rdbtnalphabetic.setOpaque(false);
+		rdbtnalphabetic.setUI(new MetalRadioButtonUI() {
+			@Override
+			protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
+				Graphics2D g2 = (Graphics2D) g.create();
+				g2.setFont(myFont);
+
+				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+				g2.setColor(Color.BLACK);
+				for (int i = -2; i <= 2; i++) {
+					for (int j = -2; j <= 2; j++) {
+						if (i != 0 || j != 0) {
+							g2.drawString(text, textRect.x + i, textRect.y + j);
+						}
+					}
+				}
+
+				g2.setColor(Color.WHITE);
+				g2.drawString(text, textRect.x, textRect.y);
+
+				g2.dispose();
+			}
+		});
 		contentPane.add(rdbtnalphabetic);
 		rdbtnposition = new JRadioButton("By championship position");
 		rdbtnposition.setBounds(248, 293, 218, 43);
+		rdbtnposition.setFont(myFont);
+		rdbtnposition.setForeground(Color.WHITE);
+		rdbtnposition.setOpaque(false);
+		rdbtnposition.setUI(new MetalRadioButtonUI() {
+			@Override
+			protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
+				Graphics2D g2 = (Graphics2D) g.create();
+				g2.setFont(myFont);
+				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+				g2.setColor(Color.BLACK);
+				for (int i = -2; i <= 2; i++) {
+					for (int j = -2; j <= 2; j++) {
+						if (i != 0 || j != 0) {
+							g2.drawString(text, textRect.x + i, textRect.y + j);
+						}
+					}
+				}
+				g2.setColor(Color.WHITE);
+				g2.drawString(text, textRect.x, textRect.y);
+				g2.dispose();
+			}
+		});
 		contentPane.add(rdbtnposition);
 		btnListAthletesStats.setBounds(24, 293, 218, 43);
 		contentPane.add(btnListAthletesStats);
@@ -154,6 +207,22 @@ public class Scoreboard extends JFrame {
 	public ImageIcon scaleImage(ImageIcon newIcon){
 		Image scaledImage = newIcon.getImage().getScaledInstance(218, 43, Image.SCALE_SMOOTH);
 		return new ImageIcon(scaledImage);
+	}
+	public static Font loadCustomFont(String path) {
+		try {
+			InputStream is = Scoreboard.class.getResourceAsStream(path);
+			if (is == null) {
+				throw new IOException("Font not found: " + path);
+			}
+
+			Font customFont = Font.createFont(Font.TRUETYPE_FONT, is);
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(customFont);
+			return customFont.deriveFont(Font.BOLD, 16f);
+		} catch (IOException | FontFormatException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	 //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 
