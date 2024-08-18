@@ -86,7 +86,7 @@ public class Championship implements RaceListener {
         this.windowRace = windowRace;
         this.scoreboard = new Scoreboard(this);
         this.raceThreads = new ArrayList<>();
-        this.weatherboard = new  Weatherboard(this);
+        this.weatherboard = new  Weatherboard();
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
