@@ -22,12 +22,12 @@ public class Weatherboard extends JFrame {
 
     static {
         // Initialize the map with URLs for different weather conditions
-        weatherIcons.put("Very low temperature", "/Image/NormalTemperature.gif");
-        weatherIcons.put("Normal temperature", "/Image/NormalTemperature.gif");
-        weatherIcons.put("Warm temperature", "/Image/NormalTemperature.gif");
-        weatherIcons.put("High temperature", "/Image/NormalTemperature.gif");
-        weatherIcons.put("Tailwind", "/Image/NormalTemperature.gif");
-        weatherIcons.put("Headwind", "/Image/NormalTemperature.gif");
+        weatherIcons.put("Very low temperature", "/Image/NormalTemperature.png");
+        weatherIcons.put("Normal temperature", "/Image/NormalTemperature.png");
+        weatherIcons.put("Warm temperature", "/Image/NormalTemperature.png");
+        weatherIcons.put("High temperature", "/Image/NormalTemperature.png");
+        weatherIcons.put("Tailwind", "/Image/NormalTemperature.png");
+        weatherIcons.put("Headwind", "/Image/NormalTemperature.png");
     }
 
     public Weatherboard() {
@@ -53,7 +53,7 @@ public class Weatherboard extends JFrame {
         contentPane.add(weatherLabel);
 
         // Bear icon label - Bottom Left
-        ImageIcon icon = new ImageIcon(getClass().getResource("/Image/weatherbear.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Image/weatherman.png"));
         Image scaledImage = icon.getImage().getScaledInstance(110, 110, Image.SCALE_SMOOTH);
         JLabel bearLabel = new JLabel(new ImageIcon(scaledImage));
         bearLabel.setBounds(10, 60, 110, 110); // Positioned 10px margin from left and bottom
@@ -67,7 +67,8 @@ public class Weatherboard extends JFrame {
 
             if (imageUrl != null) {
                 ImageIcon icon = new ImageIcon(getClass().getResource(imageUrl));
-                weatherLabel.setIcon(icon);
+                Image scaledImage = icon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+                weatherLabel.setIcon(new ImageIcon(scaledImage));
             } else {
                 weatherLabel.setIcon(null);
             }
