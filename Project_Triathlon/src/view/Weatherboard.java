@@ -10,6 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.WeatherConditions;
+import javax.swing.JTextArea;
+
+import controller.Championship;
 
 public class Weatherboard extends JFrame {
 
@@ -19,15 +22,17 @@ public class Weatherboard extends JFrame {
 
     // Map to store URLs for different weather conditions
     private static final Map<String, String> weatherIcons = new HashMap<>();
+    private JTextArea textArea;
 
     static {
         // Initialize the map with URLs for different weather conditions
-        weatherIcons.put("Very low temperature", "/Image/NormalTemperature.png");
+        weatherIcons.put("Very low temperature", "/Image/LowTemperature.png");
         weatherIcons.put("Normal temperature", "/Image/NormalTemperature.png");
-        weatherIcons.put("Warm temperature", "/Image/NormalTemperature.png");
-        weatherIcons.put("High temperature", "/Image/NormalTemperature.png");
-        weatherIcons.put("Tailwind", "/Image/NormalTemperature.png");
-        weatherIcons.put("Headwind", "/Image/NormalTemperature.png");
+        weatherIcons.put("Warm temperature", "/Image/WarmTemperature.png");
+        weatherIcons.put("High temperature", "/Image/HighTemperature.png");
+        weatherIcons.put("Tailwind", "/Image/Tailwind.png");
+        weatherIcons.put("Headwind", "/Image/Headwind.png");
+    //    weatherIcons.put("Rain", "/Image/Rain.png");
     }
 
     public Weatherboard() {
@@ -46,6 +51,16 @@ public class Weatherboard extends JFrame {
 
         contentPane.setLayout(null); // Disable layout manager for manual positioning
         setContentPane(contentPane);
+        
+        textArea = new JTextArea();
+        textArea.setEditable(false);
+        textArea.setBounds(145, 93, 98, 60);
+        textArea.setLineWrap(true); 
+        textArea.setWrapStyleWord(true); 
+        textArea.setOpaque(false); 
+        textArea.setForeground(Color.BLACK); 
+        
+        contentPane.add(textArea);
 
         // Weather label - Top Right
         weatherLabel = new JLabel("");
@@ -69,6 +84,7 @@ public class Weatherboard extends JFrame {
                 ImageIcon icon = new ImageIcon(getClass().getResource(imageUrl));
                 Image scaledImage = icon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
                 weatherLabel.setIcon(new ImageIcon(scaledImage));
+                textArea.setText( Championship.GetListWeatherCondition(weatherCondition));
             } else {
                 weatherLabel.setIcon(null);
             }

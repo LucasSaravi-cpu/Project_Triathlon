@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -574,6 +575,19 @@ public class Championship implements RaceListener {
 	        for (WeatherEventListener listener : weatherListeners) {
 	            listener.onWeatherUpdate(event);
 	        }
+	    }
+	    
+	    public static String GetListWeatherCondition(WeatherConditions weathercondition) {
+	        StringBuilder sb = new StringBuilder();
+	        Random random = new Random();
+	        DecimalFormat format = new DecimalFormat("#.##");
+	        double lowerBound = weathercondition.getLowertier();
+	        double upperBound = weathercondition.getUppertier();
+	        double randomValue = lowerBound + (upperBound - lowerBound) * random.nextDouble();
+	        String formattedValue = format.format(randomValue);
+	        sb.append(weathercondition.getDescription()).append("\n");
+	        sb.append(formattedValue).append(" ").append(weathercondition.getMeasurementUnit());
+	        return sb.toString();
 	    }
 
 }
