@@ -34,6 +34,7 @@ public class Race {
     private double kmcyclism;
     private double  kmpedestrianism;
     private List<Stations> stations;
+    private double T1 , T2 ,T3;
     
 
 
@@ -150,7 +151,24 @@ public class Race {
 		this.stations = stations;
 	}
 
-	
+	  public double getT1() {
+			return T1;
+		}
+		public void setT1(double t1) {
+			T1 = t1;
+		}
+		public double getT2() {
+			return T2;
+		}
+		public void setT2(double t2) {
+			T2 = t2;
+		}
+		public double getT3() {
+			return T3;
+		}
+		public void setT3(double t3) {
+			T3 = t3;
+		}
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	

@@ -18,6 +18,7 @@ public class Competition {
     private int racerWin;
     private int racerdesertion;
     private int racercomplete;
+    private String TimeTot;
 
 	
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
@@ -129,6 +130,17 @@ public class Competition {
 	public int getPoints(){
 		return points;
 	}
+	
+		
+	
+	public String getTimeTot() {
+		return TimeTot;
+	}
+
+	public void setTimeTot(String timeTot) {
+		TimeTot = timeTot;
+	}
+
 	public void updatePoints(int position) {
 		switch(position) {
 			case 1:
@@ -151,6 +163,9 @@ public class Competition {
 				break;
 		}
 	}
+	
+	
+	
 	
 }
 

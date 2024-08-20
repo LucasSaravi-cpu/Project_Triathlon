@@ -24,6 +24,7 @@ public class RaceThread extends Thread {
     private final Championship controller;
     private RaceManager raceManager;
     private Race race;
+ 
     
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
@@ -84,7 +85,9 @@ public class RaceThread extends Thread {
         else {
         	positionX=endX;
         	Thread.currentThread().interrupt(); 
-        	 raceManager.notifyAthleteFinished(athlete);
+        	athlete.getCompetition().setTimeTot(Championship.getChronometer().getTime());
+        	raceManager.notifyAthleteFinished(athlete);
+        	 
         }
         checkForDisciplineChange();
         if (listener != null) {
@@ -132,6 +135,9 @@ public class RaceThread extends Thread {
             listener.disciplineChanged(event);
         }
     }
+    
+    
+ 
 
 
 }

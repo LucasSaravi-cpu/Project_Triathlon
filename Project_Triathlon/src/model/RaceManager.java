@@ -19,16 +19,7 @@ public class RaceManager {
        }
      
     
-    public static String updateRaceResults() {
-    	StringBuilder sb = new StringBuilder();
-    	sb.append("Race results: \n");
-       
-        for (int i = 0; i < finishedAthletes.size(); i++) {
-        	sb.append((i + 1) + ": " + finishedAthletes.get(i).getName() + "\n");
-        }
-        
-        return sb.toString();
-    }
+
     public synchronized String getCurrentPositions(List<RaceThread> raceThreads) {
         StringBuilder sb = new StringBuilder();
         sb.append("Current Positions: \n");
@@ -42,7 +33,8 @@ public class RaceManager {
 
         int positionCounter = 1;
         for (Athlete finishedAthlete : finishedAthletes) {
-            sb.append(positionCounter).append(": ").append(finishedAthlete.getName()).append(" ").append(finishedAthlete.getSurname()).append("\n");
+            sb.append(positionCounter).append(": ").append(finishedAthlete.getName()).append(" ").append(finishedAthlete.getSurname()).append("\n").append(finishedAthlete.getCompetition().getTimeTot()).append("\n");
+            
             positionCounter++;
         }
 

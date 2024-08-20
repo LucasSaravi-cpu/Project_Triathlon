@@ -59,7 +59,8 @@ public class Championship implements RaceListener {
 	 private RaceManager raceManager;
 	 private List<WeatherEventListener> weatherListeners = new ArrayList<>();;
 	 private static WeatherConditions lastCondition = null;
-     private Chronometer chronometer;
+     private static Chronometer chronometer;
+     
 
   //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public Championship(WindowRace windowRace) {
@@ -109,7 +110,7 @@ public class Championship implements RaceListener {
 	public void setWeatherListeners(List<WeatherEventListener> weatherListeners) {
 		this.weatherListeners = weatherListeners;
 	}
-	public Chronometer getChronometer(){
+	public static Chronometer getChronometer(){
         return chronometer;
     }
 	
@@ -117,7 +118,8 @@ public class Championship implements RaceListener {
 	
 	
 	
-  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     public void startChronometer(){
         chronometer.start();
     }
@@ -151,7 +153,7 @@ public class Championship implements RaceListener {
         windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + dateFormat.format(SelectionRace.get(race).getDate()));
     	
         
-       
+      
        
       this.addWeatherEventListener(new WeatherEventListener() {
     	    @Override
@@ -627,7 +629,39 @@ public class Championship implements RaceListener {
         WindowEndChampionship end = new WindowEndChampionship(results.toString());
         end.showWindow();
     }
+    
+    
+    
+    private double TotalTimeForRace(Race race) {
+    	
+    	 double tot = 0;
+    	
+    	for (DisciplineDistance disiciplinedistance : race.getModality().getDisciplinedistance()) {
+    		
+    		tot += disiciplinedistance.getDiscipline().time(race.getModality().getName());
+    		
+    		  Discipline discipline =disiciplinedistance.getDiscipline();
+    	        String modalityName = race.getModality().getName();
+    	        double time = discipline.time(modalityName);
 
+    	     
+    	        if (discipline instanceof Swimming) {
+    	            race.setT1(time);
+    	        } else if (discipline instanceof Cycling) {
+    	        	race.setT2(time);
+    	        } else if (discipline instanceof Pedestrianism) {
+    	        	race.setT3(time);
+    	        }
+    
+    		
+    	}
+    	
+    	return tot;
+    		
+    }
+  
+    
+  
 
 }
 

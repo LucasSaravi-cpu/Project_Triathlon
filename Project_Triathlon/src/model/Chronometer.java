@@ -64,4 +64,9 @@ public class Chronometer {
             listener.onTimeruptodate(Hours,  minutes, seconds);
         }
     }
+    
+    public String getTime() {
+        return String.format("%02d:%02d:%02d", Hours, minutes, seconds);
+    }
+    
 }
