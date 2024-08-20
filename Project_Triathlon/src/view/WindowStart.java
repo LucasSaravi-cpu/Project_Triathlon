@@ -1,14 +1,10 @@
 package view;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -21,6 +17,7 @@ public class WindowStart extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private TitleLabel title;
     private WindowRace wr;
     private Scoreboard dt;
     private static Clip music;
@@ -31,8 +28,10 @@ public class WindowStart extends JFrame {
 		setBounds(100, 100, 848, 564);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
+		title = new TitleLabel("Triathlon Quest");
+		title.setBounds(100, 20, 648, 100);
+		contentPane.add(title);
 		ImageIcon icon = new ImageIcon(getClass().getResource("/Image/startButton.png"));
 		JButton startbutton = new JButton(scaleImage(icon));
 		startbutton.setBounds(35, 314, 201, 35);
