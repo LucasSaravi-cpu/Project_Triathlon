@@ -24,7 +24,7 @@ public class WindowsChronometer extends JFrame implements ChronometerListener {
     public WindowsChronometer() {
         setTitle("Chronometer");
         setSize(267, 200);
-        setBounds(10, 10, 267, 200);
+        setBounds(300, 10, 267, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 

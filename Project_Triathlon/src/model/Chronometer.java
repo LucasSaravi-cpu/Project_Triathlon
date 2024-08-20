@@ -47,6 +47,14 @@ public class Chronometer {
         timer.cancel();
     }
 
+    public void reset() {
+        this.Hours = 0;
+        this.minutes = 0;
+        this.seconds = 0;
+        notifyListeners();
+        this.timer = new Timer();
+    }
+
     public void addListener(ChronometerListener listener) {
         listeners.add(listener);
     }

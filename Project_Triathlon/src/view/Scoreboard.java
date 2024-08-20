@@ -192,6 +192,7 @@ public class Scoreboard extends JFrame {
 				textArea.setText("");
 				if (Championship.getIndexRace()<4) {
 					controller.getWindowRace().reset();
+					controller.resetTimer();
 					controller.startRace();
 					newRace.setVisible(false);
 				} else {

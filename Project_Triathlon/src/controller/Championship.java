@@ -28,6 +28,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import Events.DisciplineChangeEvent;
 import listeners.DisciplineChangeListener;
+import model.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -39,25 +40,6 @@ import dataaccess.DBManager;
 import listeners.EnergyListener;
 import listeners.RaceListener;
 import listeners.WeatherEventListener;
-import model.Amateur;
-import model.Athlete;
-import model.City;
-import model.Competition;
-import model.Competitor;
-import model.Country;
-import model.Cycling;
-import model.Discipline;
-import model.DisciplineDistance;
-import model.MeasurementUnit;
-import model.Modality;
-import model.Pedestrianism;
-import model.PhysicalConditions;
-import model.Race;
-import model.RaceManager;
-import model.RaceThread;
-import model.Stations;
-import model.Swimming;
-import model.WeatherConditions;
 import view.*;
 
 public class Championship implements RaceListener {
@@ -76,8 +58,8 @@ public class Championship implements RaceListener {
 	 private static int race;
 	 private RaceManager raceManager;
 	 private List<WeatherEventListener> weatherListeners = new ArrayList<>();;
-	 
 	 private static WeatherConditions lastCondition = null;
+     private Chronometer chronometer;
 
   //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public Championship(WindowRace windowRace) {
@@ -85,6 +67,7 @@ public class Championship implements RaceListener {
         this.scoreboard = new Scoreboard(this);
         this.raceThreads = new ArrayList<>();
         this.weatherboard = new  Weatherboard();
+        this.chronometer = new Chronometer();
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
@@ -126,15 +109,26 @@ public class Championship implements RaceListener {
 	public void setWeatherListeners(List<WeatherEventListener> weatherListeners) {
 		this.weatherListeners = weatherListeners;
 	}
-	
+	public Chronometer getChronometer(){
+        return chronometer;
+    }
 	
 	
 	
 	
 	
   //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+    public void startChronometer(){
+        chronometer.start();
+    }
+    public void addChronometerListener(WindowsChronometer windows){
+        chronometer.addListener(windows);
+    }
 
-    
+    public void resetTimer() {
+        chronometer.reset();
+        chronometer.start();
+    }
     public void startChampionship(){
         SelectionRace = getTop4Race(races);
         for (Race race: SelectionRace) {
@@ -340,7 +334,33 @@ public class Championship implements RaceListener {
                 	case "Distancia olímpico": modalityname="OlympicDistance";
                 	                        break;
                 }
+                switch (cityname) {
+                    case "Londres"        : cityname = "London";
+                                            break;
+                    case "Río de Janeiro" : cityname = "Rio de Janeiro";
+                                            break;
+                    case "Ciudad del Cabo": cityname = "Cape Town";
+                                            break;
 
+                }
+                switch (countryname) {
+                    case "Reino Unido"   : countryname = "United Kingdom";
+                                           break;
+                    case "Canadá"        : countryname = "Canada";
+                                           break;
+                    case "España"        : countryname = "Spain";
+                                           break;
+                    case "Brasil"        : countryname = "Brazil";
+                                           break;
+                    case "Sudáfrica"     : countryname = "South Africa";
+                                           break;
+                    case "Alemania"      : countryname = "Germany";
+                                           break;
+                    case "Estados Unidos": countryname = "USA";
+                                           break;
+                    case "Japan"         : countryname = "Japan";
+                                           break;
+                }
                Discipline swimmingg = new Swimming();
                Discipline cyclimm= new Cycling();
                Discipline pedestriani = new Pedestrianism();
@@ -540,9 +560,7 @@ public class Championship implements RaceListener {
 
     public void allThreadsCompleted() {
         scoreboard.setNewRace();
-        for (Athlete athlete: athletes){
-
-        }
+        chronometer.stop();
 
     }
     public static void sortByAlphabeticOrder(){
@@ -609,5 +627,7 @@ public class Championship implements RaceListener {
         WindowEndChampionship end = new WindowEndChampionship(results.toString());
         end.showWindow();
     }
+
+
 }
 
