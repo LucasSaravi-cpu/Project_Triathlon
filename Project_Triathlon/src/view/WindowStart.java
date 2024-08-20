@@ -9,10 +9,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import model.Chronometer;
-import view.WindowRace;
 import controller.Championship;
-import model.Chronometer;
+
 public class WindowStart extends JFrame {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
@@ -32,7 +30,7 @@ public class WindowStart extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		title = new TitleLabel("Triathlon Quest", Scoreboard.loadCustomFont("/fonts/Dinofiles.ttf").deriveFont(60f));
+		title = new TitleLabel("Triathlon Quest", FontCharger.loadCustomFont("/fonts/Dinofiles.ttf").deriveFont(60f));
 		title.setBounds(100, 20, 648, 100);
 		contentPane.add(title);
 		ImageIcon icon = new ImageIcon(getClass().getResource("/Image/startButton.png"));
@@ -50,9 +48,10 @@ public class WindowStart extends JFrame {
 				weatherboard = controller.getWeatherboard();
 				weatherboard.setVisible(true);
 
-				WindowsChronometer windows = new WindowsChronometer();
+				WindowChronometer windows = new WindowChronometer();
 				controller.addChronometerListener(windows);
 				controller.startChronometer();
+				setnotVisible();
 			    
 			}
 		});
@@ -120,5 +119,7 @@ public ImageIcon scaleImage(ImageIcon newIcon){
 }
 
 	
-	
+public void setnotVisible(){
+		setVisible(false);
+}
 }

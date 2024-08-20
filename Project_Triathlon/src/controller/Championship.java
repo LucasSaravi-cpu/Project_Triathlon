@@ -123,7 +123,7 @@ public class Championship implements RaceListener {
     public void startChronometer(){
         chronometer.start();
     }
-    public void addChronometerListener(WindowsChronometer windows){
+    public void addChronometerListener(WindowChronometer windows){
         chronometer.addListener(windows);
     }
 

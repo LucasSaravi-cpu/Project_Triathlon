@@ -94,7 +94,7 @@ public class Scoreboard extends JFrame {
 		 });
 		btnClean.setBounds(24, 522, 218, 43);
 		contentPane.add(btnClean);
-		Font myFont = loadCustomFont("/fonts/Kanit-ThinItalic.ttf");
+		Font myFont = FontCharger.loadCustomFont("/fonts/Kanit-ThinItalic.ttf");
 		rdbtnalphabetic = new JRadioButton("By alphabetic order");
 		rdbtnalphabetic.setBounds(247, 347, 218, 43);
 		rdbtnalphabetic.setFont(myFont);
@@ -210,22 +210,7 @@ public class Scoreboard extends JFrame {
 		Image scaledImage = newIcon.getImage().getScaledInstance(218, 43, Image.SCALE_SMOOTH);
 		return new ImageIcon(scaledImage);
 	}
-	public static Font loadCustomFont(String path) {
-		try {
-			InputStream is = Scoreboard.class.getResourceAsStream(path);
-			if (is == null) {
-				throw new IOException("Font not found: " + path);
-			}
 
-			Font customFont = Font.createFont(Font.TRUETYPE_FONT, is);
-			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(customFont);
-			return customFont.deriveFont(Font.BOLD, 16f);
-		} catch (IOException | FontFormatException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 	 //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 
 	public void setNewRace(){

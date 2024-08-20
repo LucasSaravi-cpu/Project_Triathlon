@@ -44,7 +44,7 @@ public class WindowRace extends JFrame {
 	}
 	public void setRaceTitle(String racetitle) {
 		if (title == null) {
-			title = new TitleLabel(racetitle, Scoreboard.loadCustomFont("/fonts/ThisCafe.ttf").deriveFont(30f));
+			title = new TitleLabel(racetitle, FontCharger.loadCustomFont("/fonts/ThisCafe.ttf").deriveFont(30f));
 			title.setHorizontalAlignment(JLabel.CENTER);
 			title.setBorder(new EmptyBorder(20, 0, 20, 0));
 			getContentPane().add(title, BorderLayout.NORTH);
