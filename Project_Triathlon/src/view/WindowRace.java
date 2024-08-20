@@ -21,6 +21,7 @@ public class WindowRace extends JFrame {
 	public WindowRace() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 200, 976, 625);
+		setResizable(false);
 		racePanel = new RacePanel();
 		getContentPane().add(racePanel);
 		repaint();

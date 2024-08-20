@@ -58,10 +58,7 @@ import model.RaceThread;
 import model.Stations;
 import model.Swimming;
 import model.WeatherConditions;
-import view.RacePanel;
-import view.Scoreboard;
-import view.Weatherboard;
-import view.WindowRace;
+import view.*;
 
 public class Championship implements RaceListener {
 	
@@ -543,6 +540,9 @@ public class Championship implements RaceListener {
 
     public void allThreadsCompleted() {
         scoreboard.setNewRace();
+        for (Athlete athlete: athletes){
+
+        }
 
     }
     public static void sortByAlphabeticOrder(){
@@ -590,5 +590,24 @@ public class Championship implements RaceListener {
 	        return sb.toString();
 	    }
 
+    public void endChampionship() {
+        weatherboard.setVisible(false);
+        scoreboard.setVisible(false);
+        windowRace.setVisible(false);
+        StringBuilder results = new StringBuilder();
+        athletes.sort(Comparator.comparingInt(athlete -> ((Athlete) athlete).getCompetition().getPoints()).reversed());
+        int position=1;
+        for (Athlete athlete : athletes) {
+            results.append(athletes.indexOf(athlete) + 1);
+            results.append(": ");
+            results.append(athlete.getName()).append(" ").append(athlete.getSurname())
+                    .append(". Points: ")
+                    .append(athlete.getCompetition().getPoints())
+                    .append(".\n");
+        }
+
+        WindowEndChampionship end = new WindowEndChampionship(results.toString());
+        end.showWindow();
+    }
 }
 

@@ -8,6 +8,8 @@ import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import model.Chronometer;
 import view.WindowRace;
 import controller.Championship;
 public class WindowStart extends JFrame {
@@ -19,13 +21,13 @@ public class WindowStart extends JFrame {
 	private JPanel contentPane;
 	private TitleLabel title;
     private WindowRace wr;
-    private Scoreboard dt;
     private static Clip music;
     private Weatherboard weatherboard;
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public WindowStart(Championship controller) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 848, 564);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -41,11 +43,16 @@ public class WindowStart extends JFrame {
 				wr = controller.getWindowRace();
 				wr.setVisible(true);
 				controller.startRace();
-			    controller.getScoreboard().setVisible(true);
-			    music("/music/Road_Runner.wav");
-			    playMusic();
-			    weatherboard = controller.getWeatherboard();
-			    weatherboard.setVisible(true);
+				controller.getScoreboard().setVisible(true);
+				music("/music/Road_Runner.wav");
+				playMusic();
+				weatherboard = controller.getWeatherboard();
+				weatherboard.setVisible(true);
+
+				Chronometer chronometer = new  Chronometer();
+				WindowsChronometer windows = new WindowsChronometer();
+				chronometer.addListener(windows);
+				chronometer.start();
 			    
 			}
 		});

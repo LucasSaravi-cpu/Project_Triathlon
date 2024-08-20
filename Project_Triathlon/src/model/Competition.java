@@ -30,6 +30,7 @@ public class Competition {
 		this.distances = distances;
 		this.penalties = penalties;
 		this.race = race;
+		this.points=0;
 	}
 	
 	 //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
@@ -122,8 +123,34 @@ public class Competition {
 		this.racercomplete = racercomplete;
 	}
 
-	
-	
+	public void setPoints(int points){
+		this.points=points;
+	}
+	public int getPoints(){
+		return points;
+	}
+	public void updatePoints(int position) {
+		switch(position) {
+			case 1:
+				points += 100;
+				break;
+			case 2:
+				points += 85;
+				break;
+			case 3:
+				points += 70;
+				break;
+			case 4:
+				points += 60;
+				break;
+			case 5:
+				points += 50;
+				break;
+			default:
+				points += (43 - position); // Los siguientes atletas reciben menos puntos según su posición
+				break;
+		}
+	}
 	
 }
 

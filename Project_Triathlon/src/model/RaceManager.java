@@ -15,6 +15,7 @@ public class RaceManager {
     
     public synchronized void notifyAthleteFinished(Athlete athlete) {
         finishedAthletes.add(athlete);
+        athlete.getCompetition().updatePoints(finishedAthletes.size());
        }
      
     

@@ -37,6 +37,7 @@ public class Scoreboard extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(977, 100, 578, 699);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -194,7 +195,7 @@ public class Scoreboard extends JFrame {
 					controller.startRace();
 					newRace.setVisible(false);
 				} else {
-
+					controller.endChampionship();
                 }
 
 			}

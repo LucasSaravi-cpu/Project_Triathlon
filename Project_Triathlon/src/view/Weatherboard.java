@@ -38,7 +38,7 @@ public class Weatherboard extends JFrame {
     public Weatherboard() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(10, 10, 267, 200);
-
+        setResizable(false);
         // Custom JPanel with background image
         contentPane = new JPanel() {
             @Override
@@ -66,7 +66,8 @@ public class Weatherboard extends JFrame {
         weatherLabel = new JLabel("");
         weatherLabel.setBounds(157, 10, 70, 70); // 70x70 size, positioned with 10px margin from right and top
         contentPane.add(weatherLabel);
-
+        weatherLabel.setFocusable(false);
+        weatherLabel.setRequestFocusEnabled(false);
         // Bear icon label - Bottom Left
         ImageIcon icon = new ImageIcon(getClass().getResource("/Image/weatherman.png"));
         Image scaledImage = icon.getImage().getScaledInstance(110, 110, Image.SCALE_SMOOTH);
