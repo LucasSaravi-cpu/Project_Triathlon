@@ -10,7 +10,7 @@ public class WindowRace extends JFrame {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	private static final long serialVersionUID = 1L;
-	public JLabel title;
+	public TitleLabel title;
     private RacePanel racePanel;
     private JScrollPane scrollPane;
 
@@ -43,8 +43,7 @@ public class WindowRace extends JFrame {
 	}
 	public void setRaceTitle(String racetitle) {
 		if (title == null) {
-			title = new JLabel(racetitle);
-			title.setFont(new Font("Georgia", Font.BOLD, 24));
+			title = new TitleLabel(racetitle, Scoreboard.loadCustomFont("/fonts/ThisCafe.ttf").deriveFont(30f));
 			title.setHorizontalAlignment(JLabel.CENTER);
 			title.setBorder(new EmptyBorder(20, 0, 20, 0));
 			getContentPane().add(title, BorderLayout.NORTH);

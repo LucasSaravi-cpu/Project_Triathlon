@@ -29,7 +29,7 @@ public class WindowStart extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		title = new TitleLabel("Triathlon Quest");
+		title = new TitleLabel("Triathlon Quest", Scoreboard.loadCustomFont("/fonts/Dinofiles.ttf").deriveFont(60f));
 		title.setBounds(100, 20, 648, 100);
 		contentPane.add(title);
 		ImageIcon icon = new ImageIcon(getClass().getResource("/Image/startButton.png"));
