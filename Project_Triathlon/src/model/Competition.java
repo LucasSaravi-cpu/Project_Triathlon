@@ -12,6 +12,12 @@ public class Competition {
 	private List<AthletePenalty> penalties;
 	private Race race;
 	private int points;
+	private int stagesWinS;
+    private int stagesWinP;
+    private int stagesWinC;
+    private int racerWin;
+    private int racerdesertion;
+    private int racercomplete;
 
 	
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
@@ -68,5 +74,56 @@ public class Competition {
 		this.race = race;
 	}
 
+	public int getStagesWinS() {
+		return stagesWinS;
+	}
+
+	public void setStagesWinS(int stagesWinS) {
+		this.stagesWinS = stagesWinS;
+	}
+
+	public int getStagesWinP() {
+		return stagesWinP;
+	}
+
+	public void setStagesWinP(int stagesWinP) {
+		this.stagesWinP = stagesWinP;
+	}
+
+	public int getStagesWinC() {
+		return stagesWinC;
+	}
+
+	public void setStagesWinC(int stagesWinC) {
+		this.stagesWinC = stagesWinC;
+	}
+
+	public int getRacerWin() {
+		return racerWin;
+	}
+
+	public void setRacerWin(int racerWin) {
+		this.racerWin = racerWin;
+	}
+
+	public int getRacerdesertion() {
+		return racerdesertion;
+	}
+
+	public void setRacerdesertion(int racerdesertion) {
+		this.racerdesertion = racerdesertion;
+	}
+
+	public int getRacercomplete() {
+		return racercomplete;
+	}
+
+	public void setRacercomplete(int racercomplete) {
+		this.racercomplete = racercomplete;
+	}
+
+	
+	
+	
 }
 

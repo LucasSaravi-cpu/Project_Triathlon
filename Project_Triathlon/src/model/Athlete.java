@@ -29,12 +29,6 @@ public abstract class Athlete {
     private PhysicalConditions stats;
     private double energy;
     private final List<EnergyListener> listeners = new ArrayList<>();
-    private int stagesWinS;
-    private int stagesWinP;
-    private int stagesWinC;
-    private int racerWin;
-    private int racerdesertion;
-    private int racercomplete;
     private Competition competition;
 	private Discipline currentDiscipline;
     
@@ -146,63 +140,7 @@ public abstract class Athlete {
 		this.stats = stats;
 	}
 	
-	public int getStagesWinS() {
-		return stagesWinS;
-	}
 	
-	public void setStagesWinS(int stagesWinS) {
-		this.stagesWinS = stagesWinS;
-	}
-
-	public int getStagesWinP() {
-		return stagesWinP;
-	}
-
-
-	public void setStagesWinP(int stagesWinP) {
-		this.stagesWinP = stagesWinP;
-	}
-
-
-	public int getStagesWinC() {
-		return stagesWinC;
-	}
-
-
-	public void setStagesWinC(int stagesWinC) {
-		this.stagesWinC = stagesWinC;
-	}
-
-
-	public int getRacerWin() {
-		return racerWin;
-	}
-
-
-	public void setRacerWin(int racerWin) {
-		this.racerWin = racerWin;
-	}
-
-
-	public int getRacerdesertion() {
-		return racerdesertion;
-	}
-
-
-	public void setRacerdesertion(int racerdesertion) {
-		this.racerdesertion = racerdesertion;
-	}
-
-
-	public int getRacercomplete() {
-		return racercomplete;
-	}
-
-
-	public void setRacercomplete(int racercomplete) {
-		this.racercomplete = racercomplete;
-	}
-
 
 	public Competition getCompetition() {
 		return competition;

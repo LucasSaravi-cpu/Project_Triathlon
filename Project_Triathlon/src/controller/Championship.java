@@ -519,10 +519,10 @@ public class Championship implements RaceListener {
         for (Athlete athlete: athletes) {
 
             sb.append("\n Surname: ").append(athlete.getSurname()).append("\n Name: ").append(athlete.getName())
-                    .append("\n Nationality: ").append(athlete.getNationality()) .append("\n StageWinS: ").append(athlete.getStagesWinS())
-                    .append("\n StagesWinP: ").append(athlete.getStagesWinP()).append("\n StagesWinC: ").append(athlete.getStagesWinC())
-                    .append("\n RacerWin: ").append(athlete.getRacerWin()).append("\n  Racer Desertion: ").append(athlete.getRacerdesertion())
-                    .append("\n  Racer Complete: ").append(athlete.getRacercomplete());
+                    .append("\n Nationality: ").append(athlete.getNationality()).append("\n Cathegory: ").append(athlete.getCathegory()) .append("\n StageWinS: ").append(athlete.getCompetition().getStagesWinS())
+                    .append("\n StagesWinP: ").append(athlete.getCompetition().getStagesWinP()).append("\n StagesWinC: ").append(athlete.getCompetition().getStagesWinC())
+                    .append("\n RacerWin: ").append(athlete.getCompetition().getRacerWin()).append("\n  Racer Desertion: ").append(athlete.getCompetition().getRacerdesertion())
+                    .append("\n  Racer Complete: ").append(athlete.getCompetition().getRacercomplete());
 
             sb.append("\n");
         }
