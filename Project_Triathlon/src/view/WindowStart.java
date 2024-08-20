@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import model.Chronometer;
 import view.WindowRace;
 import controller.Championship;
+import model.Chronometer;
 public class WindowStart extends JFrame {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
@@ -53,6 +54,11 @@ public class WindowStart extends JFrame {
 				WindowsChronometer windows = new WindowsChronometer();
 				chronometer.addListener(windows);
 				chronometer.start();
+			    
+			    Chronometer  chronometer = new  Chronometer();
+			    WindowsChronometer windows = new WindowsChronometer();
+			    chronometer.addListener(windows);			    
+			    chronometer.iniciar();
 			    
 			}
 		});

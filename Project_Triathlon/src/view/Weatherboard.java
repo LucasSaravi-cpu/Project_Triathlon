@@ -33,7 +33,7 @@ public class Weatherboard extends JFrame {
         weatherIcons.put("Tailwind", "/Image/Tailwind.png");
         weatherIcons.put("Headwind", "/Image/Headwind.png");
     //    weatherIcons.put("Rain", "/Image/Rain.png");
-    }
+    }   
 
     public Weatherboard() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
