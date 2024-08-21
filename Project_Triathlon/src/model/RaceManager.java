@@ -7,17 +7,18 @@ public class RaceManager {
 	//------------------------------------------------>||VARIABLE||<--------------------------------------------------------\\
 	
     private static List<Athlete> finishedAthletes = new ArrayList<>();
-    
-    
     private String timerTot="";
-    
     public static void clearFinishedAthletes(){
         finishedAthletes.clear();
     }
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     
     public synchronized void notifyAthleteFinished(Athlete athlete) {
+        if (finishedAthletes.size()==0)
+            athlete.getCompetition().addVictory();
         finishedAthletes.add(athlete);
+        athlete.getCompetition().addStageWinP();
+        athlete.getCompetition().addFinishedRaces();
         athlete.getCompetition().updatePoints(finishedAthletes.size());
        }
      
@@ -37,23 +38,23 @@ public class RaceManager {
         int positionCounter = 1;
         for (Athlete finishedAthlete : finishedAthletes) {
             sb.append(positionCounter).append(": ").append(finishedAthlete.getName()).append(" ").append(finishedAthlete.getSurname()).append("\n").append("Time : ").append(finishedAthlete.getCompetition().getTimeTot()).append("\n");
-            
-         
+
+
             if (positionCounter==1) {
-            	
-            	 timerTot= finishedAthlete.getCompetition().getTimeTot();
-            	 sb.append("-------------------------------------------------------------------- \n");
-            	
+
+                timerTot= finishedAthlete.getCompetition().getTimeTot();
+                sb.append("-------------------------------------------------------------------- \n");
+
             }
-            
-            
+
+
             if (positionCounter!= 1) {
-            	
-            	sb.append("Difference: ").append(subtractTimes(timerTot,finishedAthlete.getCompetition().getTimeTot())).append("\n");
-            	sb.append("-------------------------------------------------------------------- \n");
+
+                sb.append("Difference: ").append(subtractTimes(timerTot,finishedAthlete.getCompetition().getTimeTot())).append("\n");
+                sb.append("-------------------------------------------------------------------- \n");
             }
-            
-            
+
+
             positionCounter++;
         }
 
@@ -64,29 +65,27 @@ public class RaceManager {
                 positionCounter++;
             }
         }
-      
+
         return sb.toString();
     }
-    
-    
     public static String subtractTimes(String time1, String time2) {
-        // Parsear los tiempos
+        // Parse times
         int[] time1Components = parseTime(time1);
         int[] time2Components = parseTime(time2);
-        
-        // Convertir ambos tiempos a segundos
+
+        // Convert both times to seconds
         int seconds1 = toSeconds(time1Components);
         int seconds2 = toSeconds(time2Components);
-        
-        // Restar los segundos
+
+        // Substract seconds
         int differenceInSeconds = Math.abs(seconds1 - seconds2);
-        
-        // Convertir la diferencia en horas, minutos y segundos
+
+        // Convert difference to hours, minutes and seconds
         int hours = differenceInSeconds / 3600;
         int minutes = (differenceInSeconds % 3600) / 60;
         int seconds = differenceInSeconds % 60;
-        
-        // Formatear el resultado
+
+        // Format result
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
@@ -101,5 +100,4 @@ public class RaceManager {
     private static int toSeconds(int[] timeComponents) {
         return timeComponents[0] * 3600 + timeComponents[1] * 60 + timeComponents[2];
     }
-    
 }

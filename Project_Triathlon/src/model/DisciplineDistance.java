@@ -5,13 +5,13 @@ public class DisciplineDistance {
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	
 	private double distance;
-	private double time;
+	private String time;
 	private Discipline discipline;
 	
 	
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	
-	public DisciplineDistance(double distance, double time, Discipline discipline) {
+	public DisciplineDistance(double distance, String time, Discipline discipline) {
 		super();
 		this.distance = distance;
 		this.time = time;
@@ -26,10 +26,10 @@ public class DisciplineDistance {
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
-	public double getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(double time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	public Discipline getDiscipline() {

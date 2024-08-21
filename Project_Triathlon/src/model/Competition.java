@@ -16,9 +16,9 @@ public class Competition {
 	private int stagesWinS;
     private int stagesWinP;
     private int stagesWinC;
-    private int racerWin;
-    private int racerdesertion;
-    private int racercomplete;
+    private int victories;
+    private int racedesertions;
+    private int finishedRaces;
     private String TimeTot;
 
 	
@@ -102,28 +102,28 @@ public class Competition {
 		this.stagesWinC = stagesWinC;
 	}
 
-	public int getRacerWin() {
-		return racerWin;
+	public int getVictories() {
+		return victories;
 	}
 
-	public void setRacerWin(int racerWin) {
-		this.racerWin = racerWin;
+	public void setVictories(int victories) {
+		this.victories = victories;
 	}
 
-	public int getRacerdesertion() {
-		return racerdesertion;
+	public int getRacedesertions() {
+		return racedesertions;
 	}
 
-	public void setRacerdesertion(int racerdesertion) {
-		this.racerdesertion = racerdesertion;
+	public void setRacedesertions(int racedesertions) {
+		this.racedesertions = racedesertions;
 	}
 
-	public int getRacercomplete() {
-		return racercomplete;
+	public int getFinishedRaces() {
+		return finishedRaces;
 	}
 
-	public void setRacercomplete(int racercomplete) {
-		this.racercomplete = racercomplete;
+	public void setFinishedRaces(int finishedRaces) {
+		this.finishedRaces = finishedRaces;
 	}
 
 	public void setPoints(int points){
@@ -161,13 +161,30 @@ public class Competition {
 				points += 50;
 				break;
 			default:
-				points += (43 - position); // Los siguientes atletas reciben menos puntos según su posición
+				points += (43 - position);
 				break;
 		}
 	}
-	
-	
-	
-	
+
+
+	public void addStageWinS() {
+		stagesWinS++;
+	}
+	public void addStageWinC(){
+		stagesWinC++;
+	}
+	public void addStageWinP(){
+		stagesWinP++;
+	}
+	public void addFinishedRaces(){
+		finishedRaces++;
+	}
+	public void addRaceDesertions(){
+		racedesertions++;
+	}
+	public void addVictory(){
+		victories++;
+	}
+
 }
 

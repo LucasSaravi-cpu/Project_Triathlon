@@ -55,7 +55,7 @@ public class Scoreboard extends JFrame {
 		});
 		icon = new ImageIcon(getClass().getResource("/Image/playMusicButton.png"));
 		scaledImage = icon.getImage().getScaledInstance(100, 26, Image.SCALE_SMOOTH);
-	    btnPlayMusic = new JButton(new ImageIcon(scaledImage));
+		JButton btnPlayMusic = new JButton(new ImageIcon(scaledImage));
 		btnPlayMusic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -78,10 +78,8 @@ public class Scoreboard extends JFrame {
 		btnListAthletesStats = new JButton(scaleImage(icon));
 		btnListAthletesStats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				textArea.setText(Championship.ListAthletesStats());
 
-			
-					textArea.setText(Championship.ListAthletesStats());
-				
 			}
 		});
 		icon = new ImageIcon(getClass().getResource("/Image/cleanButton.png"));
@@ -157,11 +155,10 @@ public class Scoreboard extends JFrame {
 		btnListAthletes = new JButton(scaleImage(icon));
 		btnListAthletes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (rdbtnalphabetic.isSelected())
-					Championship.sortByAlphabeticOrder();
-				
-					textArea.setText(Championship.ListAthletes());
-				
+				if (rdbtnposition.isSelected())
+					textArea.setText(Championship.ListAthletes(2));
+				else
+					textArea.setText(Championship.ListAthletes(1));
 
 			}
 		});
@@ -183,7 +180,7 @@ public class Scoreboard extends JFrame {
 		background.setIcon(new ImageIcon(Scoreboard.class.getResource("/Image/Scoreboard_background.png")));
 		background.setBounds(0, 0, 574, 686);
 		contentPane.add(background);
-		icon = new ImageIcon(getClass().getResource("/Image/newGameButton.png"));
+		icon = new ImageIcon(getClass().getResource("/Image/newRaceButton.png"));
 		newRace = new JButton(scaleImage(icon));
 		newRace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

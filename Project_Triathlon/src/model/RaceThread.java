@@ -50,8 +50,7 @@ public class RaceThread extends Thread {
     
     @Override
     public  void run() {
-    	
-    	  Chronometer chronometer = Championship.getChronometer();
+        Chronometer chronometer = Championship.getChronometer();
         try {
             while (!Thread.currentThread().isInterrupted()) {
                 Random random = new Random();
@@ -64,7 +63,7 @@ public class RaceThread extends Thread {
                 // Verifies if the athlete has energy
                 if (athlete.getEnergy() <= 0) {
                     Thread.currentThread().interrupt(); // Stops thread if the athlete has no energy
-                  
+                    athlete.getCompetition().addRaceDesertions();
                 }
                 
                     
@@ -81,13 +80,15 @@ public class RaceThread extends Thread {
 
     
     
-    private void moveLabel(Chronometer chronometer ) {
+    private void moveLabel(Chronometer chronometer) {
         if (positionX+10<=endX)
     	    positionX += 10; // Increments X position
         else {
         	positionX=endX;
-        	Thread.currentThread().interrupt(); 
-        	athlete.getCompetition().setTimeTot(Championship.getChronometer().getTime());
+        	Thread.currentThread().interrupt();
+            athlete.getCompetition().addStageWinS();
+            athlete.getCompetition().getDistances().add(new DisciplineDistance(race.getKmpedestrianism(), chronometer.getTime(), new Pedestrianism()));
+            athlete.getCompetition().setTimeTot(Championship.getChronometer().getTime());
         	raceManager.notifyAthleteFinished(athlete);
         	 
         }
@@ -112,29 +113,27 @@ public class RaceThread extends Thread {
             listener.energyChanged(event);
         }
     }
- 
     private void checkForDisciplineChange(Chronometer chronometer) {
-    	
-    	 double currentTime = chronometer.getTimeInSeconds(); 
         double progress = (double) (positionX - startX) / (endX - startX);
+        String currentTime = chronometer.getTime();
         if (progress >= race.getDisciplineChangePoints().get(0) + 70.0 / (endX-startX) && progress < race.getDisciplineChangePoints().get(0)+90.0/(endX-startX)) { // first line
             notifyDisciplineChange("cycling");
-            athlete.setCurrentDiscipline(new Cycling());
-          
-            athlete.getCompetition().getDistances().add(new DisciplineDistance(positionX, currentTime, new Swimming()));
-            
-            
-            
+            if (!athlete.getCurrentDiscipline().getClass().equals(Cycling.class)){
+                athlete.setCurrentDiscipline(new Cycling());
+                athlete.getCompetition().addStageWinS();
+                athlete.getCompetition().getDistances().add(new DisciplineDistance(race.getKmswimming(), currentTime, new Swimming()));
+            }
+
         } else if (progress >= race.getDisciplineChangePoints().get(1)-30.0/(endX-startX) && progress<race.getDisciplineChangePoints().get(1)-10.0/(endX-startX)) { // Second line
             notifyDisciplineChange("running");
-            athlete.setCurrentDiscipline(new Pedestrianism());
-            athlete.getCompetition().getDistances().add(new DisciplineDistance(positionX, currentTime, new Cycling()));
+            if (!athlete.getCurrentDiscipline().getClass().equals(Pedestrianism.class)) {
+                athlete.setCurrentDiscipline(new Pedestrianism());
+                athlete.getCompetition().addStageWinC();
+                athlete.getCompetition().getDistances().add(new DisciplineDistance(race.getKmcyclism(), currentTime, new Cycling()));
+            }
         }
-        
     }
-    
-    
-    
+
     public void addDisciplineChangeListener(DisciplineChangeListener listener) {
         disciplineListeners.add(listener);
     }
@@ -150,8 +149,6 @@ public class RaceThread extends Thread {
         }
     }
     
-    
-  
     
  
 

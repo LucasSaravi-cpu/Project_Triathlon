@@ -2,8 +2,8 @@
 <campeonato-triatlon>
 	<atletas>
 		<atleta numero="0231">
-			<apellido>Massimo</apellido>
-			<nombre>Lentini</nombre>
+			<apellido>Lentini</apellido>
+			<nombre>Massimo</nombre>
 			<dni>80807979</dni>
 			<nacionalidad>Italia</nacionalidad>
 			<fechaNacimiento>1985-04-15</fechaNacimiento>

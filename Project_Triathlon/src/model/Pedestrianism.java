@@ -4,23 +4,26 @@ public class Pedestrianism extends Discipline {
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	@Override
-	public double time(String modality) {
+	public String time(String modality) {
 		
-		double time = 0;
-		
+		String time = "00:00:00";
+
 		if (modality.equals("MediumDistance")) {
-		    time = 90;
+		    time = "01:30:00";
 		} else if (modality.equals("LongDistance")) {
-		    time = 180;
+		    time = "03:00:00";
 		} else if (modality.equals("Sprint")) {
-		    time = 30;
+		    time = "00:30:00";
 		} else if (modality.equals("OlympicDistance")) {
-		    time = 60;
+		    time = "01:00:00";
 		}
 		
 		return time;
 
-}
+    }
+	public String toString(){
+		return "Pedestrianism";
+	}
 }
 
 

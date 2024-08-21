@@ -5,18 +5,18 @@ public class Cycling extends Discipline{
 	 //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
 	@Override
-	public double time (String modality) {
+	public String time (String modality) {
 		
-		double time = 0;
+		String time = "00:00:00";
 		
 		if (modality.equals("MediumDistance")) {
-		    time = 120;
+		    time = "2:00:00";
 		} else if (modality.equals("LongDistance")) {
-		    time = 300;
+		    time = "5:00:00";
 		} else if (modality.equals("Sprint")) {
-		    time = 45;
+		    time = "00:45:00";
 		} else if (modality.equals("OlympicDistance")) {
-		    time = 60;
+		    time = "01:00:00";
 		}
 		
 		return time;
@@ -25,5 +25,7 @@ public class Cycling extends Discipline{
 
 
 	}
-
+    public String toString(){
+		return "Cycling";
+	}
 }
