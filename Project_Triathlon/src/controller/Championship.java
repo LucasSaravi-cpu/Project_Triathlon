@@ -552,9 +552,25 @@ public class Championship implements RaceListener {
     public static String ListAthletesStats () {
 
         StringBuilder sb = new StringBuilder();
-        for (Athlete athlete: athletes)
-        {
-            sb.append(athlete.toString());
+        for (Athlete athlete: athletes) {
+        	sb.append(athlete.getName()+"\n");
+        	
+            for ( DisciplineDistance dd : athlete.getCompetition().getDistances()) {
+                          
+              
+                int hours = (int) (dd.getTime() / 3600);
+                int minutes = (int) ((dd.getTime() % 3600) / 60);
+                int seconds = (int) (dd.getTime() % 60);
+                
+               String st = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+            	
+            	sb.append(dd.getDiscipline());
+            	sb.append(st + "\n");
+            	sb.append(dd.getDistance() +"km" +"\n");
+            	
+            }
+            
+            sb.append("----------------------------------------- \n");
         }
         
         return sb.toString();
@@ -660,6 +676,8 @@ public class Championship implements RaceListener {
     		
     }
   
+    
+    
     
   
 

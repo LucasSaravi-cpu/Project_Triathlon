@@ -69,4 +69,7 @@ public class Chronometer {
         return String.format("%02d:%02d:%02d", Hours, minutes, seconds);
     }
     
+    public double getTimeInSeconds() {
+        return Hours * 3600 + minutes * 60 + seconds;
+    }
 }

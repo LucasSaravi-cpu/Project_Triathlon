@@ -16,6 +16,7 @@ public class DisciplineDistance {
 		this.distance = distance;
 		this.time = time;
 		this.discipline = discipline;
+		
 	}
 	
 	 //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\

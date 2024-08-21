@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,6 +33,7 @@ public class Competition {
 		this.penalties = penalties;
 		this.race = race;
 		this.points=0;
+		this.distances = new HashSet<DisciplineDistance>();
 	}
 	
 	 //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
