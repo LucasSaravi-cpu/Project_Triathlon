@@ -40,14 +40,22 @@ public class WindowEndChampionship extends JFrame {
             scrollPane.setBorder(null);
             scrollPane.setBackground(new Color(0, 0, 0, 0));
             add(panel);
-            JButton restart = new JButton("New Game");
+            ImageIcon newIcon = new ImageIcon(getClass().getResource("/Image/newGameButton.png"));
+            Image scaledImage = newIcon.getImage().getScaledInstance(218, 43, Image.SCALE_SMOOTH);
+            JButton restart = new JButton(new ImageIcon(scaledImage));
             restart.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     RunSimulation.restartGame();
+
                 }
             });
-            panel.add(restart, BorderLayout.SOUTH);
+            restart.setSize(218, 43);
+            JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            buttonPanel.setOpaque(false);
+            buttonPanel.add(restart);
+
+            panel.add(buttonPanel, BorderLayout.SOUTH);
         }
 
         public void showWindow() {
