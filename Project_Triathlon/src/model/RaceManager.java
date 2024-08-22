@@ -68,7 +68,7 @@ public class RaceManager {
 
             if (positionCounter!= 1) {
 
-                sb.append("Difference: ").append(subtractTimes(timerTot,finishedAthlete.getCompetition().get(raceIndex).getTimeTot())).append("\n");
+                sb.append("Difference: ").append(Chronometer.subtractTimes(timerTot,finishedAthlete.getCompetition().get(raceIndex).getTimeTot())).append("\n");
                 sb.append("-------------------------------------------------------------------- \n");
             }
 
@@ -85,37 +85,5 @@ public class RaceManager {
         }
 
         return sb.toString();
-    }
-    public static String subtractTimes(String time1, String time2) {
-        // Parse times
-        int[] time1Components = parseTime(time1);
-        int[] time2Components = parseTime(time2);
-
-        // Convert both times to seconds
-        int seconds1 = toSeconds(time1Components);
-        int seconds2 = toSeconds(time2Components);
-
-        // Substract seconds
-        int differenceInSeconds = Math.abs(seconds1 - seconds2);
-
-        // Convert difference to hours, minutes and seconds
-        int hours = differenceInSeconds / 3600;
-        int minutes = (differenceInSeconds % 3600) / 60;
-        int seconds = differenceInSeconds % 60;
-
-        // Format result
-        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
-    }
-
-    private static int[] parseTime(String time) {
-        String[] parts = time.split(":");
-        int hours = Integer.parseInt(parts[0]);
-        int minutes = Integer.parseInt(parts[1]);
-        int seconds = Integer.parseInt(parts[2]);
-        return new int[] { hours, minutes, seconds };
-    }
-
-    private static int toSeconds(int[] timeComponents) {
-        return timeComponents[0] * 3600 + timeComponents[1] * 60 + timeComponents[2];
     }
 }

@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.metal.MetalRadioButtonUI;
+import javax.swing.table.DefaultTableModel;
 
 import controller.Championship;
 import model.Athlete;
@@ -30,6 +31,8 @@ public class Scoreboard extends JFrame {
     private JButton newRace;
     private JButton btnPlayMusic;
 	private TextArea textArea;
+	private JTable table;
+	private JScrollPane scrollPane;
 
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
@@ -68,20 +71,12 @@ public class Scoreboard extends JFrame {
 		contentPane.add(btnPlayMusic);
 		btnStopMusic.setBounds(24, 603, 100, 26);
 		contentPane.add(btnStopMusic);
-		
-		
 
 		textArea = new TextArea();
-		textArea.setBounds(21, 43, 517, 216);
-		contentPane.add(textArea);
-		icon = new ImageIcon(getClass().getResource("/Image/listAthletesStatsButton.png"));
-		btnListAthletesStats = new JButton(scaleImage(icon));
-		btnListAthletesStats.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textArea.setText(Championship.ListAthletesStats());
+		scrollPane = new JScrollPane(textArea);
+		scrollPane.setBounds(21, 43, 517, 216);
+		contentPane.add(scrollPane);
 
-			}
-		});
 		icon = new ImageIcon(getClass().getResource("/Image/cleanButton.png"));
 		btnClean = new JButton(scaleImage(icon));
 		btnClean.addActionListener(new ActionListener() {
@@ -146,6 +141,36 @@ public class Scoreboard extends JFrame {
 			}
 		});
 		contentPane.add(rdbtnposition);
+		icon = new ImageIcon(getClass().getResource("/Image/listAthletesStatsButton.png"));
+		JTable table = new JTable();
+		JScrollPane tableScrollPane = new JScrollPane(table);
+		tableScrollPane.setBounds(21, 43, 517, 216);
+		contentPane.add(tableScrollPane);
+		tableScrollPane.setVisible(false);
+		String[] columnNames = {
+				"Position", "Name", "Surname",
+				"Race 1 - Swimming", "Race 1 - Cycling", "Race 1 Pedestrianism",
+				"Race 2 - Swimming", "Race 2 - Cycling", "Race 2 Pedestrianism",
+				"Race 3 - Swimming", "Race 3 - Cycling", "Race 3 Pedestrianism",
+				"Race 4 - Swimming", "Race 4 - Cycling", "Race 4 Pedestrianism"
+		};
+
+		btnListAthletesStats = new JButton(scaleImage(icon));
+		btnListAthletesStats.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				scrollPane.setVisible(false);
+				Object[][] data;
+				if (rdbtnalphabetic.isSelected())
+				    data = controller.getAthletesData(1);
+				else
+					data = controller.getAthletesData(2);
+				DefaultTableModel model = new DefaultTableModel(data, columnNames);
+				table.setModel(model);
+				table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+				tableScrollPane.setVisible(true);
+
+			}
+		});
 		btnListAthletesStats.setBounds(24, 293, 218, 43);
 		contentPane.add(btnListAthletesStats);
 		ButtonGroup group = new ButtonGroup();
@@ -155,11 +180,9 @@ public class Scoreboard extends JFrame {
 		btnListAthletes = new JButton(scaleImage(icon));
 		btnListAthletes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (rdbtnposition.isSelected())
-					textArea.setText(Championship.ListAthletes(2));
-				else
-					textArea.setText(Championship.ListAthletes(1));
-
+				tableScrollPane.setVisible(false);
+				textArea.setText(Championship.ListAthletes());
+				scrollPane.setVisible(true);
 			}
 		});
 		btnListAthletes.setBounds(24, 393, 218, 43);
@@ -169,8 +192,9 @@ public class Scoreboard extends JFrame {
 		listRaceStats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Method for listing race Stats
+				tableScrollPane.setVisible(false);
 				textArea.setText(controller.updateRaceResults());
-				
+				scrollPane.setVisible(true);
 			}
 		});
 		listRaceStats.setBounds(24, 455, 218, 43);
@@ -214,4 +238,5 @@ public class Scoreboard extends JFrame {
 		contentPane.revalidate();
 		contentPane.repaint();
 	}
+
 }

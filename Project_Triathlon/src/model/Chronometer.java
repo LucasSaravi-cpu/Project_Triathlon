@@ -72,4 +72,36 @@ public class Chronometer {
     public double getTimeInSeconds() {
         return Hours * 3600 + minutes * 60 + seconds;
     }
+    public static String subtractTimes(String time1, String time2) {
+        // Parse times
+        int[] time1Components = Chronometer.parseTime(time1);
+        int[] time2Components = Chronometer.parseTime(time2);
+
+        // Convert both times to seconds
+        int seconds1 = Chronometer.toSeconds(time1Components);
+        int seconds2 = Chronometer.toSeconds(time2Components);
+
+        // Substract seconds
+        int differenceInSeconds = Math.abs(seconds1 - seconds2);
+
+        // Convert difference to hours, minutes and seconds
+        int hours = differenceInSeconds / 3600;
+        int minutes = (differenceInSeconds % 3600) / 60;
+        int seconds = differenceInSeconds % 60;
+
+        // Format result
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+
+    public static int[] parseTime(String time) {
+        String[] parts = time.split(":");
+        int hours = Integer.parseInt(parts[0]);
+        int minutes = Integer.parseInt(parts[1]);
+        int seconds = Integer.parseInt(parts[2]);
+        return new int[] { hours, minutes, seconds };
+    }
+
+    public static int toSeconds(int[] timeComponents) {
+        return timeComponents[0] * 3600 + timeComponents[1] * 60 + timeComponents[2];
+    }
 }

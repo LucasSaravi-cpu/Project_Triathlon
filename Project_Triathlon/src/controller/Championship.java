@@ -10,16 +10,7 @@ import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import java.util.Comparator;
+import java.util.*;
 
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
@@ -515,22 +506,60 @@ public class Championship implements RaceListener {
   
 
 	
-    public static String ListAthletes (int index) {
+    public static String ListAthletes () {
 
         StringBuilder sb = new StringBuilder();
-        List<Athlete> sortedList;
-        if (index==2)
-           sortedList = sortByChampionshipPosition();
-        else {
-           sortedList = sortByAlphabeticOrder();
-        }
-        for (Athlete athlete: sortedList) {
+        for (Athlete athlete: athletes) {
             sb.append(athlete);
         }
 
         return sb.toString();
     }
+    public Object[][] getAthletesData(int index) {
+        List<Athlete> sortedList;
 
+        if (index == 2) {
+            sortedList = sortByChampionshipPosition();
+        } else {
+            sortedList = sortByAlphabeticOrder();
+        }
+
+        Map<Athlete, Integer> championshipPositions = new HashMap<>();
+        List<Athlete> championshipSorted = sortByChampionshipPosition();
+        for (int i = 0; i < championshipSorted.size(); i++) {
+            championshipPositions.put(championshipSorted.get(i), i + 1);
+        }
+
+        Object[][] tableData = new Object[sortedList.size()][14];
+
+        for (int i = 0; i < sortedList.size(); i++) {
+            Athlete athlete = sortedList.get(i);
+            tableData[i][0] = championshipPositions.get(athlete);
+            tableData[i][1] = athlete.getName();
+            tableData[i][2] = athlete.getSurname();
+
+            for (int j = 0; j < 4 && j < athlete.getCompetition().size(); j++) {
+                Competition comp = athlete.getCompetition().get(j);
+                int baseIndex = 3 + (j * 3); // Índice base para las columnas de esta competencia
+
+                for (DisciplineDistance dd : comp.getDistances()) {
+                    switch (dd.getDiscipline().getClass().getSimpleName()) {
+                        case "Swimming":
+                            tableData[i][baseIndex] = dd.getTime();
+                            break;
+                        case "Cycling":
+                            tableData[i][baseIndex + 1] = dd.getTime();
+                            break;
+                        case "Pedestrianism":
+                            tableData[i][baseIndex + 2] = dd.getTime();
+                            break;
+                    }
+                }
+            }
+        }
+
+        return tableData;
+    }
     public static String ListAthletesStats () {
 
         StringBuilder sb = new StringBuilder();

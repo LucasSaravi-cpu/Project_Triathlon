@@ -88,7 +88,9 @@ public class RaceThread extends Thread {
         else {
         	positionX=endX;
         	Thread.currentThread().interrupt();
-            athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKmpedestrianism(), chronometer.getTime(), new Pedestrianism()));
+            String t1 = athlete.getCompetition().get(raceIndex).getDistances().get(0).getTime();
+            String t2 = athlete.getCompetition().get(raceIndex).getDistances().get(1).getTime();
+            athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKmpedestrianism(), Chronometer.subtractTimes(Chronometer.subtractTimes(chronometer.getTime(), t1), t2), new Pedestrianism()));
             athlete.getCompetition().get(raceIndex).setTimeTot(Championship.getChronometer().getTime());
         	raceManager.notifyAthleteFinished(athlete);
         	 
@@ -136,7 +138,7 @@ public class RaceThread extends Thread {
                     athlete.addStageWinC();
                     raceManager.markDisciplineAsWon("cycling");
                 }
-                athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKmcyclism(), currentTime, new Cycling()));
+                athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKmcyclism(), Chronometer.subtractTimes(currentTime, athlete.getCompetition().get(raceIndex).getDistances().get(0).getTime()), new Cycling()));
             }
         }
     }
