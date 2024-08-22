@@ -8,18 +8,36 @@ public class RaceManager {
 	
     private static List<Athlete> finishedAthletes = new ArrayList<>();
     private String timerTot="";
+    private int raceIndex;
+    private Map<String, Boolean> disciplineWins = new HashMap<>();
     public static void clearFinishedAthletes(){
         finishedAthletes.clear();
     }
-	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
-    
+
+    //------------------------------------------------>||CONSTRUCTORS|<--------------------------------------------------------\\
+
+    public RaceManager(int raceIndex){
+        this.raceIndex=raceIndex;
+        disciplineWins.put("swimming", false);
+        disciplineWins.put("cycling", false);
+        disciplineWins.put("running", false);
+    }
+    //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+    public boolean isDisciplineWon(String discipline) {
+        return disciplineWins.getOrDefault(discipline, false);
+    }
+
+    public void markDisciplineAsWon(String discipline) {
+        disciplineWins.put(discipline, true);
+    }
     public synchronized void notifyAthleteFinished(Athlete athlete) {
-        if (finishedAthletes.size()==0)
-            athlete.getCompetition().addVictory();
+        if (finishedAthletes.size()==0) {
+            athlete.addVictory();
+            athlete.addStageWinP();
+        }
         finishedAthletes.add(athlete);
-        athlete.getCompetition().addStageWinP();
-        athlete.getCompetition().addFinishedRaces();
-        athlete.getCompetition().updatePoints(finishedAthletes.size());
+        athlete.addFinishedRaces();
+        athlete.updatePoints(finishedAthletes.size());
        }
      
     
@@ -37,12 +55,12 @@ public class RaceManager {
 
         int positionCounter = 1;
         for (Athlete finishedAthlete : finishedAthletes) {
-            sb.append(positionCounter).append(": ").append(finishedAthlete.getName()).append(" ").append(finishedAthlete.getSurname()).append("\n").append("Time : ").append(finishedAthlete.getCompetition().getTimeTot()).append("\n");
+            sb.append(positionCounter).append(": ").append(finishedAthlete.getName()).append(" ").append(finishedAthlete.getSurname()).append("\n").append("Time : ").append(finishedAthlete.getCompetition().get(raceIndex).getTimeTot()).append("\n");
 
 
             if (positionCounter==1) {
 
-                timerTot= finishedAthlete.getCompetition().getTimeTot();
+                timerTot= finishedAthlete.getCompetition().get(raceIndex).getTimeTot();
                 sb.append("-------------------------------------------------------------------- \n");
 
             }
@@ -50,7 +68,7 @@ public class RaceManager {
 
             if (positionCounter!= 1) {
 
-                sb.append("Difference: ").append(subtractTimes(timerTot,finishedAthlete.getCompetition().getTimeTot())).append("\n");
+                sb.append("Difference: ").append(subtractTimes(timerTot,finishedAthlete.getCompetition().get(raceIndex).getTimeTot())).append("\n");
                 sb.append("-------------------------------------------------------------------- \n");
             }
 

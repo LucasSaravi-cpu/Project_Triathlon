@@ -172,11 +172,11 @@ public class Championship implements RaceListener {
        
        
         int i=0;
-        raceManager = new RaceManager();
+        raceManager = new RaceManager(race);
     	for (Athlete athlete:  athletes) {
             athlete.setCurrentDiscipline(new Swimming());
     		windowRace.getRacePanel().getLabels().get(i).setText(athlete.getName() + " " + athlete.getSurname());
-    		RaceThread thread = new RaceThread(startX, startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager, SelectionRace.get(race));
+    		RaceThread thread = new RaceThread(startX, startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager, SelectionRace.get(race), race);
     		athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
             i++;
 
@@ -291,16 +291,17 @@ public class Championship implements RaceListener {
                 }
 
                 PhysicalConditions physicalconditions  = new PhysicalConditions(swimmingAptitude, cyclismAptitude, pedestrianismAptitude, stamina, mentalStrength);
-
-                Competition competition = new Competition(0, "" ,null, null, null);
-                
+                List<Competition> comp = new ArrayList<>();
+                for (int j=0; j<4; j++) {
+                    comp.add(new Competition(0, "", null, null, null));
+                }
                 if (category.equalsIgnoreCase("Amateur")) {
-	                Athlete athlete = new Amateur(num, name, surname, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions,competition);
+	                Athlete athlete = new Amateur(num, name, surname, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions, comp);
 	                athletes.add(athlete);
                 }
                 else {
 
-                	Athlete athlete = new Competitor(num, name, surname, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions,competition);
+                	Athlete athlete = new Competitor(num, name, surname, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions,comp);
                 	athletes.add(athlete);
                 }
 
@@ -512,23 +513,6 @@ public class Championship implements RaceListener {
 	        return new ArrayList<>(bestRaceForModality.values()).subList(0, 4);
 	    }
   
-	  
-	  private static List<Athlete> getTop10Athletes(List<Athlete> originalAthletes) {
-		  List<Athlete>  selectedAthletes = new ArrayList<>();
-
-	 	 //Shuffle the list to obtain a random order
-		  Collections.shuffle(originalAthletes);
-
-
-	        //Limit the size to 10 or the size of the original list, whichever is smaller
-	        int numberOfAthletesToSelect = Math.min(originalAthletes.size(), 10);
-
-	        for (int i = 0; i < numberOfAthletesToSelect; i++) {
-	            selectedAthletes.add(originalAthletes.get(i));
-	        }
-
-	        return selectedAthletes;
-	    }
 
 	
     public static String ListAthletes (int index) {
@@ -541,16 +525,7 @@ public class Championship implements RaceListener {
            sortedList = sortByAlphabeticOrder();
         }
         for (Athlete athlete: sortedList) {
-            if (sortedList.indexOf(athlete)>0)
-                sb.append("\n");
-
-            sb.append(" Surname: ").append(athlete.getSurname()).append("\n Name: ").append(athlete.getName())
-                    .append("\n Nationality: ").append(athlete.getNationality()).append("\n Cathegory: ").append(athlete.getCathegory()) .append("\n Stage Wins (Swimming): ").append(athlete.getCompetition().getStagesWinS())
-                    .append("\n Stage Wins (Pedestrianism): ").append(athlete.getCompetition().getStagesWinP()).append("\n Stage Wins (Cycling): ").append(athlete.getCompetition().getStagesWinC())
-                    .append("\n Races Won: ").append(athlete.getCompetition().getVictories()).append("\n Race Desertions: ").append(athlete.getCompetition().getRacedesertions())
-                    .append("\n Races Completed: ").append(athlete.getCompetition().getFinishedRaces());
-
-            sb.append("\n");
+            sb.append(athlete);
         }
 
         return sb.toString();
@@ -561,15 +536,18 @@ public class Championship implements RaceListener {
         StringBuilder sb = new StringBuilder();
         for (Athlete athlete: athletes) {
             sb.append(athlete.getName()+"\n");
+            for (Competition comp: athlete.getCompetition()) {
+                sb.append("Race ").append(athlete.getCompetition().indexOf(comp) + 1).append("\n\n");
+                for (DisciplineDistance dd : comp.getDistances()) {
+                    sb.append(dd.getDiscipline()).append(": ");
+                    sb.append(dd.getTime() + "\n");
+                    sb.append(String.format("%.2f", dd.getDistance()) + " km" + "\n");
 
-            for (DisciplineDistance dd : athlete.getCompetition().getDistances()) {
-                sb.append(dd.getDiscipline()).append(": ");
-                sb.append(dd.getTime() + "\n");
-                sb.append(String.format("%.2f", dd.getDistance()) +" km" +"\n");
+                }
 
+                sb.append("----------------------------------------- \n");
             }
-
-            sb.append("----------------------------------------- \n");
+            sb.append("\n");
         }
         
         return sb.toString();
@@ -591,7 +569,7 @@ public class Championship implements RaceListener {
         List<Athlete> sortedList = new ArrayList<>();
         for (Athlete athlete : athletes)
             sortedList.add(athlete);
-        sortedList.sort((Comparator.comparingInt(athlete -> ((Athlete) athlete).getCompetition().getPoints()).reversed()));
+        sortedList.sort((Comparator.comparingInt(athlete -> ((Athlete) athlete).getPoints()).reversed()));
         return sortedList;
     }
     public String updateRaceResults() {
@@ -641,14 +619,14 @@ public class Championship implements RaceListener {
         scoreboard.setVisible(false);
         windowRace.setVisible(false);
         StringBuilder results = new StringBuilder();
-        athletes.sort(Comparator.comparingInt(athlete -> ((Athlete) athlete).getCompetition().getPoints()).reversed());
+        athletes.sort(Comparator.comparingInt(athlete -> ((Athlete) athlete).getPoints()).reversed());
         int position=1;
         for (Athlete athlete : athletes) {
             results.append(athletes.indexOf(athlete) + 1);
             results.append(": ");
             results.append(athlete.getName()).append(" ").append(athlete.getSurname())
                     .append(". Points: ")
-                    .append(athlete.getCompetition().getPoints())
+                    .append(athlete.getPoints())
                     .append(".\n");
         }
 

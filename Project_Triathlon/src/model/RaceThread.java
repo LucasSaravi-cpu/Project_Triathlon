@@ -24,11 +24,12 @@ public class RaceThread extends Thread {
     private final Championship controller;
     private RaceManager raceManager;
     private Race race;
+    private int raceIndex;
  
     
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
-    public RaceThread(int startX, int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller, RaceManager raceManager, Race race) {
+    public RaceThread(int startX, int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller, RaceManager raceManager, Race race, int raceIndex) {
         this.startX=startX;
         this.positionX = positionX;
         this.listener = listener;
@@ -38,6 +39,7 @@ public class RaceThread extends Thread {
         activeThreads.incrementAndGet();
         this.raceManager = raceManager;
         this.race=race;
+        this.raceIndex= raceIndex;
     }
     public int getPositionX(){
         return positionX;
@@ -63,7 +65,7 @@ public class RaceThread extends Thread {
                 // Verifies if the athlete has energy
                 if (athlete.getEnergy() <= 0) {
                     Thread.currentThread().interrupt(); // Stops thread if the athlete has no energy
-                    athlete.getCompetition().addRaceDesertions();
+                    athlete.addRaceDesertions();
                 }
                 
                     
@@ -86,9 +88,8 @@ public class RaceThread extends Thread {
         else {
         	positionX=endX;
         	Thread.currentThread().interrupt();
-            athlete.getCompetition().addStageWinS();
-            athlete.getCompetition().getDistances().add(new DisciplineDistance(race.getKmpedestrianism(), chronometer.getTime(), new Pedestrianism()));
-            athlete.getCompetition().setTimeTot(Championship.getChronometer().getTime());
+            athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKmpedestrianism(), chronometer.getTime(), new Pedestrianism()));
+            athlete.getCompetition().get(raceIndex).setTimeTot(Championship.getChronometer().getTime());
         	raceManager.notifyAthleteFinished(athlete);
         	 
         }
@@ -120,16 +121,22 @@ public class RaceThread extends Thread {
             notifyDisciplineChange("cycling");
             if (!athlete.getCurrentDiscipline().getClass().equals(Cycling.class)){
                 athlete.setCurrentDiscipline(new Cycling());
-                athlete.getCompetition().addStageWinS();
-                athlete.getCompetition().getDistances().add(new DisciplineDistance(race.getKmswimming(), currentTime, new Swimming()));
+                if (!raceManager.isDisciplineWon("swimming")) {
+                    athlete.addStageWinS();
+                    raceManager.markDisciplineAsWon("swimming");
+                }
+                athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKmswimming(), currentTime, new Swimming()));
             }
 
         } else if (progress >= race.getDisciplineChangePoints().get(1)-30.0/(endX-startX) && progress<race.getDisciplineChangePoints().get(1)-10.0/(endX-startX)) { // Second line
             notifyDisciplineChange("running");
             if (!athlete.getCurrentDiscipline().getClass().equals(Pedestrianism.class)) {
                 athlete.setCurrentDiscipline(new Pedestrianism());
-                athlete.getCompetition().addStageWinC();
-                athlete.getCompetition().getDistances().add(new DisciplineDistance(race.getKmcyclism(), currentTime, new Cycling()));
+                if (!raceManager.isDisciplineWon("cycling")) {
+                    athlete.addStageWinC();
+                    raceManager.markDisciplineAsWon("cycling");
+                }
+                athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKmcyclism(), currentTime, new Cycling()));
             }
         }
     }

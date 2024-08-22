@@ -29,8 +29,16 @@ public abstract class Athlete {
     private PhysicalConditions stats;
     private double energy;
     private final List<EnergyListener> listeners = new ArrayList<>();
-    private Competition competition;
+    private List<Competition> competition;
 	private Discipline currentDiscipline;
+	private int stagesWinS;
+	private int stagesWinP;
+	private int stagesWinC;
+	private int racedesertions;
+	private int finishedRaces;
+	private int points;
+	private int victories;
+
     
  
    //------------------------------------------------>||VARIABLE||<--------------------------------------------------------\\
@@ -40,7 +48,7 @@ public abstract class Athlete {
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
 	public Athlete(int num, String name,String surname, String id, Country nationality, Date birthDate, String gender, double weight,
-			double height, double percEndedRaces, double economicBudget, int ranking, PhysicalConditions stats,Competition competition) {
+			double height, double percEndedRaces, double economicBudget, int ranking, PhysicalConditions stats, List<Competition> competition) {
 		super();
 		this.num = num;
 		this.name = name;
@@ -56,6 +64,13 @@ public abstract class Athlete {
 		this.ranking = ranking;
 		this.stats = stats;
 		this.competition=competition;
+		this.stagesWinS=0;
+		this.stagesWinC=0;
+		this.stagesWinP=0;
+		this.finishedRaces=0;
+		this.racedesertions=0;
+		this.points=0;
+		this.victories=0;
 	}
 	
 	   //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
@@ -139,14 +154,69 @@ public abstract class Athlete {
 	public void setStats(PhysicalConditions stats) {
 		this.stats = stats;
 	}
-	
-	
 
-	public Competition getCompetition() {
+	public int getStagesWinS() {
+		return stagesWinS;
+	}
+
+	public void setStagesWinS(int stagesWinS) {
+		this.stagesWinS = stagesWinS;
+	}
+
+	public int getStagesWinP() {
+		return stagesWinP;
+	}
+
+	public void setStagesWinP(int stagesWinP) {
+		this.stagesWinP = stagesWinP;
+	}
+
+	public int getStagesWinC() {
+		return stagesWinC;
+	}
+
+	public void setStagesWinC(int stagesWinC) {
+		this.stagesWinC = stagesWinC;
+	}
+
+	public int getVictories() {
+		return victories;
+	}
+
+	public void setVictories(int victories) {
+		this.victories = victories;
+	}
+
+	public int getRacedesertions() {
+		return racedesertions;
+	}
+
+	public void setRacedesertions(int racedesertions) {
+		this.racedesertions = racedesertions;
+	}
+
+	public int getFinishedRaces() {
+		return finishedRaces;
+	}
+
+	public void setFinishedRaces(int finishedRaces) {
+		this.finishedRaces = finishedRaces;
+	}
+
+	public void setPoints(int points){
+		this.points=points;
+	}
+	public int getPoints(){
+		return points;
+	}
+
+
+
+	public List<Competition> getCompetition() {
 		return competition;
 	}
 
-	public void setCompetition(Competition competition) {
+	public void setCompetition(List<Competition> competition) {
 		this.competition = competition;
 	}
 	
@@ -206,7 +276,7 @@ public abstract class Athlete {
        setEnergy(newEnergy);
        
    }
-    
+    /*
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -218,7 +288,7 @@ public abstract class Athlete {
 		
 		return sb.toString();
 	}
-	
+	*/
 	
 	public String listStats(){
 		return stats.toString();
@@ -256,5 +326,59 @@ public abstract class Athlete {
 	        }
 	    }
 
-		
+	public void updatePoints(int position) {
+		switch(position) {
+			case 1:
+				points += 100;
+				break;
+			case 2:
+				points += 85;
+				break;
+			case 3:
+				points += 70;
+				break;
+			case 4:
+				points += 60;
+				break;
+			case 5:
+				points += 50;
+				break;
+			default:
+				points += (43 - position);
+				break;
+		}
+	}
+
+
+	public void addStageWinS() {
+		stagesWinS++;
+	}
+	public void addStageWinC(){
+		stagesWinC++;
+	}
+	public void addStageWinP(){
+		stagesWinP++;
+	}
+	public void addFinishedRaces(){
+		finishedRaces++;
+	}
+	public void addRaceDesertions(){
+		racedesertions++;
+	}
+	public void addVictory(){
+		victories++;
+	}
+	public String toString(){
+	   StringBuilder sb = new StringBuilder();
+		sb.append("\n");
+
+		sb.append(" Surname: ").append(surname).append("\n Name: ").append(name)
+				.append("\n Nationality: ").append(nationality).append("\n Cathegory: ").append(getCathegory()) .append("\n Stage Wins (Swimming): ").append(stagesWinS)
+				.append("\n Stage Wins (Pedestrianism): ").append(stagesWinP).append("\n Stage Wins (Cycling): ").append(stagesWinC)
+				.append("\n Races Won: ").append(victories).append("\n Race Desertions: ").append(racedesertions)
+				.append("\n Races Completed: ").append(finishedRaces);
+
+		sb.append("\n");
+	   return sb.toString();
+	}
 }

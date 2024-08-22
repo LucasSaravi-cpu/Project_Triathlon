@@ -1,14 +1,15 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Amateur extends Athlete {
-	
+
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
 	public Amateur(int num, String name, String surname, String id, Country nationality, Date birthDate, String gender,
 			double weight, double height, double percEndedRaces, double economicBudget, int ranking,
-			PhysicalConditions stats,Competition competition) {
+			PhysicalConditions stats, List<Competition> competition) {
 		super(num, name, surname, id, nationality, birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking,
 				stats,competition);
 		// TODO Auto-generated constructor stub
