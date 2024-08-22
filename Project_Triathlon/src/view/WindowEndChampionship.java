@@ -1,8 +1,12 @@
 package view;
 
+import Init.RunSimulation;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class WindowEndChampionship extends JFrame {
 
@@ -36,6 +40,14 @@ public class WindowEndChampionship extends JFrame {
             scrollPane.setBorder(null);
             scrollPane.setBackground(new Color(0, 0, 0, 0));
             add(panel);
+            JButton restart = new JButton("New Game");
+            restart.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    RunSimulation.restartGame();
+                }
+            });
+            panel.add(restart, BorderLayout.SOUTH);
         }
 
         public void showWindow() {
