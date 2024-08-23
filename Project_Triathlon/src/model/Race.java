@@ -34,7 +34,7 @@ public class Race {
     private double kmcyclism;
     private double  kmpedestrianism;
     private List<Stations> stations;
-    private double T1 , T2 ,T3;
+    private int T1 , T2 ,T3;
     
 
 
@@ -151,28 +151,43 @@ public class Race {
 		this.stations = stations;
 	}
 
-	  public double getT1() {
+	  public int getT1() {
 			return T1;
 		}
-		public void setT1(double t1) {
+
+
+		public void setT1(int t1) {
 			T1 = t1;
 		}
-		public double getT2() {
+
+
+		public int getT2() {
 			return T2;
 		}
-		public void setT2(double t2) {
+
+
+		public void setT2(int t2) {
 			T2 = t2;
 		}
-		public double getT3() {
+
+
+		public int getT3() {
 			return T3;
 		}
-		public void setT3(double t3) {
+
+
+		public void setT3(int t3) {
 			T3 = t3;
 		}
 	
+	
+	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	
-	  // Static method to generate a random boolean
+	
+
+
+	// Static method to generate a random boolean
     public static boolean UseOfDraftingInRacer() {
         Random random = new Random();
         return random.nextBoolean();

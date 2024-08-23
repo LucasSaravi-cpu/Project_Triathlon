@@ -39,6 +39,7 @@ public abstract class Athlete {
 	private int points;
 	private int victories;
 
+
     
  
    //------------------------------------------------>||VARIABLE||<--------------------------------------------------------\\

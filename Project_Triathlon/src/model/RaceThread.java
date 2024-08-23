@@ -68,6 +68,33 @@ public class RaceThread extends Thread {
                     athlete.addRaceDesertions();
                 }
                 
+                
+                double progress = (double) (positionX - startX) / (endX - startX);
+                
+                
+              	int minutes = Chronometer.TimerMinutes(chronometer.getTime());
+                
+              
+                
+                if ( minutes>race.getT1() && progress <= race.getDisciplineChangePoints().get(0) + 70.0 / (endX-startX))  {
+                    Thread.currentThread().interrupt();
+                    athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress,"Forfeited", new Swimming()));
+                       
+           
+                }
+                
+                if ( minutes >race.getT1()+race.getT2() && progress >= race.getDisciplineChangePoints().get(0) + 70.0 / (endX-startX) && progress < race.getDisciplineChangePoints().get(1)-30.0/(endX-startX) ){
+                	  Thread.currentThread().interrupt();
+                	  athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress,"Forfeited" , new Cycling()));
+                }
+                
+                if (minutes>race.getT1()+race.getT2()+race.getT3()  && (progress >= race.getDisciplineChangePoints().get(1)-30.0/(endX-startX) && progress<1)) {
+              	  Thread.currentThread().interrupt();
+               	 athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress, "Forfeited", new Pedestrianism()));
+              	 
+                }
+               
+                
                     
             }
         } catch (InterruptedException e) {

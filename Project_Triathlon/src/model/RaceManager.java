@@ -67,10 +67,13 @@ public class RaceManager {
 
 
             if (positionCounter!= 1) {
-
+            	
+            	
                 sb.append("Difference: ").append(Chronometer.subtractTimes(timerTot,finishedAthlete.getCompetition().get(raceIndex).getTimeTot())).append("\n");
                 sb.append("-------------------------------------------------------------------- \n");
+            	
             }
+            	
 
 
             positionCounter++;
@@ -79,7 +82,14 @@ public class RaceManager {
         for (Map.Entry<Athlete, Integer> entry : sortedEntries) {
             Athlete athlete = entry.getKey();
             if (!finishedAthletes.contains(athlete)) {
-                sb.append(positionCounter).append(": ").append(athlete.getName()).append(" ").append(athlete.getSurname()).append("\n");
+            	
+            	sb.append(positionCounter).append(": ").append(athlete.getName()).append(" ").append(athlete.getSurname()).append("\n");    
+            	
+            	
+            	if (athlete.getCompetition().get(raceIndex).getDistances().stream().anyMatch(distance -> "Forfeited".equals(distance.getTime()))) {
+            		sb.append("Forfeited \n");
+            	}
+            	
                 positionCounter++;
             }
         }

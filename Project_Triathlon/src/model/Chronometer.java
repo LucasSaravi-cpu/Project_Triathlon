@@ -104,4 +104,16 @@ public class Chronometer {
     public static int toSeconds(int[] timeComponents) {
         return timeComponents[0] * 3600 + timeComponents[1] * 60 + timeComponents[2];
     }
+    
+    
+    public static int TimerMinutes(String timer) {
+        int[] timeComponents = Chronometer.parseTime(timer);
+
+      
+        int totalMinutes = timeComponents[0] * 60 + timeComponents[1];
+
+        return totalMinutes;
+    }
+    
+    
 }

@@ -161,7 +161,8 @@ public class Championship implements RaceListener {
       WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(Championship.loadDatabase());
       notifyWeatherUpdate(weatherconditions);
        
-       
+     Championship.TotalTimeForRace(SelectionRace.get(race)) ;
+    
         int i=0;
         raceManager = new RaceManager(race);
     	for (Athlete athlete:  athletes) {
@@ -540,9 +541,11 @@ public class Championship implements RaceListener {
 
             for (int j = 0; j < 4 && j < athlete.getCompetition().size(); j++) {
                 Competition comp = athlete.getCompetition().get(j);
-                int baseIndex = 3 + (j * 3); // Índice base para las columnas de esta competencia
+                int baseIndex = 3 + (j * 3); 
 
                 for (DisciplineDistance dd : comp.getDistances()) {
+                	
+               	
                     switch (dd.getDiscipline().getClass().getSimpleName()) {
                         case "Swimming":
                             tableData[i][baseIndex] = dd.getTime();
@@ -560,27 +563,7 @@ public class Championship implements RaceListener {
 
         return tableData;
     }
-    public static String ListAthletesStats () {
 
-        StringBuilder sb = new StringBuilder();
-        for (Athlete athlete: athletes) {
-            sb.append(athlete.getName()+"\n");
-            for (Competition comp: athlete.getCompetition()) {
-                sb.append("Race ").append(athlete.getCompetition().indexOf(comp) + 1).append("\n\n");
-                for (DisciplineDistance dd : comp.getDistances()) {
-                    sb.append(dd.getDiscipline()).append(": ");
-                    sb.append(dd.getTime() + "\n");
-                    sb.append(String.format("%.2f", dd.getDistance()) + " km" + "\n");
-
-                }
-
-                sb.append("----------------------------------------- \n");
-            }
-            sb.append("\n");
-        }
-        
-        return sb.toString();
-    }
 
     public void allThreadsCompleted() {
         scoreboard.setNewRace();
@@ -663,20 +646,20 @@ public class Championship implements RaceListener {
         end.showWindow();
     }
     
-    /*
+
     
-    private double TotalTimeForRace(Race race) {
+    public static void TotalTimeForRace(Race race) {
     	
-    	 double tot = 0;
+    	
     	
     	for (DisciplineDistance disiciplinedistance : race.getModality().getDisciplinedistance()) {
     		
-    		tot += disiciplinedistance.getDiscipline().time(race.getModality().getName());
+    		
     		
     		  Discipline discipline =disiciplinedistance.getDiscipline();
     	        String modalityName = race.getModality().getName();
-    	        double time = discipline.time(modalityName);
-
+    	      
+    	        int time =Chronometer.TimerMinutes(discipline.time(modalityName));
     	     
     	        if (discipline instanceof Swimming) {
     	            race.setT1(time);
@@ -689,9 +672,9 @@ public class Championship implements RaceListener {
     		
     	}
     	
-    	return tot;
+    
     		
-    }*/
+    }
   
     
   

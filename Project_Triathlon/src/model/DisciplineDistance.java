@@ -41,7 +41,20 @@ public class DisciplineDistance {
 
 	
 	
-	
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        DisciplineDistance that = (DisciplineDistance) obj;
+
+        return time != null ? time.equals(that.time) : that.time == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return time != null ? time.hashCode() : 0;
+    }
 	
 
 }
