@@ -258,17 +258,7 @@ public abstract class Athlete {
 	
 
 	public double getBaseSpeed() {
-		double baseSpeed = 0.0; //FALTA UNA FORMA DE CAMBIAR CURRENT DISCIPLINE CON EL LISTENER
-
-		if (this.currentDiscipline.getClass().equals(Pedestrianism.class)) {
-			baseSpeed = 1000 + this.stats.getPedestrianismAptitude() * 70;
-		} else if (this.currentDiscipline.getClass().equals(Cycling.class)) {
-			baseSpeed = 1000 + this.stats.getCyclismAptitude() * 100;
-		} else if (this.currentDiscipline.getClass().equals(Swimming.class)) {
-			baseSpeed = 1000 + this.stats.getSwimmingAptitude() * 40;
-		}
-
-		return baseSpeed;
+		return currentDiscipline.getBaseSpeed(stats);
 	}
 
 

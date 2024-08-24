@@ -43,7 +43,6 @@ public class Championship implements RaceListener {
 	 private Weatherboard weatherboard;
      private static List <Race> races;
 	 private static List<Athlete> athletes;
-	 private static List<Athlete> SelectionAthletes;
 	 private static List<Race> SelectionRace;
 	 private List<RaceThread> raceThreads;
 	 private static int race;
@@ -649,29 +648,22 @@ public class Championship implements RaceListener {
         WindowEndChampionship end = new WindowEndChampionship(results.toString());
         end.showWindow(true);
     }
-    
+
 
     
     public static void TotalTimeForRace(Race race) {
     	
     	
     	
-    	for (DisciplineDistance disiciplinedistance : race.getModality().getDisciplinedistance()) {
+    	for (DisciplineDistance disciplinedistance : race.getModality().getDisciplinedistance()) {
     		
     		
     		
-    		  Discipline discipline =disiciplinedistance.getDiscipline();
+    		    Discipline discipline =disciplinedistance.getDiscipline();
     	        String modalityName = race.getModality().getName();
     	      
     	        int time =Chronometer.TimerMinutes(discipline.time(modalityName));
-    	     
-    	        if (discipline instanceof Swimming) {
-    	            race.setT1(time);
-    	        } else if (discipline instanceof Cycling) {
-    	        	race.setT2(time);
-    	        } else if (discipline instanceof Pedestrianism) {
-    	        	race.setT3(time);
-    	        }
+    	        discipline.setTime(race, time);
     
     		
     	}

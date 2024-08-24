@@ -13,4 +13,6 @@ public abstract class Discipline {
 	public abstract Discipline createInstance();
     public abstract double getPoints(List<Double> disciplineChangePoints, Stations station, Race race, int startX, int endX);
     public abstract ImageIcon getNewIcon();
+    public abstract void setTime (Race race, int time);
+    public abstract double getBaseSpeed(PhysicalConditions stats);
 }

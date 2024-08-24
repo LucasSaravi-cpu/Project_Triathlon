@@ -53,4 +53,12 @@ public class Cycling extends Discipline{
 	public ImageIcon getNewIcon(){
 		return new ImageIcon(getClass().getResource("/Image/cycling.png"));
 	}
+	@Override
+	public void setTime(Race race, int time) {
+		race.setT2(time);
+	}
+	@Override
+	public double getBaseSpeed(PhysicalConditions stats){
+		return 1000 + stats.getCyclismAptitude() * 100;
+	}
 }

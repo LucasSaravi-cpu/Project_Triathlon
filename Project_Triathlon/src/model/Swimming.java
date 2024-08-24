@@ -50,4 +50,12 @@ public class Swimming extends Discipline {
 	public ImageIcon getNewIcon(){
 		return null;
 	}
+	@Override
+	public void setTime(Race race, int time) {
+		race.setT1(time);
+	}
+	@Override
+	public double getBaseSpeed(PhysicalConditions stats){
+		return 1000 + stats.getSwimmingAptitude() * 40;
+	}
 }

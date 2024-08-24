@@ -49,6 +49,14 @@ public class Pedestrianism extends Discipline {
 	public Pedestrianism createInstance(){
 		return new Pedestrianism();
 	}
+	@Override
+	public void setTime(Race race, int time) {
+		race.setT3(time);
+	}
+	@Override
+	public double getBaseSpeed(PhysicalConditions stats){
+		return 1000 + stats.getPedestrianismAptitude() * 70;
+	}
 }
 
 
