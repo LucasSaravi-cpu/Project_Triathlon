@@ -4,13 +4,13 @@ public class Stations {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	
-	private String type;
+	private Discipline type;
 	private int id;
 	private double distancing;
 	
 	  //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	
-	public Stations(String type, int id, double distancing) {
+	public Stations(Discipline type, int id, double distancing) {
 		super();
 		this.type = type;
 		this.id = id;
@@ -19,11 +19,11 @@ public class Stations {
 
 	  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 	
-	public String getType() {
+	public Discipline getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Discipline type) {
 		this.type = type;
 	}
 

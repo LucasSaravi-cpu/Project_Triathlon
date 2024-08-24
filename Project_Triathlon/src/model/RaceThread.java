@@ -67,10 +67,8 @@ public class RaceThread extends Thread {
                     Thread.currentThread().interrupt(); // Stops thread if the athlete has no energy
                     athlete.addRaceDesertions();
                 }
-                
-                
+
                 double progress = (double) (positionX - startX) / (endX - startX);
-                checkForStationPass();
                 
               	int minutes = Chronometer.TimerMinutes(chronometer.getTime());
                 
@@ -94,7 +92,7 @@ public class RaceThread extends Thread {
                 	 athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress, "Forfeited", new Pedestrianism()));
               	 
                 }
-               
+
                 
                     
             }
@@ -124,6 +122,8 @@ public class RaceThread extends Thread {
         	 
         }
         checkForDisciplineChange(chronometer);
+        if (athlete.getCurrentStation()<race.getStationPoints().size())
+            checkForStationPass();
         if (listener != null) {
             listener.positionChanged(this, positionX);
         }
@@ -172,17 +172,15 @@ public class RaceThread extends Thread {
             listener.disciplineChanged(event);
         }
     }
-    private void checkForStationPass() {
+    private synchronized void checkForStationPass() {
         int stationPoint = startX + race.getStationPoints().get(athlete.getCurrentStation()).intValue();
         if (stationPoint <= positionX+30) {
-
             Random random = new Random();
 
             if (random.nextBoolean()) {
                 athlete.increaseEnergy(1000);
             }
-            if (athlete.getCurrentStation()<race.getStationPoints().size())
-                athlete.setCurrentStation(athlete.getCurrentStation() + 1);
+            athlete.setCurrentStation(athlete.getCurrentStation() + 1);
 
 
         }

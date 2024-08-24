@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Cycling extends Discipline{
 	
 	 //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
@@ -29,6 +31,12 @@ public class Cycling extends Discipline{
 	public boolean surpassed(int positionX, Race race, int startX, int endX) {
 		int cyclingToPedestrianismPoint = startX + (int) ((endX - startX) * race.getDisciplineChangePoints().get(1))-30;
 		return positionX >= cyclingToPedestrianismPoint && positionX<cyclingToPedestrianismPoint+20;
+	}
+	@Override
+	public double getPoints(List<Double> disciplineChangePoints, Stations station, Race race, int startX, int endX){
+
+		double difference = disciplineChangePoints.get(1) - (disciplineChangePoints.get(0) + 100.0 /(endX-startX));
+		return ((disciplineChangePoints.get(0) + 100.0 / (endX - startX)+ station.getDistancing() * difference/race.getKmcyclism())*(endX-startX));
 	}
     public String toString(){
 		return "Cycling";

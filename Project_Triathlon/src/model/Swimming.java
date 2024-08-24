@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Swimming extends Discipline {
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
@@ -25,8 +27,13 @@ public class Swimming extends Discipline {
     }
 	@Override
 	public boolean surpassed(int positionX, Race race, int startX, int endX) {
-		int swimmingToCyclingPoint = startX + (int) ((endX - startX) * race.getDisciplineChangePoints().getFirst())+70;
-		return positionX >= swimmingToCyclingPoint && positionX < startX + (int) ((endX - startX) * race.getDisciplineChangePoints().getFirst())+90;
+		int swimmingToCyclingPoint = startX + (int) ((endX - startX) * race.getDisciplineChangePoints().getFirst()) + 70;
+		return positionX >= swimmingToCyclingPoint && positionX < startX + (int) ((endX - startX) * race.getDisciplineChangePoints().getFirst()) + 90;
+	}
+	@Override
+	public double getPoints(List<Double> disciplineChangePoints, Stations station, Race race, int startX, int endX){
+		double difference = disciplineChangePoints.get(0)+ 100.0 / (endX-startX);
+		return station.getDistancing() * difference *(endX-startX)/race.getKmswimming();
 	}
 	public String toString(){
 		return "Swimming";

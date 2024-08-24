@@ -233,17 +233,7 @@ public class Race {
 
 		for (Stations  station: stations) {
 			double difference;
-			if (station.getType().equals("Cycling")) {
-				difference = disciplineChangePoints.get(1) - (disciplineChangePoints.get(0) + 100.0 /(endX-startX));
-				points.add(((disciplineChangePoints.get(0) + 100.0 / (endX - startX)+ station.getDistancing() * difference/getKmcyclism())*(endX-startX)));
-			} else if (station.getType().equals("Pedestrianism")) {
-				difference = 1 - disciplineChangePoints.get(1);
-				points.add(((disciplineChangePoints.get(1) + station.getDistancing() * difference/getKmpedestrianism()))* (endX-startX));
-			}
-			else {
-				difference = disciplineChangePoints.get(0)+ 100.0 / (endX-startX);
-				points.add(station.getDistancing()*difference *(endX-startX)/getKmswimming());
-			}
+			points.add(station.getType().getPoints(disciplineChangePoints, station, this, startX, endX));
 		}
 		this.stationPoints = points;
 	}

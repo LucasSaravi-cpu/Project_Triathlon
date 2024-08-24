@@ -134,7 +134,6 @@ public class Championship implements RaceListener {
     public void startRace() {
         raceThreads.clear();
         RaceManager.clearFinishedAthletes();
-    	List<JButton> buttons = windowRace.getRacePanel().getButtons();
     	int startX = windowRace.getRacePanel().getStartX();
         int endX = windowRace.getRacePanel().getEndX();
         List<Double> changePoints = SelectionRace.get(race).getDisciplineChangePoints();
@@ -388,16 +387,14 @@ public class Championship implements RaceListener {
                         String tipo = puestoElement.getAttribute("tipo");
                         int numero = Integer.parseInt(puestoElement.getAttribute("numero"));
                         double distancia = Double.parseDouble(getChildElementValue(puestoElement, "distancia"));
-
+                        Stations station;
                         switch (tipo) {
-                        	case "ciclismo": tipo = "Cycling";
+                        	case "ciclismo": station = new Stations(new Cycling(), numero, distancia);
                                              break;
-                        	case "pedestrismo": tipo = "Pedestrianism";
+                        	case "pedestrismo": station = new Stations(new Pedestrianism(), numero, distancia);
                                              break;
-                        	default: tipo = "Swimming";
+                        	default: station = new Stations(new Swimming(), numero, distancia);;
                         }
-
-                        Stations station = new Stations(tipo, numero, distancia);
                         stati.add(station);
                     }
                 }
@@ -533,7 +530,7 @@ public class Championship implements RaceListener {
             championshipPositions.put(championshipSorted.get(i), i + 1);
         }
 
-        Object[][] tableData = new Object[sortedList.size()][14];
+        Object[][] tableData = new Object[sortedList.size()][15];
 
         for (int i = 0; i < sortedList.size(); i++) {
             Athlete athlete = sortedList.get(i);

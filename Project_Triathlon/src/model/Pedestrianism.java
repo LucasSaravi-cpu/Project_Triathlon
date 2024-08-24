@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Pedestrianism extends Discipline {
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
@@ -32,6 +34,12 @@ public class Pedestrianism extends Discipline {
 	@Override
 	public Discipline getNewDiscipline(){
 		return new Swimming();
+	}
+	@Override
+	public double getPoints(List<Double> disciplineChangePoints, Stations station, Race race, int startX, int endX){
+		double difference = 1 - disciplineChangePoints.get(1);
+		return ((disciplineChangePoints.get(1) + station.getDistancing() * difference/race.getKmpedestrianism()))* (endX-startX);
+
 	}
 	public Pedestrianism createInstance(){
 		return new Pedestrianism();
