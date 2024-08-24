@@ -30,7 +30,6 @@ public class WindowEndChampionship extends JFrame {
             JTextArea resultsArea = new JTextArea(results) {
                     @Override
                     protected void paintComponent(Graphics g) {
-                        super.paintComponent(g);
                         Graphics2D g2d = (Graphics2D) g.create();
                         g2d.setFont(FontCharger.loadCustomFont("/fonts/CuteDino.ttf").deriveFont(14f));
                         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -42,14 +41,18 @@ public class WindowEndChampionship extends JFrame {
 
                         int x = getInsets().left;
                         int y = getInsets().top + metrics.getAscent();
-
+                        y += lineHeight;
                         for (String line : lines) {
                             g2d.setColor(Color.BLACK);
                             for (int i = 1; i <= 2; i++) {
                                 g2d.drawString(line, x - i, y - i);
+                                g2d.drawString(line, x , y - i);
+                                g2d.drawString(line, x , y + i);
                                 g2d.drawString(line, x - i, y + i);
                                 g2d.drawString(line, x + i, y - i);
                                 g2d.drawString(line, x + i, y + i);
+                                g2d.drawString(line, x + i, y);
+                                g2d.drawString(line, x - i, y);
                             }
 
                             g2d.setColor(Color.WHITE);
@@ -63,14 +66,6 @@ public class WindowEndChampionship extends JFrame {
                 };
             resultsArea.setEditable(false);
             resultsArea.setOpaque(false);
-            /*
-            JTextArea resultsArea = new JTextArea(results);
-            resultsArea.setEditable(false);
-            resultsArea.setOpaque(false);
-            resultsArea.setBackground(new Color(0, 0, 0, 0));
-            resultsArea.setForeground(Color.WHITE);
-            resultsArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            resultsArea.setFont(FontCharger.loadCustomFont("/fonts/CuteDino.ttf").deriveFont(14f));*/
             JScrollPane scrollPane = new JScrollPane(resultsArea);
             panel.add(scrollPane, BorderLayout.CENTER);
             scrollPane.setOpaque(false);
@@ -84,8 +79,8 @@ public class WindowEndChampionship extends JFrame {
             restart.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    RunSimulation.restartGame();
                     showWindow(false);
+                    RunSimulation.restartGame();
                 }
             });
             restart.setSize(218, 43);
