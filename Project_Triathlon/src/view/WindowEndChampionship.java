@@ -27,12 +27,50 @@ public class WindowEndChampionship extends JFrame {
             title.setHorizontalAlignment(SwingConstants.CENTER);
             title.setBorder(new EmptyBorder(10, 10, 10, 10));
             panel.add(title, BorderLayout.NORTH);
+            JTextArea resultsArea = new JTextArea(results) {
+                    @Override
+                    protected void paintComponent(Graphics g) {
+                        super.paintComponent(g);
+                        Graphics2D g2d = (Graphics2D) g.create();
+                        g2d.setFont(FontCharger.loadCustomFont("/fonts/CuteDino.ttf").deriveFont(14f));
+                        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
+                        String[] lines = getText().split("\n");
+                        FontMetrics metrics = g2d.getFontMetrics();
+                        int lineHeight = metrics.getHeight();
+
+                        int x = getInsets().left;
+                        int y = getInsets().top + metrics.getAscent();
+
+                        for (String line : lines) {
+                            g2d.setColor(Color.BLACK);
+                            for (int i = 1; i <= 2; i++) {
+                                g2d.drawString(line, x - i, y - i);
+                                g2d.drawString(line, x - i, y + i);
+                                g2d.drawString(line, x + i, y - i);
+                                g2d.drawString(line, x + i, y + i);
+                            }
+
+                            g2d.setColor(Color.WHITE);
+                            g2d.drawString(line, x, y);
+
+                            y += lineHeight;
+                        }
+
+                        g2d.dispose();
+                    }
+                };
+            resultsArea.setEditable(false);
+            resultsArea.setOpaque(false);
+            /*
             JTextArea resultsArea = new JTextArea(results);
             resultsArea.setEditable(false);
             resultsArea.setOpaque(false);
             resultsArea.setBackground(new Color(0, 0, 0, 0));
-            resultsArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+            resultsArea.setForeground(Color.WHITE);
+            resultsArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            resultsArea.setFont(FontCharger.loadCustomFont("/fonts/CuteDino.ttf").deriveFont(14f));*/
             JScrollPane scrollPane = new JScrollPane(resultsArea);
             panel.add(scrollPane, BorderLayout.CENTER);
             scrollPane.setOpaque(false);
@@ -51,6 +89,10 @@ public class WindowEndChampionship extends JFrame {
                 }
             });
             restart.setSize(218, 43);
+            restart.setContentAreaFilled(false);
+            restart.setBorderPainted(false);
+            restart.setFocusPainted(false);
+            restart.setMargin(new Insets(0, 0, 0, 0));
             JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
             buttonPanel.setOpaque(false);
             buttonPanel.add(restart);
@@ -59,7 +101,7 @@ public class WindowEndChampionship extends JFrame {
         }
 
         public void showWindow(boolean yes) {
-            setVisible(true);
+            setVisible(yes);
         }
 
 }
