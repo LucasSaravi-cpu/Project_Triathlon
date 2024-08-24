@@ -38,6 +38,7 @@ public abstract class Athlete {
 	private int finishedRaces;
 	private int points;
 	private int victories;
+	private int currentStation;
 
 
     
@@ -72,6 +73,7 @@ public abstract class Athlete {
 		this.racedesertions=0;
 		this.points=0;
 		this.victories=0;
+		this.currentStation=0;
 	}
 	
 	   //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
@@ -230,6 +232,12 @@ public abstract class Athlete {
 			this.energy = energy;
 	        notifyEnergyChange(energy);
 		}
+		public int getCurrentStation(){
+		    return currentStation;
+		}
+		public void setCurrentStation(int station){
+		    this.currentStation = station;
+		}
 
 	public void setCurrentDiscipline(Discipline currentDiscipline) {
 		this.currentDiscipline = currentDiscipline;
@@ -315,11 +323,7 @@ public abstract class Athlete {
 	    }
 
 	    public void increaseEnergy(double amount) {
-	        energy += amount;
-	        if (energy > 100) { 
-	            energy = 100;
-	        }
-	        setEnergy(energy);
+	        setEnergy(energy + amount);
 	    }
 	    
 	 

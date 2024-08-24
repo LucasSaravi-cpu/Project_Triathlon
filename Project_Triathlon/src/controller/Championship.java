@@ -136,9 +136,11 @@ public class Championship implements RaceListener {
         RaceManager.clearFinishedAthletes();
     	List<JButton> buttons = windowRace.getRacePanel().getButtons();
     	int startX = windowRace.getRacePanel().getStartX();
+        int endX = windowRace.getRacePanel().getEndX();
         List<Double> changePoints = SelectionRace.get(race).getDisciplineChangePoints();
         windowRace.getRacePanel().setDisciplineChangePoints(changePoints);
-        List<Double> stationPoints = SelectionRace.get(race).getStationPoints(changePoints);
+        SelectionRace.get(race).setStationPoints(changePoints, startX, endX);
+        List<Double> stationPoints = SelectionRace.get(race).getStationPoints();
         windowRace.getRacePanel().setStationPoints(stationPoints);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + dateFormat.format(SelectionRace.get(race).getDate()));
@@ -168,7 +170,7 @@ public class Championship implements RaceListener {
     	for (Athlete athlete:  athletes) {
             athlete.setCurrentDiscipline(new Swimming());
     		windowRace.getRacePanel().getAthletePanels().get(i).getAthleteLabel().setText(athlete.getName() + " " + athlete.getSurname());
-    		RaceThread thread = new RaceThread(startX, startX, windowRace.getRacePanel().getEndX(), this, athlete, this,raceManager, SelectionRace.get(race), race);
+    		RaceThread thread = new RaceThread(startX, startX, endX, this, athlete, this,raceManager, SelectionRace.get(race), race);
     		athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
             i++;
 
@@ -388,7 +390,7 @@ public class Championship implements RaceListener {
                         double distancia = Double.parseDouble(getChildElementValue(puestoElement, "distancia"));
 
                         switch (tipo) {
-                        	case "ciclismo": tipo = "Cyclism";
+                        	case "ciclismo": tipo = "Cycling";
                                              break;
                         	case "pedestrismo": tipo = "Pedestrianism";
                                              break;

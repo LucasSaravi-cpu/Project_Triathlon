@@ -70,7 +70,7 @@ public class RaceThread extends Thread {
                 
                 
                 double progress = (double) (positionX - startX) / (endX - startX);
-                
+                checkForStationPass();
                 
               	int minutes = Chronometer.TimerMinutes(chronometer.getTime());
                 
@@ -145,7 +145,6 @@ public class RaceThread extends Thread {
         }
     }
     private void checkForDisciplineChange(Chronometer chronometer) {
-        //double progress = (double) (positionX - startX) / (endX - startX);
         String currentTime = chronometer.getTime();
         if (athlete.getCurrentDiscipline().surpassed(positionX, race, startX, endX)){
             athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKm(athlete.getCurrentDiscipline()), currentTime, athlete.getCurrentDiscipline().createInstance()));
@@ -157,29 +156,6 @@ public class RaceThread extends Thread {
             notifyDisciplineChange(athlete.getCurrentDiscipline().getClass().getSimpleName().toLowerCase());
 
         }
-        /*
-        if (progress >= race.getDisciplineChangePoints().get(0) + 70.0 / (endX-startX) && progress < race.getDisciplineChangePoints().get(0)+90.0/(endX-startX)) { // first line
-            notifyDisciplineChange("cycling");
-            if (!athlete.getCurrentDiscipline().getClass().equals(Cycling.class)){
-                athlete.setCurrentDiscipline(new Cycling());
-                if (!raceManager.isDisciplineWon("swimming")) {
-                    athlete.addStageWinS();
-                    raceManager.markDisciplineAsWon("swimming");
-                }
-                athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKmswimming(), currentTime, new Swimming()));
-            }
-
-        } else if (progress >= race.getDisciplineChangePoints().get(1)-30.0/(endX-startX) && progress<race.getDisciplineChangePoints().get(1)-10.0/(endX-startX)) { // Second line
-            notifyDisciplineChange("running");
-            if (!athlete.getCurrentDiscipline().getClass().equals(Pedestrianism.class)) {
-                athlete.setCurrentDiscipline(new Pedestrianism());
-                if (!raceManager.isDisciplineWon("cycling")) {
-                    athlete.addStageWinC();
-                    raceManager.markDisciplineAsWon("cycling");
-                }
-                athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKmcyclism(), Chronometer.subtractTimes(currentTime, athlete.getCompetition().get(raceIndex).getDistances().get(0).getTime()), new Cycling()));
-            }
-        }*/
     }
 
     public void addDisciplineChangeListener(DisciplineChangeListener listener) {
@@ -194,6 +170,21 @@ public class RaceThread extends Thread {
         DisciplineChangeEvent event = new DisciplineChangeEvent(this, newDiscipline);
         for (DisciplineChangeListener listener : disciplineListeners) {
             listener.disciplineChanged(event);
+        }
+    }
+    private void checkForStationPass() {
+        int stationPoint = startX + race.getStationPoints().get(athlete.getCurrentStation()).intValue();
+        if (stationPoint <= positionX+30) {
+
+            Random random = new Random();
+
+            if (random.nextBoolean()) {
+                athlete.increaseEnergy(1000);
+            }
+            if (athlete.getCurrentStation()<race.getStationPoints().size())
+                athlete.setCurrentStation(athlete.getCurrentStation() + 1);
+
+
         }
     }
     

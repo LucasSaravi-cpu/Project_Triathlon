@@ -35,6 +35,7 @@ public class Race {
     private double  kmpedestrianism;
     private List<Stations> stations;
     private int T1 , T2 ,T3;
+	private List<Double> stationPoints;
     
 
 
@@ -222,23 +223,30 @@ public class Race {
 
 	}
 	
-	public List<Double> getStationPoints(List<Double> disciplineChangePoints){
+	public List<Double> getStationPoints(){
+		return stationPoints;
+	}
+	public void setStationPoints(List<Double> disciplineChangePoints, int startX, int endX){
 		List<Double> points = new ArrayList<>();
 		double totalDistance = getTotalDistance();
 		double distance = 0.0;
 
 		for (Stations  station: stations) {
-
-			if (station.getType().equals("Cycling"))
-			   points.add(station.getDistancing() / totalDistance + disciplineChangePoints.get(0));
-			else if (station.getType().equals("Pedestrianism"))
-			   points.add(station.getDistancing() / totalDistance + disciplineChangePoints.get(1));
-			else
-			   points.add(station.getDistancing()/totalDistance);
+			double difference;
+			if (station.getType().equals("Cycling")) {
+				difference = disciplineChangePoints.get(1) - (disciplineChangePoints.get(0) + 100.0 /(endX-startX));
+				points.add(((disciplineChangePoints.get(0) + 100.0 / (endX - startX)+ station.getDistancing() * difference/getKmcyclism())*(endX-startX)));
+			} else if (station.getType().equals("Pedestrianism")) {
+				difference = 1 - disciplineChangePoints.get(1);
+				points.add(((disciplineChangePoints.get(1) + station.getDistancing() * difference/getKmpedestrianism()))* (endX-startX));
+			}
+			else {
+				difference = disciplineChangePoints.get(0)+ 100.0 / (endX-startX);
+				points.add(station.getDistancing()*difference *(endX-startX)/getKmswimming());
+			}
 		}
-		return points;
+		this.stationPoints = points;
 	}
-	
 	
 
 	@Override
