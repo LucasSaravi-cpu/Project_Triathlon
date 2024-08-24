@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.*;
 import java.util.List;
 
 public class Swimming extends Discipline {
@@ -44,5 +45,9 @@ public class Swimming extends Discipline {
 	}
 	public Swimming createInstance(){
 		return new Swimming();
+	}
+	@Override
+	public ImageIcon getNewIcon(){
+		return null;
 	}
 }

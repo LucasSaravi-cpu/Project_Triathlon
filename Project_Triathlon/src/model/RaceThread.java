@@ -153,7 +153,7 @@ public class RaceThread extends Thread {
                 raceManager.markDisciplineAsWon(athlete.getCurrentDiscipline().getClass().getSimpleName().toLowerCase());
             }
             athlete.setNewDiscipline();
-            notifyDisciplineChange(athlete.getCurrentDiscipline().getClass().getSimpleName().toLowerCase());
+            notifyDisciplineChange(athlete.getCurrentDiscipline());
 
         }
     }
@@ -166,7 +166,7 @@ public class RaceThread extends Thread {
         disciplineListeners.remove(listener);
     }
 
-    private void notifyDisciplineChange(String newDiscipline) {
+    private void notifyDisciplineChange(Discipline newDiscipline) {
         DisciplineChangeEvent event = new DisciplineChangeEvent(this, newDiscipline);
         for (DisciplineChangeListener listener : disciplineListeners) {
             listener.disciplineChanged(event);

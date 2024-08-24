@@ -187,16 +187,21 @@ public class Championship implements RaceListener {
             thread.addDisciplineChangeListener(new DisciplineChangeListener() {
                 @Override
                 public void disciplineChanged(DisciplineChangeEvent event) {
-                    String newDiscipline = event.getNewDiscipline();
-                    ImageIcon newIcon;
-
+                    Discipline newDiscipline = event.getNewDiscipline();
+                    ImageIcon newIcon = newDiscipline.getNewIcon();
+                    /*
+                    switch(newDiscipline.getClass().getSimpleName()){
+                        case "Swimming": newIcon = null;
+                        case "Cycling": newIcon = new ImageIcon(getClass().getResource("/Image/cycling.png"));
+                        default: newIcon = new ImageIcon(getClass().getResource("/Image/running.png"));
+                    }
                     if ("cycling".equals(newDiscipline)) {
                         newIcon = new ImageIcon(getClass().getResource("/Image/cycling.png"));
                     } else if ("pedestrianism".equals(newDiscipline)) {
                         newIcon = new ImageIcon(getClass().getResource("/Image/running.png"));
                     } else
                         newIcon = null;
-                    // Scale image
+                    // Scale image */
                     if (newIcon != null) {
                         Image scaledImage = newIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
                         newIcon = new ImageIcon(scaledImage);

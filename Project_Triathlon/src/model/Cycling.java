@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.*;
 import java.util.List;
 
 public class Cycling extends Discipline{
@@ -47,5 +48,9 @@ public class Cycling extends Discipline{
 	}
 	public Cycling createInstance(){
 		return new Cycling();
+	}
+	@Override
+	public ImageIcon getNewIcon(){
+		return new ImageIcon(getClass().getResource("/Image/cycling.png"));
 	}
 }

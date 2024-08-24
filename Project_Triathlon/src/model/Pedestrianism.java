@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.*;
 import java.util.List;
 
 public class Pedestrianism extends Discipline {
@@ -40,6 +41,10 @@ public class Pedestrianism extends Discipline {
 		double difference = 1 - disciplineChangePoints.get(1);
 		return ((disciplineChangePoints.get(1) + station.getDistancing() * difference/race.getKmpedestrianism()))* (endX-startX);
 
+	}
+	@Override
+	public ImageIcon getNewIcon(){
+		return new ImageIcon(getClass().getResource("/Image/running.png"));
 	}
 	public Pedestrianism createInstance(){
 		return new Pedestrianism();

@@ -18,12 +18,9 @@ public class TitleLabel extends JLabel {
         Graphics2D g2d = (Graphics2D) g.create();
 
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-        // Obtener posición del texto
         int x = getWidth() / 2 - g2d.getFontMetrics().stringWidth(getText()) / 2;
         int y = getHeight() / 2 + getFontMetrics(getFont()).getAscent() / 4;
 
-        // Dibujar la sombra difuminada
         g2d.setColor(Color.BLACK);
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
         for (int i = 1; i <= 8; i++) {

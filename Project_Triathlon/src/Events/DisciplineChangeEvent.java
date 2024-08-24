@@ -1,16 +1,18 @@
 package Events;
 
+import model.Discipline;
+
 import java.util.EventObject;
 
 public class DisciplineChangeEvent extends EventObject {
-    private final String newDiscipline;
+    private final Discipline newDiscipline;
 
-    public DisciplineChangeEvent(Object source, String newDiscipline) {
+    public DisciplineChangeEvent(Object source, Discipline newDiscipline) {
         super(source);
         this.newDiscipline = newDiscipline;
     }
 
-    public String getNewDiscipline() {
+    public Discipline getNewDiscipline() {
         return newDiscipline;
     }
 }

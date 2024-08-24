@@ -49,6 +49,13 @@ public class WeatherConditions {
 	public void setUppertier(double uppertier) {
 		this.uppertier = uppertier;
 	}
+	public double getWeather(Discipline discipline){
+		switch (discipline.getClass().getSimpleName()) {
+			case "Swimming": return swimmingweathering;
+			case "Cycling": return cyclingweathering;
+			default: return pedestrianismweathering;
+		}
+	}
 	public double getSwimmingweathering() {
 		return swimmingweathering;
 	}
