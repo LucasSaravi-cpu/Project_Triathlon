@@ -24,6 +24,18 @@ public class Pedestrianism extends Discipline {
 	public String toString(){
 		return "Pedestrianism";
 	}
+	@Override
+	public boolean surpassed(int positionX, Race race, int startX, int endX) {
+		// When the athlete surpasses Pedestrianism, the race ends, so it should always return false!
+		return false;
+	}
+	@Override
+	public Discipline getNewDiscipline(){
+		return new Swimming();
+	}
+	public Pedestrianism createInstance(){
+		return new Pedestrianism();
+	}
 }
 
 

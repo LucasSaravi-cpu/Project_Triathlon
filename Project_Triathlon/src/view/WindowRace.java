@@ -55,7 +55,8 @@ public class WindowRace extends JFrame {
 		repaint();
 	}
 	public void reset(){
-		for (JLabel label : racePanel.getLabels()) {
+		for (AthletePanel athletePanel : racePanel.getAthletePanels()) {
+			JLabel label = athletePanel.getAthleteLabel();
 			label.setLocation(racePanel.getStartX(), label.getY());
 			ImageIcon icon = new ImageIcon(getClass().getResource("/Image/swimming.png"));
 			Image image = icon.getImage();

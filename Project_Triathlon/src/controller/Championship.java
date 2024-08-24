@@ -135,7 +135,7 @@ public class Championship implements RaceListener {
         raceThreads.clear();
         RaceManager.clearFinishedAthletes();
     	List<JButton> buttons = windowRace.getRacePanel().getButtons();
-    	int startX = buttons.get(1).getX() + buttons.get(1).getWidth() + 10;
+    	int startX = windowRace.getRacePanel().getStartX();
         List<Double> changePoints = SelectionRace.get(race).getDisciplineChangePoints();
         windowRace.getRacePanel().setDisciplineChangePoints(changePoints);
         List<Double> stationPoints = SelectionRace.get(race).getStationPoints(changePoints);
@@ -167,8 +167,8 @@ public class Championship implements RaceListener {
         raceManager = new RaceManager(race);
     	for (Athlete athlete:  athletes) {
             athlete.setCurrentDiscipline(new Swimming());
-    		windowRace.getRacePanel().getLabels().get(i).setText(athlete.getName() + " " + athlete.getSurname());
-    		RaceThread thread = new RaceThread(startX, startX, windowRace.getRacePanel().getWidth()-80, this, athlete, this,raceManager, SelectionRace.get(race), race);
+    		windowRace.getRacePanel().getAthletePanels().get(i).getAthleteLabel().setText(athlete.getName() + " " + athlete.getSurname());
+    		RaceThread thread = new RaceThread(startX, startX, windowRace.getRacePanel().getEndX(), this, athlete, this,raceManager, SelectionRace.get(race), race);
     		athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
             i++;
 
@@ -191,7 +191,7 @@ public class Championship implements RaceListener {
 
                     if ("cycling".equals(newDiscipline)) {
                         newIcon = new ImageIcon(getClass().getResource("/Image/cycling.png"));
-                    } else if ("running".equals(newDiscipline)) {
+                    } else if ("pedestrianism".equals(newDiscipline)) {
                         newIcon = new ImageIcon(getClass().getResource("/Image/running.png"));
                     } else
                         newIcon = null;
@@ -202,7 +202,7 @@ public class Championship implements RaceListener {
 
                         // Change athlete icon
                         int index = raceThreads.indexOf(thread);
-                        windowRace.getRacePanel().getLabels().get(index).setIcon(newIcon);
+                        windowRace.getRacePanel().getAthletePanels().get(index).getAthleteLabel().setIcon(newIcon);
                     }
                 }
 
@@ -643,7 +643,7 @@ public class Championship implements RaceListener {
         }
 
         WindowEndChampionship end = new WindowEndChampionship(results.toString());
-        end.showWindow();
+        end.showWindow(true);
     }
     
 

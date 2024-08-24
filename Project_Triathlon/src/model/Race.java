@@ -183,10 +183,19 @@ public class Race {
 	
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
-	
-	
 
 
+
+	public double getKm(Discipline discipline) {
+		switch (discipline.toString()) {
+			case "Swimming":
+				return kmswimming;
+			case "Cyclism":
+				return kmcyclism;
+			default:
+				return kmpedestrianism;
+		}
+	}
 	// Static method to generate a random boolean
     public static boolean UseOfDraftingInRacer() {
         Random random = new Random();

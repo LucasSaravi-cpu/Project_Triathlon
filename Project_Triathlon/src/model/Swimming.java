@@ -23,7 +23,19 @@ public class Swimming extends Discipline {
 		
 	
     }
+	@Override
+	public boolean surpassed(int positionX, Race race, int startX, int endX) {
+		int swimmingToCyclingPoint = startX + (int) ((endX - startX) * race.getDisciplineChangePoints().getFirst())+70;
+		return positionX >= swimmingToCyclingPoint && positionX < startX + (int) ((endX - startX) * race.getDisciplineChangePoints().getFirst())+90;
+	}
 	public String toString(){
 		return "Swimming";
+	}
+	@Override
+    public Discipline getNewDiscipline(){
+		return new Cycling();
+	}
+	public Swimming createInstance(){
+		return new Swimming();
 	}
 }

@@ -47,7 +47,7 @@ public class WindowEndChampionship extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     RunSimulation.restartGame();
-
+                    showWindow(false);
                 }
             });
             restart.setSize(218, 43);
@@ -58,7 +58,7 @@ public class WindowEndChampionship extends JFrame {
             panel.add(buttonPanel, BorderLayout.SOUTH);
         }
 
-        public void showWindow() {
+        public void showWindow(boolean yes) {
             setVisible(true);
         }
 

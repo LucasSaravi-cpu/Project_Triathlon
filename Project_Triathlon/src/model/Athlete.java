@@ -240,6 +240,9 @@ public abstract class Athlete {
 	public Discipline getCurrentDiscipline() {
 		return currentDiscipline;
 	}
+	public void setNewDiscipline(){
+		this.currentDiscipline = currentDiscipline.getNewDiscipline();
+	}
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
@@ -350,7 +353,18 @@ public abstract class Athlete {
 		}
 	}
 
-
+    public void addStageWin(){
+		switch (currentDiscipline.toString()) {
+			case "Swimming":
+				addStageWinS();
+				break;
+			case "Cycling":
+				addStageWinC();
+				break;
+			default:
+				addStageWinP();
+		}
+	}
 	public void addStageWinS() {
 		stagesWinS++;
 	}
