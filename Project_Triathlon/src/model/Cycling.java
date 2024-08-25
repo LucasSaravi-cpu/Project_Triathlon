@@ -54,11 +54,19 @@ public class Cycling extends Discipline{
 		return new ImageIcon(getClass().getResource("/Image/cycling.png"));
 	}
 	@Override
-	public void setTime(Race race, int time) {
+	public void setMaxTime(Race race, int time) {
 		race.setT2(time);
 	}
 	@Override
 	public double getBaseSpeed(PhysicalConditions stats){
 		return 1000 + stats.getCyclismAptitude() * 100;
+	}
+	@Override
+	public String setTime(Athlete athlete, Chronometer chronometer, int raceIndex){
+		return Chronometer.subtractTimes(chronometer.getTime(), athlete.getCompetition().get(raceIndex).getDistances().get(0).getTime());
+	}
+	@Override
+	public boolean isBeforePosition(int minutes, Race race){
+		return minutes > race.getT1() + race.getT2();
 	}
 }

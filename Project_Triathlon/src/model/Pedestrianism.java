@@ -50,12 +50,20 @@ public class Pedestrianism extends Discipline {
 		return new Pedestrianism();
 	}
 	@Override
-	public void setTime(Race race, int time) {
+	public void setMaxTime(Race race, int time) {
 		race.setT3(time);
 	}
 	@Override
 	public double getBaseSpeed(PhysicalConditions stats){
 		return 1000 + stats.getPedestrianismAptitude() * 70;
+	}
+	@Override
+	public String setTime(Athlete athlete, Chronometer chronometer, int raceIndex){
+		return Chronometer.subtractTimes(Chronometer.subtractTimes(chronometer.getTime(), athlete.getCompetition().get(raceIndex).getDistances().get(1).getTime()), athlete.getCompetition().get(raceIndex).getDistances().get(0).getTime());
+	}
+	@Override
+	public boolean isBeforePosition(int minutes, Race race){
+		return minutes > race.getT1() + race.getT2() + race.getT3();
 	}
 }
 

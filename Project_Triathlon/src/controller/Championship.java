@@ -663,7 +663,7 @@ public class Championship implements RaceListener {
     	        String modalityName = race.getModality().getName();
     	      
     	        int time =Chronometer.TimerMinutes(discipline.time(modalityName));
-    	        discipline.setTime(race, time);
+    	        discipline.setMaxTime(race, time);
     
     		
     	}

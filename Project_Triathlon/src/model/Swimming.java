@@ -51,11 +51,19 @@ public class Swimming extends Discipline {
 		return null;
 	}
 	@Override
-	public void setTime(Race race, int time) {
+	public void setMaxTime(Race race, int time) {
 		race.setT1(time);
 	}
 	@Override
 	public double getBaseSpeed(PhysicalConditions stats){
 		return 1000 + stats.getSwimmingAptitude() * 40;
+	}
+	@Override
+	public String setTime(Athlete athlete, Chronometer chronometer, int raceIndex){
+		return chronometer.getTime();
+	}
+	@Override
+	public boolean isBeforePosition(int minutes, Race race){
+		return minutes > race.getT1();
 	}
 }

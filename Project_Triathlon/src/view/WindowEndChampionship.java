@@ -27,7 +27,10 @@ public class WindowEndChampionship extends JFrame {
             title.setHorizontalAlignment(SwingConstants.CENTER);
             title.setBorder(new EmptyBorder(10, 10, 10, 10));
             panel.add(title, BorderLayout.NORTH);
-            JTextArea resultsArea = new JTextArea(results) {
+
+            String processedResults = replaceSpecialCharacters(results);
+
+            JTextArea resultsArea = new JTextArea(processedResults) {
                     @Override
                     protected void paintComponent(Graphics g) {
                         Graphics2D g2d = (Graphics2D) g.create();
@@ -98,5 +101,20 @@ public class WindowEndChampionship extends JFrame {
         public void showWindow(boolean yes) {
             setVisible(yes);
         }
-
+    private String replaceSpecialCharacters(String input) {
+        return input
+                .replace("ñ", "n")
+                .replace("Ñ", "N")
+                .replace("á", "a")
+                .replace("é", "e")
+                .replace("í", "i")
+                .replace("ó", "o")
+                .replace("ú", "u")
+                .replace("Á", "A")
+                .replace("É", "E")
+                .replace("Í", "I")
+                .replace("Ó", "O")
+                .replace("Ú", "U")
+                .replace("ã", "a");
+    }
 }

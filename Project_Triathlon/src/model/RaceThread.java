@@ -73,7 +73,12 @@ public class RaceThread extends Thread {
               	int minutes = Chronometer.TimerMinutes(chronometer.getTime());
                 
                //We should manage this in Swimming, Cycling and Pedestrianism classes
-                
+                if (athlete.getCurrentDiscipline().isBeforePosition(minutes, race)){
+                    Thread.currentThread().interrupt();
+                    athlete.addRaceDesertions();
+                    athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress,"Forfeited", athlete.getCurrentDiscipline().createInstance()));
+                }
+                /*
                 if (minutes>race.getT1() && athlete.getCurrentDiscipline().getClass().equals(Swimming.class))  {
                     Thread.currentThread().interrupt();
                     athlete.addRaceDesertions();
@@ -91,7 +96,7 @@ public class RaceThread extends Thread {
               	     Thread.currentThread().interrupt();
                 	 athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress, "Forfeited", new Pedestrianism()));
               	 
-                }
+                }*/
 
                 
                     
@@ -114,9 +119,7 @@ public class RaceThread extends Thread {
         else {
         	positionX=endX;
         	Thread.currentThread().interrupt();
-            String t1 = athlete.getCompetition().get(raceIndex).getDistances().get(0).getTime();
-            String t2 = athlete.getCompetition().get(raceIndex).getDistances().get(1).getTime();
-            athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKm(athlete.getCurrentDiscipline()), Chronometer.subtractTimes(Chronometer.subtractTimes(chronometer.getTime(), t1), t2), athlete.getCurrentDiscipline().createInstance()));
+            athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKm(athlete.getCurrentDiscipline()), athlete.getCurrentDiscipline().setTime(athlete, chronometer, raceIndex), athlete.getCurrentDiscipline().createInstance()));
             athlete.getCompetition().get(raceIndex).setTimeTot(Championship.getChronometer().getTime());
         	raceManager.notifyAthleteFinished(athlete);
         	 
@@ -147,7 +150,7 @@ public class RaceThread extends Thread {
     private void checkForDisciplineChange(Chronometer chronometer) {
         String currentTime = chronometer.getTime();
         if (athlete.getCurrentDiscipline().surpassed(positionX, race, startX, endX)){
-            athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKm(athlete.getCurrentDiscipline()), currentTime, athlete.getCurrentDiscipline().createInstance()));
+            athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKm(athlete.getCurrentDiscipline()), athlete.getCurrentDiscipline().setTime(athlete, chronometer, raceIndex), athlete.getCurrentDiscipline().createInstance()));
             if (!raceManager.isDisciplineWon(athlete.getCurrentDiscipline().getClass().getSimpleName().toLowerCase())) {
                 athlete.addStageWin();
                 raceManager.markDisciplineAsWon(athlete.getCurrentDiscipline().getClass().getSimpleName().toLowerCase());

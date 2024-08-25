@@ -164,7 +164,12 @@ public class Scoreboard extends JFrame {
 				    data = controller.getAthletesData(1);
 				else
 					data = controller.getAthletesData(2);
-				DefaultTableModel model = new DefaultTableModel(data, columnNames);
+				DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+					@Override
+					public boolean isCellEditable(int row, int column) {
+						return false;
+					}
+				};
 				table.setModel(model);
 				table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 				tableScrollPane.setVisible(true);
