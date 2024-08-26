@@ -41,7 +41,7 @@ public class Championship implements RaceListener {
 	 private WindowRace windowRace;
 	 private Scoreboard scoreboard;
 	 private Weatherboard weatherboard;
-     private CustomWeatherPanel customWeatherPanel;
+     private WeatherSettingsPanel customWeatherPanel;
      private static List <Race> races;
 	 private static List<Athlete> athletes;
 	 private static List<Race> SelectionRace;
@@ -60,7 +60,7 @@ public class Championship implements RaceListener {
         this.raceThreads = new ArrayList<>();
         this.weatherboard = new  Weatherboard();
         this.chronometer = new Chronometer();
-        this.customWeatherPanel = new CustomWeatherPanel();
+        this.customWeatherPanel = new WeatherSettingsPanel();
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
@@ -72,7 +72,7 @@ public class Championship implements RaceListener {
     public static int getIndexRace(){
         return race;
     }
-    public CustomWeatherPanel getCustomWeatherPanel() {
+    public WeatherSettingsPanel getCustomWeatherPanel() {
         return customWeatherPanel;
     }
     public static List<Athlete> getAthletes() {

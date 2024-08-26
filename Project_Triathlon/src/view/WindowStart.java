@@ -22,7 +22,7 @@ public class WindowStart extends JFrame {
     private WindowRace wr;
     private static Clip music;
     private Weatherboard weatherboard;
-	private CustomWeatherPanel cwp;
+	private WeatherSettingsPanel cwp;
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public WindowStart(Championship controller) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
