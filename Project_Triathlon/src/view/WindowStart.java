@@ -63,7 +63,7 @@ public class WindowStart extends JFrame {
 		JButton loadButton = new JButton(scaleImage(icon));
 		loadButton.setBounds(35, 426, 201, 35);
 		contentPane.add(loadButton);
-
+		icon = new ImageIcon(getClass().getResource("/Image/customWeatherButton.png"));
 		JButton weatherButton = new JButton(scaleImage(icon));
 		weatherButton.addActionListener(new ActionListener() {
 			@Override
