@@ -4,7 +4,7 @@ import java.util.*;
 
 public class RaceManager {
 	
-	//------------------------------------------------>||VARIABLE||<--------------------------------------------------------\\
+	//------------------------------------------------>||ATRIBUTTES||<--------------------------------------------------------\\
 	
     private static List<Athlete> finishedAthletes = new ArrayList<>();
     private String timerTot="";

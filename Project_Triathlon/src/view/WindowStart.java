@@ -22,6 +22,7 @@ public class WindowStart extends JFrame {
     private WindowRace wr;
     private static Clip music;
     private Weatherboard weatherboard;
+	private CustomWeatherPanel cwp;
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public WindowStart(Championship controller) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +63,17 @@ public class WindowStart extends JFrame {
 		JButton loadButton = new JButton(scaleImage(icon));
 		loadButton.setBounds(35, 426, 201, 35);
 		contentPane.add(loadButton);
+
+		JButton weatherButton = new JButton(scaleImage(icon));
+		weatherButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cwp = controller.getCustomWeatherPanel();
+				cwp.setVisible(true);
+			}
+		});
+		weatherButton.setBounds(35, 481, 201, 35);
+		contentPane.add(weatherButton);
 		icon = new ImageIcon(getClass().getResource("/Image/exitButton.png"));
 		JButton exitButton = new JButton(scaleImage(icon));
 		exitButton.addActionListener(new ActionListener() {

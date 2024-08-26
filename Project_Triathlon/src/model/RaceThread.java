@@ -157,7 +157,9 @@ public class RaceThread extends Thread {
             }
             athlete.setNewDiscipline();
             notifyDisciplineChange(athlete.getCurrentDiscipline());
-
+            //Change the wheather conditions
+            //WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(Championship.loadDatabase());
+            //Championship.notifyWeatherUpdate(weatherconditions);
         }
     }
 
