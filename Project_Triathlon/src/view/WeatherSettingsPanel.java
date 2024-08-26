@@ -13,7 +13,7 @@ public class WeatherSettingsPanel extends JFrame
         setSize(400, 300);
         setLayout(new GridLayout(5, 2, 10, 10));
         setResizable(false);
-        JLabel descriptionLabel = new JLabel("Condition Description:");
+        JLabel descriptionLabel = new JLabel("Description:");
         JTextField descriptionField = new JTextField();
 
         JLabel unitLabel = new JLabel("Measurement Unit:");
@@ -24,6 +24,8 @@ public class WeatherSettingsPanel extends JFrame
 
         JLabel lowerTierLabel = new JLabel("Lower Tier (Min Value):");
         JTextField lowerTierField = new JTextField();
+        JButton submitButton = new JButton("Submit");
+
         add(descriptionLabel);
         add(descriptionField);
         add(unitLabel);
@@ -32,6 +34,7 @@ public class WeatherSettingsPanel extends JFrame
         add(upperTierField);
         add(lowerTierLabel);
         add(lowerTierField);
+        add(submitButton);
     }
 }
 
