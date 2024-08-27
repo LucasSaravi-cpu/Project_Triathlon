@@ -270,11 +270,11 @@ public abstract class Athlete {
 	    }
 	
 
-   public abstract String getCathegory();
+   public abstract String getCategory();
     
-   public abstract String checkNeopreneUsage(double distance, double waterTemperature);
+   public abstract String setNeopreneUsage(double distance, double waterTemperature);
    
-   public abstract Double allowedNeopreneMinutes(double distance);
+   public abstract Double setMaximumNeopreneTime(double distance);
    
    public void updateEnergy(double height, double weight, double mentalStrength, double stamina) {
        double newEnergy = K * (height * weight) * (stamina + mentalStrength);
@@ -383,7 +383,7 @@ public abstract class Athlete {
 	
 
 	
-	public boolean isNeoprene() {
+	public boolean isUsingNeoprene() {
 		return neoprene;
 	}
 
@@ -396,7 +396,7 @@ public abstract class Athlete {
 		sb.append("\n");
 
 		sb.append(" Surname: ").append(surname).append("\n Name: ").append(name)
-				.append("\n Nationality: ").append(nationality).append("\n Cathegory: ").append(getCathegory()) .append("\n Stage Wins (Swimming): ").append(stagesWinS)
+				.append("\n Nationality: ").append(nationality).append("\n Cathegory: ").append(getCategory()) .append("\n Stage Wins (Swimming): ").append(stagesWinS)
 				.append("\n Stage Wins (Pedestrianism): ").append(stagesWinP).append("\n Stage Wins (Cycling): ").append(stagesWinC)
 				.append("\n Races Won: ").append(victories).append("\n Race Desertions: ").append(racedesertions)
 				.append("\n Races Completed: ").append(finishedRaces);

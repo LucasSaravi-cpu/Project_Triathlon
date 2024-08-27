@@ -74,7 +74,7 @@ public class RaceThread extends Thread {
               	
               	if ( athlete.getCurrentDiscipline().getClass().equals(Swimming.class)) {
               		
-              		ControllerNeomprene(minutes);
+              		NeopreneController(minutes);
               		
               		
               	}
@@ -202,26 +202,26 @@ public class RaceThread extends Thread {
     }
     
     
-    public void ControllerNeomprene(int minutes) {
+    public void NeopreneController(int minutes) {
         // Obtener la política de uso del neopreno según la distancia de la carrera y la temperatura actual
     	
     	System.out.println(athlete.getName());
-        String neoprene = athlete.checkNeopreneUsage(
+        String neoprene = athlete.setNeopreneUsage(
             race.getModality().getDisciplinedistance().get(raceIndex).getDistance(), 
             race.getCurrentWeatherCondition().getCurrentTemperature()
         );
 
-        // Verificar si el atleta está usando neopreno
-        boolean isUsingNeoprene = athlete.isNeoprene();
+        // Check if the athlete is using neoprene
+        boolean isUsingNeoprene = athlete.isUsingNeoprene();
         
-        // Obtener el tiempo máximo permitido para el uso de neopreno
-        double maxAllowedMinutes = athlete.allowedNeopreneMinutes(
+        // Get the maximum time allowed for the use of neoprene
+        double maxAllowedMinutes = athlete.setMaximumNeopreneTime(
             race.getModality().getDisciplinedistance().get(raceIndex).getDistance()
         );
 
-        // Verificar si la carrera permite el uso de neopreno
+        // Check if the current Race allows neoprene usage
         if (race.isCurrentneoprene()) {
-            if (neoprene.equalsIgnoreCase("Prohibited")) {
+            if (neoprene.equalsIgnoreCase("Forbidden")) {
                 if (isUsingNeoprene) {
                     // Neopreno está prohibido y el atleta lo está usando
                     System.out.println("El uso de neopreno está prohibido para esta carrera.");
@@ -230,39 +230,39 @@ public class RaceThread extends Thread {
                 }
             } else if (neoprene.equalsIgnoreCase("Obligatory")) {
                 if (isUsingNeoprene) {
-                    // Neopreno es obligatorio y el atleta lo está usando
+                    // Neoprene is mandatory and the athelte is currently using it
                     System.out.println("El neopreno es obligatorio y el atleta lo está usando correctamente.");
                     // Acción adicional si es necesario
                 } else {
-                    // Neopreno es obligatorio pero el atleta no lo está usando
+                    // Neoprene is mandatory but the athlete is not using it
                     System.out.println("El neopreno es obligatorio pero el atleta no lo está usando.");
                     // Acción adicional para penalizar al atleta o tomar medidas
                 }
             } else if (neoprene.equalsIgnoreCase("Usable")) {
                 if (isUsingNeoprene) {
-                    if (minutes > maxAllowedMinutes) {
-                        // Neopreno es usable pero el atleta ha excedido el tiempo permitido
+                    if (minutes >= maxAllowedMinutes) {
+                        // Neoprene is allowed but the athelete has exceeded the maximum time
                         System.out.println("El atleta ha excedido el tiempo permitido de uso de neopreno.");
                         // Acción adicional para penalizar al atleta o tomar medidas
                     } else {
-                        // Neopreno es usable y el atleta está dentro del tiempo permitido
+                        // Neprene is allowed and the athlete has not exceeded the maximun time
                         System.out.println("El neopreno está en uso y el atleta está dentro del tiempo permitido.");
                         // Acción adicional si es necesario
                     }
                 } else {
-                    // Neopreno es usable pero el atleta no lo está usando
+                    // Neoprene is allowed but the athlete is not using it
                     System.out.println("El neopreno es usable pero el atleta no lo está usando.");
                     // Acción adicional si es necesario
                 }
             }
         } else {
-            // La carrera no permite el uso de neopreno
+            // Race forbids the use of neoprene
             if (isUsingNeoprene) {
                 System.out.println("La carrera no permite el uso de neopreno.");
                 System.out.println("El atleta está usando neopreno a pesar de no estar permitido.");
                 // Acción adicional para penalizar al atleta o tomar medidas
             } else {
-                // Neopreno no está permitido y el atleta no lo está usando
+                // Neoprene is forbidden and the athlete is not using it
                 System.out.println("El neopreno no está permitido y el atleta no lo está usando.");
                 // Acción adicional si es necesario
             }

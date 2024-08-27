@@ -188,7 +188,7 @@ public class Championship implements RaceListener {
             
             
             
-            System.out.println(athlete.isNeoprene());
+            System.out.println(athlete.isUsingNeoprene());
 
             //Add a Listener to each Thread
             thread.addEnergyListener(new EnergyListener() {

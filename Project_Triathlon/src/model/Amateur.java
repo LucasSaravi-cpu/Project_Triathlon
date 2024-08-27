@@ -18,7 +18,7 @@ public class Amateur extends Athlete {
 	 //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	
 	@Override
-	public String getCathegory() {
+	public String getCategory() {
 		int age = getAge();
 		if (age >= 19 && age <= 24)
 			return "19-24 years old";
@@ -54,34 +54,34 @@ public class Amateur extends Athlete {
 	
 	
 	@Override
-	public String checkNeopreneUsage(double distanceInMeters, double waterTemperature) {
+	public String setNeopreneUsage(double distanceInMeters, double waterTemperature) {
 	    String neoprene = "";
 
 	    double distanceInKm = distanceInMeters / 1000.0;
 
 	    if (distanceInKm <= 0.75) {
 	        if (waterTemperature > 15 && waterTemperature <= 20) {
-	            neoprene = "Usable";
+	            neoprene = "Allowed";
 	        } else if (waterTemperature <= 15) {
-	            neoprene = "Obligatory";
+	            neoprene = "Mandatory";
 	        }
 	    } else if (distanceInKm > 0.75 && distanceInKm <= 1.5) {
 	        if (waterTemperature > 15 && waterTemperature <= 20) {
-	            neoprene = "Usable";
+	            neoprene = "Allowed";
 	        } else if (waterTemperature <= 15) {
-	            neoprene = "Obligatory";
+	            neoprene = "Mandatory";
 	        }
 	    } else if (distanceInKm >= 1.501 && distanceInKm <= 3.0) {
 	        if (waterTemperature > 16 && waterTemperature <= 22) {
-	            neoprene = "Usable";
+	            neoprene = "Allowed";
 	        } else if (waterTemperature <= 16) {
-	            neoprene = "Obligatory";
+	            neoprene = "Mandatory";
 	        }
 	    } else if (distanceInKm >= 3.001 && distanceInKm <= 4.0) {
 	        if (waterTemperature > 17 && waterTemperature <= 23) {
-	            neoprene = "Usable";
+	            neoprene = "Allowed";
 	        } else if (waterTemperature <= 17) {
-	            neoprene = "Obligatory";
+	            neoprene = "Mandatory";
 	        }
 	    }
 
@@ -89,7 +89,7 @@ public class Amateur extends Athlete {
 	}
 
 	@Override
-	public Double allowedNeopreneMinutes(double distance) {
+	public Double setMaximumNeopreneTime(double distance) {
 		
 		
 		
