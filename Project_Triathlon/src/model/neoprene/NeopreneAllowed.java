@@ -11,7 +11,7 @@ public class NeopreneAllowed extends NeoprenePolicy{
     @Override
     public void applyPolicy(int minutes) {
         System.out.println("El neopreno es de uso opcional");
-        double maxAllowedTime = athlete.setMaximumNeopreneTime(race.getModality().getDisciplinedistance().get(raceIndex).getDistance());
+        double maxAllowedTime = athlete.setMaximumNeopreneTime(race.getModality().getDisciplinedistance().get(0).getDistance());
         if(athlete.isUsingNeoprene())
         {
             if(maxAllowedTime < minutes)

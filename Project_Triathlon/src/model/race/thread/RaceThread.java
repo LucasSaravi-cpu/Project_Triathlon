@@ -80,7 +80,7 @@ public class RaceThread extends Thread {
                 
               	int minutes = Chronometer.TimerMinutes(chronometer.getTime());
               	
-              	if ( athlete.getCurrentDiscipline().getClass().equals(Swimming.class)) {
+              	if (athlete.getCurrentDiscipline().getClass().equals(Swimming.class)) {
               		
               		NeopreneController(minutes);
               		
@@ -96,26 +96,6 @@ public class RaceThread extends Thread {
                     athlete.addRaceDesertions();
                     athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress,"Forfeited", athlete.getCurrentDiscipline().createInstance()));
                 }
-                /*
-                if (minutes>race.getT1() && athlete.getCurrentDiscipline().getClass().equals(Swimming.class))  {
-                    Thread.currentThread().interrupt();
-                    athlete.addRaceDesertions();
-                    athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress,"Forfeited", new Swimming()));
-           
-                }
-                
-                if (minutes >race.getT1()+race.getT2() && athlete.getCurrentDiscipline().getClass().equals(Cycling.class)){
-                	  Thread.currentThread().interrupt();
-                      athlete.addRaceDesertions();
-                	  athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress,"Forfeited" , new Cycling()));
-                }
-                
-                if (minutes>race.getT1()+race.getT2()+race.getT3()  && athlete.getCurrentDiscipline().getClass().equals(Pedestrianism.class)) {
-              	     Thread.currentThread().interrupt();
-                	 athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress, "Forfeited", new Pedestrianism()));
-              	 
-                }*/
-
                 
                     
             }
@@ -215,7 +195,7 @@ public class RaceThread extends Thread {
     	
     	System.out.println(athlete.getName());
         String neoprene = athlete.setNeopreneUsage(
-            race.getModality().getDisciplinedistance().get(raceIndex).getDistance(), 
+            race.getModality().getDisciplinedistance().get(0).getDistance(),
             race.getCurrentWeatherCondition().getCurrentTemperature()
         );
 
@@ -224,7 +204,7 @@ public class RaceThread extends Thread {
         
         // Get the maximum time allowed for the use of neoprene
         double maxAllowedMinutes = athlete.setMaximumNeopreneTime(
-            race.getModality().getDisciplinedistance().get(raceIndex).getDistance()
+            race.getModality().getDisciplinedistance().get(0).getDistance()
         );
 
         // Check if the current Race allows neoprene usage

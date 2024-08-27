@@ -17,7 +17,7 @@ public class NeopreneManager {
     public void setNeoprenePolicy(int minutes)
     {
         String neoprene = athlete.setNeopreneUsage(
-                race.getModality().getDisciplinedistance().get(raceIndex).getDistance(),
+                race.getModality().getDisciplinedistance().get(0).getDistance(),
                 race.getCurrentWeatherCondition().getCurrentTemperature()
         );
         NeoprenePolicy policy;
