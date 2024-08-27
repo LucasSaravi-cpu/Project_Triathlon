@@ -6,15 +6,10 @@ import javax.swing.plaf.metal.MetalRadioButtonUI;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Championship;
-import model.Athlete;
-import model.RaceManager;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class Scoreboard extends JFrame {
 	

@@ -1,4 +1,4 @@
-package model;
+package model.athlete;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -9,6 +9,9 @@ import java.util.List;
 
 import Events.EnergyEvent;
 import listeners.EnergyListener;
+import model.Competition;
+import model.race.discipline.Discipline;
+import model.race.location.Country;
 
 public abstract class Athlete {
 	

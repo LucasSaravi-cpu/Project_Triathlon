@@ -1,9 +1,11 @@
 package model;
 
+import model.athlete.penalties.AthletePenalty;
+import model.race.Race;
+import model.race.discipline.DisciplineDistance;
+
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Competition {
 	

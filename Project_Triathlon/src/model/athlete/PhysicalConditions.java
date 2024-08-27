@@ -1,4 +1,4 @@
-package model;
+package model.athlete;
 
 public class PhysicalConditions {
 	

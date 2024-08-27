@@ -1,4 +1,7 @@
-package model;
+package model.neoprene;
+
+import model.athlete.Athlete;
+import model.race.Race;
 
 public abstract class NeoprenePolicy {
     protected Athlete athlete;

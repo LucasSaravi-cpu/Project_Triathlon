@@ -1,6 +1,6 @@
 package listeners;
 
-import model.RaceThread;
+import model.race.thread.RaceThread;
 
 //------------------------------------------------>||INTERFACE||<--------------------------------------------------------\\
 

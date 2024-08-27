@@ -2,7 +2,7 @@ package Events;
 
 import java.util.EventObject;
 
-import model.WeatherConditions;
+import model.weather.WeatherConditions;
 
 public class WeatherEvent extends EventObject {
     

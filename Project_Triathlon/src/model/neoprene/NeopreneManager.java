@@ -1,4 +1,7 @@
-package model;
+package model.neoprene;
+
+import model.athlete.Athlete;
+import model.race.Race;
 
 public class NeopreneManager {
     private Athlete athlete;

@@ -1,4 +1,6 @@
-package model;
+package model.weather;
+
+import model.race.discipline.Discipline;
 
 public class WeatherConditions {
 	

@@ -1,6 +1,6 @@
 package Events;
 
-import model.Discipline;
+import model.race.discipline.Discipline;
 
 import java.util.EventObject;
 

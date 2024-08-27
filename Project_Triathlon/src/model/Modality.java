@@ -1,5 +1,7 @@
 package model;
 
+import model.race.discipline.DisciplineDistance;
+
 import java.util.List;
 
 public class Modality {
@@ -7,7 +9,7 @@ public class Modality {
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	
 	private String name;
-	private List<DisciplineDistance> disciplinedistance; // We'll only have 3 disciplines according its modality to know its total kilogrames 
+	private List<DisciplineDistance> disciplinedistance; // We'll only have 3 disciplines according its modality to know its total kilogrames
 
 	
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\

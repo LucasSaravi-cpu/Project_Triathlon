@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import model.WeatherConditions;
+import model.weather.WeatherConditions;
 import javax.swing.JTextArea;
 
 import controller.Championship;
