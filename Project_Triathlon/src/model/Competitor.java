@@ -35,7 +35,7 @@ public class Competitor extends Athlete {
 	
 	@Override
 	  // Method to check neoprene usage based on water temperature and distance
-    public String checkNeopreneUsage(int distance, double waterTemperature) {
+    public String checkNeopreneUsage(double distance, double waterTemperature) {
 
 		String neoprene="";
 	  
@@ -81,7 +81,36 @@ public class Competitor extends Athlete {
         
     }
 
+	@Override
+	public Double allowedNeopreneMinutes(double distance) {
 	
+		
+		double distanceInKm = distance/ 1000.0;
+		double time=0;
+		
+		  if (distanceInKm <= 0.75) {
+			  
+			time=20; 
+			  
+		  }
+	   else if (distanceInKm > 0.75 && distanceInKm <= 1.5) {
+		   
+		   time = 40;
+	   }
+		  
+	   else if (distanceInKm >= 1.501 && distanceInKm <= 3.0) {
+		   
+		   time = 90;
+	   }
+	   else if (distanceInKm >= 3.001 && distanceInKm <= 4.0) {
+		   
+		   time = 140;
+	   
+	   }
+		  
+		
+		return time;
+	}
 
 	
 }

@@ -13,6 +13,7 @@ public class WeatherConditions {
     private double swimmingweathering;
     private double cyclingweathering;
     private double pedestrianismweathering;
+    private double CurrentTemperature;
     
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
@@ -86,6 +87,15 @@ public class WeatherConditions {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public double getCurrentTemperature() {
+		return CurrentTemperature;
+	}
+
+	public void setCurrentTemperature(double currentTemperature) {
+		CurrentTemperature = currentTemperature;
+	}
+    
 
 	@Override
 	public String toString() {
@@ -94,7 +104,8 @@ public class WeatherConditions {
 				+"cycling "+ cyclingweathering + "%" +"\n"
 				+"pedestrianism "+ pedestrianismweathering + "%";
 	}
-    
+
+
     
     
     

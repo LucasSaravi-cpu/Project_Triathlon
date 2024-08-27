@@ -36,6 +36,8 @@ public class Race {
     private List<Stations> stations;
     private int T1 , T2 ,T3;
 	private List<Double> stationPoints;
+	private WeatherConditions CurrentWeatherCondition;
+	private boolean Currentneoprene;
     
 
 
@@ -180,10 +182,45 @@ public class Race {
 		public void setT3(int t3) {
 			T3 = t3;
 		}
-	
+		
+		
+
+		
+
+		
+		
+		public WeatherConditions getCurrentWeatherCondition() {
+			return CurrentWeatherCondition;
+		}
+
+
+		public  void setCurrentWeatherCondition(WeatherConditions currentWeatherCondition) {
+			CurrentWeatherCondition = currentWeatherCondition;
+		}
+
+		public boolean isCurrentneoprene() {
+			return Currentneoprene;
+		}
+
+
+		public void setCurrentneoprene(boolean currentneoprene) {
+			Currentneoprene = currentneoprene;
+		}
+		
+
 	
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+
+
+
+	
+
+
+
+
+
+
 
 
 
@@ -198,7 +235,7 @@ public class Race {
 		}
 	}
 	// Static method to generate a random boolean
-    public static boolean UseOfDraftingInRacer() {
+    public  boolean UseOfNeoprene() {
         Random random = new Random();
         return random.nextBoolean();
     }

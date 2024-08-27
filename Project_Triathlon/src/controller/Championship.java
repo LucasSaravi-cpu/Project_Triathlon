@@ -164,9 +164,17 @@ public class Championship implements RaceListener {
        
       WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(Championship.loadDatabase());
       notifyWeatherUpdate(weatherconditions);
+      
+      SelectionRace.get(race).setCurrentWeatherCondition(weatherconditions);
+      
+      
        
      Championship.TotalTimeForRace(SelectionRace.get(race)) ;
-    
+     
+     SelectionRace.get(race).setCurrentneoprene(SelectionRace.get(race).UseOfNeoprene());
+     
+     System.out.println("El neoprene en la carrera "+SelectionRace.get(race).isCurrentneoprene());
+     
         int i=0;
         raceManager = new RaceManager(race);
     	for (Athlete athlete:  athletes) {
@@ -175,6 +183,12 @@ public class Championship implements RaceListener {
     		RaceThread thread = new RaceThread(startX, startX, endX, this, athlete, this,raceManager, SelectionRace.get(race), race);
     		athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
             i++;
+            
+            athlete.setNeoprene(SelectionRace.get(race).UseOfNeoprene());
+            
+            
+            
+            System.out.println(athlete.isNeoprene());
 
             //Add a Listener to each Thread
             thread.addEnergyListener(new EnergyListener() {
@@ -627,6 +641,11 @@ public class Championship implements RaceListener {
 	        double lowerBound = weathercondition.getLowertier();
 	        double upperBound = weathercondition.getUppertier();
 	        double randomValue = lowerBound + (upperBound - lowerBound) * random.nextDouble();
+	        
+	        
+	        weathercondition.setCurrentTemperature(randomValue);
+	        
+	        
 	        String formattedValue = format.format(randomValue);
 	        sb.append(weathercondition.getDescription()).append("\n");
 	        sb.append(formattedValue).append(" ").append(weathercondition.getMeasurementUnit());

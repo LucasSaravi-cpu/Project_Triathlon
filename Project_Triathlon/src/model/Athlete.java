@@ -39,6 +39,7 @@ public abstract class Athlete {
 	private int points;
 	private int victories;
 	private int currentStation;
+	private boolean neoprene;
 
 
     
@@ -271,7 +272,9 @@ public abstract class Athlete {
 
    public abstract String getCathegory();
     
-   public abstract String checkNeopreneUsage(int distance, double waterTemperature);
+   public abstract String checkNeopreneUsage(double distance, double waterTemperature);
+   
+   public abstract Double allowedNeopreneMinutes(double distance);
    
    public void updateEnergy(double height, double weight, double mentalStrength, double stamina) {
        double newEnergy = K * (height * weight) * (stamina + mentalStrength);
@@ -377,6 +380,17 @@ public abstract class Athlete {
 	public void addVictory(){
 		victories++;
 	}
+	
+
+	
+	public boolean isNeoprene() {
+		return neoprene;
+	}
+
+	public void setNeoprene(boolean neoprene) {
+		this.neoprene = neoprene;
+	}
+
 	public String toString(){
 	   StringBuilder sb = new StringBuilder();
 		sb.append("\n");

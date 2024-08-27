@@ -50,8 +50,11 @@ public class Amateur extends Athlete {
   
 
 	
+
+	
+	
 	@Override
-	public String checkNeopreneUsage(int distanceInMeters, double waterTemperature) {
+	public String checkNeopreneUsage(double distanceInMeters, double waterTemperature) {
 	    String neoprene = "";
 
 	    double distanceInKm = distanceInMeters / 1000.0;
@@ -84,6 +87,49 @@ public class Amateur extends Athlete {
 
 	    return neoprene;
 	}
+
+	@Override
+	public Double allowedNeopreneMinutes(double distance) {
+		
+		
+		
+		
+			
+			double distanceInKm = distance/ 1000.0;
+			double time=0;
+			
+			  if (distanceInKm <= 0.75) {
+				  
+				  time =35;
+				  
+			  }
+		   else if (distanceInKm > 0.75 && distanceInKm <= 1.5) {
+			   
+			   time = 70;
+		   }
+			  
+			  
+		   else if (distanceInKm >= 1.501 && distanceInKm <= 3.0) {
+			   
+			   time = 120;
+		   }
+		   else if (distanceInKm >= 3.001 && distanceInKm <= 4.0) {
+			   
+		   time = 140;
+		   }
+			  
+			
+			return time;
+		}
+		
+		
+		
+		
+	
+
+	
+	
+	
 
 
 
