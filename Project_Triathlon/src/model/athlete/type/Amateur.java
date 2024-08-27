@@ -1,6 +1,6 @@
 package model.athlete.type;
 
-import model.Competition;
+import model.athlete.Competition;
 import model.athlete.PhysicalConditions;
 import model.athlete.Athlete;
 import model.race.location.Country;

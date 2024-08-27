@@ -1,4 +1,4 @@
-package model;
+package model.athlete;
 
 import model.athlete.penalties.AthletePenalty;
 import model.race.Race;

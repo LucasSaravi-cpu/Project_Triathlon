@@ -22,13 +22,20 @@ public class WindowStart extends JFrame {
     private WindowRace wr;
     private static Clip music;
     private Weatherboard weatherboard;
-	private WeatherSettingsPanel cwp;
+	private WeatherSettingsWindow cwp;
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public WindowStart(Championship controller) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 848, 564);
+		setBounds(100, 100, 848, 600);
 		setResizable(false);
-		contentPane = new JPanel();
+		contentPane = new JPanel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				ImageIcon icon = new ImageIcon(getClass().getResource("/Image/ImgStart.png"));
+				g.drawImage(icon.getImage(), 0, 0, getWidth(), getHeight(), this);
+			}
+		};
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		title = new TitleLabel("Triathlon Quest", FontCharger.loadCustomFont("/fonts/Dinofiles.ttf").deriveFont(60f));
@@ -84,11 +91,11 @@ public class WindowStart extends JFrame {
 		});
 		exitButton.setBounds(35, 371, 201, 35);
 		contentPane.add(exitButton);
-		
+		/*
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 0, 841, 540);
 		lblNewLabel.setIcon(new ImageIcon(WindowStart.class.getResource("/Image/ImgStart.png")));
-		contentPane.add(lblNewLabel);
+		contentPane.add(lblNewLabel);*/
 	}
 	
 	

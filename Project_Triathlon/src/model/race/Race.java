@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import model.*;
 import model.athlete.Athlete;
 import model.race.discipline.Discipline;
 import model.race.discipline.DisciplineDistance;

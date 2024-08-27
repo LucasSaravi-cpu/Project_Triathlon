@@ -19,11 +19,10 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import Events.DisciplineChangeEvent;
 import listeners.DisciplineChangeListener;
-import model.*;
 import model.athlete.PhysicalConditions;
 import model.athlete.type.Amateur;
 import model.athlete.Athlete;
-import model.Competition;
+import model.athlete.Competition;
 import model.athlete.type.Competitor;
 import model.race.*;
 import model.race.discipline.*;
@@ -53,7 +52,7 @@ public class Championship implements RaceListener {
 	 private WindowRace windowRace;
 	 private Scoreboard scoreboard;
 	 private Weatherboard weatherboard;
-     private WeatherSettingsPanel customWeatherPanel;
+     private WeatherSettingsWindow customWeatherPanel;
      private static List <Race> races;
 	 private static List<Athlete> athletes;
 	 private static List<Race> SelectionRace;
@@ -72,7 +71,7 @@ public class Championship implements RaceListener {
         this.raceThreads = new ArrayList<>();
         this.weatherboard = new  Weatherboard();
         this.chronometer = new Chronometer();
-        this.customWeatherPanel = new WeatherSettingsPanel();
+        this.customWeatherPanel = new WeatherSettingsWindow();
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
@@ -84,7 +83,7 @@ public class Championship implements RaceListener {
     public static int getIndexRace(){
         return race;
     }
-    public WeatherSettingsPanel getCustomWeatherPanel() {
+    public WeatherSettingsWindow getCustomWeatherPanel() {
         return customWeatherPanel;
     }
     public static List<Athlete> getAthletes() {
