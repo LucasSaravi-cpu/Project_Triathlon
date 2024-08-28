@@ -268,7 +268,10 @@ public class Championship implements RaceListener {
     {
         WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(Championship.loadDatabase());
         notifyWeatherUpdate(weatherconditions);
-        SelectionRace.get(race).setCurrentWeatherCondition(weatherconditions);
+        if (race>3)
+            SelectionRace.get(3).setCurrentWeatherCondition(weatherconditions);
+        else
+            SelectionRace.get(race).setCurrentWeatherCondition(weatherconditions);
     }
    
 	public static void loadXML() throws ParserConfigurationException, SAXException, IOException {
