@@ -147,14 +147,15 @@ public class RaceThread extends Thread {
     }
     private void checkForDisciplineChange(Chronometer chronometer) {
         String currentTime = chronometer.getTime();
+        boolean isFirst = !raceManager.isDisciplineWon(athlete.getCurrentDiscipline().getClass().getSimpleName().toLowerCase());
         if (athlete.getCurrentDiscipline().surpassed(positionX, race, startX, endX)){
             athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKm(athlete.getCurrentDiscipline()), athlete.getCurrentDiscipline().setTime(athlete, chronometer, raceIndex), athlete.getCurrentDiscipline().createInstance()));
-            if (!raceManager.isDisciplineWon(athlete.getCurrentDiscipline().getClass().getSimpleName().toLowerCase())) {
+            if (isFirst) {
                 athlete.addStageWin();
                 raceManager.markDisciplineAsWon(athlete.getCurrentDiscipline().getClass().getSimpleName().toLowerCase());
             }
             athlete.setNewDiscipline();
-            notifyDisciplineChange(athlete.getCurrentDiscipline());
+            notifyDisciplineChange(athlete.getCurrentDiscipline(), isFirst);
             //Change the wheather conditions
             //WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(Championship.loadDatabase());
             //Championship.notifyWeatherUpdate(weatherconditions);
@@ -169,8 +170,8 @@ public class RaceThread extends Thread {
         disciplineListeners.remove(listener);
     }
 
-    private void notifyDisciplineChange(Discipline newDiscipline) {
-        DisciplineChangeEvent event = new DisciplineChangeEvent(this, newDiscipline);
+    private void notifyDisciplineChange(Discipline newDiscipline, boolean isFirst) {
+        DisciplineChangeEvent event = new DisciplineChangeEvent(this, newDiscipline, isFirst);
         for (DisciplineChangeListener listener : disciplineListeners) {
             listener.disciplineChanged(event);
         }

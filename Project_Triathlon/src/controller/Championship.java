@@ -58,6 +58,7 @@ public class Championship implements RaceListener {
 	 private static List<Race> SelectionRace;
 	 private List<RaceThread> raceThreads;
 	 private static int race;
+     private int modalityIndex = 0;
 	 private RaceManager raceManager;
 	 private List<WeatherEventListener> weatherListeners = new ArrayList<>();;
 	 private static WeatherConditions lastCondition = null;
@@ -150,6 +151,8 @@ public class Championship implements RaceListener {
         RaceManager.clearFinishedAthletes();
     	int startX = windowRace.getRacePanel().getStartX();
         int endX = windowRace.getRacePanel().getEndX();
+
+        boolean[] weatherChanged = new boolean[2]; //2 modality changes
         List<Double> changePoints = SelectionRace.get(race).getDisciplineChangePoints();
         windowRace.getRacePanel().setDisciplineChangePoints(changePoints);
         SelectionRace.get(race).setStationPoints(changePoints, startX, endX);
@@ -173,10 +176,7 @@ public class Championship implements RaceListener {
     	});
        
        
-      WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(Championship.loadDatabase());
-      notifyWeatherUpdate(weatherconditions);
-      
-      SelectionRace.get(race).setCurrentWeatherCondition(weatherconditions);
+     changeWeatherConditions();
       
       
        
@@ -216,6 +216,10 @@ public class Championship implements RaceListener {
                 @Override
                 public void disciplineChanged(DisciplineChangeEvent event) {
                     Discipline newDiscipline = event.getNewDiscipline();
+                    if(event.getIsFirst()){
+                        changeWeatherConditions();
+                    }
+
                     ImageIcon newIcon = newDiscipline.getNewIcon();
                     /*
                     switch(newDiscipline.getClass().getSimpleName()){
@@ -238,6 +242,7 @@ public class Championship implements RaceListener {
                         int index = raceThreads.indexOf(thread);
                         windowRace.getRacePanel().getAthletePanels().get(index).getAthleteLabel().setIcon(newIcon);
                     }
+
                 }
 
             });
@@ -259,7 +264,12 @@ public class Championship implements RaceListener {
         windowRace.updateLabelPosition(index, newPositionX);
     }
     
-    
+    public void changeWeatherConditions()
+    {
+        WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(Championship.loadDatabase());
+        notifyWeatherUpdate(weatherconditions);
+        SelectionRace.get(race).setCurrentWeatherCondition(weatherconditions);
+    }
    
 	public static void loadXML() throws ParserConfigurationException, SAXException, IOException {
 
