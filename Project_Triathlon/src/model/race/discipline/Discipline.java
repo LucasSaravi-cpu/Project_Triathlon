@@ -5,6 +5,7 @@ import model.athlete.Athlete;
 import model.race.Chronometer;
 import model.race.Race;
 import model.race.Stations;
+import model.weather.WeatherConditions;
 
 import javax.swing.*;
 import java.util.List;
@@ -23,4 +24,6 @@ public abstract class Discipline {
     public abstract double getBaseSpeed(PhysicalConditions stats);
     public abstract String setTime(Athlete athlete, Chronometer chronometer, int raceIndex);
     public abstract boolean isBeforePosition(int minutes, Race race);
+    public abstract double getStat(PhysicalConditions stats);
+    public abstract double getWeatherImpact(WeatherConditions wc);
 }

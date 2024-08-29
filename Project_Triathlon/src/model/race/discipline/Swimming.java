@@ -5,6 +5,7 @@ import model.athlete.PhysicalConditions;
 import model.race.Chronometer;
 import model.race.Race;
 import model.race.Stations;
+import model.weather.WeatherConditions;
 
 import javax.swing.*;
 import java.util.List;
@@ -71,5 +72,13 @@ public class Swimming extends Discipline {
 	@Override
 	public boolean isBeforePosition(int minutes, Race race){
 		return minutes > race.getT1();
+	}
+	@Override
+	public double getStat(PhysicalConditions stats){
+		return stats.getSwimmingAptitude();
+	}
+	@Override
+	public double getWeatherImpact(WeatherConditions wc){
+		return wc.getSwimmingweathering();
 	}
 }

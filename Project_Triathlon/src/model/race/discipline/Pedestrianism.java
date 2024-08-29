@@ -5,6 +5,7 @@ import model.athlete.PhysicalConditions;
 import model.race.Chronometer;
 import model.race.Race;
 import model.race.Stations;
+import model.weather.WeatherConditions;
 
 import javax.swing.*;
 import java.util.List;
@@ -70,6 +71,14 @@ public class Pedestrianism extends Discipline {
 	@Override
 	public boolean isBeforePosition(int minutes, Race race){
 		return minutes > race.getT1() + race.getT2() + race.getT3();
+	}
+	@Override
+	public double getStat(PhysicalConditions stats) {
+		return stats.getPedestrianismAptitude();
+	}
+	@Override
+	public double getWeatherImpact(WeatherConditions wc){
+		return wc.getPedestrianismweathering();
 	}
 }
 
