@@ -21,7 +21,7 @@ public abstract class Discipline {
     public abstract double getPoints(List<Double> disciplineChangePoints, Stations station, Race race, int startX, int endX);
     public abstract ImageIcon getNewIcon();
     public abstract void setMaxTime(Race race, int time);
-    public abstract double getBaseSpeed(PhysicalConditions stats);
+    public abstract double getBaseSpeed(PhysicalConditions stats, WeatherConditions wc);
     public abstract String setTime(Athlete athlete, Chronometer chronometer, int raceIndex);
     public abstract boolean isBeforePosition(int minutes, Race race);
     public abstract double getStat(PhysicalConditions stats);

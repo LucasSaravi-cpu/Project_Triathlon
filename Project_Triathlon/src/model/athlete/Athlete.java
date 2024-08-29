@@ -9,6 +9,7 @@ import java.util.List;
 
 import Events.EnergyEvent;
 import listeners.EnergyListener;
+import model.race.Race;
 import model.race.discipline.Discipline;
 import model.race.location.Country;
 
@@ -265,8 +266,8 @@ public abstract class Athlete {
 
 	
 
-	public double getBaseSpeed() {
-		return currentDiscipline.getBaseSpeed(stats);
+	public double getSpeed(Race race) {
+		return currentDiscipline.getBaseSpeed(stats, race.getCurrentWeatherCondition()) + (5 - userSpeedAdjustment) * 25;
 	}
 
 

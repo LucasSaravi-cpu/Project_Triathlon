@@ -68,7 +68,10 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                 Random random = new Random();
                 moveLabel(chronometer);
                 athlete.decreaseEnergy(10); // Adjust decrement
-                Thread.sleep(random.nextInt((int)athlete.getBaseSpeed())); // Adjust thread speed
+
+                System.out.println((int)athlete.getSpeed(race));
+
+                Thread.sleep((int)athlete.getSpeed(race)); // Adjust thread speed
                 // Notify Energy Change
                 notifyEnergyChange(athlete.getEnergy());
                

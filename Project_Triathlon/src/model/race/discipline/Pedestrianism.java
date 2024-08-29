@@ -61,8 +61,8 @@ public class Pedestrianism extends Discipline {
 		race.setT3(time);
 	}
 	@Override
-	public double getBaseSpeed(PhysicalConditions stats){
-		return 1000 + stats.getPedestrianismAptitude() * 70;
+	public double getBaseSpeed(PhysicalConditions stats, WeatherConditions wc){
+		return 1500 - stats.getPedestrianismAptitude() * 50 - 10 * wc.getPedestrianismweathering();
 	}
 	@Override
 	public String setTime(Athlete athlete, Chronometer chronometer, int raceIndex){
