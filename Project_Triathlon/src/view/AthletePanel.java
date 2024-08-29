@@ -1,7 +1,12 @@
 package view;
 
+import Events.SpeedChangeEvent;
+import listeners.SpeedChangeListener;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class AthletePanel extends JPanel {
     private JButton increase;
@@ -10,6 +15,7 @@ public class AthletePanel extends JPanel {
     private JLabel energyLabel;
     private int startX;
     private int endX;
+    private SpeedChangeListener speedChangeListener;
     public JLabel getAthleteLabel(){
         return athleteLabel;
     }
@@ -24,6 +30,8 @@ public class AthletePanel extends JPanel {
            increase = new JButton("+");
            increase.setBounds(81, 13, 50, 21);
            add(increase);
+           increase.addActionListener(e -> notifySpeedChange(1));
+           decrease.addActionListener(e -> notifySpeedChange(-1));
            ImageIcon icon = new ImageIcon(getClass().getResource("/Image/swimming.png"));
            Image image = icon.getImage(); // get ImageIcon
            Image scaledImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Scale image
@@ -49,5 +57,12 @@ public class AthletePanel extends JPanel {
     }
     public void updateEnergyLabel(double energy) {
             energyLabel.setText(String.format("Energy: %.2f%%", energy));
+    }
+    private void notifySpeedChange(int delta) {
+        SpeedChangeEvent event = new SpeedChangeEvent(this, delta);
+        speedChangeListener.speedChanged(event);
+    }
+    public void addSpeedChangeListener(SpeedChangeListener listener) {
+        this.speedChangeListener = listener;
     }
 }

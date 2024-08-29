@@ -189,6 +189,7 @@ public class Championship implements RaceListener {
         int i=0;
         raceManager = new RaceManager(race);
     	for (Athlete athlete:  athletes) {
+            athlete.setUserSpeedAdjustment(5);
             athlete.setCurrentDiscipline(new Swimming());
     		windowRace.getRacePanel().getAthletePanels().get(i).getAthleteLabel().setText(athlete.getName() + " " + athlete.getSurname());
     		RaceThread thread = new RaceThread(startX, startX, endX, this, athlete, this,raceManager, SelectionRace.get(race), race);
@@ -246,7 +247,7 @@ public class Championship implements RaceListener {
                 }
 
             });
-
+            windowRace.getRacePanel().getAthletePanels().get(athletes.indexOf(athlete)).addSpeedChangeListener(thread);
 
 
             raceThreads.add(thread);

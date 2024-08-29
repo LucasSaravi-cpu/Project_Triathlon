@@ -5,11 +5,13 @@ import java.util.Random;
 
 import Events.EnergyEvent;
 import Events.DisciplineChangeEvent;
+import Events.SpeedChangeEvent;
 import listeners.EnergyListener;
 import listeners.RaceListener;
 import listeners.DisciplineChangeListener;
 import java.util.concurrent.atomic.AtomicInteger;
 import controller.Championship;
+import listeners.SpeedChangeListener;
 import model.athlete.Athlete;
 import model.race.discipline.Discipline;
 import model.race.discipline.DisciplineDistance;
@@ -18,7 +20,7 @@ import model.race.Race;
 import model.race.RaceManager;
 import model.race.discipline.Swimming;
 
-public class RaceThread extends Thread {
+public class RaceThread extends Thread implements SpeedChangeListener {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private int startX;
@@ -108,8 +110,16 @@ public class RaceThread extends Thread {
         }
 
     }
-
-    
+    @Override
+    public void speedChanged(SpeedChangeEvent event) {
+        if (athlete.getUserSpeedAdjustment() >= 1 && athlete.getUserSpeedAdjustment() <= 10) {
+            int newSpeed = athlete.getUserSpeedAdjustment() + event.getDelta();
+            if (newSpeed >= 1 && newSpeed <= 10) {
+                athlete.setUserSpeedAdjustment(newSpeed);
+            }
+        }
+        System.out.println(athlete.getUserSpeedAdjustment());
+    }
     
     private void moveLabel(Chronometer chronometer) {
         if (positionX+10<=endX)

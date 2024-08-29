@@ -42,7 +42,7 @@ public abstract class Athlete {
 	private int victories;
 	private int currentStation;
 	private boolean neoprene;
-
+    private int userSpeedAdjustment;
 
     
  
@@ -254,7 +254,12 @@ public abstract class Athlete {
 	public void setNewDiscipline(){
 		this.currentDiscipline = currentDiscipline.getNewDiscipline();
 	}
-	
+	public int getUserSpeedAdjustment(){
+		return userSpeedAdjustment;
+	}
+	public void setUserSpeedAdjustment(int userSpeedAdjustment){
+		this.userSpeedAdjustment=userSpeedAdjustment;
+	}
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
 
