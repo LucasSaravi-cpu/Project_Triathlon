@@ -69,9 +69,9 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                 moveLabel(chronometer);
                 athlete.decreaseEnergy(10); // Adjust decrement
 
-                System.out.println((int)athlete.getSpeed(race));
+                System.out.println((int)athlete.getSpeed());
 
-                Thread.sleep((int)athlete.getSpeed(race)); // Adjust thread speed
+                Thread.sleep((int)athlete.getSpeed()); // Adjust thread speed
                 // Notify Energy Change
                 notifyEnergyChange(athlete.getEnergy());
                
@@ -125,8 +125,8 @@ public class RaceThread extends Thread implements SpeedChangeListener {
     }
     
     private void moveLabel(Chronometer chronometer) {
-        if (positionX+10<=endX)
-    	    positionX += 10; // Increments X position
+        if (positionX+athlete.getPositionChange(race)<=endX)
+            positionX += athlete.getPositionChange(race);
         else {
         	positionX=endX;
         	Thread.currentThread().interrupt();

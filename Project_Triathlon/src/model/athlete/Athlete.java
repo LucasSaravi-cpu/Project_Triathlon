@@ -263,24 +263,23 @@ public abstract class Athlete {
 	}
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
-
-	
-
-	public double getSpeed(Race race) {
-		return currentDiscipline.getBaseSpeed(stats, race.getCurrentWeatherCondition()) + (5 - userSpeedAdjustment) * 25;
+	public double getSpeed() {
+		return 500 - (userSpeedAdjustment-5) * 50;
+	}
+	public int getPositionChange(Race race){
+		return (int) currentDiscipline.getBaseSpeed(stats, race.getCurrentWeatherCondition());
 	}
 
-
-	   public int getAge() {
-	        LocalDate birthDateLocal = birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-	        LocalDate currentDate = LocalDate.now();
-	        return Period.between(birthDateLocal, currentDate).getYears();
-	    }
+	public int getAge() {
+		LocalDate birthDateLocal = birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate currentDate = LocalDate.now();
+		return Period.between(birthDateLocal, currentDate).getYears();
+	}
 	
 
    public abstract String getCategory();
     
-   public abstract String setNeopreneUsage(double distance, double waterTemperature);
+   public abstract String  setNeopreneUsage(double distance, double waterTemperature);
    
    public abstract Double setMaximumNeopreneTime(double distance);
    
@@ -394,7 +393,6 @@ public abstract class Athlete {
 	public boolean isUsingNeoprene() {
 		return neoprene;
 	}
-
 	public void setNeoprene(boolean neoprene) {
 		this.neoprene = neoprene;
 	}

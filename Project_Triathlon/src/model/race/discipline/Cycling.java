@@ -66,7 +66,8 @@ public class Cycling extends Discipline {
 	}
 	@Override
 	public double getBaseSpeed(PhysicalConditions stats, WeatherConditions wc){
-		return 1500 - stats.getCyclismAptitude() * 70 - 10 * wc.getCyclingweathering();
+		return stats.getCyclismAptitude() * (1 + wc.getCyclingweathering()/100);
+		//return 1500 - stats.getCyclismAptitude() * 70 - 10 * wc.getCyclingweathering();
 	}
 	@Override
 	public String setTime(Athlete athlete, Chronometer chronometer, int raceIndex){

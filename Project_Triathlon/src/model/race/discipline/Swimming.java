@@ -63,7 +63,8 @@ public class Swimming extends Discipline {
 	}
 	@Override
 	public double getBaseSpeed(PhysicalConditions stats, WeatherConditions wc){
-		return 1500 - stats.getSwimmingAptitude() * 30 - 10 * wc.getSwimmingweathering();
+		return stats.getSwimmingAptitude() * (1 + wc.getSwimmingweathering()/100);
+		// return 1500 - stats.getSwimmingAptitude() * 30 - 10 * wc.getSwimmingweathering();
 	}
 	@Override
 	public String setTime(Athlete athlete, Chronometer chronometer, int raceIndex){
