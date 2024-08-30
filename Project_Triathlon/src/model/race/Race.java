@@ -11,6 +11,7 @@ import model.race.discipline.Discipline;
 import model.race.discipline.DisciplineDistance;
 import model.race.location.City;
 import model.race.location.Country;
+import model.race.modality.Modality;
 import model.weather.WeatherConditions;
 
 public class Race {

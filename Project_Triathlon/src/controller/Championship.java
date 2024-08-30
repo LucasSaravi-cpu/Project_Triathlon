@@ -28,6 +28,7 @@ import model.race.*;
 import model.race.discipline.*;
 import model.race.location.City;
 import model.race.location.Country;
+import model.race.modality.*;
 import model.race.thread.RaceThread;
 import model.weather.MeasurementUnit;
 import model.weather.WeatherConditions;
@@ -71,7 +72,6 @@ public class Championship implements RaceListener {
         this.scoreboard = new Scoreboard(this);
         this.raceThreads = new ArrayList<>();
         this.weatherboard = new  Weatherboard();
-        this.chronometer = new Chronometer();
         this.customWeatherPanel = new WeatherSettingsWindow();
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
@@ -151,7 +151,7 @@ public class Championship implements RaceListener {
         RaceManager.clearFinishedAthletes();
     	int startX = windowRace.getRacePanel().getStartX();
         int endX = windowRace.getRacePanel().getEndX();
-
+        chronometer = new Chronometer (SelectionRace.get(race).getModality());
         boolean[] weatherChanged = new boolean[2]; //2 modality changes
         List<Double> changePoints = SelectionRace.get(race).getDisciplineChangePoints();
         windowRace.getRacePanel().setDisciplineChangePoints(changePoints);
@@ -216,25 +216,13 @@ public class Championship implements RaceListener {
             thread.addDisciplineChangeListener(new DisciplineChangeListener() {
                 @Override
                 public void disciplineChanged(DisciplineChangeEvent event) {
+
                     Discipline newDiscipline = event.getNewDiscipline();
                     if(event.getIsFirst()){
                         changeWeatherConditions();
                     }
 
                     ImageIcon newIcon = newDiscipline.getNewIcon();
-                    /*
-                    switch(newDiscipline.getClass().getSimpleName()){
-                        case "Swimming": newIcon = null;
-                        case "Cycling": newIcon = new ImageIcon(getClass().getResource("/Image/cycling.png"));
-                        default: newIcon = new ImageIcon(getClass().getResource("/Image/running.png"));
-                    }
-                    if ("cycling".equals(newDiscipline)) {
-                        newIcon = new ImageIcon(getClass().getResource("/Image/cycling.png"));
-                    } else if ("pedestrianism".equals(newDiscipline)) {
-                        newIcon = new ImageIcon(getClass().getResource("/Image/running.png"));
-                    } else
-                        newIcon = null;
-                    // Scale image */
                     if (newIcon != null) {
                         Image scaledImage = newIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
                         newIcon = new ImageIcon(scaledImage);
@@ -243,6 +231,8 @@ public class Championship implements RaceListener {
                         int index = raceThreads.indexOf(thread);
                         windowRace.getRacePanel().getAthletePanels().get(index).getAthleteLabel().setIcon(newIcon);
                     }
+
+
 
                 }
 
@@ -420,7 +410,16 @@ public class Championship implements RaceListener {
 
                 Country country = new Country(countryname);
                 City city = new City(cityname , country);
-                Modality modality = new Modality(modalityname,disciplinedistances);
+                Modality modality;
+                switch (modalityname){
+                    case "Sprint": modality = new Sprint(disciplinedistances);
+                                    break;
+                    case "MediumDistance": modality = new MediumDistance(disciplinedistances);
+                                            break;
+                    case "LongDistance": modality = new LongDistance(disciplinedistances);
+                                            break;
+                    default: modality = new OlympicDistance(disciplinedistances);
+                }
 
 
 
@@ -528,14 +527,13 @@ public class Championship implements RaceListener {
 	  public static List<Race> getTop4Race(List<Race> originalRace) {
 
 	        Map<String, Race> bestRaceForModality = new LinkedHashMap<>();
-
 	        Set<City> usedCities = new HashSet<>();
 
 	        Set<Date> usedDates = new HashSet<>();
 
 
 	        for (Race race : originalRace) {
-	            String modalityName = race.getModality().getName();
+	            String modalityName = race.getModality().getClass().getSimpleName();
 	            City city = race.getCity();
 	            Date date = race.getDate();
 
@@ -708,8 +706,7 @@ public class Championship implements RaceListener {
     		
     		
     		    Discipline discipline =disciplinedistance.getDiscipline();
-    	        String modalityName = race.getModality().getName();
-    	      
+    	        String modalityName = race.getModality().getClass().getSimpleName();
     	        int time =Chronometer.TimerMinutes(discipline.time(modalityName));
     	        discipline.setMaxTime(race, time);
     

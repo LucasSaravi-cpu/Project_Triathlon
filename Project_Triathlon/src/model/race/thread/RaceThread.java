@@ -69,9 +69,8 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                 moveLabel(chronometer);
                 athlete.decreaseEnergy(10); // Adjust decrement
 
-                System.out.println((int)athlete.getSpeed());
 
-                Thread.sleep((int)athlete.getSpeed()); // Adjust thread speed
+                //Thread.sleep(athlete.getSpeed()); // Adjust thread speed
                 // Notify Energy Change
                 notifyEnergyChange(athlete.getEnergy());
                
@@ -92,7 +91,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
               		
               	}
               	
-              	
+              	/*
               	
                 
                //We should manage this in Swimming, Cycling and Pedestrianism classes
@@ -101,8 +100,9 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                     athlete.addRaceDesertions();
                     athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress,"Forfeited", athlete.getCurrentDiscipline().createInstance()));
                 }
-                
-                    
+                */
+
+               Thread.sleep(athlete.getSpeed()); // Adjust thread speed
             }
         } catch (InterruptedException e) {
 
@@ -121,12 +121,13 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                 athlete.setUserSpeedAdjustment(newSpeed);
             }
         }
-        System.out.println(athlete.getUserSpeedAdjustment());
     }
     
     private void moveLabel(Chronometer chronometer) {
-        if (positionX+athlete.getPositionChange(race)<=endX)
+
+        if (positionX + athlete.getPositionChange(race)<endX){
             positionX += athlete.getPositionChange(race);
+        }
         else {
         	positionX=endX;
         	Thread.currentThread().interrupt();
@@ -206,7 +207,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
     
     public void NeopreneController(int minutes) {
         // Obtener la política de uso del neopreno según la distancia de la carrera y la temperatura actual
-    	
+    	/*
     	System.out.println(athlete.getName());
         String neoprene = athlete.setNeopreneUsage(
             race.getModality().getDisciplinedistance().get(0).getDistance(),
@@ -268,7 +269,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                 System.out.println("El neopreno no está permitido y el atleta no lo está usando.");
                 // Acción adicional si es necesario
             }
-        }
+        }*/
     }
 	
 	 

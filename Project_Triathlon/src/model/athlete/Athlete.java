@@ -263,7 +263,7 @@ public abstract class Athlete {
 	}
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
-	public double getSpeed() {
+	public int getSpeed() {
 		return 500 - (userSpeedAdjustment-5) * 50;
 	}
 	public int getPositionChange(Race race){

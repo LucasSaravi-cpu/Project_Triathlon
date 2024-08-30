@@ -6,6 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import listeners.ChronometerListener;
+import model.race.modality.Modality;
 
 public class Chronometer {
     private int Hours;
@@ -13,18 +14,24 @@ public class Chronometer {
     private int seconds;
     private Timer timer;
     private List<ChronometerListener> listeners;
+    private Modality modality;
 
 
 
-    public  Chronometer() {
+    public  Chronometer(Modality modality) {
         this.Hours = 0;
         this. minutes = 0;
         this.seconds = 0;
         this.timer = new Timer();
         this.listeners = new ArrayList<>();
+        this.modality = modality;
     }
 
     public void start() {
+        // Calculate factor of acceleration based on the new duration
+        int newTotalSeconds = (int) (modality.getRaceTime() * 3600);
+        double factor = (double) newTotalSeconds / 7800;
+        long newPeriod = (long) (10 * factor);
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -40,7 +47,8 @@ public class Chronometer {
                 notifyListeners();
             }
         };
-        timer.scheduleAtFixedRate(task, 0, 10); // Increments every 100 ms
+        System.out.println(newPeriod);
+        timer.scheduleAtFixedRate(task, 0, newPeriod); // Increments every 100 ms
     }
 
     public void stop() {

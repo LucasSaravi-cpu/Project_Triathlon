@@ -1,10 +1,10 @@
-package model.race;
+package model.race.modality;
 
 import model.race.discipline.DisciplineDistance;
 
 import java.util.List;
 
-public class Modality {
+public abstract class Modality {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	
@@ -15,24 +15,14 @@ public class Modality {
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
 	
-	public Modality(String name, List<DisciplineDistance> disciplinedistance) {
+	public Modality(List<DisciplineDistance> disciplinedistance) {
 		super();
-		this.name = name;
 		this.disciplinedistance = disciplinedistance;
 	}
 
 
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 
-
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 
 	public List<DisciplineDistance> getDisciplinedistance() {
@@ -47,7 +37,7 @@ public class Modality {
 
 
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
-
+    public abstract double getRaceTime();
 
 	@Override
 	public String toString() {
