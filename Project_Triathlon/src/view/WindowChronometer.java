@@ -36,7 +36,7 @@ public class WindowChronometer extends JFrame implements ChronometerListener {
         labelChronometer.setFont(FontCharger.loadCustomFont("/fonts/ChocoShake.ttf").deriveFont(40f));
         contentPane.add(labelChronometer, BorderLayout.CENTER);
 
-        setVisible(true);
+        setVisible(false);
     }
 
 

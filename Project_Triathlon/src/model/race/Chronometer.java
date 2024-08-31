@@ -51,6 +51,7 @@ public class Chronometer {
 
     public void stop() {
         timer.cancel();
+        listeners.clear();
         System.out.println("Stopped");
     }
 

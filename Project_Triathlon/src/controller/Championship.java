@@ -54,6 +54,7 @@ public class Championship implements RaceListener {
 	 private Scoreboard scoreboard;
 	 private Weatherboard weatherboard;
      private WeatherSettingsWindow customWeatherPanel;
+     private WindowChronometer windowChronometer;
      private static List <Race> races;
 	 private static List<Athlete> athletes;
 	 private static List<Race> SelectionRace;
@@ -64,7 +65,6 @@ public class Championship implements RaceListener {
 	 private List<WeatherEventListener> weatherListeners = new ArrayList<>();;
 	 private static WeatherConditions lastCondition = null;
      private static Chronometer chronometer;
-     
 
   //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public Championship(WindowRace windowRace) {
@@ -73,6 +73,7 @@ public class Championship implements RaceListener {
         this.raceThreads = new ArrayList<>();
         this.weatherboard = new  Weatherboard();
         this.customWeatherPanel = new WeatherSettingsWindow();
+        this.windowChronometer = new WindowChronometer();
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
@@ -86,6 +87,9 @@ public class Championship implements RaceListener {
     }
     public WeatherSettingsWindow getCustomWeatherPanel() {
         return customWeatherPanel;
+    }
+    public WindowChronometer getWindowChronometer(){
+        return windowChronometer;
     }
     public static List<Athlete> getAthletes() {
 		return athletes;
@@ -245,6 +249,9 @@ public class Championship implements RaceListener {
         }
     	
         race++;
+        windowChronometer.setVisible(true);
+        addChronometerListener(windowChronometer);
+        chronometer.start();
 
         }
 
@@ -680,6 +687,7 @@ public class Championship implements RaceListener {
         weatherboard.setVisible(false);
         scoreboard.setVisible(false);
         windowRace.setVisible(false);
+        windowChronometer.setVisible(false);
         StringBuilder results = new StringBuilder();
         athletes.sort(Comparator.comparingInt(athlete -> ((Athlete) athlete).getPoints()).reversed());
         int position=1;

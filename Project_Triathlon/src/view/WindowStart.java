@@ -56,9 +56,7 @@ public class WindowStart extends JFrame {
 				weatherboard = controller.getWeatherboard();
 				weatherboard.setVisible(true);
 
-				WindowChronometer windows = new WindowChronometer();
-				controller.addChronometerListener(windows);
-				controller.startChronometer();
+				controller.getWindowChronometer().setVisible(true);
 				setnotVisible();
 			    
 			}
