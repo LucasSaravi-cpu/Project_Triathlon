@@ -1,6 +1,5 @@
 package controller;
 
-import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
@@ -52,7 +51,7 @@ public class Championship implements RaceListener {
 	
 	 private WindowRace windowRace;
 	 private Scoreboard scoreboard;
-	 private WindowEnd windowend;
+	 private WindowTrophies windowend;
 	 private Weatherboard weatherboard;
      private WeatherSettingsWindow customWeatherPanel;
      private WindowChronometer windowChronometer;
@@ -75,7 +74,7 @@ public class Championship implements RaceListener {
         this.weatherboard = new  Weatherboard();
         this.customWeatherPanel = new WeatherSettingsWindow();
         this.windowChronometer = new WindowChronometer();
-        this.windowend = new WindowEnd(this);
+        this.windowend = new WindowTrophies(this);
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
@@ -533,7 +532,7 @@ public class Championship implements RaceListener {
 
 
 	  public static List<Race> getTop4Race(List<Race> originalRace) {
-
+            Collections.shuffle(originalRace);
 	        Map<String, Race> bestRaceForModality = new LinkedHashMap<>();
 	        Set<City> usedCities = new HashSet<>();
 
@@ -553,8 +552,10 @@ public class Championship implements RaceListener {
 	                usedDates.add(date);
 	            }
 	        }
+            List<Race> resultList = new ArrayList<>(bestRaceForModality.values()).subList(0, 4);
+            resultList.sort(Comparator.comparing(Race::getDate));
 
-	        return new ArrayList<>(bestRaceForModality.values()).subList(0, 4);
+	        return resultList;
 	    }
   
 

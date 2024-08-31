@@ -10,7 +10,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import controller.Championship;
-import view.WindowEnd;
 import view.WindowRace;
 import view.WindowStart;
 import view.WindowSAGA;
