@@ -36,7 +36,7 @@ public class Swimming extends Discipline {
 	@Override
 	public boolean surpassed(int positionX, Race race, int startX, int endX) {
 		int swimmingToCyclingPoint = startX + (int) ((endX - startX) * race.getDisciplineChangePoints().getFirst()) + 70;
-		return positionX >= swimmingToCyclingPoint && positionX < startX + (int) ((endX - startX) * race.getDisciplineChangePoints().getFirst()) + 90;
+		return positionX >= swimmingToCyclingPoint && positionX < startX + (int) ((endX - startX) * race.getDisciplineChangePoints().getFirst()) + 95;
 	}
 	@Override
 	public double getPoints(List<Double> disciplineChangePoints, Stations station, Race race, int startX, int endX){

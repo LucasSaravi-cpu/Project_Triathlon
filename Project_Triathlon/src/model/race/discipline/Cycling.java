@@ -37,7 +37,7 @@ public class Cycling extends Discipline {
     @Override
     public boolean surpassed(int positionX, Race race, int startX, int endX) {
         int cyclingToPedestrianismPoint = startX + (int) ((endX - startX) * race.getDisciplineChangePoints().get(1)) - 30;
-        return positionX >= cyclingToPedestrianismPoint && positionX < cyclingToPedestrianismPoint + 20;
+        return positionX >= cyclingToPedestrianismPoint && positionX < cyclingToPedestrianismPoint + 25;
     }
 
     @Override

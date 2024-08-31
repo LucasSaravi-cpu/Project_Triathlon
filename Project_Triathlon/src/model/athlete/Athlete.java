@@ -6,6 +6,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import Events.EnergyEvent;
 import listeners.EnergyListener;
@@ -266,8 +267,8 @@ public abstract class Athlete {
 	public int getSpeed() {
 		return 500 - (userSpeedAdjustment-5) * 50;
 	}
-	public int getPositionChange(Race race){
-		return (int) currentDiscipline.getBaseSpeed(stats, race.getCurrentWeatherCondition());
+	public int getPositionChange(Race race) {
+		return (int) (currentDiscipline.getBaseSpeed(stats, race.getCurrentWeatherCondition()) * (1 + Math.random()* 0.2));
 	}
 
 	public int getAge() {
