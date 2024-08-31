@@ -61,15 +61,15 @@ public class WindowTrophies extends JFrame {
 		contentPane.setLayout(null);
 		
 	    lblWinner = new JLabel("");
-		lblWinner.setBounds(21, 251, 135, 38);
+		lblWinner.setBounds(286, 251, 135, 38);
 		contentPane.add(lblWinner);
 		
 	    lblSecond = new JLabel("");
-		lblSecond.setBounds(205, 251, 135, 38);
+		lblSecond.setBounds(138, 295, 135, 38);
 		contentPane.add(lblSecond);
 		
 		lblThird = new JLabel("");
-		lblThird.setBounds(448, 251, 135, 38);
+		lblThird.setBounds(457, 315, 135, 38);
 		contentPane.add(lblThird);
 	}
 }
