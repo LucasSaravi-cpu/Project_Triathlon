@@ -53,9 +53,8 @@ public class WindowSAGA extends JFrame {
                 Scene scene = new Scene(root, 960, 540);
                 fxPanel.setScene(scene);
                 mediaPlayer.setAutoPlay(true);
-                WindowStart windowStart = new WindowStart(null);
-		    	windowStart.music("/music/SAGAMusic.wav");
-                windowStart.playMusic();
+		    	MusicPlayer.music("/music/SAGAMusic.wav");
+                MusicPlayer.playMusic();
                
                
            });

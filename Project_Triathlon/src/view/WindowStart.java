@@ -46,13 +46,13 @@ public class WindowStart extends JFrame {
 		startbutton.setBounds(35, 314, 201, 35);
 		startbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				music.close();
+				MusicPlayer.close();
 				wr = controller.getWindowRace();
 				wr.setVisible(true);
 				controller.startRace();
 				controller.getScoreboard().setVisible(true);
-				music("/music/Road_Runner.wav");
-				playMusic();
+				MusicPlayer.music("/music/Road_Runner.wav");
+				MusicPlayer.playMusic();
 				weatherboard = controller.getWeatherboard();
 				weatherboard.setVisible(true);
 				controller.getWindowChronometer().setVisible(true);
@@ -98,37 +98,7 @@ public class WindowStart extends JFrame {
 	
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\	
-	public void music(String url) { 
-		   
-		   	   try {
-	            // Load music
-	            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(url));
-	            music = AudioSystem.getClip();
-	            music.open(audioInputStream);
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }	   
-  }
-	
 
-
-public static void playMusic() {
- if (music != null && !music.isRunning()) {
-     // Play music in a continuous loop
-     music.loop(Clip.LOOP_CONTINUOUSLY);
- }
-}
-
-
-
-public static Clip getMusic() {
-	return music;
-}
-
-
-public static void setMusic(Clip music) {
-	WindowStart.music = music;
-}
 public ImageIcon scaleImage(ImageIcon newIcon){
 	Image scaledImage = newIcon.getImage().getScaledInstance(201, 35, Image.SCALE_SMOOTH);
 	return new ImageIcon(scaledImage);

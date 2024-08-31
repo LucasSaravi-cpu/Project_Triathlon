@@ -83,6 +83,7 @@ public class WindowEndChampionship extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     showWindow(false);
+                    MusicPlayer.close();
                     windowTrophies.setVisible(false);
                     RunSimulation.restartGame();
                 }

@@ -47,7 +47,7 @@ public class Scoreboard extends JFrame {
 		btnStopMusic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				WindowStart.getMusic().stop();
+				MusicPlayer.getMusic().stop();
 				
 			}
 		});
@@ -57,7 +57,7 @@ public class Scoreboard extends JFrame {
 		btnPlayMusic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				WindowStart.playMusic();
+				MusicPlayer.playMusic();
 			}
 			
 			
@@ -218,9 +218,8 @@ public class Scoreboard extends JFrame {
 				} else {
 					controller.endChampionship();
 					controller.setVisibleWindowTrophies(true);
-					WindowStart windowStart = new WindowStart(null);
-				    windowStart.music("/music/EndMusic.wav");
-			        windowStart.playMusic();
+				    MusicPlayer.music("/music/EndMusic.wav");
+			        MusicPlayer.playMusic();
                 }
 
 			}
