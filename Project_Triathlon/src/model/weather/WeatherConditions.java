@@ -40,13 +40,13 @@ public class WeatherConditions {
 	public void setMeasurementUnit(MeasurementUnit measurementUnit) {
 		this.measurementUnit = measurementUnit;
 	}
-	public double getLowertier() {
+	public double getLowerTier() {
 		return lowertier;
 	}
 	public void setLowertier(double lowertier) {
 		this.lowertier = lowertier;
 	}
-	public double getUppertier() {
+	public double getUpperTier() {
 		return uppertier;
 	}
 	public void setUppertier(double uppertier) {
@@ -59,19 +59,19 @@ public class WeatherConditions {
 			default: return pedestrianismweathering;
 		}
 	}
-	public double getSwimmingweathering() {
+	public double getSwimmingWeathering() {
 		return swimmingweathering;
 	}
 	public void setSwimmingweathering(double swimmingweathering) {
 		this.swimmingweathering = swimmingweathering;
 	}
-	public double getCyclingweathering() {
+	public double getCyclingWeathering() {
 		return cyclingweathering;
 	}
 	public void setCyclingweathering(double cyclingweathering) {
 		this.cyclingweathering = cyclingweathering;
 	}
-	public double getPedestrianismweathering() {
+	public double getPedestrianismWeathering() {
 		return pedestrianismweathering;
 	}
 	public void setPedestrianismweathering(double pedestrianismweathering) {

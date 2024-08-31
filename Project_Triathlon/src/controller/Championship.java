@@ -670,8 +670,8 @@ public class Championship implements RaceListener {
 	        StringBuilder sb = new StringBuilder();
 	        Random random = new Random();
 	        DecimalFormat format = new DecimalFormat("#.##");
-	        double lowerBound = weathercondition.getLowertier();
-	        double upperBound = weathercondition.getUppertier();
+	        double lowerBound = weathercondition.getLowerTier();
+	        double upperBound = weathercondition.getUpperTier();
 	        double randomValue = lowerBound + (upperBound - lowerBound) * random.nextDouble();
 	        
 	        

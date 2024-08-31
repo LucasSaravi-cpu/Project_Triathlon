@@ -75,7 +75,7 @@ public class Cycling extends Discipline {
 
     @Override
     public double getBaseSpeed(PhysicalConditions stats, WeatherConditions wc) {
-        return stats.getCyclismAptitude() * 1.4 * (1 + wc.getCyclingweathering() / 100);
+        return stats.getCyclismAptitude() * 1.4 * (1 + wc.getCyclingWeathering() / 100);
         //return 1500 - stats.getCyclismAptitude() * 70 - 10 * wc.getCyclingweathering();
     }
 
@@ -96,6 +96,6 @@ public class Cycling extends Discipline {
 
     @Override
     public double getWeatherImpact(WeatherConditions wc) {
-        return wc.getCyclingweathering();
+        return wc.getCyclingWeathering();
     }
 }

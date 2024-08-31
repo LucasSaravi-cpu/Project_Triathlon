@@ -68,7 +68,7 @@ public class Swimming extends Discipline {
 	}
 	@Override
 	public double getBaseSpeed(PhysicalConditions stats, WeatherConditions wc){
-		return stats.getSwimmingAptitude() * (1 + wc.getSwimmingweathering()/100);
+		return stats.getSwimmingAptitude() * (1 + wc.getSwimmingWeathering()/100);
 		// return 1500 - stats.getSwimmingAptitude() * 30 - 10 * wc.getSwimmingweathering();
 	}
 	@Override
@@ -85,6 +85,6 @@ public class Swimming extends Discipline {
 	}
 	@Override
 	public double getWeatherImpact(WeatherConditions wc){
-		return wc.getSwimmingweathering();
+		return wc.getSwimmingWeathering();
 	}
 }

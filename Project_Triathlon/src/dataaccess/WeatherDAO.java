@@ -64,7 +64,6 @@ public class WeatherDAO {
              ResultSet TableWeatherConditions = stmt.executeQuery(query)) {
 
             while (TableWeatherConditions.next()) {
-                long petId = TableWeatherConditions.getLong("pet");
                 MeasurementUnit measurementunit = new MeasurementUnit(TableWeatherConditions.getString("measurementunit"));
 
 
