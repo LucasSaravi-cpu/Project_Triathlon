@@ -50,6 +50,10 @@ public class Pedestrianism extends Discipline {
 
 	}
 	@Override
+	public int getIconIndex(){
+		return 3;
+	}
+	@Override
 	public ImageIcon getNewIcon(){
 		return new ImageIcon(getClass().getResource("/Image/running.png"));
 	}

@@ -29,9 +29,7 @@ public class Chronometer {
 
     public void start() {
         // Calculate factor of acceleration based on the new duration
-        int newTotalSeconds = (int) (modality.getRaceTime() * 3600);
-        double factor = (double) newTotalSeconds / 7800;
-        long newPeriod = (long) (10 * factor);
+
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -47,12 +45,13 @@ public class Chronometer {
                 notifyListeners();
             }
         };
-        System.out.println(newPeriod);
-        timer.scheduleAtFixedRate(task, 0, newPeriod); // Increments every 100 ms
+        System.out.println(modality.getClass().getSimpleName());
+        timer.scheduleAtFixedRate(task, 0, modality.getRaceTime()); // Increments every 100 ms
     }
 
     public void stop() {
         timer.cancel();
+        System.out.println("Stopped");
     }
 
     public void reset() {

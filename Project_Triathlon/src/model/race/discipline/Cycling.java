@@ -59,7 +59,10 @@ public class Cycling extends Discipline {
     public Cycling createInstance() {
         return new Cycling();
     }
-
+    @Override
+    public int getIconIndex(){
+        return 2;
+    }
     @Override
     public ImageIcon getNewIcon() {
         return new ImageIcon(getClass().getResource("/Image/cycling.png"));

@@ -54,6 +54,11 @@ public class Swimming extends Discipline {
 		return new Swimming();
 	}
 	@Override
+	public int getIconIndex(){
+		return 1;
+	}
+	@Override
+
 	public ImageIcon getNewIcon(){
 		return null;
 	}

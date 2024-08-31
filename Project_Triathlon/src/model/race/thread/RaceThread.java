@@ -68,7 +68,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                 Random random = new Random();
                 moveLabel(chronometer);
                 athlete.decreaseEnergy(10); // Adjust decrement
-
+                Thread.sleep(athlete.getSpeed());
 
                 //Thread.sleep(athlete.getSpeed()); // Adjust thread speed
                 // Notify Energy Change
@@ -101,8 +101,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                     athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress,"Forfeited", athlete.getCurrentDiscipline().createInstance()));
                 }
                 */
-
-               Thread.sleep(athlete.getSpeed()); // Adjust thread speed
+                // Adjust thread speed
             }
         } catch (InterruptedException e) {
 
@@ -163,6 +162,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         String currentTime = chronometer.getTime();
         boolean isFirst = !raceManager.isDisciplineWon(athlete.getCurrentDiscipline().getClass().getSimpleName().toLowerCase());
         if (athlete.getCurrentDiscipline().surpassed(positionX, race, startX, endX)){
+
             athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKm(athlete.getCurrentDiscipline()), athlete.getCurrentDiscipline().setTime(athlete, chronometer, raceIndex), athlete.getCurrentDiscipline().createInstance()));
             if (isFirst) {
                 athlete.addStageWin();

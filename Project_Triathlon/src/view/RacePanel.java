@@ -2,10 +2,12 @@ package view;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.*;
+
 public class RacePanel extends JPanel {
 
 
@@ -19,6 +21,7 @@ public class RacePanel extends JPanel {
     private static final int endX = 886;
     private ImageIcon finishLineIcon;
     private Image scaledFinishLineImage;
+    private static Map<Integer, ImageIcon> map;
 
   //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
 
@@ -45,6 +48,7 @@ public class RacePanel extends JPanel {
 	  //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     public RacePanel(){
         athletePanels = new ArrayList<>();
+        loadMap();
         for (int i = 0; i < 43; i++){
             AthletePanel athletePanel = new AthletePanel(startX, endX);
             athletePanel.setLocation(0, i*60);
@@ -64,6 +68,23 @@ public class RacePanel extends JPanel {
         if (index >= 0 && index < athletePanels.size()) {
             athletePanels.get(index).updateEnergyLabel(energy);
         }
+    }
+    public void setIcon(int athleteIndex, int iconIndex){
+        athletePanels.get(athleteIndex).getAthleteLabel().setIcon(map.get(iconIndex));
+    }
+    private void loadMap(){
+        map = new HashMap<>();
+        ImageIcon swimmingIcon = scaleImage(new ImageIcon(getClass().getResource("/Image/swimming.png")));
+        map.put(new Integer(1), swimmingIcon);
+        ImageIcon cyclingIcon = scaleImage(new ImageIcon(getClass().getResource("/Image/cycling.png")));
+        map.put(new Integer(2), cyclingIcon);
+        ImageIcon runningIcon = scaleImage(new ImageIcon(getClass().getResource("/Image/running.png")));
+        map.put(new Integer(3), runningIcon);
+
+    }
+    private ImageIcon scaleImage(ImageIcon newIcon){
+        Image scaledImage = newIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        return new ImageIcon(scaledImage);
     }
     @Override
     protected void paintComponent(Graphics g) {

@@ -174,9 +174,9 @@ public class Championship implements RaceListener {
     		        }
     	    }
     	});
-       
-       
-     changeWeatherConditions();
+
+
+     changeWeatherConditions(0);
       
       
        
@@ -219,9 +219,9 @@ public class Championship implements RaceListener {
 
                     Discipline newDiscipline = event.getNewDiscipline();
                     if(event.getIsFirst()){
-                        changeWeatherConditions();
+                        changeWeatherConditions(1);
                     }
-
+                    int iconIndex = newDiscipline.getIconIndex();
                     ImageIcon newIcon = newDiscipline.getNewIcon();
                     if (newIcon != null) {
                         Image scaledImage = newIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -229,7 +229,7 @@ public class Championship implements RaceListener {
 
                         // Change athlete icon
                         int index = raceThreads.indexOf(thread);
-                        windowRace.getRacePanel().getAthletePanels().get(index).getAthleteLabel().setIcon(newIcon);
+                        windowRace.getRacePanel().setIcon(index, iconIndex);
                     }
 
 
@@ -255,14 +255,14 @@ public class Championship implements RaceListener {
         windowRace.updateLabelPosition(index, newPositionX);
     }
     
-    public void changeWeatherConditions()
+    public void changeWeatherConditions(int index)
     {
         WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(Championship.loadDatabase());
         notifyWeatherUpdate(weatherconditions);
-        if (race>3)
-            SelectionRace.get(3).setCurrentWeatherCondition(weatherconditions);
-        else
+        if (index==0)
             SelectionRace.get(race).setCurrentWeatherCondition(weatherconditions);
+        else
+            SelectionRace.get(race-1).setCurrentWeatherCondition(weatherconditions);
     }
    
 	public static void loadXML() throws ParserConfigurationException, SAXException, IOException {
@@ -588,6 +588,7 @@ public class Championship implements RaceListener {
                 int baseIndex = 3 + (j * 3); 
 
                 for (DisciplineDistance dd : comp.getDistances()) {
+                    System.out.println(dd.getDistance() + " " + dd.getTime() + " " + dd.getDiscipline());
                 	
                	
                     switch (dd.getDiscipline().getClass().getSimpleName()) {

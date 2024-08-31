@@ -26,4 +26,5 @@ public abstract class Discipline {
     public abstract boolean isBeforePosition(int minutes, Race race);
     public abstract double getStat(PhysicalConditions stats);
     public abstract double getWeatherImpact(WeatherConditions wc);
+    public abstract int getIconIndex();
 }

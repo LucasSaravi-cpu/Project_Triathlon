@@ -37,7 +37,7 @@ public abstract class Modality {
 
 
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
-    public abstract double getRaceTime();
+    public abstract long getRaceTime();
 
 	@Override
 	public String toString() {
