@@ -1,9 +1,12 @@
 package view;
 
 import dataaccess.WeatherDAO;
+import model.weather.MeasurementUnit;
 import model.weather.WeatherConditions;
 import java.util.List;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.SQLException;
@@ -11,7 +14,7 @@ import java.sql.SQLException;
 public class TablePanel extends JPanel {
     private JTable table;
     private DefaultTableModel tableModel;
-    public TablePanel() {
+    public TablePanel(InputPanel inputPanel) {
         setLayout(new BorderLayout());
         setOpaque(false);
 
@@ -32,6 +35,34 @@ public class TablePanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
 
         loadWeatherConditions();
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = table.getSelectedRow();
+                    if (selectedRow != -1) {
+                        String description = (String) tableModel.getValueAt(selectedRow, 1);
+                        MeasurementUnit measurementUnitObj = (MeasurementUnit) tableModel.getValueAt(selectedRow, 2);
+                        String measurementUnit = measurementUnitObj.toString();
+                        double lowerTier = (double) tableModel.getValueAt(selectedRow, 3);
+                        double upperTier = (double) tableModel.getValueAt(selectedRow, 4);
+                        double swimmingWeathering = (double) tableModel.getValueAt(selectedRow, 5);
+                        double cyclingWeathering = (double) tableModel.getValueAt(selectedRow, 6);
+                        double pedestrianismWeathering = (double) tableModel.getValueAt(selectedRow, 7);
+
+                        // Ahora puedes mostrar estos datos en los campos de texto, combobox, etc.
+                        inputPanel.setDescription(description);
+                        inputPanel.setMeasurementUnit(measurementUnit);
+                        inputPanel.setLowerTier(String.valueOf(lowerTier));
+                        inputPanel.setUpperTier(String.valueOf(upperTier));
+                        inputPanel.setSwimmingWeathering(String.valueOf(swimmingWeathering));
+                        inputPanel.setCyclingWeathering(String.valueOf(cyclingWeathering));
+                        inputPanel.setPedestrianismWeathering(String.valueOf(pedestrianismWeathering));
+
+                    }
+                }
+            }
+        });
     }
     private void loadWeatherConditions() {
         WeatherDAO dao = new WeatherDAO();

@@ -25,7 +25,7 @@ public class WeatherSettingsWindow extends JFrame
         InputPanel inputPanel = new InputPanel();
         contentPane.add(inputPanel, BorderLayout.NORTH);
 
-        TablePanel tablePanel = new TablePanel();
+        TablePanel tablePanel = new TablePanel(inputPanel);
         contentPane.add(tablePanel, BorderLayout.CENTER);
 
         ButtonPanel buttonPanel = new ButtonPanel();

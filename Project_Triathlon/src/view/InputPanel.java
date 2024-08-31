@@ -79,4 +79,31 @@ public class InputPanel extends JPanel {
     public String getPedestrianismWeathering() {
         return pedestrianismWeatheringField.getText();
     }
+    public void setDescription(String description) {
+        descriptionField.setText(description);
+    }
+
+    public void setMeasurementUnit(String measurementUnit) {
+        measurementUnitField.setText(measurementUnit);
+    }
+
+    public void setUpperTier(String upperTier) {
+        upperTierField.setText(upperTier);
+    }
+
+    public void setLowerTier(String lowerTier) {
+        lowerTierField.setText(lowerTier);
+    }
+
+    public void setSwimmingWeathering(String swimmingWeathering) {
+        swimmingWeatheringField.setText(swimmingWeathering);
+    }
+
+    public void setCyclingWeathering(String cyclingWeathering) {
+        cyclingWeatheringField.setText(cyclingWeathering);
+    }
+
+    public void setPedestrianismWeathering(String pedestrianismWeathering) {
+        pedestrianismWeatheringField.setText(pedestrianismWeathering);
+    }
 }
