@@ -226,15 +226,10 @@ public class Championship implements RaceListener {
                         changeWeatherConditions(1);
                     }
                     int iconIndex = newDiscipline.getIconIndex();
-                    ImageIcon newIcon = newDiscipline.getNewIcon();
-                    if (newIcon != null) {
-                        Image scaledImage = newIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-                        newIcon = new ImageIcon(scaledImage);
 
-                        // Change athlete icon
-                        int index = raceThreads.indexOf(thread);
-                        windowRace.getRacePanel().setIcon(index, iconIndex);
-                    }
+                    SwingUtilities.invokeLater(() -> {
+                       windowRace.getRacePanel().setIcon(raceThreads.indexOf(thread), iconIndex);
+                    });
 
 
 
