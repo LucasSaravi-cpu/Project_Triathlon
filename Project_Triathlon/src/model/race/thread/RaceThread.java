@@ -116,7 +116,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
     public void speedChanged(SpeedChangeEvent event) {
         if (athlete.getUserSpeedAdjustment() >= 1 && athlete.getUserSpeedAdjustment() <= 10) {
             int newSpeed = athlete.getUserSpeedAdjustment() + event.getDelta();
-            athlete.decreaseEnergy(2000);
+           // athlete.decreaseEnergy(2000);
             if (newSpeed >= 1 && newSpeed <= 10) {
                 athlete.setUserSpeedAdjustment(newSpeed);
             }

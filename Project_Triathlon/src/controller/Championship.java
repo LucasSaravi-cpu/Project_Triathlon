@@ -597,7 +597,6 @@ public class Championship implements RaceListener {
                 int baseIndex = 3 + (j * 3); 
 
                 for (DisciplineDistance dd : comp.getDistances()) {
-                    System.out.println(dd.getDistance() + " " + dd.getTime() + " " + dd.getDiscipline());
                 	
                	
                     switch (dd.getDiscipline().getClass().getSimpleName()) {
@@ -694,6 +693,15 @@ public class Championship implements RaceListener {
         athletes.sort(Comparator.comparingInt(athlete -> ((Athlete) athlete).getPoints()).reversed());
         int position=1;
         for (Athlete athlete : athletes) {
+            if (athletes.indexOf(athlete)==0)
+                windowTrophies.getLblWinner().setText(athlete.getName());
+            else
+                if (athletes.indexOf(athlete)==1)
+                    windowTrophies.getLblSecond().setText(athlete.getName());
+                else
+                    if (athletes.indexOf(athlete)==2)
+                        windowTrophies.getLblThird().setText(athlete.getName());
+
             results.append(athletes.indexOf(athlete) + 1);
             results.append(": ");
             results.append(athlete.getName()).append(" ").append(athlete.getSurname())
@@ -702,7 +710,7 @@ public class Championship implements RaceListener {
                     .append(".\n");
         }
 
-        WindowEndChampionship end = new WindowEndChampionship(results.toString());
+        WindowEndChampionship end = new WindowEndChampionship(results.toString(), windowTrophies);
         end.showWindow(true);
     }
 

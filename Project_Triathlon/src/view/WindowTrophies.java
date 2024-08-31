@@ -15,10 +15,34 @@ public class WindowTrophies extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-    private JLabel lblNewLabel_1;
-    private JLabel lblNewLabel_2 ;
-    private JLabel lblNewLabel_3;
-    
+    private JLabel lblWinner;
+	private JLabel lblSecond;
+	private JLabel lblThird;
+
+	public JLabel getLblSecond() {
+		return lblSecond;
+	}
+
+	public void setLblSecond(JLabel lblSecond) {
+		this.lblSecond = lblSecond;
+	}
+
+	public JLabel getLblThird() {
+		return lblThird;
+	}
+
+	public void setLblThird(JLabel lblThird) {
+		this.lblThird = lblThird;
+	}
+
+	public JLabel getLblWinner() {
+		return lblWinner;
+	}
+
+	public void setLblWinner(JLabel lblWinner) {
+		this.lblWinner = lblWinner;
+	}
+
 	public WindowTrophies(Championship controller) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 629, 411);
@@ -36,19 +60,16 @@ public class WindowTrophies extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-	    lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(21, 251, 135, 38);
-		contentPane.add(lblNewLabel_1);
+	    lblWinner = new JLabel("");
+		lblWinner.setBounds(21, 251, 135, 38);
+		contentPane.add(lblWinner);
 		
-	    lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(205, 251, 135, 38);
-		contentPane.add(lblNewLabel_2);
+	    lblSecond = new JLabel("");
+		lblSecond.setBounds(205, 251, 135, 38);
+		contentPane.add(lblSecond);
 		
-		lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setBounds(448, 251, 135, 38);
-		contentPane.add(lblNewLabel_3);
-		
-		
-	
+		lblThird = new JLabel("");
+		lblThird.setBounds(448, 251, 135, 38);
+		contentPane.add(lblThird);
 	}
 }

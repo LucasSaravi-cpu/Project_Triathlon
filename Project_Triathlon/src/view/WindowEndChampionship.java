@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class WindowEndChampionship extends JFrame {
 
-        public WindowEndChampionship(String results) {
+        public WindowEndChampionship(String results, WindowTrophies windowTrophies) {
             setTitle("End of Championship");
             setSize(800, 600);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,6 +83,7 @@ public class WindowEndChampionship extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     showWindow(false);
+                    windowTrophies.setVisible(false);
                     RunSimulation.restartGame();
                 }
             });
