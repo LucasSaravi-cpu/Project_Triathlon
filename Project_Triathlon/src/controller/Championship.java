@@ -52,6 +52,7 @@ public class Championship implements RaceListener {
 	
 	 private WindowRace windowRace;
 	 private Scoreboard scoreboard;
+	 private WindowEnd windowend;
 	 private Weatherboard weatherboard;
      private WeatherSettingsWindow customWeatherPanel;
      private WindowChronometer windowChronometer;
@@ -74,6 +75,7 @@ public class Championship implements RaceListener {
         this.weatherboard = new  Weatherboard();
         this.customWeatherPanel = new WeatherSettingsWindow();
         this.windowChronometer = new WindowChronometer();
+        this.windowend = new WindowEnd(this);
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
@@ -125,11 +127,15 @@ public class Championship implements RaceListener {
     }
 	
 	
-	
-	
-	
 
+
+	
+	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+	
+	public void Windowend() {
+		windowend.setVisible(true);
+	}
     public void startChronometer(){
         chronometer.start();
     }

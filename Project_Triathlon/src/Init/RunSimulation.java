@@ -10,6 +10,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import controller.Championship;
+import view.WindowEnd;
 import view.WindowRace;
 import view.WindowStart;
 import view.WindowSAGA;
@@ -33,8 +34,7 @@ public class RunSimulation {
 		Championship championship = new Championship(windowRace);
 		championship.startChampionship();
 		WindowStart windowStart = new WindowStart(championship);
-
-
+		
 		Timer timer = new Timer(3000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
