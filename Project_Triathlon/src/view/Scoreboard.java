@@ -217,7 +217,7 @@ public class Scoreboard extends JFrame {
 					newRace.setVisible(false);
 				} else {
 					controller.endChampionship();
-					controller.Windowend();
+					controller.setVisibleWindowTrophies(true);
 					WindowStart windowStart = new WindowStart(null);
 				    windowStart.music("/music/EndMusic.wav");
 			        windowStart.playMusic();
