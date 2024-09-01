@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class TablePanel extends JPanel {
     private JTable table;
     private DefaultTableModel tableModel;
-    public TablePanel(InputPanel inputPanel) {
+    public TablePanel(InputPanel inputPanel, WeatherDAO weatherDAO) {
         setLayout(new BorderLayout());
         setOpaque(false);
 
@@ -34,7 +34,7 @@ public class TablePanel extends JPanel {
         scrollPane.getViewport().setOpaque(false);
         add(scrollPane, BorderLayout.CENTER);
 
-        loadWeatherConditions();
+        loadWeatherConditions(weatherDAO);
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -49,8 +49,6 @@ public class TablePanel extends JPanel {
                         double swimmingWeathering = (double) tableModel.getValueAt(selectedRow, 5);
                         double cyclingWeathering = (double) tableModel.getValueAt(selectedRow, 6);
                         double pedestrianismWeathering = (double) tableModel.getValueAt(selectedRow, 7);
-
-                        // Ahora puedes mostrar estos datos en los campos de texto, combobox, etc.
                         inputPanel.setDescription(description);
                         inputPanel.setMeasurementUnit(measurementUnit);
                         inputPanel.setLowerTier(String.valueOf(lowerTier));
@@ -64,7 +62,7 @@ public class TablePanel extends JPanel {
             }
         });
     }
-    private void loadWeatherConditions() {
+    public void loadWeatherConditions(WeatherDAO weatherDAO) {
         WeatherDAO dao = new WeatherDAO();
         try {
             List<WeatherConditions> weatherConditionsList = dao.getAllWeatherConditions();
@@ -85,7 +83,7 @@ public class TablePanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Error loading weather conditions: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public JTable getTable() {
+    public JTable getWeatherTable() {
         return table;
     }
 }

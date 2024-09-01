@@ -60,24 +60,24 @@ public class InputPanel extends JPanel {
         return measurementUnitField.getText();
     }
 
-    public String getUpperTier() {
-        return upperTierField.getText();
+    public double getUpperTier() {
+        return Double.parseDouble(upperTierField.getText());
     }
 
-    public String getLowerTier() {
-        return lowerTierField.getText();
+    public double getLowerTier() {
+        return Double.parseDouble(lowerTierField.getText());
     }
 
-    public String getSwimmingWeathering() {
-        return swimmingWeatheringField.getText();
+    public double getSwimmingWeathering() {
+        return Double.parseDouble(swimmingWeatheringField.getText());
     }
 
-    public String getCyclingWeathering() {
-        return cyclingWeatheringField.getText();
+    public double getCyclingWeathering() {
+        return Double.parseDouble(cyclingWeatheringField.getText());
     }
 
-    public String getPedestrianismWeathering() {
-        return pedestrianismWeatheringField.getText();
+    public double getPedestrianismWeathering() {
+        return Double.parseDouble(pedestrianismWeatheringField.getText());
     }
     public void setDescription(String description) {
         descriptionField.setText(description);

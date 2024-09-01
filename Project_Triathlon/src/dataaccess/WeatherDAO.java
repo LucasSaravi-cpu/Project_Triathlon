@@ -26,8 +26,8 @@ public class WeatherDAO {
         }
     }
 
-    public void updateWeatherConditions(MeasurementUnit measuremeantunit, double lowertier, double uppertier , double swimmingweathering,double cyclingweathering,double pedestrianismweathering, String description) throws SQLException {
-        String sql = "UPDATE weatherconditions SET measuremeantunit = ?, lowertier = ?, swimmingweathering = ?, cyclingweathering = ? ,pedestrianismweathering = ?, description= ?  WHERE weatherconditions = ?";
+    public void updateWeatherCondition(int id, MeasurementUnit measuremeantunit, double lowertier, double uppertier , double swimmingweathering, double cyclingweathering, double pedestrianismweathering, String description) throws SQLException {
+        String sql = "UPDATE weatherconditions SET measuremeantunit = ?, lowertier = ?, swimmingweathering = ?, cyclingweathering = ? ,pedestrianismweathering = ?, description= ?  WHERE id = ?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement sw = conn.prepareStatement(sql)) {
@@ -39,6 +39,7 @@ public class WeatherDAO {
             sw.setDouble(5, cyclingweathering);
             sw.setDouble(6, pedestrianismweathering);
             sw.setString(7,description);
+            sw.setLong(8, id);
             sw.executeUpdate();
         }
     }
