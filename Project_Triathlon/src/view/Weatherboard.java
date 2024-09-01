@@ -51,23 +51,23 @@ public class Weatherboard extends JFrame {
 
         contentPane.setLayout(null); // Disable layout manager for manual positioning
         setContentPane(contentPane);
-        
+        ImageIcon weathericon = new ImageIcon(getClass().getResource("/Image/dialog.png"));
+        Image scaledweatherImage = weathericon.getImage().getScaledInstance(170, 110, Image.SCALE_SMOOTH);
+        JLabel dialogLabel = new JLabel(new ImageIcon(scaledweatherImage));
+        dialogLabel.setBounds(80, 10, 170, 110);
+        contentPane.add(dialogLabel);
         textArea = new JTextArea();
         textArea.setEditable(false);
-        textArea.setBounds(145, 93, 98, 60);
+        textArea.setBounds(125, 45, 98, 60);
         textArea.setLineWrap(true); 
         textArea.setWrapStyleWord(true); 
         textArea.setOpaque(false); 
-        textArea.setForeground(Color.BLACK); 
-        
+        textArea.setForeground(Color.BLACK);
+        Font font = FontCharger.loadCustomFont("/fonts/CuteDino.ttf").deriveFont(10f);
+        textArea.setFont(font);
         contentPane.add(textArea);
-
-        // Weather label - Top Right
-        weatherLabel = new JLabel("");
-        weatherLabel.setBounds(157, 10, 70, 70); // 70x70 size, positioned with 10px margin from right and top
-        contentPane.add(weatherLabel);
-        weatherLabel.setFocusable(false);
-        weatherLabel.setRequestFocusEnabled(false);
+        contentPane.setComponentZOrder(textArea, 0);
+        contentPane.setComponentZOrder(dialogLabel, 1);
         // Bear icon label - Bottom Left
         ImageIcon icon = new ImageIcon(getClass().getResource("/Image/weatherman.png"));
         Image scaledImage = icon.getImage().getScaledInstance(110, 110, Image.SCALE_SMOOTH);
@@ -78,21 +78,9 @@ public class Weatherboard extends JFrame {
 
     public void updateWeatherLabel(WeatherConditions weatherCondition) {
         if (weatherCondition != null) {
-            String description = weatherCondition.getDescription();
-            String imageUrl = getWeatherImageUrl(description);
+            textArea.setText(Championship.GetListWeatherCondition(weatherCondition));
 
-            if (imageUrl != null) {
-                ImageIcon icon = new ImageIcon(getClass().getResource(imageUrl));
-                Image scaledImage = icon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
-                weatherLabel.setIcon(new ImageIcon(scaledImage));
-                textArea.setText( Championship.GetListWeatherCondition(weatherCondition));
-            } else {
-                weatherLabel.setIcon(null);
-            }
         }
     }
 
-    private String getWeatherImageUrl(String description) {
-        return weatherIcons.get(description);
-    }
 }
