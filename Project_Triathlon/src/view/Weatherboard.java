@@ -63,7 +63,7 @@ public class Weatherboard extends JFrame {
         textArea.setWrapStyleWord(true); 
         textArea.setOpaque(false); 
         textArea.setForeground(Color.BLACK);
-        Font font = FontCharger.loadCustomFont("/fonts/CuteDino.ttf").deriveFont(10f);
+        Font font = FontCharger.loadCustomFont("/fonts/ChocoShake.ttf").deriveFont(10f);
         textArea.setFont(font);
         contentPane.add(textArea);
         contentPane.setComponentZOrder(textArea, 0);
