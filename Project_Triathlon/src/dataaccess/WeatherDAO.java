@@ -10,7 +10,8 @@ import java.util.List;
 public class WeatherDAO {
 
     public void insertWeatherCondition(MeasurementUnit measurementunit, double lowertier, double uppertier, double swimming, double cycling, double pedestrianism, String description) throws SQLException {
-        String sql = "INSERT INTO weatherconditions (measurementunit, lowertier, uppertier, swimmingweathering, cyclingweathering, pedestrianismweathering, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO weatherconditions (id, measurementunit, lowertier, uppertier, swimmingweathering, cyclingweathering, pedestrianismweathering, description) " +
+                "VALUES (nextval('weatherconditions_id_seq'), ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

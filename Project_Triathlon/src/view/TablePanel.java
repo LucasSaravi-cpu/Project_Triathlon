@@ -64,6 +64,7 @@ public class TablePanel extends JPanel {
     }
     public void loadWeatherConditions(WeatherDAO weatherDAO) {
         WeatherDAO dao = new WeatherDAO();
+        tableModel.setRowCount(0);
         try {
             List<WeatherConditions> weatherConditionsList = dao.getAllWeatherConditions();
             for (WeatherConditions weather : weatherConditionsList) {

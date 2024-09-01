@@ -4,6 +4,63 @@ import java.awt.*;
 
 public class InputPanel extends JPanel {
     private JTextField descriptionField;
+
+    public JTextField getDescriptionField() {
+        return descriptionField;
+    }
+
+    public void setDescriptionField(JTextField descriptionField) {
+        this.descriptionField = descriptionField;
+    }
+
+    public JTextField getMeasurementUnitField() {
+        return measurementUnitField;
+    }
+
+    public void setMeasurementUnitField(JTextField measurementUnitField) {
+        this.measurementUnitField = measurementUnitField;
+    }
+
+    public JTextField getUpperTierField() {
+        return upperTierField;
+    }
+
+    public void setUpperTierField(JTextField upperTierField) {
+        this.upperTierField = upperTierField;
+    }
+
+    public JTextField getLowerTierField() {
+        return lowerTierField;
+    }
+
+    public void setLowerTierField(JTextField lowerTierField) {
+        this.lowerTierField = lowerTierField;
+    }
+
+    public JTextField getSwimmingWeatheringField() {
+        return swimmingWeatheringField;
+    }
+
+    public void setSwimmingWeatheringField(JTextField swimmingWeatheringField) {
+        this.swimmingWeatheringField = swimmingWeatheringField;
+    }
+
+    public JTextField getCyclingWeatheringField() {
+        return cyclingWeatheringField;
+    }
+
+    public void setCyclingWeatheringField(JTextField cyclingWeatheringField) {
+        this.cyclingWeatheringField = cyclingWeatheringField;
+    }
+
+    public JTextField getPedestrianismWeatheringField() {
+        return pedestrianismWeatheringField;
+    }
+
+    public void setPedestrianismWeatheringField(JTextField pedestrianismWeatheringField) {
+        this.pedestrianismWeatheringField = pedestrianismWeatheringField;
+    }
+
     private JTextField measurementUnitField;
     private JTextField upperTierField;
     private JTextField lowerTierField;
