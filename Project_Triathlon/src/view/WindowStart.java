@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 import controller.Championship;
@@ -49,7 +50,12 @@ public class WindowStart extends JFrame {
 				MusicPlayer.close();
 				wr = controller.getWindowRace();
 				wr.setVisible(true);
-				controller.startRace();
+				try {
+					controller.startRace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				controller.getScoreboard().setVisible(true);
 				MusicPlayer.music("/music/Road_Runner.wav");
 				MusicPlayer.playMusic();

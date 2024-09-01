@@ -39,6 +39,7 @@ import org.xml.sax.SAXException;
 import Events.EnergyEvent;
 import Events.WeatherEvent;
 import dataaccess.DBManager;
+import dataaccess.WeatherDAO;
 import listeners.EnergyListener;
 import listeners.RaceListener;
 import listeners.WeatherEventListener;
@@ -65,6 +66,7 @@ public class Championship implements RaceListener {
 	 private List<WeatherEventListener> weatherListeners = new ArrayList<>();;
 	 private static WeatherConditions lastCondition = null;
      private static Chronometer chronometer;
+     private WeatherDAO weatherdao;
 
   //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public Championship(WindowRace windowRace) {
@@ -75,6 +77,7 @@ public class Championship implements RaceListener {
         this.customWeatherPanel = new WeatherSettingsWindow();
         this.windowChronometer = new WindowChronometer();
         this.windowTrophies = new WindowTrophies(this);
+        this.weatherdao = weatherdao;
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
@@ -155,7 +158,7 @@ public class Championship implements RaceListener {
         race=0;
     }
 
-    public void startRace() {
+    public void startRace() throws SQLException {
         raceThreads.clear();
         RaceManager.clearFinishedAthletes();
     	int startX = windowRace.getRacePanel().getStartX();
@@ -224,7 +227,7 @@ public class Championship implements RaceListener {
 
             thread.addDisciplineChangeListener(new DisciplineChangeListener() {
                 @Override
-                public void disciplineChanged(DisciplineChangeEvent event) {
+                public void disciplineChanged(DisciplineChangeEvent event) throws SQLException {
 
                     Discipline newDiscipline = event.getNewDiscipline();
                     if(event.getIsFirst()){
@@ -262,9 +265,10 @@ public class Championship implements RaceListener {
         windowRace.updateLabelPosition(index, newPositionX);
     }
     
-    public void changeWeatherConditions(int index)
+    public void changeWeatherConditions(int index) throws SQLException
     {
-        WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(Championship.loadDatabase());
+    	 WeatherDAO wp = new  WeatherDAO();
+        WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(wp.getAllWeatherConditions());
         notifyWeatherUpdate(weatherconditions);
         if (index==0)
             SelectionRace.get(race).setCurrentWeatherCondition(weatherconditions);
@@ -272,7 +276,7 @@ public class Championship implements RaceListener {
             SelectionRace.get(race-1).setCurrentWeatherCondition(weatherconditions);
     }
    
-	public static void loadXML() throws ParserConfigurationException, SAXException, IOException {
+	public static void loadXML() throws ParserConfigurationException, SAXException, IOException, SQLException {
 
 		//Load the XML file
         File xmlFile = new File("triatlon.xml");
@@ -452,8 +456,9 @@ public class Championship implements RaceListener {
                     }
                 }
                 
+                WeatherDAO wb =  new  WeatherDAO();
        
-               Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati,  Championship.loadDatabase());
+               Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati, wb.getAllWeatherConditions());
 
                races.add(race);
             }
@@ -488,7 +493,7 @@ public class Championship implements RaceListener {
 	
 	
 	
-	public static List<WeatherConditions> loadDatabase() {
+	/*public static List<WeatherConditions> loadDatabase() {
 		
 	//Loads the Weather Conditions Database
 		ArrayList<WeatherConditions> weatherConditions = new ArrayList<>();
@@ -528,7 +533,7 @@ public class Championship implements RaceListener {
 				
 		return weatherConditions;
 
-	}
+	}*/
 
 
 	  public static List<Race> getTop4Race(List<Race> originalRace) {

@@ -9,6 +9,7 @@ import controller.Championship;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Scoreboard extends JFrame {
@@ -213,7 +214,12 @@ public class Scoreboard extends JFrame {
 				if (Championship.getIndexRace()<4) {
 					controller.getWindowRace().reset();
 					controller.resetTimer();
-					controller.startRace();
+					try {
+						controller.startRace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					newRace.setVisible(false);
 				} else {
 					MusicPlayer.close();

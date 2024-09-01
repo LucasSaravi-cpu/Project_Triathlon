@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class WindowEndChampionship extends JFrame {
 
@@ -85,7 +86,12 @@ public class WindowEndChampionship extends JFrame {
                     showWindow(false);
                     MusicPlayer.close();
                     windowTrophies.setVisible(false);
-                    RunSimulation.restartGame();
+                    try {
+						RunSimulation.restartGame();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                 }
             });
             restart.setSize(218, 43);

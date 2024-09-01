@@ -1,4 +1,5 @@
 package model.race.thread;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -105,7 +106,10 @@ public class RaceThread extends Thread implements SpeedChangeListener {
             }
         } catch (InterruptedException e) {
 
-        }  finally {
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  finally {
             if (activeThreads.decrementAndGet() == 0) {
                 controller.allThreadsCompleted();
             }
@@ -116,14 +120,13 @@ public class RaceThread extends Thread implements SpeedChangeListener {
     public void speedChanged(SpeedChangeEvent event) {
         if (athlete.getUserSpeedAdjustment() >= 1 && athlete.getUserSpeedAdjustment() <= 10) {
             int newSpeed = athlete.getUserSpeedAdjustment() + event.getDelta();
-           // athlete.decreaseEnergy(2000);
             if (newSpeed >= 1 && newSpeed <= 10) {
                 athlete.setUserSpeedAdjustment(newSpeed);
             }
         }
     }
     
-    private void moveLabel(Chronometer chronometer) {
+    private void moveLabel(Chronometer chronometer) throws SQLException {
 
         if (positionX + athlete.getPositionChange(race)<endX){
             positionX += athlete.getPositionChange(race);
@@ -159,7 +162,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
             listener.energyChanged(event);
         }
     }
-    private void checkForDisciplineChange(Chronometer chronometer) {
+    private void checkForDisciplineChange(Chronometer chronometer) throws SQLException {
         String currentTime = chronometer.getTime();
         boolean isFirst = !raceManager.isDisciplineWon(athlete.getCurrentDiscipline().getClass().getSimpleName().toLowerCase());
         if (athlete.getCurrentDiscipline().surpassed(positionX, race, startX, endX)){
@@ -185,7 +188,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         disciplineListeners.remove(listener);
     }
 
-    private void notifyDisciplineChange(Discipline newDiscipline, boolean isFirst) {
+    private void notifyDisciplineChange(Discipline newDiscipline, boolean isFirst) throws SQLException {
         DisciplineChangeEvent event = new DisciplineChangeEvent(this, newDiscipline, isFirst);
         for (DisciplineChangeListener listener : disciplineListeners) {
             listener.disciplineChanged(event);

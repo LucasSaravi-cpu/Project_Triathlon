@@ -3,6 +3,7 @@ package Init;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.Timer;
 import javax.xml.parsers.ParserConfigurationException;
@@ -16,7 +17,7 @@ import view.WindowSAGA;
 
 public class RunSimulation {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		try {
 			startGame();
 		} catch (ParserConfigurationException | SAXException | IOException e) {
@@ -24,11 +25,11 @@ public class RunSimulation {
 		}
 
 	}
-	public static void startGame() throws ParserConfigurationException, SAXException, IOException{
+	public static void startGame() throws ParserConfigurationException, SAXException, IOException, SQLException{
 		WindowSAGA windowSAGA = new WindowSAGA();
 		windowSAGA.setVisible(true);
 		Championship.loadXML();
-		Championship.loadDatabase();
+		//Championship.loadDatabase();
 		WindowRace windowRace = new WindowRace();
 		Championship championship = new Championship(windowRace);
 		championship.startChampionship();
@@ -45,7 +46,7 @@ public class RunSimulation {
 		timer.start();
 	}
 
-	public static void restartGame()  {
+	public static void restartGame() throws SQLException  {
 		try {
 			startGame();
 		} catch (ParserConfigurationException | SAXException | IOException e) {
