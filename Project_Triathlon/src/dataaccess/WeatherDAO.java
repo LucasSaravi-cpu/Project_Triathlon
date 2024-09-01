@@ -27,20 +27,20 @@ public class WeatherDAO {
         }
     }
 
-    public void updateWeatherCondition(int id, MeasurementUnit measuremeantunit, double lowertier, double uppertier , double swimmingweathering, double cyclingweathering, double pedestrianismweathering, String description) throws SQLException {
-        String sql = "UPDATE weatherconditions SET measuremeantunit = ?, lowertier = ?, swimmingweathering = ?, cyclingweathering = ? ,pedestrianismweathering = ?, description= ?  WHERE id = ?";
+    public void updateWeatherCondition(int id, MeasurementUnit measurementUnit, double lowertier, double uppertier , double swimmingweathering, double cyclingweathering, double pedestrianismweathering, String description) throws SQLException {
+        String sql = "UPDATE weatherconditions SET measurementunit = ?, lowertier = ?, uppertier = ?, swimmingweathering = ?, cyclingweathering = ? ,pedestrianismweathering = ?, description= ?  WHERE id = ?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement sw = conn.prepareStatement(sql)) {
 
-            sw.setString(1, measuremeantunit.getUnit());
+            sw.setString(1, measurementUnit.getUnit());
             sw.setDouble(2, lowertier);
             sw.setDouble(3, uppertier);
             sw.setDouble(4,swimmingweathering);
             sw.setDouble(5, cyclingweathering);
             sw.setDouble(6, pedestrianismweathering);
             sw.setString(7,description);
-            sw.setLong(8, id);
+            sw.setInt(8, id);
             sw.executeUpdate();
         }
     }

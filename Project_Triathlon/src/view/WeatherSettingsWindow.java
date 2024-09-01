@@ -108,7 +108,7 @@ public class WeatherSettingsWindow extends JFrame
             double cyclingWeathering = inputPanel.getCyclingWeathering();
             double pedestrianismWeathering = inputPanel.getPedestrianismWeathering();
 
-            weatherDAO.updateWeatherCondition(weatherId, new MeasurementUnit(measurementUnit), upperTier, lowerTier,
+            weatherDAO.updateWeatherCondition(weatherId, new MeasurementUnit(measurementUnit), lowerTier, upperTier,
                     swimmingWeathering, cyclingWeathering, pedestrianismWeathering, description);
 
             JOptionPane.showMessageDialog(this, "Weather condition updated.");
@@ -147,27 +147,56 @@ public class WeatherSettingsWindow extends JFrame
             }
         }
     }
-    private boolean validateFields(){
-        boolean response = false;
+    private boolean validateFields() {
         if (inputPanel.getDescription().isBlank()) {
             setMessage("The description is obligatory.");
             inputPanel.getDescriptionField().requestFocus();
-        } else if (inputPanel.getLowerTier()>=inputPanel.getUpperTier()) {
-            setMessage("The lower tier has to be lower than the upper tier.");
-            inputPanel.getLowerTierField().requestFocus();
-        } else if (!isBetween(inputPanel.getSwimmingWeathering(), -30, 30)) {
-            setMessage("The weather impact in the swimming stage of the race has to be between -30 and 30.");
-            inputPanel.getSwimmingWeatheringField().requestFocus();
-        } else if (!isBetween(inputPanel.getCyclingWeathering(), -30, 30)) {
-            setMessage("The weather impact in the cycling stage of the race has to be between -30 and 30.");
-            inputPanel.getCyclingWeatheringField().requestFocus();
-        } else if (!isBetween(inputPanel.getPedestrianismWeathering(), -30, 30)) {
-            setMessage("The weather impact in the pedestrianism stage of the race has to be between -30 and 30.");
-            inputPanel.getPedestrianismWeatheringField().requestFocus();
-        } else
-            response = true;
-        return response;
+            return false;
+        }
 
+        if (inputPanel.getMeasurementUnit().isBlank()) {
+            setMessage("Measurement unit is obligatory.");
+            inputPanel.getMeasurementUnitField().requestFocus();
+            return false;
+        }
+
+        try {
+            double lowerTier = inputPanel.getLowerTier();
+            double upperTier = inputPanel.getUpperTier();
+
+            if (lowerTier >= upperTier) {
+                setMessage("The lower tier has to be lower than the upper tier.");
+                inputPanel.getLowerTierField().requestFocus();
+                return false;
+            }
+
+            double swimmingWeathering = inputPanel.getSwimmingWeathering();
+            if (!isBetween(swimmingWeathering, -30, 30)) {
+                setMessage("The weather impact in the swimming stage of the race has to be between -30 and 30.");
+                inputPanel.getSwimmingWeatheringField().requestFocus();
+                return false;
+            }
+
+            double cyclingWeathering = inputPanel.getCyclingWeathering();
+            if (!isBetween(cyclingWeathering, -30, 30)) {
+                setMessage("The weather impact in the cycling stage of the race has to be between -30 and 30.");
+                inputPanel.getCyclingWeatheringField().requestFocus();
+                return false;
+            }
+
+            double pedestrianismWeathering = inputPanel.getPedestrianismWeathering();
+            if (!isBetween(pedestrianismWeathering, -30, 30)) {
+                setMessage("The weather impact in the pedestrianism stage of the race has to be between -30 and 30.");
+                inputPanel.getPedestrianismWeatheringField().requestFocus();
+                return false;
+            }
+
+        } catch (NumberFormatException e) {
+            setMessage("Please ensure all numeric fields contain valid numbers.");
+            return false;
+        }
+
+        return true;
     }
     private boolean isBetween(double number, int lower, int upper){
         return number<= upper && number >= lower;
