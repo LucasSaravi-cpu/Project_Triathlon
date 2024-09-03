@@ -1,9 +1,12 @@
 package view;
 import java.awt.*;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+
+import com.sun.media.jfxmedia.MediaException;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
@@ -74,8 +77,18 @@ public class WindowSAGA extends JFrame {
                 });
             });
 
-        } catch (Exception e) {
-            e.printStackTrace(); // Catch and print any exception
+        } catch (IllegalArgumentException e) {
+            System.err.println("IllegalArgument: " + e.getMessage());
+            e.printStackTrace();
+        } catch (MediaException e) {
+            System.err.println("Error when charging video: " + e.getMessage());
+            e.printStackTrace();
+        } catch (IllegalStateException e) {
+            System.err.println("Error in JFXPanel state: " + e.getMessage());
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.err.println("Resource not found: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
