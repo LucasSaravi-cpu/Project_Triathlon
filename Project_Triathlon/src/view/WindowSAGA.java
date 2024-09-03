@@ -1,9 +1,9 @@
 package view;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import com.sun.media.jfxmedia.MediaException;
@@ -61,12 +61,11 @@ public class WindowSAGA extends JFrame {
             StackPane root = new StackPane(mediaView);
             Scene scene = new Scene(root, 960, 540);
             fxPanel.setScene(scene);
-
+            MusicPlayer.music("/music/SAGAMusic.wav");
             mediaPlayer.setOnReady(() -> {
                 System.out.println("MediaPlayer is ready");
                 mediaPlayer.play();
-                setVisible(true);
-                MusicPlayer.music("/music/SAGAMusic.wav");  // Prepare music
+                setVisible(true); // Prepare music
                 MusicPlayer.playMusic();
             });
 
@@ -75,6 +74,10 @@ public class WindowSAGA extends JFrame {
                     setVisible(false);  // Hide WindowSAGA
                     windowStart.setVisible(true);  // Show WindowStart
                 });
+            });
+            mediaPlayer.setOnError(() -> {
+                System.err.println("Error loading video: " + mediaPlayer.getError().getMessage());
+                showWindowSAGAAndSwitch();
             });
 
         } catch (IllegalArgumentException e) {
@@ -90,5 +93,19 @@ public class WindowSAGA extends JFrame {
             System.err.println("Resource not found: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+    private void showWindowSAGAAndSwitch() {
+        setVisible(true);
+        MusicPlayer.playMusic();
+
+        Timer timer = new Timer(3000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                windowStart.setVisible(true);
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 }
