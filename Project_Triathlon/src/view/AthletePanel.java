@@ -19,7 +19,7 @@ public class AthletePanel extends JPanel {
     public JLabel getAthleteLabel(){
         return athleteLabel;
     }
-    public AthletePanel(int startX, int endX){
+    public AthletePanel(int startX, int endX, ImageIcon icon){
            this.startX = startX;
            this.endX = endX;
            setLayout(null);
@@ -32,11 +32,7 @@ public class AthletePanel extends JPanel {
            add(increase);
            increase.addActionListener(e -> notifySpeedChange(1));
            decrease.addActionListener(e -> notifySpeedChange(-1));
-           ImageIcon icon = new ImageIcon(getClass().getResource("/Image/swimming.png"));
-           Image image = icon.getImage(); // get ImageIcon
-           Image scaledImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Scale image
-           ImageIcon scaledIcon = new ImageIcon(scaledImage);
-           athleteLabel = new JLabel(scaledIcon);
+           athleteLabel = new JLabel(icon);
            athleteLabel.setBounds(137, 8, 110, 30);
            add(athleteLabel);
            energyLabel = new JLabel("Energy");

@@ -28,7 +28,6 @@ public class RacePanel extends JPanel {
     public int getStartX() {
 		return startX;
 	}
-
 	public int getEndX() {
 		return endX;
 	}
@@ -44,13 +43,16 @@ public class RacePanel extends JPanel {
         this.stationPoints=points;
         repaint();
     }
+    public ImageIcon getImageFromMap(int index){
+        return map.get(index);
+    }
 
 	  //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     public RacePanel(){
         athletePanels = new ArrayList<>();
         loadMap();
         for (int i = 0; i < 43; i++){
-            AthletePanel athletePanel = new AthletePanel(startX, endX);
+            AthletePanel athletePanel = new AthletePanel(startX, endX, getImageFromMap(1));
             athletePanel.setLocation(0, i*60);
             athletePanels.add(athletePanel);
             add(athletePanel);

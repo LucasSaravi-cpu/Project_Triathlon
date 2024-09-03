@@ -13,8 +13,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Scoreboard extends JFrame {
-	
-	
+
+
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -31,9 +31,9 @@ public class Scoreboard extends JFrame {
 	private JScrollPane scrollPane;
 
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
-    
+
 	public Scoreboard(Championship controller) {
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(977, 100, 578, 699);
 		setResizable(false);
@@ -47,9 +47,9 @@ public class Scoreboard extends JFrame {
 		JButton btnStopMusic = new JButton(new ImageIcon(scaledImage));
 		btnStopMusic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				MusicPlayer.getMusic().stop();
-				
+
 			}
 		});
 		icon = new ImageIcon(getClass().getResource("/Image/playMusicButton.png"));
@@ -57,11 +57,11 @@ public class Scoreboard extends JFrame {
 		JButton btnPlayMusic = new JButton(new ImageIcon(scaledImage));
 		btnPlayMusic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				MusicPlayer.playMusic();
 			}
-			
-			
+
+
 		});
 		btnPlayMusic.setBounds(134, 603, 100, 26);
 		contentPane.add(btnPlayMusic);
@@ -200,7 +200,7 @@ public class Scoreboard extends JFrame {
 		});
 		listRaceStats.setBounds(24, 455, 218, 43);
 		contentPane.add(listRaceStats);
-		
+
 		JLabel background = new JLabel("New label");
 		background.setIcon(new ImageIcon(Scoreboard.class.getResource("/Image/Scoreboard_background.png")));
 		background.setBounds(0, 0, 574, 686);
@@ -209,32 +209,43 @@ public class Scoreboard extends JFrame {
 		newRace = new JButton(scaleImage(icon));
 		newRace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Method for listing race Stats
-				textArea.setText("");
-				if (Championship.getIndexRace()<4) {
-					controller.getWindowRace().reset();
-					controller.resetTimer();
-					try {
-						controller.startRace();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					newRace.setVisible(false);
-				} else {
-					MusicPlayer.close();
-					controller.endChampionship();
-					controller.setVisibleWindowTrophies(true);
-				    MusicPlayer.music("/music/EndMusic.wav");
-			        MusicPlayer.playMusic();
-                }
+				// Ocultar el botón en el hilo de eventos de Swing
+				SwingUtilities.invokeLater(() -> newRace.setVisible(false));
 
+				// Crear y iniciar el hilo en segundo plano
+				new Thread(() -> {
+					textArea.setText(""); // Limpiar el área de texto
+
+					if (Championship.getIndexRace() < 4) {
+						try {
+							// Reiniciar la ventana de la carrera y el temporizador
+							controller.getWindowRace().reset();
+							controller.resetTimer();
+
+							// Mostrar la ventana de la carrera y empezar la carrera
+							SwingUtilities.invokeLater(() -> controller.getWindowRace().setVisible(true));
+							controller.startRace();
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+					} else {
+						// Manejar el final del campeonato
+						SwingUtilities.invokeLater(() -> {
+							MusicPlayer.close();
+							controller.endChampionship();
+							controller.setVisibleWindowTrophies(true);
+							MusicPlayer.music("/music/EndMusic.wav");
+							MusicPlayer.playMusic();
+						});
+					}
+				}).start();
 			}
 		});
+
 		newRace.setBounds(248, 522, 218, 43);
 		contentPane.add(newRace);
 		newRace.setVisible(false);
-	
+
 	}
 	public ImageIcon scaleImage(ImageIcon newIcon){
 		Image scaledImage = newIcon.getImage().getScaledInstance(218, 43, Image.SCALE_SMOOTH);

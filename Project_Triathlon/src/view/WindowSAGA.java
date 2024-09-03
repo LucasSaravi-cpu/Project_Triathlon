@@ -1,5 +1,5 @@
 package view;
-import java.awt.EventQueue;
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -30,6 +30,7 @@ public class WindowSAGA extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
+        contentPane.setBackground(Color.BLACK);
 
         // Initialize JFXPanel
         fxPanel = new JFXPanel();
@@ -58,8 +59,8 @@ public class WindowSAGA extends JFrame {
             Scene scene = new Scene(root, 960, 540);
             fxPanel.setScene(scene);
 
-
             mediaPlayer.setOnReady(() -> {
+                System.out.println("MediaPlayer is ready");
                 mediaPlayer.play();
                 setVisible(true);
                 MusicPlayer.music("/music/SAGAMusic.wav");  // Prepare music
@@ -72,6 +73,7 @@ public class WindowSAGA extends JFrame {
                     windowStart.setVisible(true);  // Show WindowStart
                 });
             });
+
         } catch (Exception e) {
             e.printStackTrace(); // Catch and print any exception
         }
