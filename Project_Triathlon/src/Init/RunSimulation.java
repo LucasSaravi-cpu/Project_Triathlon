@@ -31,7 +31,6 @@ public class RunSimulation {
 		championship.startChampionship();
 		WindowStart windowStart = new WindowStart(championship);
 		WindowSAGA windowSAGA = new WindowSAGA(windowStart);
-		windowSAGA.setVisible(true);
 	}
 
 	public static void restartGame() throws SQLException {

@@ -63,6 +63,7 @@ public class WindowSAGA extends JFrame {
             MusicPlayer.playMusic();
 
             mediaPlayer.setOnReady(() -> {
+                setVisible(true);
                 fxPanel.setVisible(true); // Show the panel when ready
                 mediaPlayer.play();  // Start video
             });
