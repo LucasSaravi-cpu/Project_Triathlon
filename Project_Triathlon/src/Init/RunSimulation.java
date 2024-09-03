@@ -23,25 +23,15 @@ public class RunSimulation {
 	}
 
 	public static void startGame() throws ParserConfigurationException, SAXException, IOException, SQLException {
-		WindowSAGA windowSAGA = new WindowSAGA();
-		windowSAGA.setVisible(true);
+
 		Championship.loadXML();
 		// Championship.loadDatabase();
 		WindowRace windowRace = new WindowRace();
 		Championship championship = new Championship(windowRace);
 		championship.startChampionship();
 		WindowStart windowStart = new WindowStart(championship);
-
-		Timer timer = new Timer(3000, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-					windowSAGA.setVisible(false);
-					windowStart.setVisible(true);
-				}
-			}
-		);
-		timer.setRepeats(false);
-		timer.start();
+		WindowSAGA windowSAGA = new WindowSAGA(windowStart);
+		windowSAGA.setVisible(true);
 	}
 
 	public static void restartGame() throws SQLException {
