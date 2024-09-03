@@ -67,6 +67,7 @@ public class Championship implements RaceListener {
 	 private static WeatherConditions lastCondition = null;
      private static Chronometer chronometer;
      private WeatherDAO weatherdao;
+     private static List<WeatherConditions> weatherConditions;
 
   //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public Championship(WindowRace windowRace) {
@@ -458,12 +459,24 @@ public class Championship implements RaceListener {
                 
                 WeatherDAO wb =  new  WeatherDAO();
        
-               Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati, wb.getAllWeatherConditions());
+               Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati);
 
                races.add(race);
             }
         }
 
+    }
+
+    public static void setWeatherConditions() {
+        WeatherDAO wd = new WeatherDAO();
+        try {
+            weatherConditions = wd.getAllWeatherConditions();
+        } catch (SQLException e){
+
+        }
+        for (Race race : SelectionRace){
+              race.setCondition(weatherConditions);
+        }
     }
 
 

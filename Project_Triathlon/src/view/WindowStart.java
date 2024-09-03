@@ -50,6 +50,7 @@ public class WindowStart extends JFrame {
 				MusicPlayer.close();
 				wr = controller.getWindowRace();
 				wr.setVisible(true);
+				Championship.setWeatherConditions();
 				try {
 					controller.startRace();
 				} catch (SQLException e1) {

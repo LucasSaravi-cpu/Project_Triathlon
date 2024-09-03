@@ -38,7 +38,7 @@ public class Race {
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
 	public Race(City city, Country country, Date date, Modality modality, double kmswimming, double kmcyclism,
-			double kmpedestrianism, List<Stations> stations,List<WeatherConditions> condition) {
+			double kmpedestrianism, List<Stations> stations) {
 		super();
 		this.city = city;
 		this.country = country;
