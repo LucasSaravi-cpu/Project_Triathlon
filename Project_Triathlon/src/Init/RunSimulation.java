@@ -35,12 +35,11 @@ public class RunSimulation {
 		Timer timer = new Timer(3000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SwingUtilities.invokeLater(() -> {
 					windowSAGA.setVisible(false);
 					windowStart.setVisible(true);
-				});
+				}
 			}
-		});
+		);
 		timer.setRepeats(false);
 		timer.start();
 	}

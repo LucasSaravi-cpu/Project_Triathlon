@@ -1,10 +1,13 @@
 package view;
 
 import java.awt.EventQueue;
+import java.io.File;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
@@ -15,9 +18,14 @@ import javafx.scene.media.MediaView;
 
 public class WindowSAGA extends JFrame {
 
+    //------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+
+
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JFXPanel fxPanel;
+
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
     public WindowSAGA() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,28 +41,28 @@ public class WindowSAGA extends JFrame {
         fxPanel.setBounds(0, 0, 960, 540); // Full screen
         contentPane.add(fxPanel);
 
-        // Start JavaFX in a separate thread
+        //   Start JavaFX in a separate thread
         SwingUtilities.invokeLater(() -> {
             Platform.runLater(() -> {
-                initializeMediaPlayer();
+
+                String path = getClass().getResource("/Image/SAGA.mp4").toExternalForm();
+                Media media = new Media(path);
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                MediaView mediaView = new MediaView(mediaPlayer);
+                StackPane root = new StackPane(mediaView);
+                Scene scene = new Scene(root, 960, 540);
+                fxPanel.setScene(scene);
+                mediaPlayer.setAutoPlay(true);
+                MusicPlayer.music("/music/SAGAMusic.wav");
+                MusicPlayer.playMusic();
+
+
             });
         });
+
+
+
     }
 
-    private void initializeMediaPlayer() {
-        String path = getClass().getResource("/Image/SAGA.mp4").toExternalForm();
-        Media media = new Media(path);
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        MediaView mediaView = new MediaView(mediaPlayer);
-        StackPane root = new StackPane(mediaView);
-        Scene scene = new Scene(root, 960, 540);
-        fxPanel.setScene(scene);
-        mediaPlayer.setAutoPlay(true);
 
-        // Play background music asynchronously
-        new Thread(() -> {
-            MusicPlayer.music("/music/SAGAMusic.wav");
-            MusicPlayer.playMusic();
-        }).start();
-    }
 }
