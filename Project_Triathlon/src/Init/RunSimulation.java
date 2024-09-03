@@ -25,7 +25,6 @@ public class RunSimulation {
 	public static void startGame() throws ParserConfigurationException, SAXException, IOException, SQLException {
 
 		Championship.loadXML();
-		// Championship.loadDatabase();
 		WindowRace windowRace = new WindowRace();
 		Championship championship = new Championship(windowRace);
 		championship.startChampionship();
