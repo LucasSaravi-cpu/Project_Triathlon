@@ -57,14 +57,18 @@ public class WindowSAGA extends JFrame {
             StackPane root = new StackPane(mediaView);
             Scene scene = new Scene(root, 960, 540);
             fxPanel.setScene(scene);
+            fxPanel.setVisible(false); // Hide the panel initially
+
             MusicPlayer.music("/music/SAGAMusic.wav");  // Prepare music
             MusicPlayer.playMusic();
 
             mediaPlayer.setOnReady(() -> {
+                fxPanel.setVisible(true); // Show the panel when ready
                 mediaPlayer.play();  // Start video
             });
+
             mediaPlayer.setOnEndOfMedia(() -> {
-                SwingUtilities.invokeLater(() -> { // Pass the necessary objects
+                SwingUtilities.invokeLater(() -> {
                     setVisible(false);  // Hide WindowSAGA
                     windowStart.setVisible(true);  // Show WindowStart
                 });
