@@ -1,5 +1,4 @@
 package view;
-
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,6 +11,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import view.MusicPlayer;
 
 public class WindowSAGA extends JFrame {
 
@@ -39,31 +39,38 @@ public class WindowSAGA extends JFrame {
         // Start JavaFX in a separate thread
         SwingUtilities.invokeLater(() -> {
             Platform.runLater(() -> {
-                initializeMediaPlayer();
+                try {
+                    initializeMediaPlayer();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             });
         });
     }
 
     private void initializeMediaPlayer() {
-        String path = getClass().getResource("/Image/SAGA.mp4").toExternalForm();
-        Media media = new Media(path);
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        MediaView mediaView = new MediaView(mediaPlayer);
-        StackPane root = new StackPane(mediaView);
-        Scene scene = new Scene(root, 960, 540);
-        fxPanel.setScene(scene);
-
-        // Play music and video simultaneously
-        mediaPlayer.setOnReady(() -> {
-            mediaPlayer.play();  // Start video
+        try {
+            String path = getClass().getResource("/Image/SAGA.mp4").toExternalForm();
+            Media media = new Media(path);
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            MediaView mediaView = new MediaView(mediaPlayer);
+            StackPane root = new StackPane(mediaView);
+            Scene scene = new Scene(root, 960, 540);
+            fxPanel.setScene(scene);
             MusicPlayer.music("/music/SAGAMusic.wav");  // Prepare music
-            MusicPlayer.playMusic();  // Start music
-        });
-        mediaPlayer.setOnEndOfMedia(() -> {
-            SwingUtilities.invokeLater(() -> { // Pass the necessary objects
-                setVisible(false);  // Hide WindowSAGA
-                windowStart.setVisible(true);  // Show WindowStart
+            MusicPlayer.playMusic();
+
+            mediaPlayer.setOnReady(() -> {
+                mediaPlayer.play();  // Start video
             });
-        });
+            mediaPlayer.setOnEndOfMedia(() -> {
+                SwingUtilities.invokeLater(() -> { // Pass the necessary objects
+                    setVisible(false);  // Hide WindowSAGA
+                    windowStart.setVisible(true);  // Show WindowStart
+                });
+            });
+        } catch (Exception e) {
+            e.printStackTrace(); // Catch and print any exception
+        }
     }
 }
