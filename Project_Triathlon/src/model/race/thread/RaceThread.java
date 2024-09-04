@@ -67,7 +67,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         try {
             while (!Thread.currentThread().isInterrupted()) {
                 Random random = new Random();
-                moveLabel(chronometer);
+                move(chronometer);
                 athlete.decreaseEnergy(10); // Adjust decrement
                 Thread.sleep(athlete.getSpeed());
 
@@ -126,7 +126,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         }
     }
     
-    private void moveLabel(Chronometer chronometer) throws SQLException {
+    private void move(Chronometer chronometer) throws SQLException {
 
         if (positionX + athlete.getPositionChange(race)<endX){
             positionX += athlete.getPositionChange(race);
