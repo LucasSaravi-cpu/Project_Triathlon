@@ -4,13 +4,12 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import model.weather.WeatherConditions;
-import javax.swing.JTextArea;
 
 import controller.Championship;
 
@@ -18,22 +17,8 @@ public class Weatherboard extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    private JLabel weatherLabel;
+    private JTextPane textPane;
 
-    // Map to store URLs for different weather conditions
-    private static final Map<String, String> weatherIcons = new HashMap<>();
-    private JTextArea textArea;
-
-    static {
-        // Initialize the map with URLs for different weather conditions
-        weatherIcons.put("Very low temperature", "/Image/LowTemperature.png");
-        weatherIcons.put("Normal temperature", "/Image/NormalTemperature.png");
-        weatherIcons.put("Warm temperature", "/Image/WarmTemperature.png");
-        weatherIcons.put("High temperature", "/Image/HighTemperature.png");
-        weatherIcons.put("Tailwind", "/Image/Tailwind.png");
-        weatherIcons.put("Headwind", "/Image/Headwind.png");
-    //    weatherIcons.put("Rain", "/Image/Rain.png");
-    }   
 
     public Weatherboard() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,17 +41,21 @@ public class Weatherboard extends JFrame {
         JLabel dialogLabel = new JLabel(new ImageIcon(scaledweatherImage));
         dialogLabel.setBounds(80, 10, 170, 110);
         contentPane.add(dialogLabel);
-        textArea = new JTextArea();
-        textArea.setEditable(false);
-        textArea.setBounds(125, 45, 98, 60);
-        textArea.setLineWrap(true); 
-        textArea.setWrapStyleWord(true); 
-        textArea.setOpaque(false); 
-        textArea.setForeground(Color.BLACK);
+        textPane = new JTextPane();
+        textPane.setEditable(false);
+        textPane.setBounds(120, 45, 98, 60);
+        textPane.setOpaque(false);
+        textPane.setFocusable(false);
+        textPane.setForeground(Color.BLACK);
         Font font = FontCharger.loadCustomFont("/fonts/ChocoShake.ttf").deriveFont(10f);
-        textArea.setFont(font);
-        contentPane.add(textArea);
-        contentPane.setComponentZOrder(textArea, 0);
+        textPane.setFont(font);
+
+        StyledDocument doc = textPane.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+        contentPane.add(textPane);
+        contentPane.setComponentZOrder(textPane, 0);
         contentPane.setComponentZOrder(dialogLabel, 1);
         // Bear icon label - Bottom Left
         ImageIcon icon = new ImageIcon(getClass().getResource("/Image/weatherman.png"));
@@ -78,7 +67,7 @@ public class Weatherboard extends JFrame {
 
     public void updateWeatherLabel(WeatherConditions weatherCondition) {
         if (weatherCondition != null) {
-            textArea.setText(Championship.GetListWeatherCondition(weatherCondition));
+            textPane.setText(Championship.GetListWeatherCondition(weatherCondition));
 
         }
     }
