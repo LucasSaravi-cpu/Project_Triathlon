@@ -209,27 +209,21 @@ public class Scoreboard extends JFrame {
 		newRace = new JButton(scaleImage(icon));
 		newRace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Ocultar el botón en el hilo de eventos de Swing
 				SwingUtilities.invokeLater(() -> newRace.setVisible(false));
 
-				// Crear y iniciar el hilo en segundo plano
 				new Thread(() -> {
-					textArea.setText(""); // Limpiar el área de texto
+					textArea.setText("");
 
-					if (Championship.getIndexRace() < 4) {
+					if (Championship.getRaceIndex() < 4) {
 						try {
-							// Reiniciar la ventana de la carrera y el temporizador
 							controller.getWindowRace().reset();
 							controller.resetTimer();
-
-							// Mostrar la ventana de la carrera y empezar la carrera
 							SwingUtilities.invokeLater(() -> controller.getWindowRace().setVisible(true));
 							controller.startRace();
 						} catch (SQLException e1) {
 							e1.printStackTrace();
 						}
 					} else {
-						// Manejar el final del campeonato
 						SwingUtilities.invokeLater(() -> {
 							MusicPlayer.close();
 							controller.endChampionship();

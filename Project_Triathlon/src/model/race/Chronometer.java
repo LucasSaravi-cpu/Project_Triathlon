@@ -1,5 +1,6 @@
 package model.race;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -8,7 +9,7 @@ import java.util.TimerTask;
 import listeners.ChronometerListener;
 import model.race.modality.Modality;
 
-public class Chronometer {
+public class Chronometer implements Serializable {
     private int Hours;
     private int  minutes;
     private int seconds;

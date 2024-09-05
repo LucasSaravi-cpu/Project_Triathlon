@@ -13,19 +13,22 @@ import java.awt.event.ActionEvent;
 import controller.Championship;
 
 public class WindowStart extends JFrame {
-	
+
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 
 
 	private static final long serialVersionUID = 1L;
+	private Championship controller;
 	private JPanel contentPane;
 	private TitleLabel title;
-    private WindowRace wr;
-    private static Clip music;
-    private Weatherboard weatherboard;
+	private WindowRace wr;
+	private static Clip music;
+	private Weatherboard weatherboard;
 	private WeatherSettingsWindow cwp;
-    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
+
+	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public WindowStart(Championship controller) {
+		this.controller = controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 848, 600);
 		setResizable(false);
@@ -47,24 +50,7 @@ public class WindowStart extends JFrame {
 		startbutton.setBounds(35, 314, 201, 35);
 		startbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MusicPlayer.close();
-				wr = controller.getWindowRace();
-				wr.setVisible(true);
-				Championship.setWeatherConditions();
-				try {
-					controller.startRace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				controller.getScoreboard().setVisible(true);
-				MusicPlayer.music("/music/Road_Runner.wav");
-				MusicPlayer.playMusic();
-				weatherboard = controller.getWeatherboard();
-				weatherboard.setVisible(true);
-				controller.getWindowChronometer().setVisible(true);
-				setnotVisible();
-			    
+				startGame();
 			}
 		});
 
@@ -72,6 +58,24 @@ public class WindowStart extends JFrame {
 		contentPane.add(startbutton);
 		icon = new ImageIcon(getClass().getResource("/Image/loadButton.png"));
 		JButton loadButton = new JButton(scaleImage(icon));
+		loadButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Championship.loadGameState("/savestates/gameState.dat");
+				if (controller.getRaceIndex()<4)
+                   startGame();
+				else {
+					SwingUtilities.invokeLater(() -> {
+						MusicPlayer.close();
+						controller.endChampionship();
+						controller.setVisibleWindowTrophies(true);
+						MusicPlayer.music("/music/EndMusic.wav");
+						MusicPlayer.playMusic();
+					});
+				}
+
+			}
+		});
 		loadButton.setBounds(35, 426, 201, 35);
 		contentPane.add(loadButton);
 		icon = new ImageIcon(getClass().getResource("/Image/customWeatherButton.png"));
@@ -101,18 +105,36 @@ public class WindowStart extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(WindowStart.class.getResource("/Image/ImgStart.png")));
 		contentPane.add(lblNewLabel);*/
 	}
-	
-	
-	
+
+
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\	
 
-public ImageIcon scaleImage(ImageIcon newIcon){
-	Image scaledImage = newIcon.getImage().getScaledInstance(201, 35, Image.SCALE_SMOOTH);
-	return new ImageIcon(scaledImage);
-}
+	public ImageIcon scaleImage(ImageIcon newIcon) {
+		Image scaledImage = newIcon.getImage().getScaledInstance(201, 35, Image.SCALE_SMOOTH);
+		return new ImageIcon(scaledImage);
+	}
 
-	
-public void setnotVisible(){
+
+	public void setnotVisible() {
 		setVisible(false);
-}
+	}
+
+	private void startGame() {
+		MusicPlayer.close();
+		wr = controller.getWindowRace();
+		wr.setVisible(true);
+		Championship.setWeatherConditions();
+		try {
+			controller.startRace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		controller.getScoreboard().setVisible(true);
+		MusicPlayer.music("/music/Road_Runner.wav");
+		MusicPlayer.playMusic();
+		weatherboard = controller.getWeatherboard();
+		weatherboard.setVisible(true);
+		controller.getWindowChronometer().setVisible(true);
+		setnotVisible();
+	}
 }

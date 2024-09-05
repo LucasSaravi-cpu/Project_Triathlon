@@ -1,6 +1,8 @@
 package model.race.discipline;
 
-public class DisciplineDistance {
+import java.io.Serializable;
+
+public class DisciplineDistance implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	

@@ -3,7 +3,9 @@ package model.neoprene;
 import model.athlete.Athlete;
 import model.race.Race;
 
-public class NeopreneManager {
+import java.io.Serializable;
+
+public class NeopreneManager implements Serializable {
     private Athlete athlete;
     private Race race;
     private int raceIndex;

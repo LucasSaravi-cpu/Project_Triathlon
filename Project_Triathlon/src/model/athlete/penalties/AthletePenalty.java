@@ -1,8 +1,9 @@
 package model.athlete.penalties;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AthletePenalty {
+public class AthletePenalty implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	    private Date dateHour;

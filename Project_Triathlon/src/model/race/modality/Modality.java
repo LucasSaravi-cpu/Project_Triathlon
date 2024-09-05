@@ -2,9 +2,10 @@ package model.race.modality;
 
 import model.race.discipline.DisciplineDistance;
 
+import java.io.Serializable;
 import java.util.List;
 
-public abstract class Modality {
+public abstract class Modality implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	

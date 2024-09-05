@@ -1,5 +1,6 @@
 package model.race;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +15,7 @@ import model.race.location.Country;
 import model.race.modality.Modality;
 import model.weather.WeatherConditions;
 
-public class Race {
+public class Race implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	

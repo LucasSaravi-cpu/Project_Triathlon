@@ -2,7 +2,9 @@ package model.race;
 
 import model.race.discipline.Discipline;
 
-public class Stations {
+import java.io.Serializable;
+
+public class Stations implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	

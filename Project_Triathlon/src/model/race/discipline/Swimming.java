@@ -8,9 +8,10 @@ import model.race.Stations;
 import model.weather.WeatherConditions;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.List;
 
-public class Swimming extends Discipline {
+public class Swimming extends Discipline implements Serializable {
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	

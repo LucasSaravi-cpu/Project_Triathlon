@@ -1,11 +1,7 @@
 package controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import java.io.*;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,7 +25,6 @@ import model.race.location.City;
 import model.race.location.Country;
 import model.race.modality.*;
 import model.race.thread.RaceThread;
-import model.weather.MeasurementUnit;
 import model.weather.WeatherConditions;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -38,7 +33,6 @@ import org.xml.sax.SAXException;
 
 import Events.EnergyEvent;
 import Events.WeatherEvent;
-import dataaccess.DBManager;
 import dataaccess.WeatherDAO;
 import listeners.EnergyListener;
 import listeners.RaceListener;
@@ -60,7 +54,7 @@ public class Championship implements RaceListener {
 	 private static List<Athlete> athletes;
 	 private static List<Race> SelectionRace;
 	 private List<RaceThread> raceThreads;
-	 private static int race;
+	 private static int raceIndex;
      private int modalityIndex = 0;
 	 private RaceManager raceManager;
 	 private List<WeatherEventListener> weatherListeners = new ArrayList<>();;
@@ -87,8 +81,8 @@ public class Championship implements RaceListener {
     public WindowRace getWindowRace() {
         return windowRace;
     }
-    public static int getIndexRace(){
-        return race;
+    public static int getRaceIndex(){
+        return raceIndex;
     }
     public WeatherSettingsWindow getCustomWeatherPanel() {
         return customWeatherPanel;
@@ -156,7 +150,7 @@ public class Championship implements RaceListener {
             for (Athlete athlete: athletes)
                 race.getAthlete().add(athlete);
         }
-        race=0;
+        raceIndex =0;
     }
 
     public void startRace() throws SQLException {
@@ -164,15 +158,15 @@ public class Championship implements RaceListener {
         RaceManager.clearFinishedAthletes();
     	int startX = windowRace.getRacePanel().getStartX();
         int endX = windowRace.getRacePanel().getEndX();
-        chronometer = new Chronometer (SelectionRace.get(race).getModality());
+        chronometer = new Chronometer (SelectionRace.get(raceIndex).getModality());
         boolean[] weatherChanged = new boolean[2]; //2 modality changes
-        List<Double> changePoints = SelectionRace.get(race).getDisciplineChangePoints();
+        List<Double> changePoints = SelectionRace.get(raceIndex).getDisciplineChangePoints();
         windowRace.getRacePanel().setDisciplineChangePoints(changePoints);
-        SelectionRace.get(race).setStationPoints(changePoints, startX, endX);
-        List<Double> stationPoints = SelectionRace.get(race).getStationPoints();
+        SelectionRace.get(raceIndex).setStationPoints(changePoints, startX, endX);
+        List<Double> stationPoints = SelectionRace.get(raceIndex).getStationPoints();
         windowRace.getRacePanel().setStationPoints(stationPoints);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        windowRace.setRaceTitle(SelectionRace.get(race).getCity() + " " + dateFormat.format(SelectionRace.get(race).getDate()));
+        windowRace.setRaceTitle(SelectionRace.get(raceIndex).getCity() + " " + dateFormat.format(SelectionRace.get(raceIndex).getDate()));
     	
         
       
@@ -193,23 +187,23 @@ public class Championship implements RaceListener {
       
       
        
-     Championship.TotalTimeForRace(SelectionRace.get(race)) ;
+     Championship.TotalTimeForRace(SelectionRace.get(raceIndex)) ;
      
-     SelectionRace.get(race).setCurrentneoprene(SelectionRace.get(race).UseOfNeoprene());
+     SelectionRace.get(raceIndex).setCurrentneoprene(SelectionRace.get(raceIndex).UseOfNeoprene());
      
-     System.out.println("El neoprene en la carrera "+SelectionRace.get(race).isCurrentneoprene());
+     System.out.println("El neoprene en la carrera "+SelectionRace.get(raceIndex).isCurrentneoprene());
      
         int i=0;
-        raceManager = new RaceManager(race);
+        raceManager = new RaceManager(raceIndex);
     	for (Athlete athlete:  athletes) {
             athlete.setUserSpeedAdjustment(5);
             athlete.setCurrentDiscipline(new Swimming());
     		windowRace.getRacePanel().getAthletePanels().get(i).getAthleteLabel().setText(athlete.getName() + " " + athlete.getSurname());
-    		RaceThread thread = new RaceThread(startX, startX, endX, this, athlete, this,raceManager, SelectionRace.get(race), race);
+    		RaceThread thread = new RaceThread(startX, startX, endX, this, athlete, this,raceManager, SelectionRace.get(raceIndex), raceIndex);
     		athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
             i++;
             
-            athlete.setNeoprene(SelectionRace.get(race).UseOfNeoprene());
+            athlete.setNeoprene(SelectionRace.get(raceIndex).UseOfNeoprene());
             
             
             
@@ -252,7 +246,7 @@ public class Championship implements RaceListener {
             thread.start();
         }
     	
-        race++;
+        raceIndex++;
         windowChronometer.setVisible(true);
         addChronometerListener(windowChronometer);
         chronometer.start();
@@ -272,9 +266,9 @@ public class Championship implements RaceListener {
         WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(wp.getAllWeatherConditions());
         notifyWeatherUpdate(weatherconditions);
         if (index==0)
-            SelectionRace.get(race).setCurrentWeatherCondition(weatherconditions);
+            SelectionRace.get(raceIndex).setCurrentWeatherCondition(weatherconditions);
         else
-            SelectionRace.get(race-1).setCurrentWeatherCondition(weatherconditions);
+            SelectionRace.get(raceIndex -1).setCurrentWeatherCondition(weatherconditions);
     }
    
 	public static void loadXML() throws ParserConfigurationException, SAXException, IOException, SQLException {
@@ -573,7 +567,7 @@ public class Championship implements RaceListener {
             List<Race> resultList = new ArrayList<>(bestRaceForModality.values()).subList(0, 4);
             resultList.sort(Comparator.comparing(Race::getDate));
 
-	        return resultList;
+	        return new ArrayList<>(resultList.subList(0, 4));
 	    }
   
 
@@ -637,6 +631,7 @@ public class Championship implements RaceListener {
 
 
     public void allThreadsCompleted() {
+        saveGameState("/savestates/gameState.dat");
         scoreboard.setNewRace();
         chronometer.stop();
 
@@ -749,12 +744,47 @@ public class Championship implements RaceListener {
     
     		
     	}
-    	
+
     
     		
     }
-  
-    
+    public static void saveGameState(String filePath) {
+        File file = new File(filePath);
+        File directory = file.getParentFile();
+        if (directory != null && !directory.exists()) {
+            directory.mkdirs();
+        }
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+            oos.writeObject(SelectionRace);
+            oos.writeObject(athletes);
+            oos.writeObject(raceIndex);
+            System.out.println("Game state saved successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void loadGameState(String filePath) {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            System.out.println("No save game found.");
+        } else {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                SelectionRace = (List<Race>) ois.readObject();
+                athletes = (List<Athlete>) ois.readObject();
+                raceIndex = (int) ois.readObject();
+                System.out.println("Game state loaded successfully.");
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
   
 
 }

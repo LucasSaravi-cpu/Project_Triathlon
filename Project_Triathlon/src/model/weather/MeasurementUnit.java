@@ -1,6 +1,8 @@
 package model.weather;
 
-public class MeasurementUnit {
+import java.io.Serializable;
+
+public class MeasurementUnit implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	

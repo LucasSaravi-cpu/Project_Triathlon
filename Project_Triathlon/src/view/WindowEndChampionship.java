@@ -89,7 +89,6 @@ public class WindowEndChampionship extends JFrame {
                     try {
 						RunSimulation.restartGame();
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
                 }

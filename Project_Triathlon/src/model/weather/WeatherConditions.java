@@ -2,7 +2,9 @@ package model.weather;
 
 import model.race.discipline.Discipline;
 
-public class WeatherConditions {
+import java.io.Serializable;
+
+public class WeatherConditions implements Serializable {
 	
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\

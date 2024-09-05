@@ -1,6 +1,8 @@
 package model.athlete;
 
-public class PhysicalConditions {
+import java.io.Serializable;
+
+public class PhysicalConditions implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private double swimmingAptitude;

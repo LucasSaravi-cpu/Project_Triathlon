@@ -3,7 +3,9 @@ package model.neoprene;
 import model.athlete.Athlete;
 import model.race.Race;
 
-public class NeopreneAllowed extends NeoprenePolicy{
+import java.io.Serializable;
+
+public class NeopreneAllowed extends NeoprenePolicy implements Serializable {
 
     public NeopreneAllowed(Athlete athlete, Race race, int raceIndex) {
         super(athlete, race, raceIndex);

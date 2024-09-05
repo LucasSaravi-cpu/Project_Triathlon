@@ -5,10 +5,11 @@ import model.athlete.PhysicalConditions;
 import model.athlete.Athlete;
 import model.race.location.Country;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Competitor extends Athlete {
+public class Competitor extends Athlete implements Serializable {
 	
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 

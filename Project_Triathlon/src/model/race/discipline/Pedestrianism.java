@@ -8,9 +8,10 @@ import model.race.Stations;
 import model.weather.WeatherConditions;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.List;
 
-public class Pedestrianism extends Discipline {
+public class Pedestrianism extends Discipline implements Serializable {
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	@Override

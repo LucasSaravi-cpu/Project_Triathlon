@@ -4,10 +4,11 @@ import model.athlete.penalties.AthletePenalty;
 import model.race.Race;
 import model.race.discipline.DisciplineDistance;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Competition {
+public class Competition implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	private int position;

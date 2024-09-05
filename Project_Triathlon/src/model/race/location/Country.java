@@ -1,6 +1,8 @@
 package model.race.location;
 
-public class Country {
+import java.io.Serializable;
+
+public class Country implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 

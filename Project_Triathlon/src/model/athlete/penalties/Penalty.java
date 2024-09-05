@@ -1,7 +1,9 @@
 package model.athlete.penalties;
 
 
-public class Penalty {
+import java.io.Serializable;
+
+public class Penalty implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private String description;

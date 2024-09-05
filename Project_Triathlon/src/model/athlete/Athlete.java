@@ -1,5 +1,6 @@
 package model.athlete;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -14,7 +15,7 @@ import model.race.Race;
 import model.race.discipline.Discipline;
 import model.race.location.Country;
 
-public abstract class Athlete {
+public abstract class Athlete implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	
