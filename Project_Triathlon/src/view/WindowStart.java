@@ -31,6 +31,7 @@ public class WindowStart extends JFrame {
 		this.controller = controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 848, 600);
+		setLocationRelativeTo(null);
 		setResizable(false);
 		contentPane = new JPanel() {
 			@Override
