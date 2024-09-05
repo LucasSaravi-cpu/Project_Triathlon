@@ -397,7 +397,7 @@ public class Championship implements RaceListener {
                                            break;
                     case "Estados Unidos": countryname = "USA";
                                            break;
-                    case "Japan"         : countryname = "Japan";
+                    case "Japón"         : countryname = "Japan";
                                            break;
                 }
                Discipline swimmingg = new Swimming();
@@ -650,8 +650,8 @@ public class Championship implements RaceListener {
         sortedList.sort((Comparator.comparingInt(athlete -> ((Athlete) athlete).getPoints()).reversed()));
         return sortedList;
     }
-    public String updateRaceResults() {
-        return raceManager.getCurrentPositions(raceThreads);
+    public String updateRaceResults(String category, String subcategory) {
+        return raceManager.getCurrentPositions(raceThreads, category, subcategory);
     }
 
   

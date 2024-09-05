@@ -29,6 +29,8 @@ public class Scoreboard extends JFrame {
 	private TextArea textArea;
 	private JTable table;
 	private JScrollPane scrollPane;
+	private JComboBox<String> categoryComboBox;
+	private JComboBox<String> subCategoryComboBox;
 
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
@@ -194,13 +196,61 @@ public class Scoreboard extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Method for listing race Stats
 				tableScrollPane.setVisible(false);
-				textArea.setText(controller.updateRaceResults());
+				String selectedCategory = (String) categoryComboBox.getSelectedItem();
+				String selectedSubCategory = (String) subCategoryComboBox.getSelectedItem();
+				String result;
+
+				if ("All".equals(selectedCategory)) {
+					result = controller.updateRaceResults("All" , "All");
+				} else if ("Competitor".equals(selectedCategory) || "Amateur".equals(selectedCategory)) {
+					result = controller.updateRaceResults(selectedCategory, selectedSubCategory);
+
+				} else {
+					result = "Invalid category";
+				}
+
+				textArea.setText(result);
+
 				scrollPane.setVisible(true);
 			}
 		});
 		listRaceStats.setBounds(24, 455, 218, 43);
 		contentPane.add(listRaceStats);
+		String[] categories = {"All", "Competitor", "Amateur"};
+		categoryComboBox = new JComboBox<>(categories);
+		categoryComboBox.setBounds(268, 415, 150, 30);
+		categoryComboBox.setSelectedItem("All");
+		subCategoryComboBox = new JComboBox<>();
+		subCategoryComboBox.setBounds(268, 455, 150, 30);
 
+		categoryComboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String selectedCategory = (String) categoryComboBox.getSelectedItem();
+				subCategoryComboBox.removeAllItems();
+                subCategoryComboBox.addItem("All");
+				if ("Competitor".equals(selectedCategory)) {
+					subCategoryComboBox.addItem("Elite");
+					subCategoryComboBox.addItem("Junior");
+					subCategoryComboBox.addItem("Sub 23");
+				} else if ("Amateur".equals(selectedCategory)) {
+					subCategoryComboBox.addItem("19-24 years old");
+					subCategoryComboBox.addItem("25-29 years old");
+					subCategoryComboBox.addItem("30-34 years old");
+					subCategoryComboBox.addItem("35-39 years old");
+					subCategoryComboBox.addItem("40-44 years old");
+					subCategoryComboBox.addItem("45-49 years old");
+					subCategoryComboBox.addItem("50-54 years old");
+					subCategoryComboBox.addItem("55-59 years old");
+					subCategoryComboBox.addItem("60-64 years old");
+					subCategoryComboBox.addItem("65-69 years old");
+					subCategoryComboBox.addItem("70-74 years old");
+					subCategoryComboBox.addItem("more than 75 years old");
+				}
+			}
+		});
+        contentPane.add(categoryComboBox);
+		contentPane.add(subCategoryComboBox);
 		JLabel background = new JLabel("New label");
 		background.setIcon(new ImageIcon(Scoreboard.class.getResource("/Image/Scoreboard_background.png")));
 		background.setBounds(0, 0, 574, 686);
