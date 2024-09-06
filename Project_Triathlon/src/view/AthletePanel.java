@@ -13,6 +13,7 @@ public class AthletePanel extends JPanel {
     private JButton decrease;
     private JLabel athleteLabel;
     private JLabel energyLabel;
+    private JLabel speedLabel;
     private int startX;
     private int endX;
     private SpeedChangeListener speedChangeListener;
@@ -36,10 +37,15 @@ public class AthletePanel extends JPanel {
            athleteLabel.setBounds(137, 8, 110, 30);
            add(athleteLabel);
            energyLabel = new JLabel("Energy");
-           energyLabel.setBounds(31, 32, 100, 20);
-           energyLabel.setFont(energyLabel.getFont().deriveFont(11f));
+           energyLabel.setBounds(31, 32, 80, 15);
+           energyLabel.setFont(energyLabel.getFont().deriveFont(9f));
            add(energyLabel);
-           setOpaque(false);
+           speedLabel = new JLabel("Speed: 5");
+           speedLabel.setBounds(31, 41, 80, 15);
+           speedLabel.setFont(speedLabel.getFont().deriveFont(9f));
+           add(speedLabel);
+
+        setOpaque(false);
     }
     @Override
     protected void paintComponent(Graphics g) {
@@ -54,11 +60,18 @@ public class AthletePanel extends JPanel {
     public void updateEnergyLabel(double energy) {
             energyLabel.setText(String.format("Energy: %.2f%%", energy));
     }
+    public void updateSpeedLabel(int speed) {
+        speedLabel.setText(String.format("Speed: %d", speed));
+    }
     private void notifySpeedChange(int delta) {
         SpeedChangeEvent event = new SpeedChangeEvent(this, delta);
         speedChangeListener.speedChanged(event);
     }
     public void addSpeedChangeListener(SpeedChangeListener listener) {
         this.speedChangeListener = listener;
+    }
+
+    public JLabel getSpeedLabel() {
+        return speedLabel;
     }
 }

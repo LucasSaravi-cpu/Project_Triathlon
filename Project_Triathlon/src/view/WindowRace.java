@@ -59,6 +59,7 @@ public class WindowRace extends JFrame {
 			JLabel label = athletePanel.getAthleteLabel();
 			label.setLocation(racePanel.getStartX(), label.getY());
             label.setIcon(racePanel.getImageFromMap(1));
+			athletePanel.getSpeedLabel().setText("Speed: 5");
 		}
 		racePanel.revalidate();
 		racePanel.repaint();

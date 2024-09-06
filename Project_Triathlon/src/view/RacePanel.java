@@ -71,6 +71,11 @@ public class RacePanel extends JPanel {
             athletePanels.get(index).updateEnergyLabel(energy);
         }
     }
+    public void updateSpeedLabel(int index, int speed) {
+        if (index >= 0 && index < athletePanels.size()) {
+            athletePanels.get(index).updateSpeedLabel(speed);
+        }
+    }
     public void setIcon(int athleteIndex, int iconIndex){
         athletePanels.get(athleteIndex).getAthleteLabel().setIcon(map.get(iconIndex));
     }

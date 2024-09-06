@@ -6,13 +6,12 @@ import java.util.Random;
 
 import Events.EnergyEvent;
 import Events.DisciplineChangeEvent;
+import Events.NotifySpeedEvent;
 import Events.SpeedChangeEvent;
-import listeners.EnergyListener;
-import listeners.RaceListener;
-import listeners.DisciplineChangeListener;
+import listeners.*;
+
 import java.util.concurrent.atomic.AtomicInteger;
 import controller.Championship;
-import listeners.SpeedChangeListener;
 import model.athlete.Athlete;
 import model.race.discipline.Discipline;
 import model.race.discipline.DisciplineDistance;
@@ -36,6 +35,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
     private RaceManager raceManager;
     private Race race;
     private int raceIndex;
+    private NotifySpeedListener notifySpeedListener;
  
     
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
@@ -122,6 +122,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
             int newSpeed = athlete.getUserSpeedAdjustment() + event.getDelta();
             if (newSpeed >= 1 && newSpeed <= 10) {
                 athlete.setUserSpeedAdjustment(newSpeed);
+                notifySpeedChange(athlete.getUserSpeedAdjustment());
             }
         }
     }
@@ -193,6 +194,15 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         for (DisciplineChangeListener listener : disciplineListeners) {
             listener.disciplineChanged(event);
         }
+    }
+    public void addSpeedListener(NotifySpeedListener listener) {
+        this.notifySpeedListener = listener;
+    }
+
+
+    private void notifySpeedChange(int userSpeed) {
+        NotifySpeedEvent event = new NotifySpeedEvent(this, userSpeed);
+        notifySpeedListener.speedChanged(event);
     }
     private synchronized void checkForStationPass() {
         int stationPoint = startX + race.getStationPoints().get(athlete.getCurrentStation()).intValue();

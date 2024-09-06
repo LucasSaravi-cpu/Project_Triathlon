@@ -13,7 +13,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import Events.DisciplineChangeEvent;
-import listeners.DisciplineChangeListener;
+import Events.NotifySpeedEvent;
+import listeners.*;
 import model.athlete.PhysicalConditions;
 import model.athlete.type.Amateur;
 import model.athlete.Athlete;
@@ -34,9 +35,6 @@ import org.xml.sax.SAXException;
 import Events.EnergyEvent;
 import Events.WeatherEvent;
 import dataaccess.WeatherDAO;
-import listeners.EnergyListener;
-import listeners.RaceListener;
-import listeners.WeatherEventListener;
 import view.*;
 
 public class Championship implements RaceListener {
@@ -216,6 +214,15 @@ public class Championship implements RaceListener {
                     double energy = event.getEnergyLevel();
                     int index = raceThreads.indexOf(thread);
                     windowRace.getRacePanel().updateEnergyLabel(index, energy);
+
+                }
+            });
+            thread.addSpeedListener(new NotifySpeedListener() {
+                @Override
+                public void speedChanged(NotifySpeedEvent event) {
+                    int speed = event.getSpeedLevel();
+                    int index = raceThreads.indexOf(thread);
+                    windowRace.getRacePanel().updateSpeedLabel(index, speed);
 
                 }
             });
