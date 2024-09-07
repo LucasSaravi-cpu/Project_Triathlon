@@ -638,7 +638,7 @@ public class Championship implements RaceListener {
 
 
     public void allThreadsCompleted() {
-        saveGameState("/savestates/gameState.dat");
+        saveGameState("/Project_Triathlon/Project_Triathlon/src/savestates/gameState.dat");
         scoreboard.setNewRace();
         chronometer.stop();
 

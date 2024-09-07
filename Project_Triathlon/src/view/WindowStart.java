@@ -62,7 +62,7 @@ public class WindowStart extends JFrame {
 		loadButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Championship.loadGameState("/savestates/gameState.dat");
+				Championship.loadGameState("/Project_Triathlon/Project_Triathlon/src/savestates/gameState.dat");
 				if (controller.getRaceIndex()<4)
                    startGame();
 				else {
