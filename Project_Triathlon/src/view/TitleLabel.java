@@ -10,7 +10,7 @@ public class TitleLabel extends JLabel {
         super(text);
         setFont(font);
         setHorizontalAlignment(SwingConstants.CENTER);
-        setForeground(Color.WHITE); // Texto en blanco
+        setForeground(Color.WHITE);
     }
 
     @Override
