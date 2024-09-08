@@ -14,24 +14,24 @@ public class WeatherConditions implements Serializable {
     private MeasurementUnit measurementUnit;
     private double lowertier;
     private double uppertier;
-    private double swimmingweathering;
-    private double cyclingweathering;
-    private double pedestrianismweathering;
+    private double swimmingImpact;
+    private double cyclingImpact;
+    private double pedestrianismImpact;
     private double CurrentTemperature;
     
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
 	public WeatherConditions(int id, String description, MeasurementUnit measurementUnit, double lowertier,
-			double uppertier, double swimmingweathering, double cyclingweathering, double pedestrianismweathering) {
+							 double uppertier, double swimmingImpact, double cyclingImpact, double pedestrianismImpact) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.measurementUnit = measurementUnit;
 		this.lowertier = lowertier;
 		this.uppertier = uppertier;
-		this.swimmingweathering = swimmingweathering;
-		this.cyclingweathering = cyclingweathering;
-		this.pedestrianismweathering = pedestrianismweathering;
+		this.swimmingImpact = swimmingImpact;
+		this.cyclingImpact = cyclingImpact;
+		this.pedestrianismImpact = pedestrianismImpact;
 	}
 	
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
@@ -56,28 +56,28 @@ public class WeatherConditions implements Serializable {
 	}
 	public double getWeather(Discipline discipline){
 		switch (discipline.getClass().getSimpleName()) {
-			case "Swimming": return swimmingweathering;
-			case "Cycling": return cyclingweathering;
-			default: return pedestrianismweathering;
+			case "Swimming": return swimmingImpact;
+			case "Cycling": return cyclingImpact;
+			default: return pedestrianismImpact;
 		}
 	}
-	public double getSwimmingWeathering() {
-		return swimmingweathering;
+	public double getSwimmingImpact() {
+		return swimmingImpact;
 	}
-	public void setSwimmingweathering(double swimmingweathering) {
-		this.swimmingweathering = swimmingweathering;
+	public void setSwimmingImpact(double swimmingImpact) {
+		this.swimmingImpact = swimmingImpact;
 	}
-	public double getCyclingWeathering() {
-		return cyclingweathering;
+	public double getCyclingImpact() {
+		return cyclingImpact;
 	}
-	public void setCyclingweathering(double cyclingweathering) {
-		this.cyclingweathering = cyclingweathering;
+	public void setCyclingImpact(double cyclingImpact) {
+		this.cyclingImpact = cyclingImpact;
 	}
-	public double getPedestrianismWeathering() {
-		return pedestrianismweathering;
+	public double getPedestrianismImpact() {
+		return pedestrianismImpact;
 	}
-	public void setPedestrianismweathering(double pedestrianismweathering) {
-		this.pedestrianismweathering = pedestrianismweathering;
+	public void setPedestrianismImpact(double pedestrianismImpact) {
+		this.pedestrianismImpact = pedestrianismImpact;
 	}
 	public String getDescription() {
 		return description;
@@ -104,9 +104,9 @@ public class WeatherConditions implements Serializable {
 	@Override
 	public String toString() {
 		return description +"\n"+ "("+lowertier+"/"+uppertier+")" + measurementUnit+ "\n" + "Decreased vel "+"\n"
-				+"swimming "+ swimmingweathering + "%"+"\n"
-				+"cycling "+ cyclingweathering + "%" +"\n"
-				+"pedestrianism "+ pedestrianismweathering + "%";
+				+"swimming "+ swimmingImpact + "%"+"\n"
+				+"cycling "+ cyclingImpact + "%" +"\n"
+				+"pedestrianism "+ pedestrianismImpact + "%";
 	}
 
 

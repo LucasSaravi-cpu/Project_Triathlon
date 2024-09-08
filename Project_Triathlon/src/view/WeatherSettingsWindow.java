@@ -75,9 +75,9 @@ public class WeatherSettingsWindow extends JFrame
         String measurementUnit = inputPanel.getMeasurementUnit();
         double upperTier = inputPanel.getUpperTier();
         double lowerTier = inputPanel.getLowerTier();
-        double swimmingWeathering = inputPanel.getSwimmingWeathering();
-        double cyclingWeathering = inputPanel.getCyclingWeathering();
-        double pedestrianismWeathering = inputPanel.getPedestrianismWeathering();
+        double swimmingWeathering = inputPanel.getSwimmingImpact();
+        double cyclingWeathering = inputPanel.getCyclingImpact();
+        double pedestrianismWeathering = inputPanel.getPedestrianismImpact();
 
         try {
             weatherDAO.insertWeatherCondition(new MeasurementUnit(measurementUnit), upperTier, lowerTier,
@@ -104,12 +104,12 @@ public class WeatherSettingsWindow extends JFrame
         try {
             double upperTier = inputPanel.getUpperTier();
             double lowerTier = inputPanel.getLowerTier();
-            double swimmingWeathering = inputPanel.getSwimmingWeathering();
-            double cyclingWeathering = inputPanel.getCyclingWeathering();
-            double pedestrianismWeathering = inputPanel.getPedestrianismWeathering();
+            double swimmingImpact = inputPanel.getSwimmingImpact();
+            double cyclingImpact = inputPanel.getCyclingImpact();
+            double pedestrianismImpact = inputPanel.getPedestrianismImpact();
 
             weatherDAO.updateWeatherCondition(weatherId, new MeasurementUnit(measurementUnit), lowerTier, upperTier,
-                    swimmingWeathering, cyclingWeathering, pedestrianismWeathering, description);
+                    swimmingImpact, cyclingImpact, pedestrianismImpact, description);
 
             JOptionPane.showMessageDialog(this, "Weather condition updated.");
             clearFields();
@@ -170,24 +170,24 @@ public class WeatherSettingsWindow extends JFrame
                 return false;
             }
 
-            double swimmingWeathering = inputPanel.getSwimmingWeathering();
+            double swimmingWeathering = inputPanel.getSwimmingImpact();
             if (!isBetween(swimmingWeathering, -30, 30)) {
                 setMessage("The weather impact in the swimming stage of the race has to be between -30 and 30.");
-                inputPanel.getSwimmingWeatheringField().requestFocus();
+                inputPanel.getSwimmingImpactField().requestFocus();
                 return false;
             }
 
-            double cyclingWeathering = inputPanel.getCyclingWeathering();
+            double cyclingWeathering = inputPanel.getCyclingImpact();
             if (!isBetween(cyclingWeathering, -30, 30)) {
                 setMessage("The weather impact in the cycling stage of the race has to be between -30 and 30.");
-                inputPanel.getCyclingWeatheringField().requestFocus();
+                inputPanel.getCyclingImpactField().requestFocus();
                 return false;
             }
 
-            double pedestrianismWeathering = inputPanel.getPedestrianismWeathering();
+            double pedestrianismWeathering = inputPanel.getPedestrianismImpact();
             if (!isBetween(pedestrianismWeathering, -30, 30)) {
                 setMessage("The weather impact in the pedestrianism stage of the race has to be between -30 and 30.");
-                inputPanel.getPedestrianismWeatheringField().requestFocus();
+                inputPanel.getPedestrianismImpactField().requestFocus();
                 return false;
             }
 
@@ -210,9 +210,9 @@ public class WeatherSettingsWindow extends JFrame
         inputPanel.setMeasurementUnit("");
         inputPanel.setUpperTier("");
         inputPanel.setLowerTier("");
-        inputPanel.setSwimmingWeathering("");
-        inputPanel.setCyclingWeathering("");
-        inputPanel.setPedestrianismWeathering("");
+        inputPanel.setSwimmingImpact("");
+        inputPanel.setCyclingImpact("");
+        inputPanel.setPedestrianismImpact("");
         tablePanel.getWeatherTable().clearSelection();
     }
 

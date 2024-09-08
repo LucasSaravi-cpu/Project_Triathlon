@@ -67,7 +67,7 @@ public class Pedestrianism extends Discipline implements Serializable {
 	}
 	@Override
 	public double getBaseSpeed(PhysicalConditions stats, WeatherConditions wc){
-		return stats.getPedestrianismAptitude() * 1.2 * (1 + wc.getPedestrianismWeathering()/100);
+		return stats.getPedestrianismAptitude() * 1.2 * (1 + wc.getPedestrianismImpact()/100);
 
 		// return 1500 - stats.getPedestrianismAptitude() * 50 - 10 * wc.getPedestrianismweathering();
 	}
@@ -85,7 +85,7 @@ public class Pedestrianism extends Discipline implements Serializable {
 	}
 	@Override
 	public double getWeatherImpact(WeatherConditions wc){
-		return wc.getPedestrianismWeathering();
+		return wc.getPedestrianismImpact();
 	}
 }
 

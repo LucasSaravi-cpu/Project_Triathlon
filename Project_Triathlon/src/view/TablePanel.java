@@ -18,7 +18,7 @@ public class TablePanel extends JPanel {
         setLayout(new BorderLayout());
         setOpaque(false);
 
-        String[] columnNames = {"Id", "Description", "Measurement Unit", "Lower Tier", "Upper Tier", "Swimming Weathering", "Cycling Weathering", "Pedestrianism Weathering"};
+        String[] columnNames = {"Id", "Description", "Measurement Unit", "Lower Tier", "Upper Tier", "Swimming Impact", "Cycling Impact", "Pedestrianism Impact"};
         tableModel = new DefaultTableModel(columnNames, 0) {
                 @Override
                 public boolean isCellEditable(int row, int column) {
@@ -46,16 +46,16 @@ public class TablePanel extends JPanel {
                         String measurementUnit = measurementUnitObj.toString();
                         double lowerTier = (double) tableModel.getValueAt(selectedRow, 3);
                         double upperTier = (double) tableModel.getValueAt(selectedRow, 4);
-                        double swimmingWeathering = (double) tableModel.getValueAt(selectedRow, 5);
-                        double cyclingWeathering = (double) tableModel.getValueAt(selectedRow, 6);
-                        double pedestrianismWeathering = (double) tableModel.getValueAt(selectedRow, 7);
+                        double swimmingImpact = (double) tableModel.getValueAt(selectedRow, 5);
+                        double cyclingImpact = (double) tableModel.getValueAt(selectedRow, 6);
+                        double pedestrianismImpact = (double) tableModel.getValueAt(selectedRow, 7);
                         inputPanel.setDescription(description);
                         inputPanel.setMeasurementUnit(measurementUnit);
                         inputPanel.setLowerTier(String.valueOf(lowerTier));
                         inputPanel.setUpperTier(String.valueOf(upperTier));
-                        inputPanel.setSwimmingWeathering(String.valueOf(swimmingWeathering));
-                        inputPanel.setCyclingWeathering(String.valueOf(cyclingWeathering));
-                        inputPanel.setPedestrianismWeathering(String.valueOf(pedestrianismWeathering));
+                        inputPanel.setSwimmingImpact(String.valueOf(swimmingImpact));
+                        inputPanel.setCyclingImpact(String.valueOf(cyclingImpact));
+                        inputPanel.setPedestrianismImpact(String.valueOf(pedestrianismImpact));
 
                     }
                 }
@@ -74,9 +74,9 @@ public class TablePanel extends JPanel {
                         weather.getMeasurementUnit(),
                         weather.getLowerTier(),
                         weather.getUpperTier(),
-                        weather.getSwimmingWeathering(),
-                        weather.getCyclingWeathering(),
-                        weather.getPedestrianismWeathering()
+                        weather.getSwimmingImpact(),
+                        weather.getCyclingImpact(),
+                        weather.getPedestrianismImpact()
                 };
                 tableModel.addRow(rowData);
             }

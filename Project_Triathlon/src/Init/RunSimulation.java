@@ -25,7 +25,7 @@ public class RunSimulation {
 		LoadingFrame loadingFrame = new LoadingFrame();
 		loadingFrame.setVisible(true);
 
-		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+		SwingWorker<Void, Void> worker = new SwingWorker<>() {
 			@Override
 			protected Void doInBackground() throws Exception {
 

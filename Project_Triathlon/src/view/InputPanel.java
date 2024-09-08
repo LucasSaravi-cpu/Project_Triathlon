@@ -4,6 +4,12 @@ import java.awt.*;
 
 public class InputPanel extends JPanel {
     private JTextField descriptionField;
+    private JTextField measurementUnitField;
+    private JTextField upperTierField;
+    private JTextField lowerTierField;
+    private JTextField swimmingImpactField;
+    private JTextField cyclingImpactField;
+    private JTextField pedestrianismImpactField;
 
     public JTextField getDescriptionField() {
         return descriptionField;
@@ -37,36 +43,29 @@ public class InputPanel extends JPanel {
         this.lowerTierField = lowerTierField;
     }
 
-    public JTextField getSwimmingWeatheringField() {
-        return swimmingWeatheringField;
+    public JTextField getSwimmingImpactField() {
+        return swimmingImpactField;
     }
 
-    public void setSwimmingWeatheringField(JTextField swimmingWeatheringField) {
-        this.swimmingWeatheringField = swimmingWeatheringField;
+    public void setSwimmingImpactField(JTextField swimmingImpactField) {
+        this.swimmingImpactField = swimmingImpactField;
     }
 
-    public JTextField getCyclingWeatheringField() {
-        return cyclingWeatheringField;
+    public JTextField getCyclingImpactField() {
+        return cyclingImpactField;
     }
 
-    public void setCyclingWeatheringField(JTextField cyclingWeatheringField) {
-        this.cyclingWeatheringField = cyclingWeatheringField;
+    public void setCyclingImpactField(JTextField cyclingImpactField) {
+        this.cyclingImpactField = cyclingImpactField;
     }
 
-    public JTextField getPedestrianismWeatheringField() {
-        return pedestrianismWeatheringField;
+    public JTextField getPedestrianismImpactField() {
+        return pedestrianismImpactField;
     }
 
-    public void setPedestrianismWeatheringField(JTextField pedestrianismWeatheringField) {
-        this.pedestrianismWeatheringField = pedestrianismWeatheringField;
+    public void setPedestrianismImpactField(JTextField pedestrianismImpactField) {
+        this.pedestrianismImpactField = pedestrianismImpactField;
     }
-
-    private JTextField measurementUnitField;
-    private JTextField upperTierField;
-    private JTextField lowerTierField;
-    private JTextField swimmingWeatheringField;
-    private JTextField cyclingWeatheringField;
-    private JTextField pedestrianismWeatheringField;
 
     public InputPanel() {
         setOpaque(false);
@@ -93,22 +92,21 @@ public class InputPanel extends JPanel {
         add(lowerTierField);
 
         // Swimming Weathering
-        add(new JLabel("Swimming Weathering:"));
-        swimmingWeatheringField = new JTextField();
-        add(swimmingWeatheringField);
+        add(new JLabel("Swimming Impact:"));
+        swimmingImpactField = new JTextField();
+        add(swimmingImpactField);
 
         // Cycling Weathering
-        add(new JLabel("Cycling Weathering:"));
-        cyclingWeatheringField = new JTextField();
-        add(cyclingWeatheringField);
+        add(new JLabel("Cycling Impact:"));
+        cyclingImpactField = new JTextField();
+        add(cyclingImpactField);
 
         // Pedestrianism Weathering
-        add(new JLabel("Pedestrianism Weathering:"));
-        pedestrianismWeatheringField = new JTextField();
-        add(pedestrianismWeatheringField);
+        add(new JLabel("Pedestrianism Impact:"));
+        pedestrianismImpactField = new JTextField();
+        add(pedestrianismImpactField);
     }
 
-    // Métodos para acceder a los valores ingresados
     public String getDescription() {
         return descriptionField.getText();
     }
@@ -125,16 +123,16 @@ public class InputPanel extends JPanel {
         return Double.parseDouble(lowerTierField.getText());
     }
 
-    public double getSwimmingWeathering() {
-        return Double.parseDouble(swimmingWeatheringField.getText());
+    public double getSwimmingImpact() {
+        return Double.parseDouble(swimmingImpactField.getText());
     }
 
-    public double getCyclingWeathering() {
-        return Double.parseDouble(cyclingWeatheringField.getText());
+    public double getCyclingImpact() {
+        return Double.parseDouble(cyclingImpactField.getText());
     }
 
-    public double getPedestrianismWeathering() {
-        return Double.parseDouble(pedestrianismWeatheringField.getText());
+    public double getPedestrianismImpact() {
+        return Double.parseDouble(pedestrianismImpactField.getText());
     }
     public void setDescription(String description) {
         descriptionField.setText(description);
@@ -152,15 +150,15 @@ public class InputPanel extends JPanel {
         lowerTierField.setText(lowerTier);
     }
 
-    public void setSwimmingWeathering(String swimmingWeathering) {
-        swimmingWeatheringField.setText(swimmingWeathering);
+    public void setSwimmingImpact(String swimmingWeathering) {
+        swimmingImpactField.setText(swimmingWeathering);
     }
 
-    public void setCyclingWeathering(String cyclingWeathering) {
-        cyclingWeatheringField.setText(cyclingWeathering);
+    public void setCyclingImpact(String cyclingWeathering) {
+        cyclingImpactField.setText(cyclingWeathering);
     }
 
-    public void setPedestrianismWeathering(String pedestrianismWeathering) {
-        pedestrianismWeatheringField.setText(pedestrianismWeathering);
+    public void setPedestrianismImpact(String pedestrianismWeathering) {
+        pedestrianismImpactField.setText(pedestrianismWeathering);
     }
 }
