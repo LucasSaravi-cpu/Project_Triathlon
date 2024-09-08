@@ -12,6 +12,6 @@ public class OlympicDistance extends Modality implements Serializable {
     }
     @Override
     public long getRaceTime(){
-        return 4;
+        return 3;
     }
 }

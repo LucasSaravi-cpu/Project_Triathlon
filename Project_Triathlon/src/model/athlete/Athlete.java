@@ -269,7 +269,8 @@ public abstract class Athlete implements Serializable {
 		return 500 - (userSpeedAdjustment-5) * 50;
 	}
 	public int getPositionChange(Race race) {
-		return (int) (currentDiscipline.getBaseSpeed(stats, race.getCurrentWeatherCondition()) * (1 + Math.random()* 0.2));
+		Random random = new Random();
+		return 7 + (int) (currentDiscipline.getBaseSpeed(stats, race.getCurrentWeatherCondition())/4) + random.nextInt(5);
 	}
 
 	public int getAge() {
