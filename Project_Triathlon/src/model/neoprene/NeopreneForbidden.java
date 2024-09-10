@@ -14,15 +14,13 @@ public class NeopreneForbidden extends  NeoprenePolicy implements Serializable {
 
 
     @Override
-    public void applyPolicy(int minutes)
-    {
-        System.out.println("El neopreno NO esta permitido");
+    public void applyPolicy(int minutes) {
+        System.out.println("Neoprene is NOT allowed");
 
-        if(!athlete.isUsingNeoprene())
-        {
-            System.out.println("El atleta no esta usando neopreno");
+        if (!athlete.isUsingNeoprene()) {
+            System.out.println("The athlete is not using neoprene.");
+        } else {
+            System.out.println("The athlete is using neoprene despite the prohibition. They should be penalized.");
         }
-        else
-            System.out.println("El atleta esta usando neopreno a pesar de la prohibicion. Debera ser sancionado");
     }
 }
