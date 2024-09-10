@@ -42,7 +42,7 @@ public class Championship implements RaceListener {
 	
 //------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	
-	 private WindowRace windowRace;
+	 private final WindowRace windowRace;
 	 private Scoreboard scoreboard;
 	 private WindowTrophies windowTrophies;
 	 private Weatherboard weatherboard;
@@ -142,123 +142,108 @@ public class Championship implements RaceListener {
         chronometer.reset();
         chronometer.start();
     }
+
+    // Initialize the championship with selected races and athletes
     public void startChampionship(){
-        SelectionRace = getTop4Race(races);
+        SelectionRace = getTop4Race(races); // Select top 4 races
         for (Race race: SelectionRace) {
             for (Athlete athlete: athletes)
                 race.getAthlete().add(athlete);
         }
-        raceIndex =0;
+        raceIndex = 0;
     }
 
+    // Start a race and prepare necessary components
     public void startRace() throws SQLException {
         raceThreads.clear();
-        RaceManager.clearFinishedAthletes();
-    	int startX = windowRace.getRacePanel().getStartX();
+        RaceManager.clearFinishedAthletes(); // Clear previously finished athletes
+
+        int startX = windowRace.getRacePanel().getStartX();
         int endX = windowRace.getRacePanel().getEndX();
-        chronometer = new Chronometer (SelectionRace.get(raceIndex).getModality());
-        boolean[] weatherChanged = new boolean[2]; //2 modality changes
+
+        // Initialize the chronometer for the race
+        chronometer = new Chronometer(SelectionRace.get(raceIndex).getModality());
+
+        // Handle weather changes during the race
+        boolean[] weatherChanged = new boolean[2]; // For two modality changes
         List<Double> changePoints = SelectionRace.get(raceIndex).getDisciplineChangePoints();
         windowRace.getRacePanel().setDisciplineChangePoints(changePoints);
         SelectionRace.get(raceIndex).setStationPoints(changePoints, startX, endX);
         List<Double> stationPoints = SelectionRace.get(raceIndex).getStationPoints();
         windowRace.getRacePanel().setStationPoints(stationPoints);
+        // Set race details on UI
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        windowRace.setRaceTitle(SelectionRace.get(raceIndex).getCity() + " " + dateFormat.format(SelectionRace.get(raceIndex).getDate()));
-    	
-        
-      
-       
-      this.addWeatherEventListener(new WeatherEventListener() {
-    	    @Override
-    	    public void onWeatherUpdate(WeatherEvent event) {
-    	    	 WeatherConditions weatherCondition = event.getWeatherConditions();
-    		        weatherboard.updateWeatherLabel(weatherCondition);
-    		        if (weatherboard != null) {
-    		            weatherboard.updateWeatherLabel(weatherCondition);
-    		        }
-    	    }
-    	});
+        windowRace.setRaceTitle(SelectionRace.get(raceIndex).getCity() + " " + dateFormat.format(SelectionRace.get(raceIndex).getDate()) + " - " + SelectionRace.get(raceIndex).getModality().getClass().getSimpleName());
 
+        // Weather event listener to update conditions in real-time
+        this.addWeatherEventListener(new WeatherEventListener() {
+            @Override
+            public void onWeatherUpdate(WeatherEvent event) {
+                WeatherConditions weatherCondition = event.getWeatherConditions();
+                weatherboard.updateWeatherLabel(weatherCondition);
+            }
+        });
 
-     changeWeatherConditions(0);
-      
-      
-       
-     Championship.TotalTimeForRace(SelectionRace.get(raceIndex)) ;
-     
-     SelectionRace.get(raceIndex).setCurrentneoprene(SelectionRace.get(raceIndex).UseOfNeoprene());
-     
-     System.out.println("El neoprene en la carrera "+SelectionRace.get(raceIndex).isCurrentneoprene());
-     
-        int i=0;
+        changeWeatherConditions(0); // Initial weather change
+        Championship.TotalTimeForRace(SelectionRace.get(raceIndex)); // Calculate total time for the race
+
+        // Manage athlete's neoprene usage
+        SelectionRace.get(raceIndex).setCurrentneoprene(SelectionRace.get(raceIndex).UseOfNeoprene());
+
+        System.out.println("Neoprene in race: " + SelectionRace.get(raceIndex).isCurrentneoprene());
+
+        // Create race threads for each athlete
+        int i = 0;
         raceManager = new RaceManager(raceIndex);
-    	for (Athlete athlete:  athletes) {
+        for (Athlete athlete : athletes) {
             athlete.setUserSpeedAdjustment(5);
-            athlete.setCurrentDiscipline(new Swimming());
-    		windowRace.getRacePanel().getAthletePanels().get(i).getAthleteLabel().setText(athlete.getName() + " " + athlete.getSurname());
-    		RaceThread thread = new RaceThread(startX, startX, endX, this, athlete, this,raceManager, SelectionRace.get(raceIndex), raceIndex);
-    		athlete.updateEnergy(athlete.getHeight(),athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
-            i++;
-            
+            athlete.setCurrentDiscipline(new Swimming()); // Start with swimming
+
+            // Set athlete's label on the UI
+            windowRace.getRacePanel().getAthletePanels().get(i).getAthleteLabel().setText(athlete.getName() + " " + athlete.getSurname());
+
+            // Create and start a new RaceThread for each athlete
+            RaceThread thread = new RaceThread(startX, startX, endX, this, athlete, this, raceManager, SelectionRace.get(raceIndex), raceIndex);
+            athlete.updateEnergy(athlete.getHeight(), athlete.getWeight(), athlete.getStats().getMentalStrength(), athlete.getStats().getStamina());
+
+            // Neoprene adjustment per race
             athlete.setNeoprene(SelectionRace.get(raceIndex).UseOfNeoprene());
-            
-            
-            
-            System.out.println(athlete.isUsingNeoprene());
 
-            //Add a Listener to each Thread
-            thread.addEnergyListener(new EnergyListener() {
-                @Override
-                public void energyChanged(EnergyEvent event) {
-                    double energy = event.getEnergyLevel();
-                    int index = raceThreads.indexOf(thread);
-                    windowRace.getRacePanel().updateEnergyLabel(index, energy);
-
-                }
-            });
-            thread.addSpeedListener(new NotifySpeedListener() {
-                @Override
-                public void speedChanged(NotifySpeedEvent event) {
-                    int speed = event.getSpeedLevel();
-                    int index = raceThreads.indexOf(thread);
-                    windowRace.getRacePanel().updateSpeedLabel(index, speed);
-
-                }
+            // Add listeners to handle energy, speed, and discipline changes for each athlete
+            thread.addEnergyListener(event -> {
+                double energy = event.getEnergyLevel();
+                int index = raceThreads.indexOf(thread);
+                windowRace.getRacePanel().updateEnergyLabel(index, energy);
             });
 
-            thread.addDisciplineChangeListener(new DisciplineChangeListener() {
-                @Override
-                public void disciplineChanged(DisciplineChangeEvent event) throws SQLException {
-
-                    Discipline newDiscipline = event.getNewDiscipline();
-                    if(event.getIsFirst()){
-                        changeWeatherConditions(1);
-                    }
-                    int iconIndex = newDiscipline.getIconIndex();
-
-                    SwingUtilities.invokeLater(() -> {
-                       windowRace.getRacePanel().setIcon(raceThreads.indexOf(thread), iconIndex);
-                    });
-
-
-
-                }
-
+            thread.addSpeedListener(event -> {
+                int speed = event.getSpeedLevel();
+                int index = raceThreads.indexOf(thread);
+                windowRace.getRacePanel().updateSpeedLabel(index, speed);
             });
+
+            thread.addDisciplineChangeListener(event -> {
+                Discipline newDiscipline = event.getNewDiscipline();
+                if (event.getIsFirst()) {
+                    changeWeatherConditions(1);
+                }
+                int iconIndex = newDiscipline.getIconIndex();
+                SwingUtilities.invokeLater(() -> {
+                    windowRace.getRacePanel().setIcon(raceThreads.indexOf(thread), iconIndex);
+                });
+            });
+
             windowRace.getRacePanel().getAthletePanels().get(athletes.indexOf(athlete)).addSpeedChangeListener(thread);
-
-
             raceThreads.add(thread);
-            thread.start();
+            thread.start(); // Start the race thread
+            i++;
         }
-    	
+
         raceIndex++;
         windowChronometer.setVisible(true);
         addChronometerListener(windowChronometer);
         chronometer.start();
-
-        }
+    }
 
 
     @Override
@@ -266,7 +251,7 @@ public class Championship implements RaceListener {
         int index = raceThreads.indexOf(thread);
         windowRace.updateLabelPosition(index, newPositionX);
     }
-    
+
     public void changeWeatherConditions(int index) throws SQLException
     {
     	 WeatherDAO wp = new  WeatherDAO();
@@ -328,25 +313,25 @@ public class Championship implements RaceListener {
                 int ranking = Integer.parseInt(getChildElementValue(athleteElement, "ranking"));
 
 
-                switch (gender) {
-                	case "Masculino": gender = "Male";
-                	default: gender = "Female";
-                }
+                if (gender.equals("Masculino")) {
+                    gender = "Male";
+                } else
+                    gender = "Female";
 
                 PhysicalConditions physicalconditions  = new PhysicalConditions(swimmingAptitude, cyclismAptitude, pedestrianismAptitude, stamina, mentalStrength);
                 List<Competition> comp = new ArrayList<>();
                 for (int j=0; j<4; j++) {
                     comp.add(new Competition(0, "", null, null, null));
                 }
+                Athlete athlete;
                 if (category.equalsIgnoreCase("Amateur")) {
-	                Athlete athlete = new Amateur(num, name, surname, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions, comp);
-	                athletes.add(athlete);
+                    athlete = new Amateur(num, name, surname, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions, comp);
                 }
                 else {
 
-                	Athlete athlete = new Competitor(num, name, surname, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions,comp);
-                	athletes.add(athlete);
+                    athlete = new Competitor(num, name, surname, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions, comp);
                 }
+                athletes.add(athlete);
 
 
             }
@@ -371,42 +356,8 @@ public class Championship implements RaceListener {
                 double cyclism = Double.parseDouble(getChildElementValue(careerElement, "ciclismo"));
                 double pedestrianism = Double.parseDouble(getChildElementValue(careerElement, "pedestrismo"));
                
-                // Change names to English
-                switch (modalityname) {
-                	case "Larga distancia": modalityname="LongDistance";
-                	                        break;
-                	case "Media distancia": modalityname="MediumDistance";
-                	                        break;
-                	case "Distancia olímpico": modalityname="OlympicDistance";
-                	                        break;
-                }
-                switch (cityname) {
-                    case "Londres"        : cityname = "London";
-                                            break;
-                    case "Río de Janeiro" : cityname = "Rio de Janeiro";
-                                            break;
-                    case "Ciudad del Cabo": cityname = "Cape Town";
-                                            break;
 
-                }
-                switch (countryname) {
-                    case "Reino Unido"   : countryname = "United Kingdom";
-                                           break;
-                    case "Canadá"        : countryname = "Canada";
-                                           break;
-                    case "España"        : countryname = "Spain";
-                                           break;
-                    case "Brasil"        : countryname = "Brazil";
-                                           break;
-                    case "Sudáfrica"     : countryname = "South Africa";
-                                           break;
-                    case "Alemania"      : countryname = "Germany";
-                                           break;
-                    case "Estados Unidos": countryname = "USA";
-                                           break;
-                    case "Japón"         : countryname = "Japan";
-                                           break;
-                }
+
                Discipline swimmingg = new Swimming();
                Discipline cyclimm= new Cycling();
                Discipline pedestriani = new Pedestrianism();
@@ -423,17 +374,12 @@ public class Championship implements RaceListener {
 
                 Country country = new Country(countryname);
                 City city = new City(cityname , country);
-                Modality modality;
-                switch (modalityname){
-                    case "Sprint": modality = new Sprint(disciplinedistances);
-                                    break;
-                    case "MediumDistance": modality = new MediumDistance(disciplinedistances);
-                                            break;
-                    case "LongDistance": modality = new LongDistance(disciplinedistances);
-                                            break;
-                    default: modality = new OlympicDistance(disciplinedistances);
-                }
-
+                Modality modality = switch (modalityname) {
+                    case "Sprint" -> new Sprint(disciplinedistances);
+                    case "MediumDistance" -> new MediumDistance(disciplinedistances);
+                    case "LongDistance" -> new LongDistance(disciplinedistances);
+                    default -> new OlympicDistance(disciplinedistances);
+                };
 
 
                 List<Stations> stati = new ArrayList<>();

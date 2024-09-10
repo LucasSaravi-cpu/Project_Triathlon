@@ -55,11 +55,7 @@ public class WeatherConditions implements Serializable {
 		this.uppertier = uppertier;
 	}
 	public double getWeather(Discipline discipline){
-		switch (discipline.getClass().getSimpleName()) {
-			case "Swimming": return swimmingImpact;
-			case "Cycling": return cyclingImpact;
-			default: return pedestrianismImpact;
-		}
+		return discipline.getWeatherImpact(this);
 	}
 	public double getSwimmingImpact() {
 		return swimmingImpact;

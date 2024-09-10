@@ -42,7 +42,7 @@ public class WindowChronometer extends JFrame implements ChronometerListener {
 
     @Override
     public void onTimeruptodate(int Hours, int minutes, int seconds) {
-        labelChronometer.setText(String.format("%02d:%02d:%02d", Hours, minutes,seconds));
+        labelChronometer.setText(String.format("%02d:%02d:%02d", Hours, minutes, seconds));
     }
 
 }

@@ -47,7 +47,7 @@ public class Chronometer implements Serializable {
             }
         };
         System.out.println(modality.getClass().getSimpleName());
-        timer.scheduleAtFixedRate(task, 0, modality.getRaceTime()); // Increments every 100 ms
+        timer.scheduleAtFixedRate(task, 0, modality.getRaceTime());
     }
 
     public void stop() {
