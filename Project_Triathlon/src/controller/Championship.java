@@ -43,22 +43,20 @@ public class Championship implements RaceListener {
 //------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 	
 	 private final WindowRace windowRace;
-	 private Scoreboard scoreboard;
-	 private WindowTrophies windowTrophies;
+	 private final Scoreboard scoreboard;
+	 private final WindowTrophies windowTrophies;
 	 private Weatherboard weatherboard;
-     private WeatherSettingsWindow customWeatherPanel;
-     private WindowChronometer windowChronometer;
+     private final WeatherSettingsWindow customWeatherPanel;
+     private final WindowChronometer windowChronometer;
      private static List <Race> races;
 	 private static List<Athlete> athletes;
 	 private static List<Race> SelectionRace;
-	 private List<RaceThread> raceThreads;
+	 private final List<RaceThread> raceThreads;
 	 private static int raceIndex;
-     private int modalityIndex = 0;
 	 private RaceManager raceManager;
-	 private List<WeatherEventListener> weatherListeners = new ArrayList<>();;
+	 private List<WeatherEventListener> weatherListeners = new ArrayList<>();
 	 private static WeatherConditions lastCondition = null;
      private static Chronometer chronometer;
-     private WeatherDAO weatherdao;
      private static List<WeatherConditions> weatherConditions;
 
   //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
@@ -70,7 +68,6 @@ public class Championship implements RaceListener {
         this.customWeatherPanel = new WeatherSettingsWindow();
         this.windowChronometer = new WindowChronometer();
         this.windowTrophies = new WindowTrophies(this);
-        this.weatherdao = weatherdao;
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
@@ -92,10 +89,6 @@ public class Championship implements RaceListener {
 		return athletes;
 	}
 
-	public static void setAthletes(List<Athlete> athletes) {
-		athletes = athletes;
-	}
-    
 	public static List<Race> getRaces() {
 		return races;
 	}
@@ -176,12 +169,9 @@ public class Championship implements RaceListener {
         windowRace.setRaceTitle(SelectionRace.get(raceIndex).getCity() + " " + dateFormat.format(SelectionRace.get(raceIndex).getDate()) + " - " + SelectionRace.get(raceIndex).getModality().getClass().getSimpleName());
 
         // Weather event listener to update conditions in real-time
-        this.addWeatherEventListener(new WeatherEventListener() {
-            @Override
-            public void onWeatherUpdate(WeatherEvent event) {
-                WeatherConditions weatherCondition = event.getWeatherConditions();
-                weatherboard.updateWeatherLabel(weatherCondition);
-            }
+        this.addWeatherEventListener(event -> {
+            WeatherConditions weatherCondition = event.getWeatherConditions();
+            weatherboard.updateWeatherLabel(weatherCondition);
         });
 
         changeWeatherConditions(0); // Initial weather change
@@ -228,9 +218,7 @@ public class Championship implements RaceListener {
                     changeWeatherConditions(1);
                 }
                 int iconIndex = newDiscipline.getIconIndex();
-                SwingUtilities.invokeLater(() -> {
-                    windowRace.getRacePanel().setIcon(raceThreads.indexOf(thread), iconIndex);
-                });
+                SwingUtilities.invokeLater(() -> windowRace.getRacePanel().setIcon(raceThreads.indexOf(thread), iconIndex));
             });
 
             windowRace.getRacePanel().getAthletePanels().get(athletes.indexOf(athlete)).addSpeedChangeListener(thread);
@@ -392,19 +380,15 @@ public class Championship implements RaceListener {
                         String tipo = puestoElement.getAttribute("tipo");
                         int numero = Integer.parseInt(puestoElement.getAttribute("numero"));
                         double distancia = Double.parseDouble(getChildElementValue(puestoElement, "distancia"));
-                        Stations station;
-                        switch (tipo) {
-                        	case "ciclismo": station = new Stations(new Cycling(), numero, distancia);
-                                             break;
-                        	case "pedestrismo": station = new Stations(new Pedestrianism(), numero, distancia);
-                                             break;
-                        	default: station = new Stations(new Swimming(), numero, distancia);;
-                        }
+                        Stations station = switch (tipo) {
+                            case "ciclismo" -> new Stations(new Cycling(), numero, distancia);
+                            case "pedestrismo" -> new Stations(new Pedestrianism(), numero, distancia);
+                            default -> new Stations(new Swimming(), numero, distancia);
+                        };
                         stati.add(station);
                     }
                 }
-                
-                WeatherDAO wb =  new  WeatherDAO();
+
        
                Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati);
 
@@ -450,51 +434,6 @@ public class Championship implements RaceListener {
 	        return null;
 	    }
 	}
-	
-	
-	
-	/*public static List<WeatherConditions> loadDatabase() {
-		
-	//Loads the Weather Conditions Database
-		ArrayList<WeatherConditions> weatherConditions = new ArrayList<>();
-
-		try {
-
-		DBManager dbManager = new DBManager("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/Project_triathlon", "postgres", "1234");
-
-		Connection connection = dbManager.getConnection();
-
-		Statement statement = connection.createStatement();
-
-	    String query = "SELECT id ,description, measurementunit,lowertier,uppertier,swimmingweathering,cyclingweathering,pedestrianismweathering FROM weatherconditions ";
-
-	    ResultSet TableWeatherConditions= statement.executeQuery(query);
-
-   	 while(TableWeatherConditions.next() ) {
-
-		 MeasurementUnit measurementunit = new MeasurementUnit(TableWeatherConditions.getString("measurementunit"));
-
-
-		 WeatherConditions weatherconditions = new  WeatherConditions(TableWeatherConditions.getInt("id"),TableWeatherConditions.getString("description"),
-		 measurementunit,TableWeatherConditions.getDouble("lowertier"),TableWeatherConditions.getDouble("uppertier"),
-		 TableWeatherConditions.getDouble("swimmingweathering"),TableWeatherConditions.getDouble("cyclingweathering"),TableWeatherConditions.getDouble("pedestrianismweathering"));
-
-		 weatherConditions.add(weatherconditions);
-	 }
-
-		statement.close();
-		connection.close();
-
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-				
-		return weatherConditions;
-
-	}*/
-
 
 	  public static List<Race> getTop4Race(List<Race> originalRace) {
             Collections.shuffle(originalRace);
@@ -591,8 +530,7 @@ public class Championship implements RaceListener {
     }
     public static List<Athlete> sortByAlphabeticOrder() {
         List<Athlete> sortedList = new ArrayList<>();
-        for (Athlete athlete : athletes)
-            sortedList.add(athlete);
+        sortedList.addAll(athletes);
         sortedList.sort(Comparator.comparing(Athlete::getSurname));
         return sortedList;
     }

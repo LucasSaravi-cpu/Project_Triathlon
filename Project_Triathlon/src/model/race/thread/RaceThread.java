@@ -23,18 +23,18 @@ import model.race.discipline.Swimming;
 public class RaceThread extends Thread implements SpeedChangeListener {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
-    private int startX;
+    private final int startX;
     private int positionX;
-    private int endX;
-    private RaceListener listener;
+    private final int endX;
+    private final RaceListener listener;
     private final List<EnergyListener> listeners = new ArrayList<>();
     private final List<DisciplineChangeListener> disciplineListeners = new ArrayList<>();
     private final Athlete athlete;
-    private static AtomicInteger activeThreads = new AtomicInteger(0);
+    private final static AtomicInteger activeThreads = new AtomicInteger(0);
     private final Championship controller;
-    private RaceManager raceManager;
-    private Race race;
-    private int raceIndex;
+    private final RaceManager raceManager;
+    private final Race race;
+    private final int raceIndex;
     private NotifySpeedListener notifySpeedListener;
  
     
@@ -66,7 +66,6 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         Chronometer chronometer = Championship.getChronometer();
         try {
             while (!Thread.currentThread().isInterrupted()) {
-                Random random = new Random();
                 move(chronometer);
                 athlete.decreaseEnergy(10); // Adjust decrement
                 Thread.sleep(athlete.getSpeed());
@@ -160,7 +159,6 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         }
     }
     private void checkForDisciplineChange(Chronometer chronometer) throws SQLException {
-        String currentTime = chronometer.getTime();
         boolean isFirst = !raceManager.isDisciplineWon(athlete.getCurrentDiscipline().getClass().getSimpleName().toLowerCase());
         if (athlete.getCurrentDiscipline().surpassed(positionX, race, startX, endX)){
 
@@ -171,9 +169,6 @@ public class RaceThread extends Thread implements SpeedChangeListener {
             }
             athlete.setNewDiscipline();
             notifyDisciplineChange(athlete.getCurrentDiscipline(), isFirst);
-            //Change the wheather conditions
-            //WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(Championship.loadDatabase());
-            //Championship.notifyWeatherUpdate(weatherconditions);
         }
     }
 
