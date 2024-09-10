@@ -6,7 +6,7 @@ public class PhysicalConditions implements Serializable {
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private double swimmingAptitude;
-    private double cyclismAptitude;
+    private double cyclingAptitude;
     private double pedestrianismAptitude;
     private double stamina;
     private double mentalStrength;
@@ -15,11 +15,11 @@ public class PhysicalConditions implements Serializable {
   //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
     
-	public PhysicalConditions(double swimmingAptitude, double cyclismAptitude, double pedestrianismAptitude,
-			double stamina, double mentalStrength) {
+	public PhysicalConditions(double swimmingAptitude, double cyclingAptitude, double pedestrianismAptitude,
+							  double stamina, double mentalStrength) {
 		super();
 		this.swimmingAptitude = swimmingAptitude;
-		this.cyclismAptitude = cyclismAptitude;
+		this.cyclingAptitude = cyclingAptitude;
 		this.pedestrianismAptitude = pedestrianismAptitude;
 		this.stamina = stamina;
 		this.mentalStrength = mentalStrength;
@@ -34,11 +34,11 @@ public class PhysicalConditions implements Serializable {
 	public void setSwimmingAptitude(double swimmingAptitude) {
 		this.swimmingAptitude = swimmingAptitude;
 	}
-	public double getCyclismAptitude() {
-		return cyclismAptitude;
+	public double getCyclingAptitude() {
+		return cyclingAptitude;
 	}
-	public void setCyclismAptitude(double cyclismAptitude) {
-		this.cyclismAptitude = cyclismAptitude;
+	public void setCyclingAptitude(double cyclingAptitude) {
+		this.cyclingAptitude = cyclingAptitude;
 	}
 	public double getPedestrianismAptitude() {
 		return pedestrianismAptitude;
@@ -64,7 +64,7 @@ public class PhysicalConditions implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(" \n\t Swimming Aptitude: ").append(swimmingAptitude).append("\n\t Cyclism Aptitude: ").append(cyclismAptitude)
+		sb.append(" \n\t Swimming Aptitude: ").append(swimmingAptitude).append("\n\t Cycling Aptitude: ").append(cyclingAptitude)
 		  .append("\n\t Pedestrianism Aptitude: ").append(pedestrianismAptitude).append("\n\t Stamina: ").append(stamina)
 		  .append("\n\t Mental Strength: ").append(mentalStrength);
 		return sb.toString();

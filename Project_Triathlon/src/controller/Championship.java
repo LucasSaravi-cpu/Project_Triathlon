@@ -292,7 +292,7 @@ public class Championship implements RaceListener {
                 double  weight = Double.parseDouble(getChildElementValue(athleteElement, "peso"));
                 double  height = Double.parseDouble(getChildElementValue(athleteElement, "altura"));
                 double swimmingAptitude = Double.parseDouble(getChildElementValue(athleteElement, "aptitudNatacion"));
-                double cyclismAptitude = Double.parseDouble(getChildElementValue(athleteElement, "aptitudCiclismo"));
+                double cyclingAptitude = Double.parseDouble(getChildElementValue(athleteElement, "aptitudCiclismo"));
                 double pedestrianismAptitude = Double.parseDouble(getChildElementValue(athleteElement, "aptitudPedestrismo"));
                 double stamina = Double.parseDouble(getChildElementValue(athleteElement, "resistencia"));
                 double mentalStrength = Double.parseDouble(getChildElementValue(athleteElement, "fortalezaPsicologica"));
@@ -306,7 +306,7 @@ public class Championship implements RaceListener {
                 } else
                     gender = "Female";
 
-                PhysicalConditions physicalconditions  = new PhysicalConditions(swimmingAptitude, cyclismAptitude, pedestrianismAptitude, stamina, mentalStrength);
+                PhysicalConditions physicalconditions  = new PhysicalConditions(swimmingAptitude, cyclingAptitude, pedestrianismAptitude, stamina, mentalStrength);
                 List<Competition> comp = new ArrayList<>();
                 for (int j=0; j<4; j++) {
                     comp.add(new Competition(0, "", null, null, null));
@@ -341,7 +341,7 @@ public class Championship implements RaceListener {
                 Date date = parseFecha(getChildElementValue( careerElement,"fecha"));
                 String modalityname = getChildElementValue(careerElement,"modalidad");
                 double swimming = Double.parseDouble(getChildElementValue(careerElement, "natacion"));
-                double cyclism = Double.parseDouble(getChildElementValue(careerElement, "ciclismo"));
+                double cycling = Double.parseDouble(getChildElementValue(careerElement, "ciclismo"));
                 double pedestrianism = Double.parseDouble(getChildElementValue(careerElement, "pedestrismo"));
                
 
@@ -353,7 +353,7 @@ public class Championship implements RaceListener {
                List<DisciplineDistance> disciplinedistances = new ArrayList<>();
 
                DisciplineDistance disciplineDistanceSwimming = new  DisciplineDistance(swimming,swimmingg.time(modalityname),swimmingg);
-               DisciplineDistance disciplineDistanceCycling = new  DisciplineDistance(cyclism,cyclimm.time(modalityname),cyclimm);
+               DisciplineDistance disciplineDistanceCycling = new  DisciplineDistance(cycling,cyclimm.time(modalityname),cyclimm);
                DisciplineDistance disciplineDistancePedestrianism = new  DisciplineDistance(pedestrianism,pedestriani.time(modalityname),pedestriani);
 
                disciplinedistances.add(disciplineDistanceSwimming);
@@ -390,7 +390,7 @@ public class Championship implements RaceListener {
                 }
 
        
-               Race race = new Race(city, country, date, modality, swimming, cyclism, pedestrianism, stati);
+               Race race = new Race(city, country, date, modality, swimming, cycling, pedestrianism, stati);
 
                races.add(race);
             }

@@ -26,7 +26,7 @@ public class Race implements Serializable {
     private List<Athlete> athlete;
     private Modality modality;
     private double kmswimming;
-    private double kmcyclism;
+    private double kmcycling;
     private double  kmpedestrianism;
     private List<Stations> stations;
     private int T1 , T2 ,T3;
@@ -38,7 +38,7 @@ public class Race implements Serializable {
 
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
-	public Race(City city, Country country, Date date, Modality modality, double kmswimming, double kmcyclism,
+	public Race(City city, Country country, Date date, Modality modality, double kmswimming, double kmcycling,
 			double kmpedestrianism, List<Stations> stations) {
 		super();
 		this.city = city;
@@ -46,7 +46,7 @@ public class Race implements Serializable {
 		this.date = date;
 		this.modality = modality;
 		this.kmswimming = kmswimming;
-		this.kmcyclism = kmcyclism;
+		this.kmcycling = kmcycling;
 		this.kmpedestrianism = kmpedestrianism;
 		this.stations = stations;
 		 this.athlete = new ArrayList<Athlete>();
@@ -116,13 +116,13 @@ public class Race implements Serializable {
 
 
 
-	public double getKmcyclism() {
-		return kmcyclism;
+	public double getKmcycling() {
+		return kmcycling;
 	}
 
 
-	public void setKmcyclism(double kmcyclism) {
-		this.kmcyclism = kmcyclism;
+	public void setKmcycling(double kmcycling) {
+		this.kmcycling = kmcycling;
 	}
 
 
@@ -220,14 +220,11 @@ public class Race implements Serializable {
 
 
 	public double getKm(Discipline discipline) {
-		switch (discipline.toString()) {
-			case "Swimming":
-				return kmswimming;
-			case "Cyclism":
-				return kmcyclism;
-			default:
-				return kmpedestrianism;
-		}
+        return switch (discipline.getClass().getSimpleName()) {
+            case "Swimming" -> kmswimming;
+            case "Cycling" -> kmcycling;
+            default -> kmpedestrianism;
+        };
 	}
 	// Static method to generate a random boolean
     public  boolean UseOfNeoprene() {
@@ -280,8 +277,8 @@ public class Race implements Serializable {
 	    for (Athlete a: athlete) {
 	    	sb.append(a);
 	    }
-	    sb.append("\n Modality: ").append(modality).append("\n Km Swimming: ").append(kmswimming).append("\n Km Cyclism: ")
-	      .append(kmcyclism).append("\n Km Pedestrianism: ").append(kmpedestrianism).append("\n Stations: ");
+	    sb.append("\n Modality: ").append(modality).append("\n Km Swimming: ").append(kmswimming).append("\n Km Cycling: ")
+	      .append(kmcycling).append("\n Km Pedestrianism: ").append(kmpedestrianism).append("\n Stations: ");
 	    for (Stations s: stations) {
 	    	sb.append(s);
 	    }

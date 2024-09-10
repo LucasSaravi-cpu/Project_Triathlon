@@ -45,7 +45,7 @@ public class Cycling extends Discipline implements Serializable {
     public double getPoints(List<Double> disciplineChangePoints, Stations station, Race race, int startX, int endX) {
 
         double difference = disciplineChangePoints.get(1) - (disciplineChangePoints.get(0) + 100.0 / (endX - startX));
-        return ((disciplineChangePoints.get(0) + 100.0 / (endX - startX) + station.getDistancing() * difference / race.getKmcyclism()) * (endX - startX));
+        return ((disciplineChangePoints.get(0) + 100.0 / (endX - startX) + station.getDistancing() * difference / race.getKmcycling()) * (endX - startX));
     }
 
     public String toString() {
@@ -76,7 +76,7 @@ public class Cycling extends Discipline implements Serializable {
 
     @Override
     public double getBaseSpeed(PhysicalConditions stats, WeatherConditions wc) {
-        return stats.getCyclismAptitude() * 1.4 * (1 + wc.getCyclingImpact() / 100);
+        return stats.getCyclingAptitude() * 1.4 * (1 + wc.getCyclingImpact() / 100);
         //return 1500 - stats.getCyclismAptitude() * 70 - 10 * wc.getCyclingweathering();
     }
 
@@ -92,7 +92,7 @@ public class Cycling extends Discipline implements Serializable {
 
     @Override
     public double getStat(PhysicalConditions stats) {
-        return stats.getCyclismAptitude();
+        return stats.getCyclingAptitude();
     }
 
     @Override
