@@ -21,13 +21,13 @@ public class Cycling extends Discipline implements Serializable {
         String time = "00:00:00";
 
         if (modality.equals("MediumDistance")) {
-            time = "2:00:00";
+            time = "03:33:00";
         } else if (modality.equals("LongDistance")) {
-            time = "5:00:00";
+            time = "07:06:00";
         } else if (modality.equals("Sprint")) {
-            time = "00:45:00";
+            time = "00:50:00";
         } else if (modality.equals("OlympicDistance")) {
-            time = "01:00:00";
+            time = "02:27:00";
         }
 
         return time;

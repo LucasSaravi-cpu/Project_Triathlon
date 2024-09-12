@@ -598,13 +598,13 @@ public class Championship implements RaceListener {
         int position=1;
         for (Athlete athlete : athletes) {
             if (athletes.indexOf(athlete)==0)
-                windowTrophies.getLblWinner().setText(athlete.getName());
+                windowTrophies.getLblWinner().setText(athlete.getName() + athlete.getSurname());
             else
                 if (athletes.indexOf(athlete)==1)
-                    windowTrophies.getLblSecond().setText(athlete.getName());
+                    windowTrophies.getLblSecond().setText(athlete.getName() + athlete.getSurname());
                 else
                     if (athletes.indexOf(athlete)==2)
-                        windowTrophies.getLblThird().setText(athlete.getName());
+                        windowTrophies.getLblThird().setText(athlete.getName() + athlete.getSurname());
 
             results.append(athletes.indexOf(athlete) + 1);
             results.append(": ");

@@ -20,13 +20,13 @@ public class Pedestrianism extends Discipline implements Serializable {
 		String time = "00:00:00";
 
 		if (modality.equals("MediumDistance")) {
-		    time = "01:30:00";
+		    time = "01:10:00";
 		} else if (modality.equals("LongDistance")) {
-		    time = "03:00:00";
+		    time = "02:05:00";
 		} else if (modality.equals("Sprint")) {
-		    time = "00:30:00";
+		    time = "00:18:00";
 		} else if (modality.equals("OlympicDistance")) {
-		    time = "01:00:00";
+		    time = "00:47:00";
 		}
 		
 		return time;
