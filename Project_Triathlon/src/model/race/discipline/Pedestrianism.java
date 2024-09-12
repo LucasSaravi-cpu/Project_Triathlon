@@ -17,19 +17,15 @@ public class Pedestrianism extends Discipline implements Serializable {
 	@Override
 	public String time(String modality) {
 		
-		String time = "00:00:00";
+		String time = switch (modality) {
+            case "MediumDistance" -> "01:10:00";
+            case "LongDistance" -> "02:05:00";
+            case "Sprint" -> "00:18:00";
+            case "OlympicDistance" -> "00:47:00";
+            default -> "00:00:00";
+        };
 
-		if (modality.equals("MediumDistance")) {
-		    time = "01:10:00";
-		} else if (modality.equals("LongDistance")) {
-		    time = "02:05:00";
-		} else if (modality.equals("Sprint")) {
-		    time = "00:18:00";
-		} else if (modality.equals("OlympicDistance")) {
-		    time = "00:47:00";
-		}
-		
-		return time;
+        return time;
 
     }
 	public String toString(){
@@ -87,6 +83,12 @@ public class Pedestrianism extends Discipline implements Serializable {
 	public double getWeatherImpact(WeatherConditions wc){
 		return wc.getPedestrianismImpact();
 	}
+	@Override
+	public double getKmInDiscipline(Race race, int positionX, int startX, int endX){
+		double progress = (positionX - race.getDisciplineChangePoints().get(1)*(endX-startX) - startX) / (endX - race.getDisciplineChangePoints().get(1)*(endX-startX));
+		return progress * race.getKmpedestrianism();
+	}
+
 }
 
 

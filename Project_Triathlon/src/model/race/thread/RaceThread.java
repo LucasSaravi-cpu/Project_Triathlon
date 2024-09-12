@@ -95,7 +95,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                 if (athlete.getCurrentDiscipline().isBeforePosition(minutes, race)){
                     Thread.currentThread().interrupt();
                     athlete.addRaceDesertions();
-                    athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getTotalDistance()*progress,"Forfeited", athlete.getCurrentDiscipline().createInstance()));
+                    athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(athlete.getCurrentDiscipline().getKmInDiscipline(race, positionX, startX, endX),"Forfeited", athlete.getCurrentDiscipline().createInstance()));
                 }
                 
             }

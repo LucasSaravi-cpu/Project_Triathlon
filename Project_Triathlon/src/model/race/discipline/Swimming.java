@@ -88,4 +88,9 @@ public class Swimming extends Discipline implements Serializable {
 	public double getWeatherImpact(WeatherConditions wc){
 		return wc.getSwimmingImpact();
 	}
+	@Override
+	public double getKmInDiscipline(Race race, int positionX, int startX, int endX){
+		double progress = (positionX - startX) / (race.getDisciplineChangePoints().getFirst()*(endX-startX)+100);
+		return progress * race.getKmpedestrianism();
+	}
 }

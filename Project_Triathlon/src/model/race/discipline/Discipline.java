@@ -28,4 +28,11 @@ public abstract class Discipline implements Serializable {
     public abstract double getStat(PhysicalConditions stats);
     public abstract double getWeatherImpact(WeatherConditions wc);
     public abstract int getIconIndex();
+    public abstract double getKmInDiscipline(Race race, int positionX, int startX, int endX);
+    public String getTotalDistance(List<DisciplineDistance> disciplineDistances) {
+        double totalDistance = 0.0;
+        for (DisciplineDistance disciplineDistance : disciplineDistances)
+            totalDistance += disciplineDistance.getDistance();
+        return String.format("%.2f", totalDistance);
+    }
 }

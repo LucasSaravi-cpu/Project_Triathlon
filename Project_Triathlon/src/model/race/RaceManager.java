@@ -111,9 +111,12 @@ public class RaceManager {
         for (Athlete athlete : sortedNotFinishedAthletes) {
             sb.append(positionCounter).append(": ").append(athlete.getName()).append(" ").append(athlete.getSurname()).append("\n");
 
-            if (athlete.getCompetition().get(raceIndex).getDistances().stream().anyMatch(distance -> "Forfeited".equals(distance.getTime()))) {
-                sb.append("Forfeited \n");
-            }
+            athlete.getCompetition().get(raceIndex).getDistances().stream()
+                    .filter(distance -> "Forfeited".equals(distance.getTime()))
+                    .findFirst()
+                    .ifPresent(distance -> {
+                        sb.append("Forfeited - Distance: ").append(distance.getDiscipline().getTotalDistance(athlete.getCompetition().get(raceIndex).getDistances())).append(" km. \n");
+                    });
             positionCounter++;
         }
 
