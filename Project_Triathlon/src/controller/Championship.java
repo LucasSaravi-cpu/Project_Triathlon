@@ -67,7 +67,7 @@ public class Championship implements RaceListener {
         this.weatherboard = new  Weatherboard();
         this.customWeatherPanel = new WeatherSettingsWindow();
         this.windowChronometer = new WindowChronometer();
-        this.windowTrophies = new WindowTrophies(this);
+        this.windowTrophies = new WindowTrophies();
     }
 	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public Scoreboard getScoreboard() {
@@ -598,13 +598,13 @@ public class Championship implements RaceListener {
         int position=1;
         for (Athlete athlete : athletes) {
             if (athletes.indexOf(athlete)==0)
-                windowTrophies.getLblWinner().setText(athlete.getName() + athlete.getSurname());
+                windowTrophies.setWinnerText(athlete.getName() + " " + athlete.getSurname());
             else
                 if (athletes.indexOf(athlete)==1)
-                    windowTrophies.getLblSecond().setText(athlete.getName() + athlete.getSurname());
+                    windowTrophies.setSecondText(athlete.getName() + " " + athlete.getSurname());
                 else
                     if (athletes.indexOf(athlete)==2)
-                        windowTrophies.getLblThird().setText(athlete.getName() + athlete.getSurname());
+                        windowTrophies.setThirdText(athlete.getName() + " " + athlete.getSurname());
 
             results.append(athletes.indexOf(athlete) + 1);
             results.append(": ");

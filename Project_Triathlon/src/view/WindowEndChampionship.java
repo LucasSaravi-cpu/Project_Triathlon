@@ -15,7 +15,7 @@ public class WindowEndChampionship extends JFrame {
             setTitle("End of Championship");
             setSize(800, 600);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setLocationRelativeTo(null);
+            setLocation(700, 150);
             JPanel panel = new JPanel(new BorderLayout())  {
                 @Override
                 protected void paintComponent(Graphics g) {
