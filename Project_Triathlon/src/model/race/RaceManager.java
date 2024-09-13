@@ -114,9 +114,7 @@ public class RaceManager {
             athlete.getCompetition().get(raceIndex).getDistances().stream()
                     .filter(distance -> "Forfeited".equals(distance.getTime()))
                     .findFirst()
-                    .ifPresent(distance -> {
-                        sb.append("Forfeited - Distance: ").append(distance.getDiscipline().getTotalDistance(athlete.getCompetition().get(raceIndex).getDistances())).append(" km. \n");
-                    });
+                    .ifPresent(distance -> sb.append("Forfeited - Discipline: ").append(distance.getDiscipline()).append(" - Distance: ").append(distance.getDiscipline().getTotalDistance(athlete.getCompetition().get(raceIndex).getDistances())).append(" km. \n"));
             positionCounter++;
         }
 
