@@ -405,7 +405,7 @@ public abstract class Athlete implements Serializable {
 		sb.append("\n");
 
 		sb.append(" Surname: ").append(surname).append("\n Name: ").append(name)
-				.append("\n Nationality: ").append(nationality).append("\n Cathegory: ").append(getCategory()) .append("\n Stage Wins (Swimming): ").append(stagesWinS)
+				.append("\n Nationality: ").append(nationality).append("\n Category: ").append(getCategory()) .append("\n Stage Wins (Swimming): ").append(stagesWinS)
 				.append("\n Stage Wins (Pedestrianism): ").append(stagesWinP).append("\n Stage Wins (Cycling): ").append(stagesWinC)
 				.append("\n Races Won: ").append(victories).append("\n Race Desertions: ").append(racedesertions)
 				.append("\n Races Completed: ").append(finishedRaces);

@@ -5,7 +5,7 @@
 			<apellido>Lentini</apellido>
 			<nombre>Massimo</nombre>
 			<dni>80807979</dni>
-			<nacionalidad>Italia</nacionalidad>
+			<nacionalidad>Italy</nacionalidad>
 			<fechaNacimiento>1985-04-15</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Competición</categoria>
@@ -26,7 +26,7 @@
 			<apellido>Debilucha</apellido>
 			<nombre>Luce</nombre>
 			<dni>39658244</dni>
-			<nacionalidad>Italia</nacionalidad>
+			<nacionalidad>Italy</nacionalidad>
 			<fechaNacimiento>1992-04-15</fechaNacimiento>
 			<genero>Femenino</genero>
 			<categoria>Amateur</categoria>
@@ -89,7 +89,7 @@
 			<apellido>Tramposso</apellido>
 			<nombre>Luca</nombre>
 			<dni>80564122</dni>
-			<nacionalidad>Italia</nacionalidad>
+			<nacionalidad>Italy</nacionalidad>
 			<fechaNacimiento>2009-04-15</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Competición</categoria>
@@ -131,7 +131,7 @@
 			<apellido>Llega</apellido>
 			<nombre>Agatha</nombre>
 			<dni>65274153</dni>
-			<nacionalidad>Croacia</nacionalidad>
+			<nacionalidad>Croatia</nacionalidad>
 			<fechaNacimiento>2007-12-15</fechaNacimiento>
 			<genero>Femenino</genero>
 			<categoria>Competición</categoria>
@@ -152,7 +152,7 @@
 			<apellido>Makina</apellido>
 			<nombre>Eshuna</nombre>
 			<dni>75983541</dni>
-			<nacionalidad>Kenia</nacionalidad>
+			<nacionalidad>Kenya</nacionalidad>
 			<fechaNacimiento>1993-04-15</fechaNacimiento>
 			<genero>Femenino</genero>
 			<categoria>Amateur</categoria>
@@ -299,7 +299,7 @@
 			<apellido>Não Chega</apellido>
 			<nombre>Inacia</nombre>
 			<dni>26359871</dni>
-			<nacionalidad>Brasil</nacionalidad>
+			<nacionalidad>Brazil</nacionalidad>
 			<fechaNacimiento>1990-04-15</fechaNacimiento>
 			<genero>Femenino</genero>
 			<categoria>Amateur</categoria>
@@ -320,7 +320,7 @@
 			<apellido>Lentovsky</apellido>
 			<nombre>Vladimir</nombre>
 			<dni>95224415</dni>
-			<nacionalidad>Rusia</nacionalidad>
+			<nacionalidad>Russia</nacionalidad>
 			<fechaNacimiento>2007-04-15</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Competición</categoria>
@@ -341,7 +341,7 @@
 			<apellido>Kamina</apellido>
 			<nombre>Nokorreh</nombre>
 			<dni>86543512</dni>
-			<nacionalidad>Sudáfrica</nacionalidad>
+			<nacionalidad>South Africa</nacionalidad>
 			<fechaNacimiento>1996-04-15</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Competición</categoria>
@@ -362,7 +362,7 @@
 			<apellido>Veloce</apellido>
 			<nombre>Giorgia</nombre>
 			<dni>82657814</dni>
-			<nacionalidad>Italia</nacionalidad>
+			<nacionalidad>Italy</nacionalidad>
 			<fechaNacimiento>2006-12-15</fechaNacimiento>
 			<genero>Femenino</genero>
 			<categoria>Competición</categoria>
@@ -404,7 +404,7 @@
 			<apellido>Tupuedes</apellido>
 			<nombre>María</nombre>
 			<dni>23456789</dni>
-			<nacionalidad>España</nacionalidad>
+			<nacionalidad>Spain</nacionalidad>
 			<fechaNacimiento>2007-06-20</fechaNacimiento>
 			<genero>Femenino</genero>
 			<categoria>Competición</categoria>
@@ -425,7 +425,7 @@
 			<apellido>Speedy</apellido>
 			<nombre>John</nombre>
 			<dni>34567890</dni>
-			<nacionalidad>Estados Unidos</nacionalidad>
+			<nacionalidad>USA</nacionalidad>
 			<fechaNacimiento>1985-12-05</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Amateur</categoria>
@@ -467,7 +467,7 @@
 			<apellido>Rayoh</apellido>
 			<nombre>Jisoo</nombre>
 			<dni>56789012</dni>
-			<nacionalidad>Corea del Sur</nacionalidad>
+			<nacionalidad>South Korea</nacionalidad>
 			<fechaNacimiento>2008-02-14</fechaNacimiento>
 			<genero>Femenino</genero>
 			<categoria>Competición</categoria>
@@ -509,7 +509,7 @@
 			<apellido>Cansino</apellido>
 			<nombre>Diego</nombre>
 			<dni>78901234</dni>
-			<nacionalidad>México</nacionalidad>
+			<nacionalidad>Mexico</nacionalidad>
 			<fechaNacimiento>1993-01-25</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Amateur</categoria>
@@ -530,7 +530,7 @@
 			<apellido>Corretutti</apellido>
 			<nombre>Andrea</nombre>
 			<dni>89012345</dni>
-			<nacionalidad>Italia</nacionalidad>
+			<nacionalidad>Italy</nacionalidad>
 			<fechaNacimiento>1993-07-30</fechaNacimiento>
 			<genero>Femenino</genero>
 			<categoria>Competición</categoria>
@@ -593,7 +593,7 @@
 			<apellido>Slowest</apellido>
 			<nombre>Michael</nombre>
 			<dni>23456789</dni>
-			<nacionalidad>Canadá</nacionalidad>
+			<nacionalidad>Canada</nacionalidad>
 			<fechaNacimiento>1987-05-21</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Amateur</categoria>
@@ -614,7 +614,7 @@
 			<apellido>Makkinen</apellido>
 			<nombre>Hans</nombre>
 			<dni>34567890</dni>
-			<nacionalidad>Alemania</nacionalidad>
+			<nacionalidad>Germany</nacionalidad>
 			<fechaNacimiento>2003-11-11</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Competición</categoria>
@@ -635,7 +635,7 @@
 			<apellido>Ameta</apellido>
 			<nombre>Noyega</nombre>
 			<dni>78901234</dni>
-			<nacionalidad>Japón</nacionalidad>
+			<nacionalidad>Japan</nacionalidad>
 			<fechaNacimiento>2002-03-08</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Competición</categoria>
@@ -656,7 +656,7 @@
 			<apellido>Dell'acqua</apellido>
 			<nombre>Elsa</nombre>
 			<dni>45678901</dni>
-			<nacionalidad>Italia</nacionalidad>
+			<nacionalidad>Italy</nacionalidad>
 			<fechaNacimiento>1996-08-14</fechaNacimiento>
 			<genero>Femenino</genero>
 			<categoria>Competición</categoria>
@@ -677,7 +677,7 @@
 			<apellido>Sforza</apellido>
 			<nombre>Mauro</nombre>
 			<dni>56789012</dni>
-			<nacionalidad>Italia</nacionalidad>
+			<nacionalidad>Italy</nacionalidad>
 			<fechaNacimiento>1992-02-05</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Amateur</categoria>
@@ -698,7 +698,7 @@
 			<apellido>Novanova</apellido>
 			<nombre>Artur</nombre>
 			<dni>67890123</dni>
-			<nacionalidad>Rumania</nacionalidad>
+			<nacionalidad>Romania</nacionalidad>
 			<fechaNacimiento>1985-06-25</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Amateur</categoria>
@@ -719,7 +719,7 @@
 			<apellido>Yega</apellido>
 			<nombre>Akinoh</nombre>
 			<dni>89012345</dni>
-			<nacionalidad>Corea del Sur</nacionalidad>
+			<nacionalidad>South Korea</nacionalidad>
 			<fechaNacimiento>2001-11-11</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Competición</categoria>
@@ -740,7 +740,7 @@
 			<apellido>Dapenna</apellido>
 			<nombre>Carlo</nombre>
 			<dni>90123456</dni>
-			<nacionalidad>Italia</nacionalidad>
+			<nacionalidad>Italy</nacionalidad>
 			<fechaNacimiento>1991-04-23</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Amateur</categoria>
@@ -761,7 +761,7 @@
 			<apellido>Success</apellido>
 			<nombre>Emily</nombre>
 			<dni>12345678</dni>
-			<nacionalidad>Estados Unidos</nacionalidad>
+			<nacionalidad>USA</nacionalidad>
 			<fechaNacimiento>1995-12-01</fechaNacimiento>
 			<genero>Femenino</genero>
 			<categoria>Competición</categoria>
@@ -824,7 +824,7 @@
 			<apellido>Tortugovsky</apellido>
 			<nombre>Dimitry</nombre>
 			<dni>45678901</dni>
-			<nacionalidad>Rusia</nacionalidad>
+			<nacionalidad>Russia</nacionalidad>
 			<fechaNacimiento>1990-07-20</fechaNacimiento>
 			<genero>Masculino</genero>
 			<categoria>Amateur</categoria>
@@ -845,7 +845,7 @@
 			<apellido>Winner</apellido>
 			<nombre>Laura</nombre>
 			<dni>56789012</dni>
-			<nacionalidad>Estados Unidos</nacionalidad>
+			<nacionalidad>USA</nacionalidad>
 			<fechaNacimiento>1998-11-30</fechaNacimiento>
 			<genero>Femenino</genero>
 			<categoria>Competición</categoria>
