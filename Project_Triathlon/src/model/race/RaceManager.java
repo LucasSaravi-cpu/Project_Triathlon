@@ -29,6 +29,11 @@ public class RaceManager {
         disciplineWins.put("running", false);
     }
     //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+    
+    public List<Athlete> getFinishedAthletes() {
+        return finishedAthletes;
+    }
+
     public boolean isDisciplineWon(String discipline) {
         return disciplineWins.getOrDefault(discipline, false);
     }

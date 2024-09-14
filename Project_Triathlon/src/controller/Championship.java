@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
@@ -58,6 +59,7 @@ public class Championship implements RaceListener {
 	 private static WeatherConditions lastCondition = null;
      private static Chronometer chronometer;
      private static List<WeatherConditions> weatherConditions;
+     private Thread positionUpdateThread;
 
   //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public Championship(WindowRace windowRace) {
@@ -229,6 +231,19 @@ public class Championship implements RaceListener {
 
         raceIndex++;
         windowChronometer.setVisible(true);
+        positionUpdateThread = new Thread(() -> {
+            try {
+                while (RaceThread.getActiveThreads().get() > 0) {
+                    sortAthletePanels();
+                    Thread.sleep(5000);
+                }
+                sortAthletePanelsByFinishTime();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        });
+        positionUpdateThread.start();
+
         addChronometerListener(windowChronometer);
         chronometer.start();
     }
@@ -676,6 +691,45 @@ public class Championship implements RaceListener {
             }
         }
     }
+    private void sortAthletePanels() {
+        SwingUtilities.invokeLater(() -> {
+            List<AthletePanel> panels = windowRace.getRacePanel().getAthletePanels();
+            Map<AthletePanel, Integer> panelPositionMap = new HashMap<>();
+            for (int i = 0; i < panels.size(); i++) {
+                panelPositionMap.put(panels.get(i), raceThreads.get(i).getPositionX());
+            }
+            panels.sort(Comparator.comparingInt(panelPositionMap::get).reversed());
+            raceThreads.sort(Comparator.comparingInt(RaceThread::getPositionX).reversed());
+            for (int i = 0; i < panels.size(); i++) {
+                AthletePanel panel = panels.get(i);
+                panel.setLocation(panel.getLocation().x, i * panel.getHeight());
+            }
+        });
+    }
+    private void sortAthletePanelsByFinishTime() {
+        SwingUtilities.invokeLater(() -> {
+            List<AthletePanel> panels = windowRace.getRacePanel().getAthletePanels();
+            List<Athlete> finishedAthletes = raceManager.getFinishedAthletes();
+            Map<Athlete, AthletePanel> athletePanelMap = new HashMap<>();
+
+            for (AthletePanel panel : panels) {
+                int index = panels.indexOf(panel);
+                Athlete athlete = raceThreads.get(index).getAthlete();
+                athletePanelMap.put(athlete, panel);
+            }
+
+            List<Athlete> sortedAthletes = finishedAthletes.stream()
+                    .sorted(Comparator.comparing(a -> a.getCompetition().get(raceIndex).getTimeTot()))
+                    .collect(Collectors.toList());
+
+            for (int i = 0; i < sortedAthletes.size(); i++) {
+                Athlete athlete = sortedAthletes.get(i);
+                AthletePanel panel = athletePanelMap.get(athlete);
+                panel.setLocation(panel.getLocation().x, i * panel.getHeight());
+            }
+        });
+    }
+
   
 
 }

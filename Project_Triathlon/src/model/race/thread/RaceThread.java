@@ -58,7 +58,10 @@ public class RaceThread extends Thread implements SpeedChangeListener {
     public Athlete getAthlete(){
         return athlete;
     }
-    
+    public static AtomicInteger getActiveThreads(){
+        return activeThreads;
+    }
+
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     
     @Override
