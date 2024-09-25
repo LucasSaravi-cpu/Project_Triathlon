@@ -81,15 +81,15 @@ public class InputPanel extends JPanel {
         measurementUnitField = new JTextField();
         add(measurementUnitField);
 
-        // Upper Tier (Max Value)
-        add(new JLabel("Upper Tier (Max Value):"));
-        upperTierField = new JTextField();
-        add(upperTierField);
-
         // Lower Tier (Min Value)
         add(new JLabel("Lower Tier (Min Value):"));
         lowerTierField = new JTextField();
         add(lowerTierField);
+
+        // Upper Tier (Max Value)
+        add(new JLabel("Upper Tier (Max Value):"));
+        upperTierField = new JTextField();
+        add(upperTierField);
 
         // Swimming Weathering
         add(new JLabel("Swimming Impact:"));
