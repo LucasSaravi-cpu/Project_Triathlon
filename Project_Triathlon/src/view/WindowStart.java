@@ -122,14 +122,9 @@ public class WindowStart extends JFrame {
 
 	private void startGame() {
 		MusicPlayer.close();
-		wr = controller.getWindowRace();
-		wr.setVisible(true);
 		Championship.setWeatherConditions();
-		try {
-			controller.startRace();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
+		controller.initializeRaceData();
+		controller.promptNeopreneAndStartRace();
 		controller.getScoreboard().setVisible(true);
 		MusicPlayer.music("/music/Road_Runner.wav");
 		MusicPlayer.playMusic();
