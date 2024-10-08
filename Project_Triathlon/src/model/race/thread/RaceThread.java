@@ -132,10 +132,10 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         }
         else {
         	positionX=endX;
-        	Thread.currentThread().interrupt();
             athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKm(athlete.getCurrentDiscipline()), athlete.getCurrentDiscipline().setTime(athlete, chronometer, raceIndex), athlete.getCurrentDiscipline().createInstance()));
             athlete.getCompetition().get(raceIndex).setTimeTot(Championship.getChronometer().getTime());
             raceManager.notifyAthleteFinished(athlete);
+            Thread.currentThread().interrupt();
         	 
         }
         checkForDisciplineChange(chronometer);

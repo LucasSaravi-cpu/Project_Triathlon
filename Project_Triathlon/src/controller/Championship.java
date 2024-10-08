@@ -707,7 +707,7 @@ public class Championship implements RaceListener {
             }
 
             List<Athlete> sortedAthletes = finishedAthletes.stream()
-                    .sorted(Comparator.comparing(a -> a.getCompetition().get(raceIndex).getTimeTot()))
+                    .sorted(Comparator.comparing(a -> a.getCompetition().get(raceIndex-1).getTimeTot()))
                     .collect(Collectors.toList());
 
             for (int i = 0; i < sortedAthletes.size(); i++) {
