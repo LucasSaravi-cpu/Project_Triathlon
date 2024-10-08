@@ -36,7 +36,10 @@ public class RaceThread extends Thread implements SpeedChangeListener {
     private final Race race;
     private final int raceIndex;
     private NotifySpeedListener notifySpeedListener;
- 
+    private long draftingStartTime = 0;
+    private boolean isInDraftingZone = false;
+    private static final int DRAFTING_ZONE_LENGTH = 7; // in meters
+    private static final int DRAFTING_ZONE_TIME_LIMIT = 15000; // 15 seconds in milliseconds
     
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
@@ -89,11 +92,8 @@ public class RaceThread extends Thread implements SpeedChangeListener {
               	if (athlete.getCurrentDiscipline().getClass().equals(Swimming.class)) {
               		
               		NeopreneController(minutes);
-              		
-              		
+
               	}
-              	
-              	
 
                 if (athlete.getCurrentDiscipline().isBeforePosition(minutes, race)){
                     Thread.currentThread().interrupt();
@@ -281,9 +281,32 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         */
     }
 
-
-
-
-
-
+    /*public void checkForDrafting()
+    {
+        List<RaceThread> threadsCopy = Championship.getRaceThreads();
+        for(RaceThread thread: threadsCopy)
+        {
+            if(this != thread)
+            {
+                int distance = Math.abs(this.positionX - thread.getPositionX()); //Calculates the distance between 2 athletes to check if drafting is happening
+                if(distance <= DRAFTING_ZONE_LENGTH*100) //If it returns true, the athlete is within drafting zone
+                {
+                    if(!isInDraftingZone) //Starts counting for drafting time
+                    {
+                        draftingStartTime = System.currentTimeMillis();
+                        isInDraftingZone = true;
+                    }
+                    else if(System.currentTimeMillis() - draftingStartTime >= DRAFTING_ZONE_TIME_LIMIT) //Checks if the amount of time the athlete has stayed on the drafting zone exceeds the allowed time
+                    {
+                        //TODO: Add Penalization
+                        isInDraftingZone = false;
+                    }
+                }
+                else
+                {
+                    isInDraftingZone = false;
+                }
+            }
+        }
+    }*/
 }

@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.*;
 import javax.swing.text.SimpleAttributeSet;
@@ -67,7 +65,7 @@ public class Weatherboard extends JFrame {
 
     public void updateWeatherLabel(WeatherConditions weatherCondition) {
         if (weatherCondition != null) {
-            textPane.setText(Championship.GetListWeatherCondition(weatherCondition));
+            textPane.setText(Championship.getWeatherConditionsList(weatherCondition));
 
         }
     }

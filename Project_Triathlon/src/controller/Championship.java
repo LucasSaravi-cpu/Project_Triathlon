@@ -13,8 +13,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import Events.DisciplineChangeEvent;
-import Events.NotifySpeedEvent;
 import listeners.*;
 import model.athlete.PhysicalConditions;
 import model.athlete.type.Amateur;
@@ -28,12 +26,12 @@ import model.race.location.Country;
 import model.race.modality.*;
 import model.race.thread.RaceThread;
 import model.weather.WeatherConditions;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import Events.EnergyEvent;
 import Events.WeatherEvent;
 import dataaccess.WeatherDAO;
 import view.*;
@@ -52,7 +50,7 @@ public class Championship implements RaceListener {
      private static List <Race> races;
 	 private static List<Athlete> athletes;
 	 private static List<Race> SelectionRace;
-	 private final List<RaceThread> raceThreads;
+     private static List<RaceThread> raceThreads;
 	 private static int raceIndex;
 	 private RaceManager raceManager;
 	 private List<WeatherEventListener> weatherListeners = new ArrayList<>();
@@ -91,7 +89,11 @@ public class Championship implements RaceListener {
 		return athletes;
 	}
 
-	public static List<Race> getRaces() {
+    public static List<RaceThread> getRaceThreads() {
+        return raceThreads;
+    }
+
+    public static List<Race> getRaces() {
 		return races;
 	}
 
@@ -99,7 +101,6 @@ public class Championship implements RaceListener {
 		Championship.races = races;
 	}
 
-	
 	public Weatherboard getWeatherboard() {
 		return weatherboard;
 	}
@@ -115,12 +116,7 @@ public class Championship implements RaceListener {
 	public static Chronometer getChronometer(){
         return chronometer;
     }
-	
-	
 
-
-	
-	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	
 	public void setVisibleWindowTrophies(boolean yes) {
@@ -276,7 +272,7 @@ public class Championship implements RaceListener {
         DocumentBuilder builder = factory.newDocumentBuilder();
 
         //Parse the XML file and get the document
-        org.w3c.dom.Document document = builder.parse(xmlFile);
+        Document document = builder.parse(xmlFile);
 
        //Print the root element
         document.getDocumentElement().normalize();
@@ -573,7 +569,7 @@ public class Championship implements RaceListener {
 	        }
 	    }
 	    
-	    public static String GetListWeatherCondition(WeatherConditions weathercondition) {
+	    public static String getWeatherConditionsList(WeatherConditions weathercondition) {
 	        StringBuilder sb = new StringBuilder();
 	        Random random = new Random();
 	        DecimalFormat format = new DecimalFormat("#.##");
@@ -622,7 +618,7 @@ public class Championship implements RaceListener {
     }
 
 
-    
+
     public static void TotalTimeForRace(Race race) {
     	
     	
