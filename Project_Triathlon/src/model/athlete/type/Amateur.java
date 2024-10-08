@@ -66,28 +66,36 @@ public class Amateur extends Athlete implements Serializable {
 	    double distanceInKm = distanceInMeters / 1000.0;
 
 	    if (distanceInKm <= 0.75) {
-	        if (waterTemperature > 15 && waterTemperature <= 20) {
-	            neoprene = "Allowed";
-	        } else if (waterTemperature <= 15) {
+	        if (waterTemperature < 14 ) {
+	            neoprene = "Allowed"; 
+	        } else if (waterTemperature >= 15) {
 	            neoprene = "Mandatory";
+	        } else {
+	        	 neoprene = "Forbidden";
 	        }
 	    } else if (distanceInKm > 0.75 && distanceInKm <= 1.5) {
-	        if (waterTemperature > 15 && waterTemperature <= 20) {
+	        if (waterTemperature < 14 ) {
 	            neoprene = "Allowed";
-	        } else if (waterTemperature <= 15) {
+	        } else if (waterTemperature >= 15) {
 	            neoprene = "Mandatory";
+	        } else {
+	        	 neoprene = "Forbidden";
 	        }
 	    } else if (distanceInKm >= 1.501 && distanceInKm <= 3.0) {
-	        if (waterTemperature > 16 && waterTemperature <= 22) {
+	        if (waterTemperature <15 ) {
 	            neoprene = "Allowed";
-	        } else if (waterTemperature <= 16) {
+	        } else if (waterTemperature >= 16) {
 	            neoprene = "Mandatory";
+	        } else {
+	        	 neoprene = "Forbidden";
 	        }
 	    } else if (distanceInKm >= 3.001 && distanceInKm <= 4.0) {
-	        if (waterTemperature > 17 && waterTemperature <= 23) {
+	        if (waterTemperature < 16) {
 	            neoprene = "Allowed";
-	        } else if (waterTemperature <= 17) {
+	        } else if (waterTemperature >= 17) {
 	            neoprene = "Mandatory";
+	        } else {
+	        	 neoprene = "Forbidden";
 	        }
 	    }
 
