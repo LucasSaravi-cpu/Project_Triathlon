@@ -100,25 +100,14 @@ public class RaceThread extends Thread implements SpeedChangeListener {
               		neoprenePolicyApplied = true; 
 
               	}
-              	
-              	
-              	
-              	 if (athlete.getCurrentDiscipline().getClass().equals(Swimming.class)) {
-                     
-                     
-                     NeopreneController(minutes);
-                     neoprenePolicyApplied = true; 
-
-                 }
+     
                 
-
                 if (athlete.getCurrentDiscipline().isBeforePosition(minutes, race)){
-                	
-                	
+
                 	stopathlete();
-                   // Thread.currentThread().interrupt();
-                 //   athlete.addRaceDesertions();
-                 //   athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(athlete.getCurrentDiscipline().getKmInDiscipline(race, positionX, startX, endX),"Forfeited", athlete.getCurrentDiscipline().createInstance()));
+                    // Thread.currentThread().interrupt();
+                    //   athlete.addRaceDesertions();
+                   //   athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(athlete.getCurrentDiscipline().getKmInDiscipline(race, positionX, startX, endX),"Forfeited", athlete.getCurrentDiscipline().createInstance()));
                 }
                 
             }
