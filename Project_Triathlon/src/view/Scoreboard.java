@@ -265,14 +265,12 @@ public class Scoreboard extends JFrame {
 					textArea.setText("");
 
 					if (Championship.getRaceIndex() < 4) {
-						try {
-							controller.getWindowRace().reset();
-							controller.resetTimer();
-							SwingUtilities.invokeLater(() -> controller.getWindowRace().setVisible(true));
-							controller.startRace();
-						} catch (SQLException e1) {
-							e1.printStackTrace();
-						}
+
+						controller.getWindowRace().reset();
+						controller.resetTimer();
+						SwingUtilities.invokeLater(() -> controller.getWindowRace().setVisible(true));
+						controller.initializeRaceData();
+						controller.promptNeopreneAndStartRace();
 					} else {
 						SwingUtilities.invokeLater(() -> {
 							MusicPlayer.close();

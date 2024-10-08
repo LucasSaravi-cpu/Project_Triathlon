@@ -147,12 +147,36 @@ public class Championship implements RaceListener {
         }
         raceIndex = 0;
     }
+    public void promptNeopreneAndStartRace() {
+        boolean useNeoprene = SelectionRace.get(raceIndex).isCurrentneoprene();
+        String message = useNeoprene ? "The race requires the use of neoprene. Click confirm to proceed."
+                : "The race does not require neoprene. Click confirm to proceed.";
 
-    // Start a race and prepare necessary components
-    public void startRace() throws SQLException {
-        raceThreads.clear();
-        RaceManager.clearFinishedAthletes(); // Clear previously finished athletes
+        // Custom dialog with a single "Confirm" button
+        int result = JOptionPane.showOptionDialog(null,
+                message,
+                "Neoprene Confirmation",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new Object[]{"Confirm"}, // The only option available
+                "Confirm");
 
+        // Start the race only if the user clicks the "Confirm" button
+        if (result == JOptionPane.OK_OPTION) {
+            SwingUtilities.invokeLater(() -> {
+                try {
+                    if (!windowRace.isVisible())
+                        windowRace.setVisible(true);
+                    startRace(); // Start the race after the UI is fully loaded
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+    }
+
+    public void initializeRaceData() {
         int startX = windowRace.getRacePanel().getStartX();
         int endX = windowRace.getRacePanel().getEndX();
 
@@ -176,13 +200,25 @@ public class Championship implements RaceListener {
             weatherboard.updateWeatherLabel(weatherCondition);
         });
 
-        changeWeatherConditions(0); // Initial weather change
+        try {
+            changeWeatherConditions(0); // Initial weather change
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         Championship.TotalTimeForRace(SelectionRace.get(raceIndex)); // Calculate total time for the race
 
         // Manage athlete's neoprene usage
         SelectionRace.get(raceIndex).setCurrentneoprene(SelectionRace.get(raceIndex).UseOfNeoprene());
 
         System.out.println("Neoprene in race: " + SelectionRace.get(raceIndex).isCurrentneoprene());
+    }
+    // Start a race and prepare necessary components
+    public void startRace() throws SQLException {
+        raceThreads.clear();
+        RaceManager.clearFinishedAthletes(); // Clear previously finished athletes
+
+        int startX = windowRace.getRacePanel().getStartX();
+        int endX = windowRace.getRacePanel().getEndX();
 
         // Create race threads for each athlete
         int i = 0;
