@@ -13,6 +13,10 @@ import listeners.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import controller.Championship;
 import model.athlete.Athlete;
+import model.neoprene.NeopreneAllowed;
+import model.neoprene.NeopreneForbidden;
+import model.neoprene.NeopreneMandatory;
+import model.neoprene.NeoprenePolicy;
 import model.race.discipline.Discipline;
 import model.race.discipline.DisciplineDistance;
 import model.race.Chronometer;
@@ -40,7 +44,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
     private boolean isInDraftingZone = false;
     private static final int DRAFTING_ZONE_LENGTH = 7; // in meters
     private static final int DRAFTING_ZONE_TIME_LIMIT = 15000; // 15 seconds in milliseconds
-    
+    private boolean neoprenePolicyApplied;
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
     public RaceThread(int startX, int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller, RaceManager raceManager, Race race, int raceIndex) {
@@ -89,13 +93,29 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                 
               	int minutes = Chronometer.TimerMinutes(chronometer.getTime());
               	
-              	if (athlete.getCurrentDiscipline().getClass().equals(Swimming.class)) {
+              	if (athlete.getCurrentDiscipline().getClass().equals(Swimming.class) 
+              			&& minutes >= athlete.setMaximumNeopreneTime(race.getModality().getDisciplinedistance().get(0).getDistance()) && race.isCurrentneoprene()==true ) {
               		
               		NeopreneController(minutes);
+              		neoprenePolicyApplied = true; 
 
               	}
+              	
+              	
+              	
+              	 if (athlete.getCurrentDiscipline().getClass().equals(Swimming.class)) {
+                     
+                     
+                     NeopreneController(minutes);
+                     neoprenePolicyApplied = true; 
+
+                 }
+                
 
                 if (athlete.getCurrentDiscipline().isBeforePosition(minutes, race)){
+                	
+                	
+                	
                     Thread.currentThread().interrupt();
                     athlete.addRaceDesertions();
                     athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(athlete.getCurrentDiscipline().getKmInDiscipline(race, positionX, startX, endX),"Forfeited", athlete.getCurrentDiscipline().createInstance()));
@@ -215,71 +235,51 @@ public class RaceThread extends Thread implements SpeedChangeListener {
 
     public void NeopreneController(int minutes) {
         // Get the neoprene usage policy according to the race distance and current temperature
-        /*
-        System.out.println(athlete.getName());
-        String neoprene = athlete.setNeopreneUsage(
+      
+    
+        String neopreneUsage = athlete.setNeopreneUsage(
             race.getModality().getDisciplinedistance().get(0).getDistance(),
             race.getCurrentWeatherCondition().getCurrentTemperature()
         );
 
-        // Check if the athlete is using neoprene
-        boolean isUsingNeoprene = athlete.isUsingNeoprene();
+      
+        NeoprenePolicy policy;
 
-        // Get the maximum time allowed for the use of neoprene
-        double maxAllowedMinutes = athlete.setMaximumNeopreneTime(
-            race.getModality().getDisciplinedistance().get(0).getDistance()
-        );
-
-        // Check if the current race allows neoprene usage
-        if (race.isCurrentneoprene()) {
-            if (neoprene.equalsIgnoreCase("Forbidden")) {
-                if (isUsingNeoprene) {
-                    // Neoprene is forbidden and the athlete is using it
-                    System.out.println("The use of neoprene is forbidden for this race.");
-                    System.out.println("The athlete is using neoprene despite the prohibition.");
-                    // Additional action to penalize the athlete or take measures
-                }
-            } else if (neoprene.equalsIgnoreCase("Obligatory")) {
-                if (isUsingNeoprene) {
-                    // Neoprene is mandatory and the athlete is currently using it
-                    System.out.println("Neoprene is mandatory and the athlete is using it correctly.");
-                    // Additional action if necessary
-                } else {
-                    // Neoprene is mandatory but the athlete is not using it
-                    System.out.println("Neoprene is mandatory but the athlete is not using it.");
-                    // Additional action to penalize the athlete or take measures
-                }
-            } else if (neoprene.equalsIgnoreCase("Usable")) {
-                if (isUsingNeoprene) {
-                    if (minutes >= maxAllowedMinutes) {
-                        // Neoprene is allowed but the athlete has exceeded the maximum time
-                        System.out.println("The athlete has exceeded the allowed neoprene usage time.");
-                        // Additional action to penalize the athlete or take measures
-                    } else {
-                        // Neoprene is allowed and the athlete has not exceeded the maximum time
-                        System.out.println("Neoprene is in use and the athlete is within the allowed time.");
-                        // Additional action if necessary
-                    }
-                } else {
-                    // Neoprene is allowed but the athlete is not using it
-                    System.out.println("Neoprene is allowed but the athlete is not using it.");
-                    // Additional action if necessary
-                }
-            }
-        } else {
-            // Race forbids the use of neoprene
-            if (isUsingNeoprene) {
-                System.out.println("The race does not allow the use of neoprene.");
-                System.out.println("The athlete is using neoprene despite it being forbidden.");
-                // Additional action to penalize the athlete or take measures
-            } else {
-                // Neoprene is forbidden and the athlete is not using it
-                System.out.println("Neoprene is forbidden and the athlete is not using it.");
-                // Additional action if necessary
-            }
+        switch (neopreneUsage.toLowerCase()) {
+            case "forbidden":
+                policy = new NeopreneForbidden(athlete, race, raceIndex,this);
+                break;
+            case "mandatory":
+                policy = new NeopreneMandatory(athlete, race, raceIndex,this);
+                break;
+            case "allowed":
+                policy = new NeopreneAllowed(athlete, race, raceIndex,this);
+                break;
+            default:
+                System.out.println("Invalid neoprene usage.");
+                return;
         }
-        */
+
+     
+        policy.applyPolicy(minutes);
     }
+    
+    
+    
+    public void stopathlete() {
+    	
+    	  this.interrupt(); 
+    	  athlete.addRaceDesertions();
+          athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(athlete.getCurrentDiscipline().getKmInDiscipline(race, positionX, startX, endX),"Forfeited", athlete.getCurrentDiscipline().createInstance()));
+    }
+
+    
+
+    
+    }
+
+
+
 
     /*public void checkForDrafting()
     {
@@ -309,4 +309,4 @@ public class RaceThread extends Thread implements SpeedChangeListener {
             }
         }
     }*/
-}
+
