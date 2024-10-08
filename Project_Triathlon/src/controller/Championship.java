@@ -516,19 +516,7 @@ public class Championship implements RaceListener {
                 int baseIndex = 3 + (j * 3); 
 
                 for (DisciplineDistance dd : comp.getDistances()) {
-                	
-               	
-                    switch (dd.getDiscipline().getClass().getSimpleName()) {
-                        case "Swimming":
-                            tableData[i][baseIndex] = dd.getTime();
-                            break;
-                        case "Cycling":
-                            tableData[i][baseIndex + 1] = dd.getTime();
-                            break;
-                        case "Pedestrianism":
-                            tableData[i][baseIndex + 2] = dd.getTime();
-                            break;
-                    }
+                	tableData[i][dd.getDiscipline().getBaseIndex(baseIndex)] = dd.getTime();
                 }
             }
         }

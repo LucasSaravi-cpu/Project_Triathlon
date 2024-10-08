@@ -93,4 +93,8 @@ public class Swimming extends Discipline implements Serializable {
 		double progress = (positionX - startX) / (race.getDisciplineChangePoints().getFirst()*(endX-startX)+100);
 		return progress * race.getKmswimming();
 	}
+	@Override
+	public int getBaseIndex(int baseIndex) {
+		return baseIndex;
+	}
 }

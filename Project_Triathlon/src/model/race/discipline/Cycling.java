@@ -104,4 +104,8 @@ public class Cycling extends Discipline implements Serializable {
         double progress = (positionX - (race.getDisciplineChangePoints().getFirst()*(endX-startX)+100) - startX) / (race.getDisciplineChangePoints().get(1)*(endX-startX) - (race.getDisciplineChangePoints().getFirst()*(endX-startX)+100));
         return progress * race.getKmcycling();
     }
+    @Override
+    public int getBaseIndex(int baseIndex) {
+        return baseIndex+1;
+    }
 }

@@ -88,6 +88,10 @@ public class Pedestrianism extends Discipline implements Serializable {
 		double progress = (positionX - race.getDisciplineChangePoints().get(1)*(endX-startX) - startX) / (endX - race.getDisciplineChangePoints().get(1)*(endX-startX));
 		return progress * race.getKmpedestrianism();
 	}
+	@Override
+	public int getBaseIndex(int baseIndex) {
+		return baseIndex+2;
+	}
 
 }
 
