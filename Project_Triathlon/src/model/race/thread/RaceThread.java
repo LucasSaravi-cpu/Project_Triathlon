@@ -77,7 +77,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         try {
             while (!Thread.currentThread().isInterrupted()) {
                 move(chronometer);
-                athlete.decreaseEnergy(10); // Adjust decrement
+                athlete.decreaseEnergy(); // Adjust decrement
                 Thread.sleep(athlete.getSpeed());
 
                 // Notify Energy Change

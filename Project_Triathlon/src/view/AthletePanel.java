@@ -58,7 +58,7 @@ public class AthletePanel extends JPanel {
         athleteLabel.setLocation(newPositionX, athleteLabel.getY());
     }
     public void updateEnergyLabel(double energy) {
-            energyLabel.setText(String.format("Energy: %.2f%%", energy));
+            energyLabel.setText(String.format("Energy: %.2f", energy));
     }
     public void updateSpeedLabel(int speed) {
         speedLabel.setText(String.format("Speed: %d", speed));

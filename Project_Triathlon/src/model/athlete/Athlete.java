@@ -317,8 +317,8 @@ public abstract class Athlete implements Serializable {
 	        listeners.remove(listener);
 	    }
 	    
-	    public void decreaseEnergy(double amount) {
-	        energy -= amount;
+	    public void decreaseEnergy() {
+	        energy -= 30 + (userSpeedAdjustment - 5) * 5;
 	        if (energy < 0) {
 	            energy = 0;
 	        }
