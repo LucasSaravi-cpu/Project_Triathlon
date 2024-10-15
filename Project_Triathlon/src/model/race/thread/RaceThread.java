@@ -11,6 +11,8 @@ import Events.SpeedChangeEvent;
 import listeners.*;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
+
 import controller.Championship;
 import model.athlete.Athlete;
 import model.neoprene.NeopreneAllowed;
@@ -25,8 +27,8 @@ import model.race.RaceManager;
 import model.race.discipline.Swimming;
 
 public class RaceThread extends Thread implements SpeedChangeListener {
-	
-	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+
+    //------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private final int startX;
     private int positionX;
     private final int endX;
@@ -43,8 +45,15 @@ public class RaceThread extends Thread implements SpeedChangeListener {
     private long draftingStartTime = 0;
     private boolean isInDraftingZone = false;
     private static final int DRAFTING_ZONE_LENGTH = 7; // in meters
-    private static final int DRAFTING_ZONE_TIME_LIMIT = 15000; // 15 seconds in milliseconds
+    private static final int DRAFTING_ZONE_TIME_LIMIT = 3000; // 15 seconds in milliseconds
     private boolean neoprenePolicyApplied;
+    private static ReentrantLock draftingLock = new ReentrantLock();
+
+
+
+    private RaceThread draftingPartner;
+
+
     //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
     public RaceThread(int startX, int positionX, int endX, RaceListener listener, Athlete athlete, Championship controller, RaceManager raceManager, Race race, int raceIndex) {
@@ -69,8 +78,8 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         return activeThreads;
     }
 
-	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
-    
+    //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+
     @Override
     public  void run() {
         Chronometer chronometer = Championship.getChronometer();
@@ -82,41 +91,43 @@ public class RaceThread extends Thread implements SpeedChangeListener {
 
                 // Notify Energy Change
                 notifyEnergyChange(athlete.getEnergy());
-               
+
                 // Verifies if the athlete has energy
                 if (athlete.getEnergy() <= 0) {
                     Thread.currentThread().interrupt(); // Stops thread if the athlete has no energy
                     athlete.addRaceDesertions();
                 }
 
-                double progress = (double) (positionX - startX) / (endX - startX);
-                
-              	int minutes = Chronometer.TimerMinutes(chronometer.getTime());
-              	
-              	if (athlete.getCurrentDiscipline().getClass().equals(Swimming.class) 
-              			&& minutes >= athlete.setMaximumNeopreneTime(race.getModality().getDisciplinedistance().get(0).getDistance()) && race.isCurrentneoprene()==true ) {
-              		
-              		NeopreneController(minutes);
-              		neoprenePolicyApplied = true; 
 
-              	}
-     
-                
+                if(athlete.getCurrentDiscipline().getClass().getSimpleName().equals("Cycling") )
+                    checkForDrafting();
+
+                double progress = (double) (positionX - startX) / (endX - startX);
+
+                int minutes = Chronometer.TimerMinutes(chronometer.getTime());
+
+                if (athlete.getCurrentDiscipline().getClass().equals(Swimming.class)
+                        && minutes >= athlete.setMaximumNeopreneTime(race.getModality().getDisciplinedistance().get(0).getDistance()) && race.isCurrentneoprene()==true ) {
+
+                    NeopreneController(minutes);
+                    neoprenePolicyApplied = true;
+
+                }
+
+
                 if (athlete.getCurrentDiscipline().isBeforePosition(minutes, race)){
 
-                	stopathlete();
-                    // Thread.currentThread().interrupt();
-                    //   athlete.addRaceDesertions();
-                   //   athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(athlete.getCurrentDiscipline().getKmInDiscipline(race, positionX, startX, endX),"Forfeited", athlete.getCurrentDiscipline().createInstance()));
+                    stopathlete();
+
                 }
-                
+
             }
         } catch (InterruptedException e) {
 
         } catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  finally {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }  finally {
             if (activeThreads.decrementAndGet() == 0) {
                 controller.allThreadsCompleted();
             }
@@ -133,19 +144,19 @@ public class RaceThread extends Thread implements SpeedChangeListener {
             }
         }
     }
-    
+
     private void move(Chronometer chronometer) throws SQLException {
 
         if (positionX + athlete.getPositionChange(race)<endX){
             positionX += athlete.getPositionChange(race);
         }
         else {
-        	positionX=endX;
+            positionX=endX;
             athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKm(athlete.getCurrentDiscipline()), athlete.getCurrentDiscipline().setTime(athlete, chronometer, raceIndex), athlete.getCurrentDiscipline().createInstance()));
             athlete.getCompetition().get(raceIndex).setTimeTot(Championship.getChronometer().getTime());
             raceManager.notifyAthleteFinished(athlete);
             Thread.currentThread().interrupt();
-        	 
+
         }
         checkForDisciplineChange(chronometer);
         if (athlete.getCurrentStation()<race.getStationPoints().size())
@@ -154,8 +165,8 @@ public class RaceThread extends Thread implements SpeedChangeListener {
             listener.positionChanged(this, positionX);
         }
     }
-    
-    
+
+
     public void addEnergyListener(EnergyListener listener) {
         listeners.add(listener);
     }
@@ -224,14 +235,14 @@ public class RaceThread extends Thread implements SpeedChangeListener {
 
     public void NeopreneController(int minutes) {
         // Get the neoprene usage policy according to the race distance and current temperature
-      
-    
+
+
         String neopreneUsage = athlete.setNeopreneUsage(
-            race.getModality().getDisciplinedistance().get(0).getDistance(),
-            race.getCurrentWeatherCondition().getCurrentTemperature()
+                race.getModality().getDisciplinedistance().get(0).getDistance(),
+                race.getCurrentWeatherCondition().getCurrentTemperature()
         );
 
-      
+
         NeoprenePolicy policy;
 
         switch (neopreneUsage.toLowerCase()) {
@@ -249,53 +260,88 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                 return;
         }
 
-     
+
         policy.applyPolicy(minutes);
     }
-    
-    
-    
+
+
+
     public void stopathlete() {
-    	
-    	  this.interrupt(); 
-    	  athlete.addRaceDesertions();
-          athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(athlete.getCurrentDiscipline().getKmInDiscipline(race, positionX, startX, endX),"Forfeited", athlete.getCurrentDiscipline().createInstance()));
+
+        this.interrupt();
+        athlete.addRaceDesertions();
+        athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(athlete.getCurrentDiscipline().getKmInDiscipline(race, positionX, startX, endX),"Forfeited", athlete.getCurrentDiscipline().createInstance()));
     }
 
-    
-
-    
-    }
-
-
-
-
-    /*public void checkForDrafting()
-    {
+    public void checkForDrafting() {
         List<RaceThread> threadsCopy = Championship.getRaceThreads();
-        for(RaceThread thread: threadsCopy)
-        {
-            if(this != thread)
-            {
-                int distance = Math.abs(this.positionX - thread.getPositionX()); //Calculates the distance between 2 athletes to check if drafting is happening
-                if(distance <= DRAFTING_ZONE_LENGTH*100) //If it returns true, the athlete is within drafting zone
-                {
-                    if(!isInDraftingZone) //Starts counting for drafting time
-                    {
-                        draftingStartTime = System.currentTimeMillis();
-                        isInDraftingZone = true;
+        RaceThread closestAthlete = null;
+        int closestDistance = Integer.MAX_VALUE;
+
+        if (!this.isInDraftingZone) {
+            // Verificar todos los threads para encontrar el atleta más cercano en la disciplina de ciclismo
+            for (RaceThread thread : threadsCopy) {
+                if (this != thread && thread.getAthlete().getCurrentDiscipline().getClass().getSimpleName().equals("Cycling")) {
+
+                    // Asegurar que el otro atleta no esté ya en drafting con alguien más
+                    if (!thread.isInDraftingZone && thread.draftingPartner == null && this.draftingPartner == null) {
+                        int distance = Math.abs(this.positionX - thread.getPositionX());
+
+                        // Encuentra al atleta más cercano que esté dentro de la zona de drafting
+                        if (distance <= DRAFTING_ZONE_LENGTH && distance < closestDistance) {
+                            closestAthlete = thread;
+                            closestDistance = distance;
+                        }
                     }
-                    else if(System.currentTimeMillis() - draftingStartTime >= DRAFTING_ZONE_TIME_LIMIT) //Checks if the amount of time the athlete has stayed on the drafting zone exceeds the allowed time
-                    {
-                        //TODO: Add Penalization
-                        isInDraftingZone = false;
-                    }
-                }
-                else
-                {
-                    isInDraftingZone = false;
                 }
             }
+        } else {
+            closestAthlete = this.draftingPartner;
         }
-    }*/
 
+        // Decidir si el drafting ocurre con el atleta más cercano
+        if (closestAthlete != null) {
+            // Intentar obtener el lock solo para estos dos hilos (el actual y closestAthlete)
+            draftingLock.lock();
+            try {
+                // Código crítico donde solo el hilo actual o closestAthlete puede entrar, pero no ambos a la vez
+                if (!isInDraftingZone) { // Iniciar drafting si no está en drafting
+                    draftingStartTime = System.currentTimeMillis();
+                    isInDraftingZone = true;
+                    this.draftingPartner = closestAthlete;
+                    closestAthlete.isInDraftingZone = true;
+                    closestAthlete.draftingPartner = this;
+                    System.out.printf("%s started drafting with %s \n", this.athlete.getName(), closestAthlete.getAthlete().getName());
+
+                    closestAthlete.draftingStartTime = draftingStartTime;
+
+                } else {
+                    long timeInDraftingZone = System.currentTimeMillis() - draftingStartTime;
+                    if (timeInDraftingZone >= DRAFTING_ZONE_TIME_LIMIT) {
+                        // Si ya han pasado los 15 segundos en la zona de drafting, terminar el drafting
+                        System.out.printf("Drafting between %s and %s \n", this.athlete.getName(), closestAthlete.getAthlete().getName());
+                        isInDraftingZone = false;
+                        this.draftingPartner = null;
+                        closestAthlete.isInDraftingZone = false;
+                        closestAthlete.draftingPartner = null;
+                    }
+                }
+            } finally {
+                draftingLock.unlock(); // Liberar el lock para que el otro hilo pueda entrar
+            }
+        } else {
+            // No hay atleta para hacer drafting, restablecer el estado
+            isInDraftingZone = false;
+            if (this.draftingPartner != null) {
+                System.out.println("Drafting ended for " + this.athlete.getName());
+                this.draftingPartner.isInDraftingZone = false;
+                this.draftingPartner.draftingPartner = null;
+                this.draftingPartner = null;
+            }
+        }
+    }
+
+
+
+
+}
