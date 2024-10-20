@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ButtonPanel extends JPanel {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+	
     private JButton confirmButton;
     private JButton cancelButton;
     private JButton exitButton;
