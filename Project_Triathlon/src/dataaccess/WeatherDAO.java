@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherDAO {
+	
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
     public void insertWeatherCondition(MeasurementUnit measurementunit, double lowertier, double uppertier, double swimming, double cycling, double pedestrianism, String description) throws SQLException {
         String sql = "INSERT INTO weatherconditions (id, measurementunit, lowertier, uppertier, swimmingweathering, cyclingweathering, pedestrianismweathering, description) " +
