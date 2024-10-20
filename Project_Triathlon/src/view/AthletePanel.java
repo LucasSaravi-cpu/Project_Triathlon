@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class AthletePanel extends JPanel {
+	
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+	
+	
     private JButton increase;
     private JButton decrease;
     private JLabel athleteLabel;
