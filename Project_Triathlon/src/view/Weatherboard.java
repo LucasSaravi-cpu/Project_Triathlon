@@ -12,6 +12,8 @@ import model.weather.WeatherConditions;
 import controller.Championship;
 
 public class Weatherboard extends JFrame {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
