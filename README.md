@@ -4,7 +4,7 @@
 
 Software utilizado : intellij y eclipse.
 
-# "Project_Triathlon" es un sistema de simulación diseñado para modelar y gestionar competiciones de triatlón. El software permite realizar un seguimiento detallado de las etapas de natación, ciclismo y carrera, así como gestionar los tiempos de los participantes y generar estadísticas relacionadas con su rendimiento.
+ "Project_Triathlon" es un sistema de simulación diseñado para modelar y gestionar competiciones de triatlón. El software permite realizar un seguimiento detallado de las etapas de natación, ciclismo y carrera, así como gestionar los tiempos de los participantes y generar estadísticas relacionadas con su rendimiento.
 
 
 **Descripcion**
