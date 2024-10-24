@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BackgroundPanel extends JPanel {
+<<<<<<< HEAD
 	
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private Image backgroundImage;
@@ -14,6 +15,13 @@ public class BackgroundPanel extends JPanel {
     }
     
   //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\ 
+=======
+    private Image backgroundImage;
+
+    public BackgroundPanel(Image backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+>>>>>>> branch 'master' of https://github.com/Nicogana/Project_Triathlon.git
 
     @Override
     protected void paintComponent(Graphics g) {
