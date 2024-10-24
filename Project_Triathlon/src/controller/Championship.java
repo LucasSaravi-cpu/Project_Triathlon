@@ -362,7 +362,7 @@ public class Championship implements RaceListener {
                 PhysicalConditions physicalconditions  = new PhysicalConditions(swimmingAptitude, cyclingAptitude, pedestrianismAptitude, stamina, mentalStrength);
                 List<Competition> comp = new ArrayList<>();
                 for (int j=0; j<4; j++) {
-                    comp.add(new Competition(0, "", null, null, null));
+                    comp.add(new Competition(0, "", null, new ArrayList<>(), null));
                 }
                 Athlete athlete;
                 if (category.equalsIgnoreCase("Amateur")) {

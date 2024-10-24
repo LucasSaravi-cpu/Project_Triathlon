@@ -389,13 +389,7 @@ public abstract class Athlete implements Serializable {
 	public void addVictory(){
 		victories++;
 	}
-	
-   public void  penalizeForDrafting() {
-    	 
-	   
-    	 
-     }
-	
+
 
 
 	public String toString(){

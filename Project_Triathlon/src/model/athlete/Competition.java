@@ -1,11 +1,13 @@
 package model.athlete;
 
 import model.athlete.penalties.AthletePenalty;
+import model.athlete.penalties.Penalty;
 import model.race.Race;
 import model.race.discipline.DisciplineDistance;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Competition implements Serializable {
@@ -81,6 +83,10 @@ public class Competition implements Serializable {
 
 	public void setTimeTot(String timeTot) {
 		TimeTot = timeTot;
+	}
+
+	public void addPenalty(Date dateHour, double distance, String description, boolean disqualification, int time){
+		penalties.add(new AthletePenalty(dateHour, distance, new Penalty(description, disqualification, time)));
 	}
 
 }

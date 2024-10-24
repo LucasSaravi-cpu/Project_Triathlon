@@ -15,6 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import controller.Championship;
 import model.athlete.Athlete;
+import model.athlete.penalties.AthletePenalty;
 import model.neoprene.NeopreneAllowed;
 import model.neoprene.NeopreneForbidden;
 import model.neoprene.NeopreneMandatory;
@@ -154,6 +155,12 @@ public class RaceThread extends Thread implements SpeedChangeListener {
             positionX=endX;
             athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(race.getKm(athlete.getCurrentDiscipline()), athlete.getCurrentDiscipline().setTime(athlete, chronometer, raceIndex), athlete.getCurrentDiscipline().createInstance()));
             athlete.getCompetition().get(raceIndex).setTimeTot(Championship.getChronometer().getTime());
+            for (AthletePenalty penalty : athlete.getCompetition().get(raceIndex).getPenalties()) {
+                String currentTime = athlete.getCompetition().get(raceIndex).getTimeTot();
+                int penaltyMinutes = penalty.getPenalty().getTime();
+                String newTime = addPenaltyTime(currentTime, penaltyMinutes);
+                athlete.getCompetition().get(raceIndex).setTimeTot(newTime);
+            }
             raceManager.notifyAthleteFinished(athlete);
             Thread.currentThread().interrupt();
 
@@ -273,7 +280,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(athlete.getCurrentDiscipline().getKmInDiscipline(race, positionX, startX, endX),"Forfeited", athlete.getCurrentDiscipline().createInstance()));
     }
 
-   
+
     public void checkForDrafting() {
         List<RaceThread> threadsCopy = Championship.getRaceThreads();
         RaceThread closestAthlete = null;
@@ -330,9 +337,8 @@ public class RaceThread extends Thread implements SpeedChangeListener {
                     } else if (distance < DRAFTING_ZONE_LENGTH && timeInDraftingZone >= DRAFTING_ZONE_TIME_LIMIT) {
                         // If still in the drafting zone after 15 seconds, apply penalty
                         System.out.printf("Drafting between %s and %s exceeded 15 seconds. Penalizing and ending drafting.\n", this.athlete.getName(), closestAthlete.getAthlete().getName());
-                     
-                        athlete.penalizeForDrafting();  // Method to apply the penalty
-                        
+                        athlete.getCompetition().get(raceIndex).addPenalty(race.getDate(), athlete.getCurrentDiscipline().getKmInDiscipline(race, positionX, startX, endX), "Penalized for drafting.", false, 1);  // Method to apply the penalty
+
                         isInDraftingZone = false;
                         this.draftingPartner = null;
                         closestAthlete.isInDraftingZone = false;
@@ -346,15 +352,25 @@ public class RaceThread extends Thread implements SpeedChangeListener {
             // No athlete to draft with, reset state
             isInDraftingZone = false;
             if (this.draftingPartner != null) {
-                System.out.println("Drafting ended for " + this.athlete.getName());
+                //System.out.println("Drafting ended for " + this.athlete.getName());
                 this.draftingPartner.isInDraftingZone = false;
                 this.draftingPartner.draftingPartner = null;
                 this.draftingPartner = null;
             }
         }
+
     }
 
-
+    public static String addPenaltyTime(String totalTime, int penaltyMinutes) {
+        int[] totalTimeComponents = Chronometer.parseTime(totalTime);
+        int totalSeconds = Chronometer.toSeconds(totalTimeComponents);
+        int penaltySeconds = penaltyMinutes * 60;
+        int newTotalSeconds = totalSeconds + penaltySeconds;
+        int hours = newTotalSeconds / 3600;
+        int minutes = (newTotalSeconds % 3600) / 60;
+        int seconds = newTotalSeconds % 60;
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
 
 
 }

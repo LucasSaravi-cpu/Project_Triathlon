@@ -8,14 +8,16 @@ public class Penalty implements Serializable {
 	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private String description;
     private boolean disqualification;
+	private int time;
     
     
 	//------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     
-    public Penalty(String description, boolean disqualification) {
+    public Penalty(String description, boolean disqualification, int time) {
 		super();
 		this.description = description;
 		this.disqualification = disqualification;
+		this.time = time;
 	}
     
     //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
@@ -30,6 +32,9 @@ public class Penalty implements Serializable {
 	}
 	public void setDisqualification(boolean disqualification) {
 		this.disqualification = disqualification;
+	}
+	public int getTime(){
+		return time;
 	}
 	
 }
