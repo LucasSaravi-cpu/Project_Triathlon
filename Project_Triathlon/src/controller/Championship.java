@@ -39,7 +39,7 @@ import view.*;
 public class Championship implements RaceListener {
 	
 	
-//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+//------------------------------------------------->||ATTRIBUTES||<--------------------------------------------------------\\
 	
 	 private final WindowRace windowRace;
 	 private final Scoreboard scoreboard;
