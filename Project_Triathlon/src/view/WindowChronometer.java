@@ -8,6 +8,7 @@ import listeners.ChronometerListener;
 
 
 public class WindowChronometer extends JFrame implements ChronometerListener {
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -15,6 +16,7 @@ public class WindowChronometer extends JFrame implements ChronometerListener {
 
 
 
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     public WindowChronometer() {
         setTitle("Chronometer");
         setSize(267, 200);
@@ -40,6 +42,7 @@ public class WindowChronometer extends JFrame implements ChronometerListener {
     }
 
 
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     @Override
     public void onTimeruptodate(int Hours, int minutes, int seconds) {
         labelChronometer.setText(String.format("%02d:%02d:%02d", Hours, minutes, seconds));

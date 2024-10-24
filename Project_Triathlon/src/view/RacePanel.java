@@ -63,6 +63,8 @@ public class RacePanel extends JPanel {
         setLayout(null);
         finishLineIcon = new ImageIcon(getClass().getResource("/Image/finish_line.png"));
     }
+    
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     public void updateLabelPosition(int index, int newPositionX) {
         if (index >= 0 && index < athletePanels.size()) {
             athletePanels.get(index).updateLabelPosition(newPositionX);

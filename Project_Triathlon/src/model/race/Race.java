@@ -202,18 +202,15 @@ public class Race implements Serializable {
 			Currentneoprene = currentneoprene;
 		}
 		
-
-	
+		public List<Double> getStationPoints(){
+			return stationPoints;
+		}
+		
+		public double getTotalDistance() {
+			return modality.getDisciplinedistance().stream().mapToDouble(DisciplineDistance::getDistance).sum();
+		}
 	
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
-
-
-
-	
-
-
-
-
 
 
 
@@ -233,9 +230,7 @@ public class Race implements Serializable {
     }
     
     
-	public double getTotalDistance() {
-		return modality.getDisciplinedistance().stream().mapToDouble(DisciplineDistance::getDistance).sum();
-	}
+	
 	
 	
 	public List<Double> getDisciplineChangePoints() {
@@ -252,9 +247,7 @@ public class Race implements Serializable {
 
 	}
 	
-	public List<Double> getStationPoints(){
-		return stationPoints;
-	}
+
 	public void setStationPoints(List<Double> disciplineChangePoints, int startX, int endX){
 		List<Double> points = new ArrayList<>();
 		double totalDistance = getTotalDistance();

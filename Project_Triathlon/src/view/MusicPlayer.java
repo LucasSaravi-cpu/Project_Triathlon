@@ -6,7 +6,16 @@ import javax.sound.sampled.Clip;
 
 public class MusicPlayer {
 
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private static Clip music;
+    
+  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
+    public static Clip getMusic() {
+        return music;
+    }
+  
+
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     public static void music(String url) {
 
         try {
@@ -29,12 +38,9 @@ public class MusicPlayer {
     }
 
 
-
-    public static Clip getMusic() {
-        return music;
-    }
     public static void close(){
         music.close();
     }
+
 
 }

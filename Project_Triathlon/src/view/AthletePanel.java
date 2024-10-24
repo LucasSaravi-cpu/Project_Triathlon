@@ -22,9 +22,10 @@ public class AthletePanel extends JPanel {
     private int startX;
     private int endX;
     private SpeedChangeListener speedChangeListener;
-    public JLabel getAthleteLabel(){
-        return athleteLabel;
-    }
+  
+    
+
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     public AthletePanel(int startX, int endX, ImageIcon icon){
            this.startX = startX;
            this.endX = endX;
@@ -52,6 +53,19 @@ public class AthletePanel extends JPanel {
 
         setOpaque(false);
     }
+    
+  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
+    
+    public JLabel getSpeedLabel() {
+        return speedLabel;
+    }
+    
+    public JLabel getAthleteLabel(){
+        return athleteLabel;
+    }
+
+
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\ 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -76,7 +90,5 @@ public class AthletePanel extends JPanel {
         this.speedChangeListener = listener;
     }
 
-    public JLabel getSpeedLabel() {
-        return speedLabel;
-    }
+
 }

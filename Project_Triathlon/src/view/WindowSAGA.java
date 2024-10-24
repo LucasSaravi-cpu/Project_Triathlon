@@ -17,12 +17,12 @@ import javafx.scene.media.MediaView;
 import view.MusicPlayer;
 
 public class WindowSAGA extends JFrame {
-
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JFXPanel fxPanel;
     private WindowStart windowStart;
-
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     public WindowSAGA(WindowStart windowStart) {
         this.windowStart = windowStart;
 
@@ -52,7 +52,7 @@ public class WindowSAGA extends JFrame {
             });
         });
     }
-
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     private void initializeMediaPlayer() {
         try {
             String path = getClass().getResource("/Image/SAGA.mp4").toExternalForm();

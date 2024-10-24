@@ -11,7 +11,7 @@ public class ButtonPanel extends JPanel {
     private JButton cancelButton;
     private JButton exitButton;
     private JButton deleteButton;
-
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     public ButtonPanel() {
         setLayout(new FlowLayout(FlowLayout.CENTER));
         setOpaque(false);
@@ -25,7 +25,8 @@ public class ButtonPanel extends JPanel {
         add(cancelButton);
         add(exitButton);
     }
-
+    
+  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
     public JButton getConfirmButton() {
         return confirmButton;
     }

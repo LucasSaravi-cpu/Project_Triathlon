@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InputPanel extends JPanel {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private JTextField descriptionField;
     private JTextField measurementUnitField;
     private JTextField upperTierField;
@@ -11,6 +13,50 @@ public class InputPanel extends JPanel {
     private JTextField cyclingImpactField;
     private JTextField pedestrianismImpactField;
 
+   
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
+    
+    public InputPanel() {
+        setOpaque(false);
+        setLayout(new GridLayout(7, 2, 10, 10));
+
+        // Description
+        add(new JLabel("Description:"));
+        descriptionField = new JTextField();
+        add(descriptionField);
+
+        // Measurement Unit
+        add(new JLabel("Measurement Unit:"));
+        measurementUnitField = new JTextField();
+        add(measurementUnitField);
+
+        // Lower Tier (Min Value)
+        add(new JLabel("Lower Tier (Min Value):"));
+        lowerTierField = new JTextField();
+        add(lowerTierField);
+
+        // Upper Tier (Max Value)
+        add(new JLabel("Upper Tier (Max Value):"));
+        upperTierField = new JTextField();
+        add(upperTierField);
+
+        // Swimming Weathering
+        add(new JLabel("Swimming Impact:"));
+        swimmingImpactField = new JTextField();
+        add(swimmingImpactField);
+
+        // Cycling Weathering
+        add(new JLabel("Cycling Impact:"));
+        cyclingImpactField = new JTextField();
+        add(cyclingImpactField);
+
+        // Pedestrianism Weathering
+        add(new JLabel("Pedestrianism Impact:"));
+        pedestrianismImpactField = new JTextField();
+        add(pedestrianismImpactField);
+    }
+    
+  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\ 
     public JTextField getDescriptionField() {
         return descriptionField;
     }
@@ -67,45 +113,6 @@ public class InputPanel extends JPanel {
         this.pedestrianismImpactField = pedestrianismImpactField;
     }
 
-    public InputPanel() {
-        setOpaque(false);
-        setLayout(new GridLayout(7, 2, 10, 10));
-
-        // Description
-        add(new JLabel("Description:"));
-        descriptionField = new JTextField();
-        add(descriptionField);
-
-        // Measurement Unit
-        add(new JLabel("Measurement Unit:"));
-        measurementUnitField = new JTextField();
-        add(measurementUnitField);
-
-        // Lower Tier (Min Value)
-        add(new JLabel("Lower Tier (Min Value):"));
-        lowerTierField = new JTextField();
-        add(lowerTierField);
-
-        // Upper Tier (Max Value)
-        add(new JLabel("Upper Tier (Max Value):"));
-        upperTierField = new JTextField();
-        add(upperTierField);
-
-        // Swimming Weathering
-        add(new JLabel("Swimming Impact:"));
-        swimmingImpactField = new JTextField();
-        add(swimmingImpactField);
-
-        // Cycling Weathering
-        add(new JLabel("Cycling Impact:"));
-        cyclingImpactField = new JTextField();
-        add(cyclingImpactField);
-
-        // Pedestrianism Weathering
-        add(new JLabel("Pedestrianism Impact:"));
-        pedestrianismImpactField = new JTextField();
-        add(pedestrianismImpactField);
-    }
 
     public String getDescription() {
         return descriptionField.getText();

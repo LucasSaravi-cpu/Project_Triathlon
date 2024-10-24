@@ -117,11 +117,17 @@ public class Championship implements RaceListener {
         return chronometer;
     }
 
-	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
-	
 	public void setVisibleWindowTrophies(boolean yes) {
 		windowTrophies.setVisible(yes);
 	}
+	
+	 public void addWeatherEventListener(WeatherEventListener listener) {
+	        weatherListeners.add(listener);
+	    }
+
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+	
+	
     public void startChronometer(){
         chronometer.start();
     }
@@ -594,9 +600,6 @@ public class Championship implements RaceListener {
         return newCondition;
     }
     
-	 public void addWeatherEventListener(WeatherEventListener listener) {
-	        weatherListeners.add(listener);
-	    }
 
 	    public void notifyWeatherUpdate(WeatherConditions weatherCondition) {
 	        WeatherEvent event = new WeatherEvent(this, weatherCondition);     

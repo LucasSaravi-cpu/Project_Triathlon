@@ -12,6 +12,8 @@ import view.WindowStart;
 import view.WindowSAGA;
 
 public class RunSimulation {
+	
+	//------------------------------------------------>||CLASS MAIN||<--------------------------------------------------------\\
 
 	public static void main(String[] args) throws SQLException {
 		try {
@@ -21,6 +23,8 @@ public class RunSimulation {
 		}
 	}
 
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+	
 	public static void startGame() throws ParserConfigurationException, SAXException, IOException, SQLException {
 		LoadingFrame loadingFrame = new LoadingFrame();
 		loadingFrame.setVisible(true);

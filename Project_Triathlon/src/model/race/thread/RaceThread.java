@@ -273,7 +273,7 @@ public class RaceThread extends Thread implements SpeedChangeListener {
         athlete.getCompetition().get(raceIndex).getDistances().add(new DisciplineDistance(athlete.getCurrentDiscipline().getKmInDiscipline(race, positionX, startX, endX),"Forfeited", athlete.getCurrentDiscipline().createInstance()));
     }
 
-    public void checkForDrafting() {
+   /* public void checkForDrafting() {
         List<RaceThread> threadsCopy = Championship.getRaceThreads();
         RaceThread closestAthlete = null;
         int closestDistance = Integer.MAX_VALUE;
@@ -331,6 +331,85 @@ public class RaceThread extends Thread implements SpeedChangeListener {
             }
         } else {
             // No hay atleta para hacer drafting, restablecer el estado
+            isInDraftingZone = false;
+            if (this.draftingPartner != null) {
+                System.out.println("Drafting ended for " + this.athlete.getName());
+                this.draftingPartner.isInDraftingZone = false;
+                this.draftingPartner.draftingPartner = null;
+                this.draftingPartner = null;
+            }
+        }
+    }
+    
+    */
+    public void checkForDrafting() {
+        List<RaceThread> threadsCopy = Championship.getRaceThreads();
+        RaceThread closestAthlete = null;
+        int closestDistance = Integer.MAX_VALUE;
+
+        if (!this.isInDraftingZone) {
+            // Check all threads to find the nearest athlete in the cycling discipline
+            for (RaceThread thread : threadsCopy) {
+                if (this != thread && thread.getAthlete().getCurrentDiscipline().getClass().getSimpleName().equals("Cycling")) {
+
+                    // Ensure that the other athlete is not already drafting with someone else
+                    if (!thread.isInDraftingZone && thread.draftingPartner == null && this.draftingPartner == null) {
+                        int distance = Math.abs(this.positionX - thread.getPositionX());
+
+                        // Find the nearest athlete within the drafting zone
+                        if (distance <= DRAFTING_ZONE_LENGTH && distance < closestDistance) {
+                            closestAthlete = thread;
+                            closestDistance = distance;
+                        }
+                    }
+                }
+            }
+        } else {
+            closestAthlete = this.draftingPartner;
+        }
+
+        // Decide whether drafting occurs with the nearest athlete
+        if (closestAthlete != null) {
+            // Try to obtain the lock for just these two threads (the current one and closestAthlete)
+            draftingLock.lock();
+            try {
+                // Critical code where only the current thread or closestAthlete can enter, but not both at once
+                if (!isInDraftingZone) { // Start drafting if not already in drafting
+                    draftingStartTime = System.currentTimeMillis();
+                    isInDraftingZone = true;
+                    this.draftingPartner = closestAthlete;
+                    closestAthlete.isInDraftingZone = true;
+                    closestAthlete.draftingPartner = this;
+            //        System.out.printf("%s started drafting with %s \n", this.athlete.getName(), closestAthlete.getAthlete().getName());
+
+                    closestAthlete.draftingStartTime = draftingStartTime;
+
+                } else {
+                    long timeInDraftingZone = System.currentTimeMillis() - draftingStartTime;
+                    int distance = Math.abs(this.positionX - closestAthlete.getPositionX());
+
+                    if (distance > DRAFTING_ZONE_LENGTH && timeInDraftingZone <= DRAFTING_ZONE_TIME_LIMIT)  {
+                        // If already exited the drafting zone before 15 seconds
+                   //     System.out.printf("%s exited the drafting zone with %s before 15 seconds. Drafting ended.\n", this.athlete.getName(), closestAthlete.getAthlete().getName());
+                        isInDraftingZone = false;
+                        this.draftingPartner = null;
+                        closestAthlete.isInDraftingZone = false;
+                        closestAthlete.draftingPartner = null;
+                    } else if (distance < DRAFTING_ZONE_LENGTH && timeInDraftingZone >= DRAFTING_ZONE_TIME_LIMIT) {
+                        // If still in the drafting zone after 15 seconds, apply penalty
+                        System.out.printf("Drafting between %s and %s exceeded 15 seconds. Penalizing and ending drafting.\n", this.athlete.getName(), closestAthlete.getAthlete().getName());
+                    //    penalizeForDrafting(); // Method to apply the penalty
+                        isInDraftingZone = false;
+                        this.draftingPartner = null;
+                        closestAthlete.isInDraftingZone = false;
+                        closestAthlete.draftingPartner = null;
+                    }
+                }
+            } finally {
+                draftingLock.unlock(); // Release the lock so the other thread can enter
+            }
+        } else {
+            // No athlete to draft with, reset state
             isInDraftingZone = false;
             if (this.draftingPartner != null) {
                 System.out.println("Drafting ended for " + this.athlete.getName());

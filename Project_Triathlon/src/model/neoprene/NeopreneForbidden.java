@@ -9,12 +9,15 @@ import java.io.Serializable;
 public class NeopreneForbidden extends  NeoprenePolicy implements Serializable {
 
  
-
+	 //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
     public NeopreneForbidden(Athlete athlete, Race race, int raceIndex, RaceThread raceThread) {
 		super(athlete, race, raceIndex, raceThread);
 	}
 
+    
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+    
 	@Override
     public void applyPolicy(int minutes) {
       // System.out.println("Neoprene is NOT allowed");

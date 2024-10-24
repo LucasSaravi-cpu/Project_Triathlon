@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class FontCharger {
+	
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     public static Font loadCustomFont(String path) {
         try {
             InputStream is = Scoreboard.class.getResourceAsStream(path);

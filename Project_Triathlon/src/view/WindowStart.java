@@ -100,14 +100,14 @@ public class WindowStart extends JFrame {
 		});
 		exitButton.setBounds(35, 371, 201, 35);
 		contentPane.add(exitButton);
-		/*
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(0, 0, 841, 540);
-		lblNewLabel.setIcon(new ImageIcon(WindowStart.class.getResource("/Image/ImgStart.png")));
-		contentPane.add(lblNewLabel);*/
+		
 	}
 
-
+	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
+	
+	public void setnotVisible() {
+		setVisible(false);
+	}
 	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\	
 
 	public ImageIcon scaleImage(ImageIcon newIcon) {
@@ -116,9 +116,7 @@ public class WindowStart extends JFrame {
 	}
 
 
-	public void setnotVisible() {
-		setVisible(false);
-	}
+	
 
 	private void startGame() {
 		MusicPlayer.close();

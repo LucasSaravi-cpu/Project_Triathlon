@@ -8,13 +8,16 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-public class WeatherSettingsWindow extends JFrame
-{
+public class WeatherSettingsWindow extends JFrame{
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private JPanel contentPane;
     private InputPanel inputPanel;
     private TablePanel tablePanel;
     private WeatherDAO weatherDAO;
     private JLabel messageLabel;
+    
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     public WeatherSettingsWindow()  {
         weatherDAO = new WeatherDAO();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -70,6 +73,10 @@ public class WeatherSettingsWindow extends JFrame
             clearFields();
         });
     }
+    
+
+
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     private void insertWeatherConditions() {
         String description = inputPanel.getDescription();
         String measurementUnit = inputPanel.getMeasurementUnit();

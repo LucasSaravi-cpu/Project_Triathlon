@@ -4,8 +4,10 @@ import java.awt.*;
 import javax.swing.*;
 
 public class TitleLabel extends JLabel {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private static final long serialVersionUID = 1L;
-
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     public TitleLabel(String text, Font font) {
         super(text);
         setFont(font);
@@ -13,6 +15,7 @@ public class TitleLabel extends JLabel {
         setForeground(Color.WHITE);
     }
 
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();

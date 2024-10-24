@@ -18,7 +18,7 @@ public class Weatherboard extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTextPane textPane;
-
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
     public Weatherboard() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,6 +65,7 @@ public class Weatherboard extends JFrame {
         contentPane.add(bearLabel);
     }
 
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     public void updateWeatherLabel(WeatherConditions weatherCondition) {
         if (weatherCondition != null) {
             textPane.setText(Championship.getWeatherConditionsList(weatherCondition));

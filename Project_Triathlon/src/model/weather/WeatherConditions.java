@@ -96,7 +96,7 @@ public class WeatherConditions implements Serializable {
 		CurrentTemperature = currentTemperature;
 	}
     
-
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	@Override
 	public String toString() {
 		return description +"\n"+ "("+lowertier+"/"+uppertier+")" + measurementUnit+ "\n" + "Decreased vel "+"\n"

@@ -7,10 +7,15 @@ import model.race.thread.RaceThread;
 import java.io.Serializable;
 
 public abstract class NeoprenePolicy implements Serializable {
+	
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     protected Athlete athlete;
     protected Race race;
     protected int raceIndex;
     protected RaceThread raceThread;
+    
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 
     public NeoprenePolicy(Athlete athlete, Race race, int raceIndex, RaceThread raceThread) {
         this.athlete = athlete;
@@ -19,5 +24,6 @@ public abstract class NeoprenePolicy implements Serializable {
         this.raceThread = raceThread;
     }
 
+  //------------------------------------------------>||CLASS METHODS ABSTRACT||<--------------------------------------------------------\\
     public abstract void applyPolicy(int minutes);
 }

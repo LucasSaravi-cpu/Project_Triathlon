@@ -73,10 +73,7 @@ public class Competition implements Serializable {
 	public void setRace(Race race) {
 		this.race = race;
 	}
-
-
 	
-		
 	
 	public String getTimeTot() {
 		return TimeTot;

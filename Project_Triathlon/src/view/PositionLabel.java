@@ -4,14 +4,22 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PositionLabel extends JLabel {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private static final long serialVersionUID = 1L;
     private String customText = "";
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     public PositionLabel(){
        super();
     }
+  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
+
     public void setCustomText(String text) {
         this.customText = text;
     }
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+    
+
 
     @Override
     protected void paintComponent(Graphics g) {

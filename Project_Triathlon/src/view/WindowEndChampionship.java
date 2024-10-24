@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class WindowEndChampionship extends JFrame {
+	
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
         public WindowEndChampionship(String results, WindowTrophies windowTrophies) {
             setTitle("End of Championship");
@@ -104,9 +106,11 @@ public class WindowEndChampionship extends JFrame {
 
             panel.add(buttonPanel, BorderLayout.SOUTH);
         }
-
+   //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+       
         public void showWindow(boolean yes) {
             setVisible(yes);
+       
         }
     private String replaceSpecialCharacters(String input) {
         return input

@@ -219,8 +219,6 @@ public abstract class Athlete implements Serializable {
 		return points;
 	}
 
-
-
 	public List<Competition> getCompetition() {
 		return competition;
 	}
@@ -263,9 +261,27 @@ public abstract class Athlete implements Serializable {
 	public void setUserSpeedAdjustment(int userSpeedAdjustment){
 		this.userSpeedAdjustment=userSpeedAdjustment;
 	}
-	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+	
+	public boolean isUsingNeoprene() {
+		return neoprene;
+	}
+	public void setNeoprene(boolean neoprene) {
+		this.neoprene = neoprene;
+	}
+	
+	//------------------------------------------------>||CLASS METHODS ABSTRACT||<--------------------------------------------------------\\
 
-	public int getSpeed() {
+	 
+
+   public abstract String getCategory();
+    
+   public abstract String  setNeopreneUsage(double distance, double waterTemperature);
+   
+   public abstract Double setMaximumNeopreneTime(double distance);
+   
+ //------------------------------------------------>||CLASS METHODS ||<--------------------------------------------------------\\
+   
+   public int getSpeed() {
 		return 500 - (userSpeedAdjustment-5) * 50;
 	}
 	public int getPositionChange(Race race) {
@@ -278,40 +294,23 @@ public abstract class Athlete implements Serializable {
 		LocalDate currentDate = LocalDate.now();
 		return Period.between(birthDateLocal, currentDate).getYears();
 	}
-	
-
-   public abstract String getCategory();
-    
-   public abstract String  setNeopreneUsage(double distance, double waterTemperature);
-   
-   public abstract Double setMaximumNeopreneTime(double distance);
    
    public void updateEnergy(double height, double weight, double mentalStrength, double stamina) {
        double newEnergy = K * (height * weight) * (stamina + mentalStrength);
        setEnergy(newEnergy);
        
    }
-    /*
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Athlete: ").append(num).append("\n Surname: ").append(surname).append("\n Name: ").append(name)
-		  .append("\n ID: ").append(id).append("\n Nationality: ").append(nationality).append(" \n Birth Date: ")
-		  .append(birthDate).append("\n Gender: ").append(gender).append("\n Weight: ").append(weight).append("\n Height: ")
-		  .append(height).append("\n Percentage of Ended Races: ").append(percEndedRaces).append("\n Economic Budget: ")
-		  .append(economicBudget).append("\n Ranking: ").append(ranking).append("\n Stats: ").append(stats).append("\n");
-		
-		return sb.toString();
-	}
-	*/
+   
+   public void addEnergyListener(EnergyListener listener) {
+       listeners.add(listener);
+   }
+  
 	
 	public String listStats(){
 		return stats.toString();
 	}
 	
-	 public void addEnergyListener(EnergyListener listener) {
-	        listeners.add(listener);
-	    }
+	
 
 	    public void removeEnergyListener(EnergyListener listener) {
 	        listeners.remove(listener);
@@ -393,12 +392,7 @@ public abstract class Athlete implements Serializable {
 	
 
 	
-	public boolean isUsingNeoprene() {
-		return neoprene;
-	}
-	public void setNeoprene(boolean neoprene) {
-		this.neoprene = neoprene;
-	}
+
 
 	public String toString(){
 	   StringBuilder sb = new StringBuilder();

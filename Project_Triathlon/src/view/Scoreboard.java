@@ -289,6 +289,8 @@ public class Scoreboard extends JFrame {
 		newRace.setVisible(false);
 
 	}
+	
+	//------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 	public ImageIcon scaleImage(ImageIcon newIcon){
 		Image scaledImage = newIcon.getImage().getScaledInstance(218, 43, Image.SCALE_SMOOTH);
 		return new ImageIcon(scaledImage);

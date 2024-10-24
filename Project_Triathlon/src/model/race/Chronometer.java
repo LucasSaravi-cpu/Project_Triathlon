@@ -10,6 +10,9 @@ import listeners.ChronometerListener;
 import model.race.modality.Modality;
 
 public class Chronometer implements Serializable {
+	
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private int Hours;
     private int  minutes;
     private int seconds;
@@ -18,7 +21,7 @@ public class Chronometer implements Serializable {
     private Modality modality;
 
 
-
+  //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     public  Chronometer(Modality modality) {
         this.Hours = 0;
         this. minutes = 0;
@@ -27,7 +30,9 @@ public class Chronometer implements Serializable {
         this.listeners = new ArrayList<>();
         this.modality = modality;
     }
-
+      
+    
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
     public void start() {
         // Calculate factor of acceleration based on the new duration
 

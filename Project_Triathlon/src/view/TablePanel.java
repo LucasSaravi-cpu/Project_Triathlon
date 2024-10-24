@@ -12,8 +12,12 @@ import java.awt.*;
 import java.sql.SQLException;
 
 public class TablePanel extends JPanel {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
     private JTable table;
     private DefaultTableModel tableModel;
+    
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
     public TablePanel(InputPanel inputPanel, WeatherDAO weatherDAO) {
         setLayout(new BorderLayout());
         setOpaque(false);
@@ -62,6 +66,15 @@ public class TablePanel extends JPanel {
             }
         });
     }
+    
+  //------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
+    
+    public JTable getWeatherTable() {
+        return table;
+    }
+    
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
+    
     public void loadWeatherConditions(WeatherDAO weatherDAO) {
         WeatherDAO dao = new WeatherDAO();
         tableModel.setRowCount(0);
@@ -84,7 +97,5 @@ public class TablePanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Error loading weather conditions: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public JTable getWeatherTable() {
-        return table;
-    }
+   
 }

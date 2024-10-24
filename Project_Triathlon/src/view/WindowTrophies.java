@@ -13,37 +13,19 @@ import javafx.geometry.Pos;
 import javax.swing.JLabel;
 
 public class WindowTrophies extends JFrame {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
+
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private PositionLabel lblWinner;
 	private PositionLabel lblSecond;
 	private PositionLabel lblThird;
+	
 
-	public PositionLabel getLblSecond() {
-		return lblSecond;
-	}
 
-	public void setLblSecond(PositionLabel lblSecond) {
-		this.lblSecond = lblSecond;
-	}
-
-	public PositionLabel getLblThird() {
-		return lblThird;
-	}
-
-	public void setLblThird(PositionLabel lblThird) {
-		this.lblThird = lblThird;
-	}
-
-	public PositionLabel getLblWinner() {
-		return lblWinner;
-	}
-
-	public void setLblWinner(PositionLabel lblWinner) {
-		this.lblWinner = lblWinner;
-	}
-
+	  //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
 	public WindowTrophies() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(60, 150, 629, 411);
@@ -77,6 +59,33 @@ public class WindowTrophies extends JFrame {
 		contentPane.add(lblThird);
 	}
 
+	//------------------------------------------------>||GETTERS & SETTERS||<--------------------------------------------------------\\
+
+	public PositionLabel getLblSecond() {
+		return lblSecond;
+	}
+
+	public void setLblSecond(PositionLabel lblSecond) {
+		this.lblSecond = lblSecond;
+	}
+
+	public PositionLabel getLblThird() {
+		return lblThird;
+	}
+
+	public void setLblThird(PositionLabel lblThird) {
+		this.lblThird = lblThird;
+	}
+
+	public PositionLabel getLblWinner() {
+		return lblWinner;
+	}
+
+	public void setLblWinner(PositionLabel lblWinner) {
+		this.lblWinner = lblWinner;
+	}
+
+	
 	public void setWinnerText(String text) {
 		lblWinner.setCustomText(text);
 		lblWinner.repaint();

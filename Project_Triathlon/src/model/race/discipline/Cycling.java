@@ -77,7 +77,6 @@ public class Cycling extends Discipline implements Serializable {
     @Override
     public double getBaseSpeed(PhysicalConditions stats, WeatherConditions wc) {
         return stats.getCyclingAptitude() * 1.4 * (1 + wc.getCyclingImpact() / 100);
-        //return 1500 - stats.getCyclismAptitude() * 70 - 10 * wc.getCyclingweathering();
     }
 
     @Override

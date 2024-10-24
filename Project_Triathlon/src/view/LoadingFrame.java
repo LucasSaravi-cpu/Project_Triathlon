@@ -6,12 +6,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoadingFrame extends JFrame {
+	
+	//------------------------------------------------>||ATTRIBUTES||<--------------------------------------------------------\\
 
     private JProgressBar progressBar;
     private JLabel loadingLabel;
     private int dotCount = 0;
     private Timer timer;
 
+    
+    //------------------------------------------------>||CONSTRUCTORS||<------------------------------------------------------------\\
+    
     public LoadingFrame() {
         setTitle("Loading");
         setSize(960, 540);
@@ -58,6 +63,8 @@ public class LoadingFrame extends JFrame {
         });
         timer.start();
     }
+    
+  //------------------------------------------------>||CLASS METHODS||<--------------------------------------------------------\\
 
     public void updateProgress(int progress) {
         progressBar.setValue(progress);
