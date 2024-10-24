@@ -390,7 +390,11 @@ public abstract class Athlete implements Serializable {
 		victories++;
 	}
 	
-
+   public void  penalizeForDrafting() {
+    	 
+	   
+    	 
+     }
 	
 
 

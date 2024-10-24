@@ -61,6 +61,7 @@ public class RacePanel extends JPanel {
         }
         setPreferredSize(new Dimension(966, 2600));
         setLayout(null);
+        setOpaque(false);
         finishLineIcon = new ImageIcon(getClass().getResource("/Image/finish_line.png"));
     }
     

@@ -22,6 +22,7 @@ public class AthletePanel extends JPanel {
     private int startX;
     private int endX;
     private SpeedChangeListener speedChangeListener;
+    private ImageIcon buttonIcon;
   
     
 
@@ -31,10 +32,11 @@ public class AthletePanel extends JPanel {
            this.endX = endX;
            setLayout(null);
            setSize(966, 60);
-           decrease = new JButton ("-");
+           buttonIcon = new ImageIcon(getClass().getResource("/Image/buttonDesign.png"));
+           decrease = createButtonWithTextAndIcon("-",scaleImage(buttonIcon));
            decrease.setBounds(31, 13, 50, 21);
            add(decrease);
-           increase = new JButton("+");
+           increase = createButtonWithTextAndIcon("+",scaleImage(buttonIcon));
            increase.setBounds(81, 13, 50, 21);
            add(increase);
            increase.addActionListener(e -> notifySpeedChange(1));
@@ -89,6 +91,49 @@ public class AthletePanel extends JPanel {
     public void addSpeedChangeListener(SpeedChangeListener listener) {
         this.speedChangeListener = listener;
     }
+    private ImageIcon scaleImage(ImageIcon newIcon){
+        Image scaledImage = newIcon.getImage().getScaledInstance(50, 21, Image.SCALE_SMOOTH);
+        return new ImageIcon(scaledImage);
+    }
+    private JButton createButtonWithTextAndIcon(String text, ImageIcon icon) {
+        JButton button = new JButton() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
 
+                // Draw the background image (icon)
+                g2d.drawImage(icon.getImage(), 0, 0, getWidth(), getHeight(), this);
+
+                // Set font and calculate text metrics for centering
+                g2d.setFont(new Font("Arial", Font.BOLD, 15));  // Font for the text
+                FontMetrics fm = g2d.getFontMetrics();
+                int x = (getWidth() - fm.stringWidth(text)) / 2;  // Center the text horizontally
+                int y = (getHeight() + fm.getAscent()) / 2 - 2;   // Center the text vertically
+
+                // Draw a white border (shadow effect) around the text
+                g2d.setColor(Color.WHITE);
+                g2d.drawString(text, x - 1, y - 1);
+                g2d.drawString(text, x - 1, y + 1);
+                g2d.drawString(text, x + 1, y - 1);
+                g2d.drawString(text, x + 1, y + 1);
+                g2d.drawString(text, x , y + 1);
+                g2d.drawString(text, x, y - 1);
+                g2d.drawString(text, x + 1, y);
+                g2d.drawString(text, x - 1, y);
+
+                // Draw the actual text in black
+                g2d.setColor(Color.BLACK);
+                g2d.drawString(text, x, y);
+                g2d.setStroke(new BasicStroke(1)); // Set the stroke width to 1 for minimal border
+                g2d.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
+            }
+        };
+        button.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        button.setBorderPainted(false);
+        button.setContentAreaFilled(false);
+        button.setFocusPainted(false);
+        return button;
+    }
 
 }
