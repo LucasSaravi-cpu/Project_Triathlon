@@ -227,28 +227,21 @@ public abstract class Athlete implements Serializable {
 		this.competition = competition;
 	}
 	
-	   public double getEnergy() {
-				return energy;
-			
-	   }
-	   public void setEnergy(double energy) {
-			
-			this.energy = energy;
-	        notifyEnergyChange(energy);
-		}
-		public int getCurrentStation(){
+	public double getEnergy() {
+		return energy;
+	}
+	public void setEnergy(double energy) {
+		this.energy = energy;
+	}
+	public int getCurrentStation(){
 		    return currentStation;
 		}
-		public void setCurrentStation(int station){
+	public void setCurrentStation(int station){
 		    this.currentStation = station;
 		}
-
 	public void setCurrentDiscipline(Discipline currentDiscipline) {
 		this.currentDiscipline = currentDiscipline;
 	}
-	
-	
-	
 	public Discipline getCurrentDiscipline() {
 		return currentDiscipline;
 	}
@@ -261,7 +254,6 @@ public abstract class Athlete implements Serializable {
 	public void setUserSpeedAdjustment(int userSpeedAdjustment){
 		this.userSpeedAdjustment=userSpeedAdjustment;
 	}
-	
 	public boolean isUsingNeoprene() {
 		return neoprene;
 	}
@@ -273,15 +265,15 @@ public abstract class Athlete implements Serializable {
 
 	 
 
-   public abstract String getCategory();
+    public abstract String getCategory();
     
-   public abstract String  setNeopreneUsage(double distance, double waterTemperature);
+    public abstract String  setNeopreneUsage(double distance, double waterTemperature);
    
-   public abstract Double setMaximumNeopreneTime(double distance);
+    public abstract Double setMaximumNeopreneTime(double distance);
    
  //------------------------------------------------>||CLASS METHODS ||<--------------------------------------------------------\\
    
-   public int getSpeed() {
+    public int getSpeed() {
 		return 500 - (userSpeedAdjustment-5) * 50;
 	}
 	public int getPositionChange(Race race) {
@@ -295,45 +287,33 @@ public abstract class Athlete implements Serializable {
 		return Period.between(birthDateLocal, currentDate).getYears();
 	}
    
-   public void updateEnergy(double height, double weight, double mentalStrength, double stamina) {
+    public void updateEnergy(double height, double weight, double mentalStrength, double stamina) {
        double newEnergy = K * (height * weight) * (stamina + mentalStrength);
        setEnergy(newEnergy);
        
-   }
+    }
    
-   public void addEnergyListener(EnergyListener listener) {
+    public void addEnergyListener(EnergyListener listener) {
        listeners.add(listener);
    }
   
 	
-	public String listStats(){
+    public String listStats(){
 		return stats.toString();
 	}
-	
-	
-
-	    public void removeEnergyListener(EnergyListener listener) {
+	public void removeEnergyListener(EnergyListener listener) {
 	        listeners.remove(listener);
 	    }
-	    
-	    public void decreaseEnergy() {
-	        energy -= 30 + (userSpeedAdjustment - 5) * 5;
-	        if (energy < 0) {
-	            energy = 0;
-	        }
-	        setEnergy(energy);
+	public void decreaseEnergy() {
+		energy -= 30 + (userSpeedAdjustment - 5) * 5;
+	    if (energy < 0) {
+	         energy = 0;
 	    }
+	    setEnergy(energy);
+	}
 
-	    public void increaseEnergy(double amount) {
+	public void increaseEnergy(double amount) {
 	        setEnergy(energy + amount);
-	    }
-	    
-	 
-	    private void notifyEnergyChange(double newEnergy) {
-	        EnergyEvent event = new EnergyEvent(this, newEnergy);
-	        for (EnergyListener listener : listeners) {
-	            listener.energyChanged(event);
-	        }
 	    }
 
 	public void updatePoints(int position) {

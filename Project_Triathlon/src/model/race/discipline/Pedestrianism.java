@@ -50,10 +50,6 @@ public class Pedestrianism extends Discipline implements Serializable {
 	public int getIconIndex(){
 		return 3;
 	}
-	@Override
-	public ImageIcon getNewIcon(){
-		return new ImageIcon(getClass().getResource("/Image/running.png"));
-	}
 	public Pedestrianism createInstance(){
 		return new Pedestrianism();
 	}

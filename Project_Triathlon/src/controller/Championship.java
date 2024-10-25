@@ -281,11 +281,9 @@ public class Championship implements RaceListener {
             }
         });
         positionUpdateThread.start();
-
         addChronometerListener(windowChronometer);
         chronometer.start();
     }
-
 
     @Override
     public void positionChanged(RaceThread thread, int newPositionX) {
@@ -293,8 +291,7 @@ public class Championship implements RaceListener {
         windowRace.updateLabelPosition(index, newPositionX);
     }
 
-    public void changeWeatherConditions(int index) throws SQLException
-    {
+    public void changeWeatherConditions(int index) throws SQLException {
     	 WeatherDAO wp = new  WeatherDAO();
         WeatherConditions weatherconditions =  Championship.getRandomWeatherCondition(wp.getAllWeatherConditions());
         notifyWeatherUpdate(weatherconditions);
@@ -316,14 +313,11 @@ public class Championship implements RaceListener {
         //Parse the XML file and get the document
         Document document = builder.parse(xmlFile);
 
-       //Print the root element
+        //Print the root element
         document.getDocumentElement().normalize();
-       // System.out.println("Root Element: " + document.getDocumentElement().getNodeName());
-       //Get objects <athlete>
+        //Get objects <athlete>
         NodeList AthleteList = document.getElementsByTagName("atleta");
-       //System.out.println("Number of athletes: " + AthleteList.getLength());
-       NodeList CareerList = document.getElementsByTagName("carrera");
-       //System.out.println("Number of Races:" + CareerList.getLength());
+        NodeList CareerList = document.getElementsByTagName("carrera");
 
         //List for elements of type <athlete>
         athletes = new ArrayList<>();
@@ -353,7 +347,6 @@ public class Championship implements RaceListener {
                 double economicBudget = Double.parseDouble(getChildElementValue(athleteElement, "presupuestoEconomico"));
                 int ranking = Integer.parseInt(getChildElementValue(athleteElement, "ranking"));
 
-
                 if (gender.equals("Masculino")) {
                     gender = "Male";
                 } else
@@ -369,36 +362,25 @@ public class Championship implements RaceListener {
                     athlete = new Amateur(num, name, surname, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions, comp);
                 }
                 else {
-
                     athlete = new Competitor(num, name, surname, id, new Country(nationality), birthDate, gender, weight, height, percEndedRaces, economicBudget, ranking, physicalconditions, comp);
                 }
                 athletes.add(athlete);
-
-
             }
-
         }
-
 
         races = new ArrayList<>();
 
         for (int j = 0; j <  CareerList.getLength(); j++) {
             Node careerNode = CareerList.item(j);
-
             if (careerNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element careerElement =  (Element) careerNode;
-
-
-                String cityname = getChildElementValue(careerElement, "ciudad");
-                String countryname = getChildElementValue( careerElement,"pais");
-                Date date = parseFecha(getChildElementValue( careerElement,"fecha"));
-                String modalityname = getChildElementValue(careerElement,"modalidad");
-                double swimming = Double.parseDouble(getChildElementValue(careerElement, "natacion"));
-                double cycling = Double.parseDouble(getChildElementValue(careerElement, "ciclismo"));
-                double pedestrianism = Double.parseDouble(getChildElementValue(careerElement, "pedestrismo"));
-               
-
-
+               Element careerElement =  (Element) careerNode;
+               String cityname = getChildElementValue(careerElement, "ciudad");
+               String countryname = getChildElementValue( careerElement,"pais");
+               Date date = parseFecha(getChildElementValue( careerElement,"fecha"));
+               String modalityname = getChildElementValue(careerElement,"modalidad");
+               double swimming = Double.parseDouble(getChildElementValue(careerElement, "natacion"));
+               double cycling = Double.parseDouble(getChildElementValue(careerElement, "ciclismo"));
+               double pedestrianism = Double.parseDouble(getChildElementValue(careerElement, "pedestrismo"));
                Discipline swimmingg = new Swimming();
                Discipline cyclimm= new Cycling();
                Discipline pedestriani = new Pedestrianism();
@@ -421,8 +403,6 @@ public class Championship implements RaceListener {
                     case "LongDistance" -> new LongDistance(disciplinedistances);
                     default -> new OlympicDistance(disciplinedistances);
                 };
-
-
                 List<Stations> stati = new ArrayList<>();
                 Element provisioningstationsElement = (Element) careerElement.getElementsByTagName("puestos_aprovisionamiento").item(0);
                 NodeList stationsList = provisioningstationsElement.getElementsByTagName("puesto");
@@ -441,10 +421,7 @@ public class Championship implements RaceListener {
                         stati.add(station);
                     }
                 }
-
-       
                Race race = new Race(city, country, date, modality, swimming, cycling, pedestrianism, stati);
-
                races.add(race);
             }
         }
@@ -488,42 +465,34 @@ public class Championship implements RaceListener {
 	    }
 	}
 
-	  public static List<Race> getTop4Race(List<Race> originalRace) {
-            Collections.shuffle(originalRace);
-	        Map<String, Race> bestRaceForModality = new LinkedHashMap<>();
-	        Set<City> usedCities = new HashSet<>();
-
-	        Set<Date> usedDates = new HashSet<>();
-
-
-	        for (Race race : originalRace) {
-	            String modalityName = race.getModality().getClass().getSimpleName();
-	            City city = race.getCity();
-	            Date date = race.getDate();
-
-
-	            if (!bestRaceForModality.containsKey(modalityName) && !usedCities.contains(city) && !usedDates.contains(date)) {
+    public static List<Race> getTop4Race(List<Race> originalRace) {
+        Collections.shuffle(originalRace);
+        Map<String, Race> bestRaceForModality = new LinkedHashMap<>();
+        Set<City> usedCities = new HashSet<>();
+        Set<Date> usedDates = new HashSet<>();
+        for (Race race : originalRace) {
+            String modalityName = race.getModality().getClass().getSimpleName();
+            City city = race.getCity();
+            Date date = race.getDate();
+            if (!bestRaceForModality.containsKey(modalityName) && !usedCities.contains(city) && !usedDates.contains(date)) {
 	                //    Add the race to the map and mark the city and date as used
 	                bestRaceForModality.put(modalityName, race);
 	                usedCities.add(city);
 	                usedDates.add(date);
-	            }
-	        }
-            List<Race> resultList = new ArrayList<>(bestRaceForModality.values()).subList(0, 4);
-            resultList.sort(Comparator.comparing(Race::getDate));
-
-	        return new ArrayList<>(resultList.subList(0, 4));
-	    }
+            }
+        }
+        List<Race> resultList = new ArrayList<>(bestRaceForModality.values()).subList(0, 4);
+        resultList.sort(Comparator.comparing(Race::getDate));
+        return new ArrayList<>(resultList.subList(0, 4));
+    }
   
 
 	
     public static String ListAthletes () {
-
         StringBuilder sb = new StringBuilder();
         for (Athlete athlete: athletes) {
             sb.append(athlete);
         }
-
         return sb.toString();
     }
     public Object[][] getAthletesData(int index) {
@@ -601,29 +570,24 @@ public class Championship implements RaceListener {
     }
     
 
-	    public void notifyWeatherUpdate(WeatherConditions weatherCondition) {
-	        WeatherEvent event = new WeatherEvent(this, weatherCondition);     
-	        for (WeatherEventListener listener : weatherListeners) {
-	            listener.onWeatherUpdate(event);
-	        }
-	    }
-	    
-	    public static String getWeatherConditionsList(WeatherConditions weathercondition) {
-	        StringBuilder sb = new StringBuilder();
-	        Random random = new Random();
-	        DecimalFormat format = new DecimalFormat("#.##");
-	        double lowerBound = weathercondition.getLowerTier();
-	        double upperBound = weathercondition.getUpperTier();
-	        double randomValue = lowerBound + (upperBound - lowerBound) * random.nextDouble();
-	        
-	        
-	        weathercondition.setCurrentTemperature(randomValue);
-	        
-	        
-	        String formattedValue = format.format(randomValue);
-	        sb.append(weathercondition.getDescription()).append("\n");
-	        sb.append(formattedValue).append(" ").append(weathercondition.getMeasurementUnit());
-	        return sb.toString();
+    public void notifyWeatherUpdate(WeatherConditions weatherCondition) {
+        WeatherEvent event = new WeatherEvent(this, weatherCondition);
+        for (WeatherEventListener listener : weatherListeners) {
+            listener.onWeatherUpdate(event);
+        }
+    }
+    public static String getWeatherConditionsList(WeatherConditions weathercondition) {
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        DecimalFormat format = new DecimalFormat("#.##");
+        double lowerBound = weathercondition.getLowerTier();
+        double upperBound = weathercondition.getUpperTier();
+        double randomValue = lowerBound + (upperBound - lowerBound) * random.nextDouble();
+        weathercondition.setCurrentTemperature(randomValue);
+        String formattedValue = format.format(randomValue);
+        sb.append(weathercondition.getDescription()).append("\n");
+        sb.append(formattedValue).append(" ").append(weathercondition.getMeasurementUnit());
+        return sb.toString();
 	    }
 
     public void endChampionship() {
@@ -659,23 +623,12 @@ public class Championship implements RaceListener {
 
 
     public static void TotalTimeForRace(Race race) {
-    	
-    	
-    	
     	for (DisciplineDistance disciplinedistance : race.getModality().getDisciplinedistance()) {
-    		
-    		
-    		
     		    Discipline discipline =disciplinedistance.getDiscipline();
     	        String modalityName = race.getModality().getClass().getSimpleName();
     	        int time =Chronometer.TimerMinutes(discipline.time(modalityName));
     	        discipline.setMaxTime(race, time);
-    
-    		
     	}
-
-    
-    		
     }
     public static void saveGameState(String filePath) {
         File file = new File(filePath);

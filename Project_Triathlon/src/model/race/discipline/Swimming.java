@@ -59,18 +59,12 @@ public class Swimming extends Discipline implements Serializable {
 		return 1;
 	}
 	@Override
-
-	public ImageIcon getNewIcon(){
-		return null;
-	}
-	@Override
 	public void setMaxTime(Race race, int time) {
 		race.setT1(time);
 	}
 	@Override
 	public double getBaseSpeed(PhysicalConditions stats, WeatherConditions wc){
 		return stats.getSwimmingAptitude() * (1 + wc.getSwimmingImpact()/100);
-		
 	}
 	@Override
 	public String setTime(Athlete athlete, Chronometer chronometer, int raceIndex){

@@ -64,10 +64,6 @@ public class Cycling extends Discipline implements Serializable {
     public int getIconIndex(){
         return 2;
     }
-    @Override
-    public ImageIcon getNewIcon() {
-        return new ImageIcon(getClass().getResource("/Image/cycling.png"));
-    }
 
     @Override
     public void setMaxTime(Race race, int time) {

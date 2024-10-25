@@ -20,7 +20,6 @@ public abstract class Discipline implements Serializable {
     public abstract Discipline getNewDiscipline();
 	public abstract Discipline createInstance();
     public abstract double getPoints(List<Double> disciplineChangePoints, Stations station, Race race, int startX, int endX);
-    public abstract ImageIcon getNewIcon();
     public abstract void setMaxTime(Race race, int time);
     public abstract double getBaseSpeed(PhysicalConditions stats, WeatherConditions wc);
     public abstract String setTime(Athlete athlete, Chronometer chronometer, int raceIndex);
